@@ -45,11 +45,13 @@ class Executor:
             max_length=512,
             truncation=True,
             stride=128,
-            return_overflowing_tokens=True,
-            return_offsets_mapping=True,
             padding=True,
             return_tensors="pt"
         )
+
+        # Remove offset_mapping as it's not needed for the model
+        if 'offset_mapping' in inputs:
+            del inputs['offset_mapping']
         
         # Move to device
         inputs = {k: v.to(self.device) for k, v in inputs.items() if isinstance(v, torch.Tensor)}

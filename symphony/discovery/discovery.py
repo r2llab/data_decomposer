@@ -39,7 +39,7 @@ class Discovery:
     def discover(self, 
                 query: str, 
                 k: int = 5, 
-                min_score: float = 0.5,
+                min_score: float = 0.25,
                 keyword_boost: bool = True) -> List[Dict[str, Any]]:
         """
         Discover relevant items for a query using both keyword matching and semantic search.
@@ -62,6 +62,10 @@ class Discovery:
         # Get initial results from vector search
         results, scores = self.index.search(query_embedding, k=k)
         
+        if len(results) == 0:
+            print("Warning: No results found in vector search")
+            return []
+
         if keyword_boost:
             # Extract keywords from query (simple approach)
             keywords = set(re.findall(r'\w+', query.lower()))
@@ -77,7 +81,6 @@ class Discovery:
                 
                 # Boost score (simple linear combination)
                 boosted_score = 0.7 * score + 0.3 * (matches / len(keywords))
-                
                 if boosted_score >= min_score:
                     item['relevance_score'] = float(boosted_score)
                     boosted_results.append(item)

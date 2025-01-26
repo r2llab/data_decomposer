@@ -47,9 +47,9 @@ if __name__ == "__main__":
 
     # Test some queries
     test_queries = [
-        # "Who is the head of AI research?",
+        "Who is the head of AI research?",
         # "What are the latest financial results?",
-        "Tell me about Symphony 2.0 features",
+        # "Tell me about Symphony 2.0 features",
         # "Are there any high priority support issues?",
         # "What's happening with the marketing campaign?"
     ]

@@ -1,3 +1,3 @@
 from .executor import Executor
-
-__all__ = ['Executor'] 
+from .aggregator import Aggregator
+__all__ = ['Executor', 'Aggregator'] 
