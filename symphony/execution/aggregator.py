@@ -25,7 +25,7 @@ class Aggregator:
                          original_query: str,
                          sub_queries: List[Dict[str, Any]],
                          sub_results: List[Dict[str, Any]],
-                         aggregation_strategy: str) -> Dict[str, Any]:
+                         aggregation_strategy: Optional[str] = None) -> Dict[str, Any]:
         """
         Aggregate results from multiple sub-queries into a final answer.
         
@@ -33,49 +33,46 @@ class Aggregator:
             original_query: The original user query
             sub_queries: List of sub-query specifications
             sub_results: List of results from executing sub-queries
-            aggregation_strategy: Strategy for combining results
+            aggregation_strategy: Optional strategy for aggregation
             
         Returns:
-            Dict containing the final answer and metadata
+            Dict containing aggregated answer and metadata
         """
-        # Create context for GPT
-        context = self._create_aggregation_context(
-            original_query, sub_queries, sub_results, aggregation_strategy
-        )
+        # Create context from sub-results
+        context = self._create_aggregation_context(original_query, sub_queries, sub_results)
         
-        # Get aggregation from GPT
+        # Get aggregated answer from GPT
         response = self.client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
-                {"role": "system", "content": """You are an expert at combining information 
-                from multiple sources to create coherent answers. Analyze the sub-query results 
-                and create a comprehensive answer."""},
+                {"role": "system", "content": "You are a precise answer aggregator. Combine the results of sub-queries into a complete answer."},
                 {"role": "user", "content": context}
             ],
             temperature=0.3
         )
         
-        aggregated_answer = response.choices[0].message.content.strip()
+        # Calculate confidence based on sub-results
+        confidence = sum(result.get("confidence", 0.0) for result in sub_results) / len(sub_results)
         
-        # Calculate confidence as average of sub-results' confidences
-        confidence = sum(r.get("confidence", 0) for r in sub_results) / len(sub_results)
+        # Collect all source types and sources
+        source_types = list(set(result.get("source_type") for result in sub_results if result.get("source_type")))
+        sources = [result.get("source") for result in sub_results if result.get("source")]
         
         return {
-            "answer": aggregated_answer,
+            "answer": response.choices[0].message.content,
             "confidence": confidence,
-            "sub_results": sub_results,
-            "aggregation_strategy": aggregation_strategy
+            "source_type": source_types if source_types else None,
+            "source": sources if sources else None,
+            "sub_results": sub_results  # Include sub-results for reference
         }
         
     def _create_aggregation_context(self,
                                   query: str,
                                   sub_queries: List[Dict[str, Any]],
-                                  sub_results: List[Dict[str, Any]],
-                                  strategy: str) -> str:
+                                  sub_results: List[Dict[str, Any]]) -> str:
         """Create the context for GPT aggregation."""
         context_parts = [
             f"Original Query: {query}\n",
-            f"Aggregation Strategy: {strategy}\n",
             "\nSub-queries and their results:"
         ]
         

@@ -1,119 +1,99 @@
 from typing import Dict, Any, Optional, Union
 import pandas as pd
 import numpy as np
-from transformers import AutoModelForQuestionAnswering, AutoTokenizer
-import torch
+import openai
+from pathlib import Path
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 class Executor:
-    def __init__(self, model_name: str = "deepset/roberta-base-squad2"):
+    def __init__(self, api_key: Optional[str] = None):
         """
-        Initialize the executor with a QA model.
+        Initialize the executor with OpenAI client.
         
         Args:
-            model_name: Name of the HuggingFace QA model to use
+            api_key: OpenAI API key. If None, loads from environment variable.
         """
-        self.device = "cuda" if torch.cuda.is_available() else "cpu"
-        self.tokenizer = AutoTokenizer.from_pretrained(model_name)
-        self.model = AutoModelForQuestionAnswering.from_pretrained(model_name).to(self.device)
+        self.api_key = api_key or os.getenv("OPENAI_API_KEY")
+        if not self.api_key:
+            raise ValueError("OpenAI API key must be provided or set in OPENAI_API_KEY environment variable")
+            
+        self.client = openai.OpenAI(api_key=self.api_key)
         
     def execute_query(self, query: str, item: Dict[str, Any]) -> Dict[str, Any]:
         """
         Execute a query on a single item.
         
         Args:
-            query: The question to answer
-            item: The data item (can be text or tabular)
+            query: The query to execute
+            item: The item to query against
             
         Returns:
-            Dict containing the answer and confidence score
+            Dict containing the answer and metadata
         """
-        # Determine item type and use appropriate method
-        if isinstance(item.get("content"), pd.DataFrame):
+        item_type = item.get('type', 'unknown')
+        if item_type == 'table':
             return self._execute_table_query(query, item)
         else:
             return self._execute_text_query(query, item)
             
     def _execute_text_query(self, query: str, item: Dict[str, Any]) -> Dict[str, Any]:
-        """Execute a query on a text item using BERT QA."""
-        # Get the context from the item
-        context = item["content"]
-        
-        # Tokenize
-        inputs = self.tokenizer(
-            query,
-            context,
-            max_length=512,
-            truncation=True,
-            stride=128,
-            padding=True,
-            return_tensors="pt"
-        )
-
-        # Remove offset_mapping as it's not needed for the model
-        if 'offset_mapping' in inputs:
-            del inputs['offset_mapping']
-        
-        # Move to device
-        inputs = {k: v.to(self.device) for k, v in inputs.items() if isinstance(v, torch.Tensor)}
-        
-        # Get model predictions
-        with torch.no_grad():
-            outputs = self.model(**inputs)
+        """Execute a query on a text item."""
+        # Get content from either data or content field
+        context = item.get('data') if item.get('data') is not None else item.get('content')
+        if context is None:
+            return {
+                "answer": "No content available to answer the query.",
+                "confidence": 0.0,
+                "source_type": item.get('type'),
+                "source": None
+            }
             
-        # Get the most likely answer span
-        start_logits = outputs.start_logits[0].cpu().numpy()
-        end_logits = outputs.end_logits[0].cpu().numpy()
-        
-        # Get the most likely answer span
-        answer_start = np.argmax(start_logits)
-        answer_end = np.argmax(end_logits[answer_start:]) + answer_start
-        
-        # Convert tokens back to text
-        answer = self.tokenizer.decode(
-            inputs["input_ids"][0][answer_start:answer_end + 1],
-            skip_special_tokens=True
-        )
-        
-        # Calculate confidence score
-        confidence = float(
-            torch.softmax(torch.tensor(start_logits), dim=0)[answer_start] *
-            torch.softmax(torch.tensor(end_logits), dim=0)[answer_end]
+        response = self.client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": "You are a precise question answering assistant. Answer questions based solely on the provided context."},
+                {"role": "user", "content": f"Context:\n{context}\n\nQuestion: {query}\n\nProvide a concise answer based only on the context provided. If the context doesn't contain the information needed to answer the question, say 'The context does not provide this information.'"}
+            ],
+            temperature=0.3
         )
         
         return {
-            "answer": answer,
-            "confidence": confidence,
-            "source_type": "text",
-            "source": item
+            "answer": response.choices[0].message.content,
+            "confidence": 0.8 if "context does not provide" not in response.choices[0].message.content.lower() else 0.0,
+            "source_type": item.get('type'),
+            "source": context[:200] + "..." if len(context) > 200 else context
         }
         
     def _execute_table_query(self, query: str, item: Dict[str, Any]) -> Dict[str, Any]:
-        """
-        Execute a query on a table using a simple neural approach.
-        For now, we'll convert the table row-by-row to text and use the same QA model.
-        """
-        df = item["content"]
-        if not isinstance(df, pd.DataFrame):
-            raise ValueError("Table content must be a pandas DataFrame")
+        """Execute a query on a table item."""
+        # Get table from either data or content field
+        table = item.get('data') if item.get('data') is not None else item.get('content')
+        if table is None:
+            return {
+                "answer": "No table data available to answer the query.",
+                "confidence": 0.0,
+                "source_type": "table",
+                "source": None
+            }
             
-        # Convert table to text format row by row
-        rows_text = []
-        for idx, row in df.iterrows():
-            row_text = " ".join(f"{col}: {val}" for col, val in row.items())
-            rows_text.append(row_text)
-            
-        # Combine all rows into a single context
-        context = " | ".join(rows_text)
+        # Convert table to string representation
+        table_str = table.to_string()
         
-        # Create a temporary text item
-        text_item = {
-            "content": context,
-            "type": "table",
-            "original_table": df
-        }
+        response = self.client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": "You are a precise question answering assistant. Answer questions based solely on the provided table data."},
+                {"role": "user", "content": f"Table Data:\n{table_str}\n\nQuestion: {query}\n\nProvide a concise answer based only on the table data provided. If the table doesn't contain the information needed to answer the question, say 'The table does not provide this information.'"}
+            ],
+            temperature=0.3
+        )
         
-        # Use text QA to find the answer
-        result = self._execute_text_query(query, text_item)
-        result["source_type"] = "table"
-        
-        return result 
+        return {
+            "answer": response.choices[0].message.content,
+            "confidence": 0.8 if "table does not provide" not in response.choices[0].message.content.lower() else 0.0,
+            "source_type": "table",
+            "source": table_str
+        } 

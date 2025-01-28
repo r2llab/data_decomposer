@@ -3,3 +3,4 @@ __pycache__/
 *$py.class
 symphony.egg-info/
 sample_index/
+.env

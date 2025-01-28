@@ -4,6 +4,7 @@ from tenacity import retry, stop_after_attempt, wait_exponential
 import os
 from dotenv import load_dotenv
 import json
+import pandas as pd
 
 load_dotenv()
 
@@ -62,17 +63,28 @@ class Decomposer:
             raise ValueError("Failed to parse GPT response as JSON")
             
     def _prepare_items_context(self, items: List[Dict[str, Any]]) -> str:
-        """Prepare a string description of available items for the prompt."""
+        """
+        Prepare a context string describing the available items.
+        
+        Args:
+            items: List of items with their metadata
+            
+        Returns:
+            String describing the items and their types
+        """
         contexts = []
         for i, item in enumerate(items, 1):
-            if isinstance(item.get("content"), str):
-                content_preview = item["content"][:200] + "..."
+            item_type = item.get('type', 'unknown')
+            content = item.get('data') if item.get('data') is not None else item.get('content')
+            
+            if item_type == 'table' and isinstance(content, pd.DataFrame):
+                # For tables, include column names
+                contexts.append(f"Item {i}: A table with columns: {', '.join(content.columns.tolist())}")
             else:
-                content_preview = "Table data with columns: " + \
-                                ", ".join(item["content"].columns.tolist())
-            
-            contexts.append(f"Item {i}:\nType: {item['type']}\nContent: {content_preview}\n")
-            
+                # For text or other types, include a preview
+                preview = str(content)[:100] + "..." if content else "No content available"
+                contexts.append(f"Item {i}: {item_type} content: {preview}")
+                
         return "\n".join(contexts)
         
     def _create_decomposition_prompt(self, query: str, items_context: str) -> str:
@@ -84,6 +96,9 @@ Query: {query}
 Available Data Items:
 {items_context}
 
+For each sub-query, you MUST specify which item from the available items should be used to answer it (using the item number).
+If you can't determine which item to use for a sub-query, use item 1 as default.
+
 Return a JSON object with the following structure:
 {{
     "requires_decomposition": boolean,  // Whether the query needs to be decomposed
@@ -91,12 +106,14 @@ Return a JSON object with the following structure:
     "sub_queries": [  // List of sub-queries, empty if requires_decomposition is false
         {{
             "sub_query": string,  // The sub-query text
-            "target_item_index": number,  // Index of the relevant item (1-based)
+            "target_item_index": number,  // Index of the relevant item (1-based). REQUIRED. Default to 1 if unsure.
             "expected_answer_type": string  // Type of answer expected (text, number, date, etc.)
         }}
     ],
     "aggregation_strategy": string  // How to combine sub-query results, null if no aggregation needed
-}}"""
+}}
+
+IMPORTANT: Each sub-query MUST have a target_item_index specified. If you're unsure which item to use, default to 1."""
         
     def _validate_decomposition(self, decomposition: Dict) -> Dict:
         """Validate and clean up the decomposition response."""
@@ -114,8 +131,14 @@ Return a JSON object with the following structure:
                 raise ValueError(f"Invalid type for field {field}")
                 
         if decomposition["requires_decomposition"]:
-            for sub_query in decomposition["sub_queries"]:
+            for i, sub_query in enumerate(decomposition["sub_queries"]):
                 if not all(k in sub_query for k in ["sub_query", "target_item_index", "expected_answer_type"]):
-                    raise ValueError("Invalid sub-query structure")
+                    # If target_item_index is missing, default to 1
+                    if "target_item_index" not in sub_query:
+                        sub_query["target_item_index"] = 1
+                    if not all(k in sub_query for k in ["sub_query", "expected_answer_type"]):
+                        raise ValueError(f"Invalid sub-query structure in sub-query {i+1}")
+                if not isinstance(sub_query["target_item_index"], (int, float)):
+                    sub_query["target_item_index"] = 1
                     
         return decomposition 

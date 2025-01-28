@@ -56,8 +56,9 @@ class Discovery:
         if not self.index:
             raise ValueError("No items have been indexed yet")
             
-        # Get query embedding
+        # Get query embedding and ensure it's float32 and contiguous
         query_embedding = self.embedder.embed_text(query)
+        query_embedding = np.ascontiguousarray(query_embedding.astype('float32'))
         
         # Get initial results from vector search
         results, scores = self.index.search(query_embedding, k=k)
