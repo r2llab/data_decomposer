@@ -94,7 +94,7 @@ class Pipeline:
         for sub_query in decomposition["sub_queries"]:
             target_idx = sub_query["target_item_index"] - 1
             if target_idx < len(relevant_items):
-                logger.info(f"Executing: {sub_query['sub_query']}")
+                logger.info(f"Executing sub-query '{sub_query['sub_query']}' on item {relevant_items[target_idx]['data']}")
                 result = self._execute(
                     sub_query["sub_query"],
                     relevant_items[target_idx]

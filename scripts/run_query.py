@@ -14,7 +14,8 @@ def main():
     pipeline = Pipeline(index_path=Path(args.index_dir), openai_api_key=args.api_key)
 
     # Define query
-    query = "What motorways run along the city where 10,000 metres was ran in 26:51.11 by the male athlete Yigrem Demelash?"
+    # query = "What motorways run along the city where 10,000 metres was ran in 26:51.11 by the male athlete Yigrem Demelash?"
+    query = "How many consecutive times did the male runner who finished the 10,000 metres in 26:29.22 at Brussels win the Berlin Marathon ?"
 
     # Run query
     result = pipeline.run_query(query)
