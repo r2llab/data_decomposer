@@ -118,3 +118,20 @@ python scripts/build_index.py \
     --data-dir data/ \
     --output-dir index/
 ```
+
+# ReSP Architecture
+
+## Single Query Mode
+```
+python scripts/run_resp_query.py \
+    --index-dir /path/to/index \
+    --api-key YOUR_API_KEY \
+    --query "Your question here"
+```
+
+## Interactive Mode
+```
+python scripts/run_resp_query.py \
+    --index-dir /path/to/index \
+    --api-key YOUR_API_KEY
+```

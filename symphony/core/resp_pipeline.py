@@ -71,13 +71,21 @@ class ReSPPipeline:
         
         while current_iteration < self.max_iterations:
             logger.info(f"\n--- Iteration {current_iteration + 1} ---")
-            
+            # Log the current sub-question being processed
+            logger.info(f"Processing sub-question: {current_sub_question}")
             # 1. Retrieval Phase
             retrieved_docs = self._retrieve(current_sub_question)
             if not retrieved_docs:
                 logger.warning("No relevant documents found")
                 break
                 
+            # Log retrieved documents
+            logger.info("Retrieved documents:")
+            for i, doc in enumerate(retrieved_docs, 1):
+                logger.info(f"\nDocument {i}:")
+                logger.info(f"Content: {doc.get('content', 'No content')}")
+                logger.info(f"Metadata: {doc.get('metadata', {})}")
+
             # 2. Summarization Phase
             self._summarize(
                 documents=retrieved_docs,
@@ -86,20 +94,23 @@ class ReSPPipeline:
             )
             
             # 3. Reasoning Phase (except for first iteration)
-            if current_iteration > 0:
-                reasoning_result = self._reason(
-                    main_question=query,
-                    current_sub_question=current_sub_question
-                )
+            # if current_iteration > 0:
+            reasoning_result = self._reason(
+                main_question=query,
+                current_sub_question=current_sub_question
+            )
+
+            # Log the reasoning result
+            logger.info(f"Reasoning result: {reasoning_result}")
+            
+            if reasoning_result.get("should_exit", False):
+                logger.info("Reasoner decided to exit iteration")
+                break
                 
-                if reasoning_result.get("should_exit", False):
-                    logger.info("Reasoner decided to exit iteration")
-                    break
-                    
-                current_sub_question = reasoning_result.get("next_sub_question")
-                if not current_sub_question:
-                    logger.info("No further sub-questions generated")
-                    break
+            current_sub_question = reasoning_result.get("next_sub_question")
+            if not current_sub_question:
+                logger.info("No further sub-questions generated")
+                break
             
             current_iteration += 1
         
@@ -129,6 +140,10 @@ class ReSPPipeline:
             main_question=main_question,
             sub_question=sub_question
         )
+
+        # Log the summaries
+        logger.info(f"Global summary: {summaries.get('global_summary')}")
+        logger.info(f"Local summary: {summaries.get('local_summary')}")
         
         # Update memory queues
         self.memory.global_evidence.put(summaries.get("global_summary"))

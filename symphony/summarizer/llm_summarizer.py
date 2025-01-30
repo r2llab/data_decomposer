@@ -1,11 +1,11 @@
 from typing import Dict, Any, List
 import openai
-from ..utils.prompts import create_chat_completion
+from ..utils.prompts import create_chat_completion, init_openai
 
 class LLMSummarizer:
     """LLM-based implementation of the ReSP Summarizer component"""
     
-    def __init__(self, api_key: str, model: str = "gpt-4"):
+    def __init__(self, api_key: str, model: str = "gpt-4o"):
         """
         Initialize the LLM Summarizer.
         
@@ -15,7 +15,7 @@ class LLMSummarizer:
         """
         self.api_key = api_key
         self.model = model
-        openai.api_key = api_key
+        init_openai(api_key)
         
     def summarize(self,
                  documents: List[Dict[str, Any]],
@@ -35,6 +35,11 @@ class LLMSummarizer:
         # Prepare document content
         doc_texts = [self._format_document(doc) for doc in documents]
         combined_docs = "\n\n".join(doc_texts)
+
+        # Log the combined documents
+        import logging
+        logger = logging.getLogger(__name__)
+        logger.info(f"Combined documents for summarization:\n{combined_docs}")
         
         # Get global summary (for Q)
         global_summary = self._get_focused_summary(

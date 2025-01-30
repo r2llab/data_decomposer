@@ -1,6 +1,6 @@
 from typing import Dict, Any, List, Optional
 import openai
-from ..utils.prompts import create_chat_completion
+from ..utils.prompts import create_chat_completion, init_openai
 
 class LLMReasoner:
     """LLM-based implementation of the ReSP Reasoner component"""
@@ -15,7 +15,7 @@ class LLMReasoner:
         """
         self.api_key = api_key
         self.model = model
-        openai.api_key = api_key
+        init_openai(api_key)
         
     def reason(self,
                main_question: str,
