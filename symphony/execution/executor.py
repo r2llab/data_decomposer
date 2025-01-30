@@ -52,7 +52,7 @@ class Executor:
             }
             
         response = self.client.chat.completions.create(
-            model="gpt-3.5-turbo",
+            model="gpt-4o",
             messages=[
                 {"role": "system", "content": "You are a precise question answering assistant. Answer questions based solely on the provided context."},
                 {"role": "user", "content": f"Context:\n{context}\n\nQuestion: {query}\n\nProvide a concise answer based only on the context provided. If the context doesn't contain the information needed to answer the question, say 'The context does not provide this information.'"}
@@ -83,7 +83,7 @@ class Executor:
         table_str = table.to_string()
         
         response = self.client.chat.completions.create(
-            model="gpt-3.5-turbo",
+            model="gpt-4o",
             messages=[
                 {"role": "system", "content": "You are a precise question answering assistant. Answer questions based solely on the provided table data."},
                 {"role": "user", "content": f"Table Data:\n{table_str}\n\nQuestion: {query}\n\nProvide a concise answer based only on the table data provided. If the table doesn't contain the information needed to answer the question, say 'The table does not provide this information.'"}

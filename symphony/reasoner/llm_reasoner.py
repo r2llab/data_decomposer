@@ -5,7 +5,7 @@ from ..utils.prompts import create_chat_completion, init_openai
 class LLMReasoner:
     """LLM-based implementation of the ReSP Reasoner component"""
     
-    def __init__(self, api_key: str, model: str = "gpt-4"):
+    def __init__(self, api_key: str, model: str = "gpt-4o"):
         """
         Initialize the LLM Reasoner.
         

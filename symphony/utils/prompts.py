@@ -22,7 +22,7 @@ def init_openai(api_key: str):
 )
 def create_chat_completion(
     messages: List[Dict[str, str]],
-    model: str = "gpt-4",
+    model: str = "gpt-4o",
     temperature: float = 0.7,
     max_tokens: Optional[int] = None,
     top_p: float = 1.0,
@@ -34,7 +34,7 @@ def create_chat_completion(
     
     Args:
         messages: List of message dictionaries with 'role' and 'content'
-        model: The model to use (default: gpt-4)
+        model: The model to use (default: gpt-4o)
         temperature: Sampling temperature (default: 0.7)
         max_tokens: Maximum tokens in response (default: None)
         top_p: Nucleus sampling parameter (default: 1.0)
