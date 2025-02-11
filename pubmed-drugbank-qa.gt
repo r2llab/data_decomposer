@@ -1,4 +1,4 @@
-equestion,answer,text,table
+question,answer,text,table
 "What are the different dosage levels of tirofiban","The different dosage levels of tirofiban include: (1) Low dose: Bolus of 0.4 microg/kg over 30 minutes, followed by an infusion of 0.10 microg/kg/min, (2) Intermediate dose: Bolus of 10 microg/kg over 3 minutes, followed by an infusion of 0.15 microg/kg/min, (3) High dose: Bolus of 25 microg/kg over 3 minutes, followed by an infusion of 0.15 microg/kg/min",Target-20210689,drugbank-drug.csv
 "Which patient group may benefit the most from the high-dose administration of tirofiban?","Patients with ST elevation myocardial infarction undergoing primary percutaneous coronary intervention (PCI) may benefit the most from the high-dose administration of tirofiban",Target-20210689,drugbank-drug.csv
 "How does tirofiban inhibit platelet aggregation?","Tirofiban is a reversible antagonist of fibrinogen binding to the GP IIb/IIIa receptor, which is the major platelet surface receptor involved in platelet aggregation.",Target-20210689,drugbank-drug_pharmacology.csv
