@@ -1,0 +1,52 @@
+import argparse
+import logging
+from core.config import ConfigurationManager
+from core.factory import ImplementationFactory
+# Import implementations to register them
+import implementations
+
+def setup_logging(config):
+    """Setup logging based on configuration."""
+    logging.basicConfig(
+        level=getattr(logging, config.get('logging', {}).get('level', 'INFO')),
+        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+        filename=config.get('logging', {}).get('file')
+    )
+
+def main():
+    print("Starting main")
+    parser = argparse.ArgumentParser(description='R2L Query Processing System')
+    parser.add_argument('--config', type=str, default='config.yaml',
+                       help='Path to configuration file')
+    parser.add_argument('query', type=str, help='Query to process')
+    args = parser.parse_args()
+    print("Arguments parsed")
+    # Load configuration
+    config_manager = ConfigurationManager(args.config)
+    print("Configuration loaded")
+    
+    # # Setup logging
+    # setup_logging(config_manager.config)
+    
+    # Get implementation configuration
+    impl_config = config_manager.get_implementation_config()
+    print("Implementation configuration loaded")
+    try:
+        # Create implementation instance
+        implementation = ImplementationFactory.create(
+            impl_config['name'],
+            impl_config['config']
+        )
+        print("Implementation created")
+        
+        # Process query
+        result = implementation.process_query(args.query)
+        print(result)
+        
+    finally:
+        # Cleanup
+        if 'implementation' in locals():
+            implementation.cleanup()
+
+if __name__ == '__main__':
+    main() 

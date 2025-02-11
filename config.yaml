@@ -1,0 +1,28 @@
+# Configuration for R2L implementations and data lakes
+implementation:
+  name: symphony  # Name of the implementation to use
+  config:
+    # Symphony-specific configuration
+    openai_api_key: !env OPENAI_API_KEY  # Will be replaced with environment variable
+    # embedding_model: "sentence-transformers/all-mpnet-base-v2"
+    max_chunks: 100
+    chunk_size: 1000
+    overlap: 200
+    batch_size: 32
+    # Optional: Use existing index
+    index_path: "./data/index"
+    # Or index new data
+    data_path: !env DATA_PATH  # Will be replaced with environment variable
+
+data_lake:
+  name: Pharma  # Name of the data lake to use
+  config:
+    # Data lake specific configuration
+    data_path: "data/Pharma"
+    # file_types: ["txt", "pdf", "md"]
+    # exclude_patterns: [".*\\.git.*", ".*\\.DS_Store"]
+
+# Global settings
+# logging:
+#   level: INFO
+#   file: "logs/r2l.log" 

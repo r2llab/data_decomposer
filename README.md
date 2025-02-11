@@ -9,7 +9,6 @@
 
 3. Install requirements: `pip install -r requirements.txt`
 
-
 # Symphony Architecture Overview
 
 ## Repository Structure
@@ -64,57 +63,8 @@ The executor processes decomposed queries against the retrieved context. It hand
 ### Aggregation (`execution/aggregator.py`)
 The aggregator combines results from multiple sub-queries into a coherent final response, ensuring consistency and handling any conflicts in the intermediate results.
 
-# GPT Embedding Model
+# Running Main
 
-Command to extract embeddings:
 ```
-python scripts/auto_extract_embeddings.py \
-    --data_dir data/ \
-    --output_dir embeddings/ \
-    --api_key openai-api-key \
-    --batch_size 32
-```
-
-Command to build the index:
-```
-python scripts/build_index.py \
-    --data-dir data/ \
-    --embeddings embeddings/embeddings.npy \
-    --output-dir index/ \
-    --api-key openai-api-key
-```
-
-Command to run a query against the indexed dataset:
-```
-python scripts/run_query.py \
-    --index-dir index/ \
-    --api-key openai-api-key
-```
-
-# Cross-Modal Representation Learning
-
-Command to train the model:
-```
-python scripts/train.py \
-    --data-dir data/ \
-    --output-dir checkpoints/ \
-    --batch-size 32 \
-    --epochs 10 \
-    --lr 1e-4
-```
-
-Command to extract embeddings using the trained model:
-```
-python scripts/extract_embeddings.py \
-    --checkpoint checkpoints/best_model.pt \
-    --data-dir data/ \
-    --output-dir embeddings/
-```
-
-Command to build the search index:
-```
-python scripts/build_index.py \
-    --embeddings embeddings/embeddings.pt \
-    --data-dir data/ \
-    --output-dir index/
+python main.py --config config.yaml "your query here"
 ```
