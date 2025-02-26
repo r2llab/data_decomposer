@@ -10,9 +10,10 @@ implementation:
     # overlap: 200
     batch_size: 32
     # Optional: Use existing index
-    index_path: "./data/index"
+    # index_path: "./data/index"
     # Or index new data
-    data_path: !env DATA_PATH  # Will be replaced with environment variable
+    # Use both datasets: pubmed targets and drugbank tables
+    data_path: "data/Pharma"  # This will include both pubmed-targets and drugbank-tables
     # ReSP-specific settings
     max_iterations: 5  # Maximum number of recursive iterations
 

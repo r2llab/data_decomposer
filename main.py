@@ -41,7 +41,16 @@ def main():
         
         # Process query
         result = implementation.process_query(args.query)
-        print(result)
+        
+        # Print answer
+        print("\nAnswer:")
+        print(result.get("answer", "No answer found"))
+        
+        # Print document sources if available
+        if "document_sources" in result and result["document_sources"]:
+            print("\nDocument Sources:")
+            for source in result["document_sources"]:
+                print(f" - {source}")
         
     finally:
         # Cleanup

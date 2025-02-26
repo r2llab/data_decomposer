@@ -138,7 +138,7 @@ class Pipeline:
         """Execute the query on a single item."""
         return self.executor.execute_query(query, item)
     
-    def embed_data(self, data_dir: str, batch_size: int = 1, output_dir: Optional[str] = None) -> np.ndarray:
+    def embed_data(self, data_dir: str, batch_size: int = 16, output_dir: Optional[str] = None) -> np.ndarray:
         """
         Load data from directory and embed all items.
         
@@ -153,71 +153,71 @@ class Pipeline:
         
         # Load dataset
         logger.info(f"Loading dataset from {data_dir}")
-        dataset = CrossModalDataset.from_directory(data_dir, batch_size=1)  # Process one at a time
+        dataset = CrossModalDataset.from_directory(data_dir, batch_size=batch_size)
         logger.info(f"Loaded dataset with {len(dataset)} items")
         
-        # Process embeddings one at a time with delays
+        # Process embeddings in batches
         logger.info("Starting embedding extraction")
         all_embeddings = []
         
-        for i in range(len(dataset)):
-            try:
-                # Get single item and serialize it properly
-                item = dataset[i]
+        # Process in batches using the dataset's iterator
+        items_to_process = []
+        processed_count = 0
+        total_items = len(dataset)
+        
+        for item in dataset:
+            # Truncate text to max 8000 tokens (approximate limit for safety)
+            if len(item.split()) > 8000:
+                item = ' '.join(item.split()[:8000])
                 
-                # Truncate text to max 8000 tokens (approximate limit for safety)
-                if len(item.split()) > 8000:
-                    item = ' '.join(item.split()[:8000])
-                
-                # Get embedding with retry logic
-                max_retries = 5
-                current_retry = 0
-                while current_retry < max_retries:
-                    try:
-                        # Ensure item is a string before embedding
-                        if isinstance(item, str):
-                            text_to_embed = item
-                        else:
-                            logger.warning(f"Item {i+1} is not a string, attempting to convert...")
-                            text_to_embed = str(item)
-                            
-                        embedding = self.embedder.embed_text([text_to_embed])
-                        all_embeddings.append(embedding)
-                        logger.info(f"Processed item {i+1}/{len(dataset)} successfully")
-                        # Add delay between successful embeddings
-                        time.sleep(3)  # 3 second delay between items
-                        break
-                    except Exception as e:
-                        current_retry += 1
-                        wait_time = min(2 ** current_retry, 60)  # Exponential backoff up to 60 seconds
-                        logger.warning(f"Retry {current_retry}/{max_retries} - Waiting {wait_time} seconds... Error: {str(e)}")
-                        if "400" in str(e):  # Bad request error
-                            logger.error(f"Bad request error for item {i+1}. Content type: {type(item)}")
-                            logger.error(f"Content preview: {str(item)[:200]}")
-                        time.sleep(wait_time)
-                        
-                if current_retry == max_retries:
-                    logger.error(f"Failed to process item {i+1} after {max_retries} retries")
-                    # Use zero vector as fallback
-                    if all_embeddings:
-                        fallback = np.zeros_like(all_embeddings[0])
-                    else:
-                        fallback = np.zeros((1, 1536))  # Default embedding size for text-embedding-3-small
-                    all_embeddings.append(fallback)
+            items_to_process.append(item)
+            
+            # When we have a full batch or at the end, process it
+            if len(items_to_process) >= batch_size or processed_count + len(items_to_process) == total_items:
+                try:
+                    # Get embeddings for the batch
+                    embeddings = self.embedder.embed_text(items_to_process)
+                    all_embeddings.append(embeddings)
                     
-            except Exception as e:
-                logger.error(f"Error processing item {i+1}: {str(e)}")
-                logger.error(f"Item type: {type(item)}")
-                # Use zero vector as fallback
-                if all_embeddings:
-                    fallback = np.zeros_like(all_embeddings[0])
-                else:
-                    fallback = np.zeros((1, 1536))  # Default embedding size for text-embedding-3-small
-                all_embeddings.append(fallback)
+                    processed_count += len(items_to_process)
+                    logger.info(f"Processed items {processed_count}/{total_items} ({(processed_count/total_items)*100:.1f}%)")
+                    
+                    # Clear the batch
+                    items_to_process = []
+                    
+                    # Add a small delay between batches to respect rate limits
+                    time.sleep(0.5)
+                    
+                except Exception as e:
+                    logger.error(f"Error processing batch: {str(e)}")
+                    # Process items one by one as fallback
+                    for single_item in items_to_process:
+                        try:
+                            embedding = self.embedder.embed_text([single_item])
+                            all_embeddings.append(embedding)
+                            processed_count += 1
+                            logger.info(f"Processed item {processed_count}/{total_items} (fallback mode)")
+                            time.sleep(1)  # Delay between fallback items
+                        except Exception as inner_e:
+                            logger.error(f"Error processing item in fallback mode: {str(inner_e)}")
+                            # Use zero vector as fallback
+                            if all_embeddings:
+                                fallback = np.zeros((1, all_embeddings[0].shape[1]))
+                            else:
+                                fallback = np.zeros((1, 1536))  # Default embedding size
+                            all_embeddings.append(fallback)
+                            processed_count += 1
+                    
+                    # Clear the batch
+                    items_to_process = []
         
         # Concatenate all embeddings
-        all_embeddings = np.concatenate(all_embeddings, axis=0)
-        logger.info(f"Generated embeddings with shape {all_embeddings.shape}")
+        if all_embeddings:
+            all_embeddings = np.concatenate(all_embeddings, axis=0)
+            logger.info(f"Generated embeddings with shape {all_embeddings.shape}")
+        else:
+            logger.error("No embeddings were generated")
+            all_embeddings = np.zeros((len(dataset), 1536))
         
         # Save if output directory is provided
         if output_dir:

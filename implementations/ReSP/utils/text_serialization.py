@@ -1,41 +1,83 @@
 import pandas as pd
-from typing import Union, Dict, Any
+from typing import Any, Dict, Union
 
-def serialize_item(item: Union[pd.DataFrame, str, Dict[str, Any]], item_type: str = "text") -> str:
+def serialize_item(item: Any, item_type: str) -> str:
     """
-    Returns a single string that concatenates the contents of a table or text item.
+    Convert an item to a string representation suitable for embedding.
     
     Args:
-        item: The item to serialize - can be a pandas DataFrame, string, or dictionary
-        item_type: Type of the item - either "table" or "text"
+        item: The item to serialize (can be DataFrame, text, etc.)
+        item_type: Type of the item ("table" or "text")
         
     Returns:
-        str: Serialized string representation of the item
-        
-    Raises:
-        ValueError: If item_type is not supported or item format doesn't match type
+        String representation of the item
     """
-    if item_type == "table":
-        if not isinstance(item, pd.DataFrame):
-            raise ValueError("For item_type='table', item must be a pandas DataFrame")
+    if item_type == 'table':
+        if isinstance(item, pd.DataFrame):
+            df = item
             
-        # Convert each row to pipe-separated string
-        row_strings = []
-        for _, row in item.iterrows():
-            row_str = " | ".join(str(val) for val in row)
-            row_strings.append(row_str)
+            # Get metadata if this is a chunked table
+            is_chunk = False
+            chunk_info = ""
+            if isinstance(item, Dict) and item.get('is_chunk'):
+                is_chunk = True
+                chunk_info = f" (Chunk {item.get('chunk_id')} of table {item.get('original_table')})"
             
-        # Join rows with double pipes
-        return " || ".join(row_strings)
-        
-    elif item_type == "text":
-        if isinstance(item, str):
-            # Basic text cleaning - remove special characters, extra whitespace
-            text = item.strip()
-            # Could add more cleaning here if needed
-            return text
+            # Create a text representation of the table
+            num_rows = len(df)
+            num_cols = len(df.columns)
+            
+            result = f"TABLE{chunk_info} with {num_rows} rows and {num_cols} columns:\n\n"
+            result += "COLUMNS: " + ", ".join(df.columns) + "\n\n"
+            
+            # For very large tables, just include a sample
+            max_rows_to_show = 100 if not is_chunk else num_rows
+            if num_rows > max_rows_to_show:
+                # Show header, first few rows, and last few rows
+                rows_each_end = max_rows_to_show // 2
+                header_rows = df.head(rows_each_end).to_string(index=False)
+                footer_rows = df.tail(rows_each_end).to_string(index=False)
+                result += header_rows + "\n...\n" + footer_rows
+            else:
+                # Show the entire table
+                result += df.to_string(index=False)
+            
+            return result
         else:
-            raise ValueError("For item_type='text', item must be a string")
-            
+            # Handle case where item might already be a dict containing a DataFrame
+            if isinstance(item, Dict) and 'data' in item and isinstance(item['data'], pd.DataFrame):
+                df = item['data']
+                
+                # Add chunk info if available
+                chunk_info = ""
+                if item.get('is_chunk'):
+                    chunk_info = f" (Chunk {item.get('chunk_id')} of table {item.get('original_table')})"
+                
+                num_rows = len(df)
+                num_cols = len(df.columns)
+                
+                result = f"TABLE{chunk_info} with {num_rows} rows and {num_cols} columns:\n\n"
+                result += "COLUMNS: " + ", ".join(df.columns) + "\n\n"
+                
+                # For very large tables, just include a sample
+                max_rows_to_show = min(num_rows, 100)
+                result += df.head(max_rows_to_show).to_string(index=False)
+                
+                if num_rows > max_rows_to_show:
+                    result += f"\n\n[Table truncated, showing {max_rows_to_show} of {num_rows} rows]"
+                
+                # Add source information
+                if 'source' in item:
+                    result += f"\n\nSOURCE: {item['source']}"
+                
+                return result
+            return str(item)
     else:
-        raise ValueError(f"Unsupported item_type: {item_type}") 
+        # Default case for text
+        if isinstance(item, Dict) and 'data' in item and isinstance(item['data'], str):
+            text = item['data']
+            # Add source information if available
+            if 'source' in item:
+                return f"{text}\n\nSOURCE: {item['source']}"
+            return text
+        return str(item) 

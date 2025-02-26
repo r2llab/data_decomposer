@@ -36,71 +36,45 @@ class Discovery:
         # Add to index
         self.index.add_items(items, embeddings)
         
-    def discover(self, 
-                query: str, 
-                k: int = 5, 
-                min_score: float = 0.25,
-                keyword_boost: bool = True) -> List[Dict[str, Any]]:
+    def discover(self, query: str, k: int = 5, min_score: float = 0.4) -> List[Dict[str, Any]]:
         """
-        Discover relevant items for a query using both keyword matching and semantic search.
+        Discover relevant items in the index.
         
         Args:
-            query: The search query
-            k: Number of results to return
-            min_score: Minimum similarity score threshold
-            keyword_boost: Whether to boost scores for keyword matches
+            query: Query string
+            k: Number of items to retrieve
+            min_score: Minimum relevance score threshold
             
         Returns:
-            List of discovered items
+            List of relevant items with relevance scores
         """
-        if not self.index:
-            raise ValueError("No items have been indexed yet")
+        # Check if index exists and is not empty
+        if not self.index or len(self.index.items) == 0:
+            print("Warning: Index is empty or not initialized. Cannot perform discovery.")
+            return []
             
-        # Get query embedding and ensure it's float32 and contiguous
-        query_embedding = self.embedder.embed_text(query)
+        # Get embedding for query
+        query_embedding = self.embedder.embed_text([query])
+        
+        # Ensure query embedding is in the correct format (float32 and contiguous)
         query_embedding = np.ascontiguousarray(query_embedding.astype('float32'))
         
-        # Get initial results from vector search
+        # Search index
         results, scores = self.index.search(query_embedding, k=k)
         
-        if len(results) == 0:
-            print("Warning: No results found in vector search")
-            return []
-
-        if keyword_boost:
-            # Extract keywords from query (simple approach)
-            keywords = set(re.findall(r'\w+', query.lower()))
-            
-            # Boost scores for items with keyword matches
-            boosted_results = []
-            for item, score in zip(results, scores):
-                # Get text representation of item
-                item_text = ' '.join(str(v) for v in item.values()).lower()
+        # Filter by score and add relevance score to items
+        relevant_items = []
+        for i, (item, score) in enumerate(zip(results, scores)):
+            if score >= min_score:
+                # Add relevance score to item
+                item_with_score = dict(item)
+                item_with_score["relevance_score"] = float(score)
+                relevant_items.append(item_with_score)
                 
-                # Count keyword matches
-                matches = sum(1 for kw in keywords if kw in item_text)
-                
-                # Boost score (simple linear combination)
-                # boosted_score = 0.7 * score + 0.3 * (matches / len(keywords))
-                print(score)
-                boosted_score = score
-                print(min_score)
-                if boosted_score >= min_score:
-                    item['relevance_score'] = float(boosted_score)
-                    boosted_results.append(item)
-                    
-            # Sort by boosted scores
-            print(boosted_results)
-            boosted_results.sort(key=lambda x: x['relevance_score'], reverse=True)
-            return boosted_results[:k]
-        else:
-            # Filter by minimum score
-            filtered_results = []
-            for item, score in zip(results, scores):
-                if score >= min_score:
-                    item['relevance_score'] = float(score)
-                    filtered_results.append(item)
-            return filtered_results
+        # Log results
+        print(f"Found {len(relevant_items)} relevant items for query: {query}")
+        
+        return relevant_items
         
     def save_index(self, directory: Path):
         """Save the index to disk."""

@@ -3,6 +3,7 @@ from pathlib import Path
 import logging
 from dataclasses import dataclass
 from queue import Queue
+import re
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, 
@@ -51,6 +52,9 @@ class ReSPPipeline:
             global_evidence=Queue(),
             local_pathway=Queue()
         )
+        
+        # Track document sources
+        self.document_sources = set()
 
     def run_query(self, query: str) -> Dict[str, Any]:
         """
@@ -66,6 +70,7 @@ class ReSPPipeline:
         
         # Initialize for new query
         self._reset_memory_queues()
+        self.document_sources = set()  # Reset document sources
         current_iteration = 0
         current_sub_question = query  # Initial sub-question is the main question
         
@@ -85,6 +90,12 @@ class ReSPPipeline:
                 logger.info(f"\nDocument {i}:")
                 logger.info(f"Content: {doc.get('content', 'No content')}")
                 logger.info(f"Metadata: {doc.get('metadata', {})}")
+                
+                # Track document sources
+                if 'metadata' in doc and 'source' in doc['metadata']:
+                    source = doc['metadata']['source']
+                    if source and source != "unknown":
+                        self.document_sources.add(source)
 
             # 2. Summarization Phase
             self._summarize(
@@ -93,42 +104,73 @@ class ReSPPipeline:
                 sub_question=current_sub_question
             )
             
-            # 3. Reasoning Phase (except for first iteration)
-            # if current_iteration > 0:
-            reasoning_result = self._reason(
+            # 3. Reasoning Phase
+            next_step = self._reason(
                 main_question=query,
                 current_sub_question=current_sub_question
             )
-
-            # Log the reasoning result
-            logger.info(f"Reasoning result: {reasoning_result}")
             
-            if reasoning_result.get("should_exit", False):
-                logger.info("Reasoner decided to exit iteration")
+            # Log reasoning output
+            logger.info(f"Reasoning result: {next_step}")
+            
+            # Decide what to do next
+            if not next_step.get("should_exit", False):
+                # If we should continue, update the sub-question
+                current_sub_question = next_step.get("next_sub_question")
+                if not current_sub_question:
+                    # If no new sub-question is provided, exit the loop
+                    logger.info("No further sub-questions generated, generating final answer")
+                    break
+                current_iteration += 1
+                logger.info(f"Continuing with sub-question: {current_sub_question}")
+            else:
+                # If we're done, generate the final answer
+                logger.info("Reasoning complete, generating final answer")
                 break
+        
+        # Log document sources
+        logger.info(f"Document sources used: {self.document_sources}")
                 
-            current_sub_question = reasoning_result.get("next_sub_question")
-            if not current_sub_question:
-                logger.info("No further sub-questions generated")
-                break
-            
-            current_iteration += 1
+        # Generate final answer
+        final_result = self._generate(
+            main_question=query
+        )
         
-        # 4. Generation Phase
-        final_answer = self._generate(main_question=query)
+        # Ensure document sources are in the result
+        if 'document_sources' not in final_result:
+            final_result['document_sources'] = list(self.document_sources)
         
-        return final_answer
+        logger.info(f"Final answer: {final_result.get('answer')}")
+        
+        return final_result
 
     def _reset_memory_queues(self):
-        """Reset both memory queues for a new query"""
+        """Reset memory queues for a new query"""
+        # Clear existing queues
         self.memory.global_evidence = Queue()
         self.memory.local_pathway = Queue()
+        
+        # Reset document sources
+        self.document_sources = set()
 
-    def _retrieve(self, sub_question: str) -> List[Dict[str, Any]]:
-        """Use the retriever to find relevant documents"""
+    def _retrieve(self, question: str) -> List[Dict[str, Any]]:
+        """Use the retriever to get relevant documents"""
         if self.retriever is None:
             raise NotImplementedError("Retriever component not implemented")
-        return self.retriever.retrieve(sub_question)
+            
+        retrieved_docs = self.retriever.retrieve(question)
+        
+        # Capture document sources from metadata
+        for doc in retrieved_docs:
+            if 'metadata' in doc and 'source' in doc['metadata']:
+                source = doc['metadata']['source']
+                if source and source != "unknown":
+                    self.document_sources.add(source)
+            
+        # Log tracked sources
+        logger.info(f"Currently tracked document sources: {self.document_sources}")
+            
+        return retrieved_docs
 
     def _summarize(self, documents: List[Dict[str, Any]], main_question: str, sub_question: str):
         """Use the summarizer to process documents and update memory queues"""
@@ -165,9 +207,23 @@ class ReSPPipeline:
         """Use the generator to produce final answer"""
         if self.generator is None:
             raise NotImplementedError("Generator component not implemented")
-            
-        return self.generator.generate(
+        
+        # Ensure document_sources is a list, not a set
+        document_sources = list(self.document_sources) if self.document_sources else []
+        
+        # Log document sources being passed to generator
+        logger.info(f"Passing {len(document_sources)} document sources to generator: {document_sources}")
+        
+        # Call generator with document sources
+        result = self.generator.generate(
             question=main_question,
             global_evidence=list(self.memory.global_evidence.queue),
-            local_pathway=list(self.memory.local_pathway.queue)
+            local_pathway=list(self.memory.local_pathway.queue),
+            document_sources=document_sources
         )
+        
+        # Ensure document sources are in the result
+        if not result.get('document_sources') and document_sources:
+            result['document_sources'] = document_sources
+            
+        return result

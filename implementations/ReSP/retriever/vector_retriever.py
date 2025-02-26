@@ -4,6 +4,7 @@ import numpy as np
 from ..embeddings import AutoEmbedder
 from ..discovery import Discovery
 from ..discovery.index import VectorIndex
+import re
 
 class VectorRetriever:
     """Vector-based implementation of the ReSP Retriever component"""
@@ -50,13 +51,26 @@ class VectorRetriever:
         # Format results
         results = []
         for item in relevant_items:
+            # Extract source information - try different possible metadata fields
+            source = "unknown"
+            content = item.get("data")
+            
+            # Try to find source from item's metadata
+            if item.get("source"):
+                source = item["source"]
+            elif item.get("id"):
+                source = item["id"]
+            
+            # Create metadata
+            metadata = {
+                "type": item.get("type", "unknown"),
+                "score": float(item.get("relevance_score", 0.0)),
+                "source": source
+            }
+                
             results.append({
-                "content": item.get("data", item.get("content")),
-                "metadata": {
-                    "type": item.get("type"),
-                    "score": item.get("relevance_score", 0.0),
-                    "source": item.get("source", "unknown")
-                }
+                "content": content,
+                "metadata": metadata
             })
             
         return results 

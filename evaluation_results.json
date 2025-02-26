@@ -1,0 +1,107 @@
+{
+  "individual_results": [
+    {
+      "question": "What are the different dosage levels of tirofiban",
+      "gt_answer": "The different dosage levels of tirofiban include: (1) Low dose: Bolus of 0.4 microg/kg over 30 minutes, followed by an infusion of 0.10 microg/kg/min, (2) Intermediate dose: Bolus of 10 microg/kg over 3 minutes, followed by an infusion of 0.15 microg/kg/min, (3) High dose: Bolus of 25 microg/kg over 3 minutes, followed by an infusion of 0.15 microg/kg/min",
+      "system_answer": "Tirofiban has three main dosage levels: 1. Low Dose: A bolus of 0.4 micrograms per kilogram (mcg/kg) administered over 30 minutes, followed by an infusion of 0.10 mcg/kg/minute. 2. Intermediate Dose: A bolus of 10 mcg/kg administered over 3 minutes, followed by an infusion of 0.15 mcg/kg/minute. 3. High Dose: A bolus of 25 mcg/kg administered over 3 minutes, followed by an infusion of 0.15 mcg/kg/minute. The high-dose is particularly beneficial for patients with ST elevation myocardial infarction undergoing primary percutaneous coronary intervention.",
+      "gt_sources": [
+        "Target-20210689",
+        "drugbank-drug.csv"
+      ],
+      "system_sources": [
+        "drugbank-drug_pharmacology.csv",
+        "pubmed-targets/Target-11735616",
+        "pubmed-targets/Target-20210689",
+        "pubmed-targets/Target-15311727",
+        "pubmed-targets/Target-11929319"
+      ],
+      "metrics": {
+        "rouge1": 0.7023809523809524,
+        "rouge2": 0.4939759036144578,
+        "rougeL": 0.6785714285714287,
+        "string_similarity": 0.5147864184008762,
+        "source_precision": 0.2,
+        "source_recall": 0.5,
+        "source_f1": 0.28571428571428575,
+        "processing_time": 18.296293020248413
+      }
+    },
+    {
+      "question": "Which patient group may benefit the most from the high-dose administration of tirofiban?",
+      "gt_answer": "Patients with ST elevation myocardial infarction undergoing primary percutaneous coronary intervention (PCI) may benefit the most from the high-dose administration of tirofiban",
+      "system_answer": "The high-dose administration of tirofiban may be most beneficial for patients with ST elevation myocardial infarction undergoing primary percutaneous coronary intervention (PCI).",
+      "gt_sources": [
+        "Target-20210689",
+        "drugbank-drug.csv"
+      ],
+      "system_sources": [
+        "pubmed-targets/Target-20210689",
+        "pubmed-targets/Target-10226408",
+        "pubmed-targets/Target-12549950",
+        "pubmed-targets/Target-11929319",
+        "pubmed-targets/Target-10234600"
+      ],
+      "metrics": {
+        "rouge1": 0.8695652173913043,
+        "rouge2": 0.7272727272727273,
+        "rougeL": 0.5217391304347826,
+        "string_similarity": 0.6045197740112994,
+        "source_precision": 0.2,
+        "source_recall": 0.5,
+        "source_f1": 0.28571428571428575,
+        "processing_time": 15.87970232963562
+      }
+    }
+  ],
+  "aggregate_metrics": {
+    "rouge1": {
+      "mean": 0.7859730848861284,
+      "median": 0.7859730848861284,
+      "min": 0.7023809523809524,
+      "max": 0.8695652173913043,
+      "std": 0.08359213250517594
+    },
+    "rouge2": {
+      "mean": 0.6106243154435925,
+      "median": 0.6106243154435925,
+      "min": 0.4939759036144578,
+      "max": 0.7272727272727273,
+      "std": 0.11664841182913474
+    },
+    "rougeL": {
+      "mean": 0.6001552795031057,
+      "median": 0.6001552795031057,
+      "min": 0.5217391304347826,
+      "max": 0.6785714285714287,
+      "std": 0.07841614906832306
+    },
+    "string_similarity": {
+      "mean": 0.5596530962060878,
+      "median": 0.5596530962060878,
+      "min": 0.5147864184008762,
+      "max": 0.6045197740112994,
+      "std": 0.044866677805211586
+    },
+    "source_precision": {
+      "mean": 0.2,
+      "median": 0.2,
+      "min": 0.2,
+      "max": 0.2,
+      "std": 0.0
+    },
+    "source_recall": {
+      "mean": 0.5,
+      "median": 0.5,
+      "min": 0.5,
+      "max": 0.5,
+      "std": 0.0
+    },
+    "source_f1": {
+      "mean": 0.28571428571428575,
+      "median": 0.28571428571428575,
+      "min": 0.28571428571428575,
+      "max": 0.28571428571428575,
+      "std": 0.0
+    }
+  }
+}
