@@ -1,6 +1,6 @@
 # Configuration for R2L implementations and data lakes
 implementation:
-  name: resp  # Name of the implementation to use
+  name: symphony  # Name of the implementation to use
   config:
     # ReSP-specific configuration
     openai_api_key: !env OPENAI_API_KEY  # Will be replaced with environment variable
@@ -10,7 +10,7 @@ implementation:
     # overlap: 200
     batch_size: 32
     # Optional: Use existing index
-    # index_path: "./data/index"
+    index_path: "data/index"
     # Or index new data
     # Use both datasets: pubmed targets and drugbank tables
     data_path: "data/Pharma"  # This will include both pubmed-targets and drugbank-tables

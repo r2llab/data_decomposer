@@ -27,20 +27,41 @@ def serialize_item(item: Any, item_type: str) -> str:
             num_rows = len(df)
             num_cols = len(df.columns)
             
+            # Create a more compact representation for tables
             result = f"TABLE{chunk_info} with {num_rows} rows and {num_cols} columns:\n\n"
             result += "COLUMNS: " + ", ".join(df.columns) + "\n\n"
             
-            # For very large tables, just include a sample
-            max_rows_to_show = 100 if not is_chunk else num_rows
-            if num_rows > max_rows_to_show:
-                # Show header, first few rows, and last few rows
-                rows_each_end = max_rows_to_show // 2
-                header_rows = df.head(rows_each_end).to_string(index=False)
-                footer_rows = df.tail(rows_each_end).to_string(index=False)
-                result += header_rows + "\n...\n" + footer_rows
+            # Use a more compact representation for all tables
+            # For tables with many columns, use a more compact format
+            if num_cols > 10:
+                # For wide tables, use a more compact representation
+                # Convert to records format (list of dicts) for more compact representation
+                records = df.to_dict(orient='records')
+                # Limit to first 50 rows if not a chunk (chunks are already small)
+                if not is_chunk and num_rows > 50:
+                    records = records[:50]
+                    result += f"Showing first 50 of {num_rows} rows:\n\n"
+                
+                # Format each record as a compact string
+                for i, record in enumerate(records):
+                    result += f"Row {i+1}:\n"
+                    for col, val in record.items():
+                        # Truncate very long values
+                        val_str = str(val)
+                        if len(val_str) > 100:
+                            val_str = val_str[:97] + "..."
+                        result += f"  {col}: {val_str}\n"
+                    result += "\n"
             else:
-                # Show the entire table
-                result += df.to_string(index=False)
+                # For tables with fewer columns, use standard to_string but with compact options
+                with pd.option_context('display.max_rows', None, 'display.max_columns', None, 
+                                      'display.width', 120, 'display.max_colwidth', 30):
+                    # Limit to first 50 rows if not a chunk
+                    if not is_chunk and num_rows > 50:
+                        result += f"Showing first 50 of {num_rows} rows:\n\n"
+                        result += df.head(50).to_string(index=False)
+                    else:
+                        result += df.to_string(index=False)
             
             return result
         else:
@@ -56,15 +77,41 @@ def serialize_item(item: Any, item_type: str) -> str:
                 num_rows = len(df)
                 num_cols = len(df.columns)
                 
+                # Create a more compact representation for tables
                 result = f"TABLE{chunk_info} with {num_rows} rows and {num_cols} columns:\n\n"
                 result += "COLUMNS: " + ", ".join(df.columns) + "\n\n"
                 
-                # For very large tables, just include a sample
-                max_rows_to_show = min(num_rows, 100)
-                result += df.head(max_rows_to_show).to_string(index=False)
-                
-                if num_rows > max_rows_to_show:
-                    result += f"\n\n[Table truncated, showing {max_rows_to_show} of {num_rows} rows]"
+                # Use a more compact representation for all tables
+                # For tables with many columns, use a more compact format
+                if num_cols > 10:
+                    # For wide tables, use a more compact representation
+                    # Convert to records format (list of dicts) for more compact representation
+                    records = df.to_dict(orient='records')
+                    # Limit to first 50 rows if not a chunk
+                    if not item.get('is_chunk') and num_rows > 50:
+                        records = records[:50]
+                        result += f"Showing first 50 of {num_rows} rows:\n\n"
+                    
+                    # Format each record as a compact string
+                    for i, record in enumerate(records):
+                        result += f"Row {i+1}:\n"
+                        for col, val in record.items():
+                            # Truncate very long values
+                            val_str = str(val)
+                            if len(val_str) > 100:
+                                val_str = val_str[:97] + "..."
+                            result += f"  {col}: {val_str}\n"
+                        result += "\n"
+                else:
+                    # For tables with fewer columns, use standard to_string but with compact options
+                    with pd.option_context('display.max_rows', None, 'display.max_columns', None, 
+                                          'display.width', 120, 'display.max_colwidth', 30):
+                        # Limit to first 50 rows if not a chunk
+                        if not item.get('is_chunk') and num_rows > 50:
+                            result += f"Showing first 50 of {num_rows} rows:\n\n"
+                            result += df.head(50).to_string(index=False)
+                        else:
+                            result += df.to_string(index=False)
                 
                 # Add source information
                 if 'source' in item:

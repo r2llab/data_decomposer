@@ -47,6 +47,8 @@ class VectorRetriever:
             k=self.top_k,
             min_score=self.min_score
         )
+
+
         
         # Format results
         results = []

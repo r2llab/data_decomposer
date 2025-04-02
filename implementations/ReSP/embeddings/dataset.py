@@ -119,25 +119,76 @@ class CrossModalDataset:
         # For larger tables, use adaptive chunking strategy
         total_rows = len(df)
         
-        # For extremely large tables, use even larger chunks
-        if total_rows > 10000:
-            # Use larger chunks for very large tables
-            adaptive_chunk_size = min(2000, total_rows // 10)
-        elif total_rows > 5000:
-            adaptive_chunk_size = min(1000, total_rows // 8)
-        else:
-            adaptive_chunk_size = max_rows
-            
+        # # Use smaller chunks for drugbank tables
+        # is_drugbank = 'drugbank' in source_id.lower()
+        
+        # Determine chunk size based on table size and type
+        # if is_zdrugbank:
+            # For drugbank tables, use much smaller chunks
+        # if total_rows > 10000:
+        #     adaptive_chunk_size = min(100, total_rows // 30)  # Very small chunks for very large drugbank tables
+        # elif total_rows > 5000:
+        #     adaptive_chunk_size = min(150, total_rows // 25)  # Small chunks for large drugbank tables
+        # else:
+        #     adaptive_chunk_size = min(200, total_rows // 20)  # Smaller chunks for medium drugbank tables
+        adaptive_chunk_size = 100
+        # else:
+        #     # For non-drugbank tables, also use smaller chunks
+        #     if total_rows > 10000:
+        #         adaptive_chunk_size = min(200, total_rows // 20)
+        #     elif total_rows > 5000:
+        #         adaptive_chunk_size = min(300, total_rows // 15)
+        #     else:
+        #         adaptive_chunk_size = min(400, total_rows // 10)
+                
         # Table needs to be chunked
         chunks = []
         total_chunks = (total_rows + adaptive_chunk_size - 1) // adaptive_chunk_size  # Ceiling division
         
         # Limit the number of chunks per table to avoid explosion of items
-        if total_chunks > 20:
-            # For extremely large tables, limit to max 20 chunks
-            adaptive_chunk_size = (total_rows + 19) // 20  # Ensure at most 20 chunks
-            total_chunks = (total_rows + adaptive_chunk_size - 1) // adaptive_chunk_size
+        # For drugbank tables, allow more chunks to ensure better granularity
+        # max_chunks = 50 if is_drugbank else 30
+        
+        # if total_chunks > max_chunks:
+        #     # For extremely large tables, limit to max_chunks
+        #     adaptive_chunk_size = (total_rows + max_chunks - 1) // max_chunks  # Ensure at most max_chunks chunks
+        #     total_chunks = (total_rows + adaptive_chunk_size - 1) // adaptive_chunk_size
             
+        # For very wide tables, also consider column chunking
+        max_cols = 20  # Maximum number of columns per chunk
+        col_chunks = []
+        
+        # If table has many columns, split by columns too
+        if len(df.columns) > max_cols:
+            # First split by rows
+            for i in range(0, total_rows, adaptive_chunk_size):
+                row_chunk = df.iloc[i:i+adaptive_chunk_size].copy()
+                
+                # Then split each row chunk by columns
+                for j in range(0, len(df.columns), max_cols):
+                    col_subset = row_chunk.iloc[:, j:j+max_cols].copy()
+                    
+                    # Create a unique ID for this row+column chunk
+                    row_chunk_id = f"{i//adaptive_chunk_size + 1}_of_{total_chunks}"
+                    col_chunk_id = f"{j//max_cols + 1}_of_{(len(df.columns) + max_cols - 1) // max_cols}"
+                    chunk_id = f"{row_chunk_id}_cols_{col_chunk_id}"
+                    chunk_source = f"{source_id}:chunk_{chunk_id}"
+                    
+                    col_chunks.append({
+                        'data': col_subset,
+                        'type': 'table',
+                        'source': source_id,  # Original source remains unchanged
+                        'id': chunk_source,   # Unique ID for the chunk
+                        'is_chunk': True,
+                        'chunk_id': chunk_id,
+                        'original_table': source_id
+                    })
+            
+            if col_chunks:
+                print(f"Split wide table {source_id} into {len(col_chunks)} row+column chunks")
+                return col_chunks
+        
+        # If not splitting by columns, just split by rows
         for i in range(0, total_rows, adaptive_chunk_size):
             chunk_df = df.iloc[i:i+adaptive_chunk_size].copy()
             chunk_id = f"{i//adaptive_chunk_size + 1}_of_{total_chunks}"
@@ -175,24 +226,24 @@ class CrossModalDataset:
             print(f"Warning: Directory {directory} does not exist")
             return cls(items, batch_size=batch_size)
         
-        # List of high-value tables to prioritize (these contain the most valuable information)
-        high_value_tables = [
-            'drug_dosages', 'drug', 'targets', 'drug_pharmacology', 
-            'drug_classifications', 'drug_categories', 'drug_international_brands',
-            'targets_actions', 'transporters_actions', 'enzymes_actions', 'carriers_actions',
-            'drug_food_interactions', 'drug_drug_interactions'
-        ]
+        # # List of high-value tables to prioritize (these contain the most valuable information)
+        # high_value_tables = [
+        #     'drug_dosages', 'drug', 'targets', 'drug_pharmacology', 
+        #     'drug_classifications', 'drug_categories', 'drug_international_brands',
+        #     'targets_actions', 'transporters_actions', 'enzymes_actions', 'carriers_actions',
+        #     'drug_food_interactions', 'drug_drug_interactions'
+        # ]
         
-        # Tables to skip entirely (these typically have less semantic value for most queries)
-        low_value_tables = [
-            'drug_pdb_entries', 'drug_external_identifiers', 'drug_external_links',
-            'drug_attachments', 'drug_calculated_properties', 'drug_patents',
-            'drug_prices', 'drug_atc_codes', 'drug_ahfs_codes'
-        ]
+        # # Tables to skip entirely (these typically have less semantic value for most queries)
+        # low_value_tables = [
+        #     'drug_pdb_entries', 'drug_external_identifiers', 'drug_external_links',
+        #     'drug_attachments', 'drug_calculated_properties', 'drug_patents',
+        #     'drug_prices', 'drug_atc_codes', 'drug_ahfs_codes'
+        # ]
         
-        # Track statistics
-        skipped_tables = 0
-        included_tables = 0
+        # # Track statistics
+        # skipped_tables = 0
+        # included_tables = 0
         
         # Walk through directory
         for root, _, files in os.walk(directory):
@@ -224,23 +275,23 @@ class CrossModalDataset:
                         continue
                 
                 # Check if this is a drugbank table (in drugbank-tables directory)
-                is_drugbank_table = 'drugbank-tables' in filepath or 'drugbank' in filepath
+                # is_drugbank_table = 'drugbank-tables' in filepath or 'drugbank' in filepath
                 
                 # Handle table files (CSV, TSV, Excel)
                 if file.lower().endswith(('.csv', '.tsv', '.xlsx', '.xls')):
                     # Apply filtering for drugbank tables
-                    if is_drugbank_table:
-                        # Extract table name without prefix for checking
-                        table_name = file_id.replace('drugbank-', '').replace('.csv', '').replace('.tsv', '').replace('.xlsx', '').replace('.xls', '')
+                    # if is_drugbank_table:
+                    #     # Extract table name without prefix for checking
+                    #     table_name = file_id.replace('.csv', '').replace('.tsv', '').replace('.xlsx', '').replace('.xls', '')
                         
-                        # Skip low-value tables
-                        if any(low_value in table_name for low_value in low_value_tables):
-                            skipped_tables += 1
-                            print(f"Skipping low-value table: {file_id}")
-                            continue
+                    #     # # Skip low-value tables
+                    #     # if any(low_value in table_name for low_value in low_value_tables):
+                    #     #     skipped_tables += 1
+                    #     #     print(f"Skipping low-value table: {file_id}")
+                    #     #     continue
                         
-                        # Prioritize high-value tables
-                        is_high_value = any(high_value in table_name for high_value in high_value_tables)
+                    #     # # Prioritize high-value tables
+                    #     # is_high_value = any(high_value in table_name for high_value in high_value_tables)
                     
                     # Try to read the table
                     try:
@@ -257,21 +308,18 @@ class CrossModalDataset:
                             continue
                         
                         # For drugbank tables, apply chunking
-                        if is_drugbank_table:
-                            # For high-value tables, use smaller chunks to maintain detail
-                            max_rows = 300 if is_high_value else 800
-                            table_chunks = cls._chunk_table(df, file_id, max_rows=max_rows)
-                            items.extend(table_chunks)
-                            included_tables += 1
-                        else:
-                            # Non-drugbank tables are added as is
-                            items.append({
-                                'data': df,
-                                'type': 'table',
-                                'source': rel_path,
-                                'id': file_id
-                            })
-                            included_tables += 1
+                        # if is_drugbank_table:
+                        # For high-value tables, use smaller chunks to maintain detail
+                        max_rows = 100  # Reduced from 200/400 to 100/150
+                        table_chunks = cls._chunk_table(df, file_id, max_rows=max_rows)
+                        items.extend(table_chunks)
+                        # included_tables += 1
+                        # else:
+                        #     # Non-drugbank tables are also chunked with reasonable sizes
+                        #     max_rows = 200  # Reduced from default to ensure chunks fit in context window
+                        #     table_chunks = cls._chunk_table(df, file_id, max_rows=max_rows)
+                        #     items.extend(table_chunks)
+                        #     included_tables += 1
                     except Exception as e:
                         print(f"Error reading table file {filepath}: {e}")
                         continue
@@ -294,31 +342,31 @@ class CrossModalDataset:
                 # Handle all other files as potential text (except binary files)
                 else:
                     try:
-                        # Try to detect if file is binary
-                        with open(filepath, 'rb') as f:
-                            chunk = f.read(1024)
-                            is_binary = False
-                            # Simple binary detection - if NUL bytes are present, likely binary
-                            if b'\x00' in chunk:
-                                is_binary = True
-                            # Fallback check using translate
-                            if not is_binary:
-                                is_binary = bool(chunk.translate(None, bytes([7,8,9,10,12,13,27,32,133,160]) + 
-                                                                bytes(range(256))[14:31] + bytes(range(256))[127:]))
+                        # # Try to detect if file is binary
+                        # with open(filepath, 'rb') as f:
+                        #     chunk = f.read(1024)
+                        #     is_binary = False
+                        #     # Simple binary detection - if NUL bytes are present, likely binary
+                        #     if b'\x00' in chunk:
+                        #         is_binary = True
+                        #     # Fallback check using translate
+                        #     if not is_binary:
+                        #         is_binary = bool(chunk.translate(None, bytes([7,8,9,10,12,13,27,32,133,160]) + 
+                        #                                         bytes(range(256))[14:31] + bytes(range(256))[127:]))
                             
-                        if not is_binary:
-                            with open(filepath, 'r', encoding='utf-8', errors='replace') as f:
-                                text = f.read()
-                            items.append({
-                                'data': text,
-                                'type': 'text',
-                                'source': rel_path,
-                                'id': file_id
-                            })
+                        # if not is_binary:
+                        with open(filepath, 'r', encoding='utf-8', errors='replace') as f:
+                            text = f.read()
+                        items.append({
+                            'data': text,
+                            'type': 'text',
+                            'source': rel_path,
+                            'id': file_id
+                        })
                     except Exception as e:
                         print(f"Error reading file {filepath}: {e}")
                         continue
         
         print(f"Loaded {len(items)} items ({sum(1 for item in items if item['type'] == 'table')} tables, {sum(1 for item in items if item['type'] == 'text')} texts)")
-        print(f"Tables included: {included_tables}, Tables skipped: {skipped_tables}")
+        # print(f"Tables included: {included_tables}, Tables skipped: {skipped_tables}")
         return cls(items, batch_size=batch_size) 

@@ -1,6 +1,7 @@
 from typing import Dict, Any, List
 import openai
 from ..utils.prompts import create_chat_completion, init_openai
+import pandas as pd
 
 class LLMSummarizer:
     """LLM-based implementation of the ReSP Summarizer component"""
@@ -33,8 +34,11 @@ class LLMSummarizer:
             Dict containing global and local summaries
         """
         # Prepare document content
+
+
         doc_texts = [self._format_document(doc) for doc in documents]
         combined_docs = "\n\n".join(doc_texts)
+
 
         # Log the combined documents
         import logging
@@ -65,10 +69,20 @@ class LLMSummarizer:
         content = doc["content"]
         metadata = doc["metadata"]
         
+        # Handle DataFrame content specially to avoid truncation
+        if isinstance(content, pd.DataFrame):
+            # Convert DataFrame to a more readable format without truncation
+            with pd.option_context('display.max_rows', None, 'display.max_columns', None, 'display.width', None):
+                # Convert to JSON for a more compact representation that preserves all data
+                df_json = content.to_json(orient='records')
+                content_str = f"DataFrame with {content.shape[0]} rows and {content.shape[1]} columns.\nColumns: {', '.join(content.columns)}\nData: {df_json}"
+        else:
+            content_str = str(content)
+        
         return f"""Source: {metadata.get('source', 'unknown')}
 Type: {metadata.get('type', 'unknown')}
 Relevance: {metadata.get('score', 0.0)}
-Content: {content}"""
+Content: {content_str}"""
     
     def _get_focused_summary(self,
                            documents: str,
@@ -80,6 +94,7 @@ Content: {content}"""
             question=question,
             summary_type=summary_type
         )
+
         
         response = create_chat_completion(
             messages=[

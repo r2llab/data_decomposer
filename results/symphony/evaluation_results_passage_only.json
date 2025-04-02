@@ -1,0 +1,482 @@
+{
+  "individual_results": [
+    {
+      "question": "What is the primary clinical use of Flumazenil, and what is its preferred route of administration?",
+      "gt_answer": "Flumazenil is primarily used to reverse the effects of benzodiazepine sedation. It has a low bioavailability when administered orally, so the preferred route of administration is intravenous.",
+      "system_answer": "Flumazenil is primarily used clinically as an antidote for benzodiazepine overdoses. Its preferred route of administration is intravenous (IV).",
+      "gt_sources": [
+        "Target-8693922",
+        "None"
+      ],
+      "system_sources": [],
+      "metrics": {
+        "rouge1": 0.47826086956521735,
+        "rouge2": 0.3636363636363637,
+        "rougeL": 0.47826086956521735,
+        "string_similarity": 0.6407185628742516,
+        "source_precision": 0.0,
+        "source_recall": 0.0,
+        "source_f1": 0.0,
+        "processing_time": 10.859396934509277,
+        "llm_correctness": 1.0
+      }
+    },
+    {
+      "question": "How does Flumazenil interact with benzodiazepines when administered before or with them?",
+      "gt_answer": "When Flumazenil is administered before or with other benzodiazepines, it modifies their effects. The extent of this modification depends on factors such as the dose, duration of effect, and the relative receptor affinity of the agonist.",
+      "system_answer": "The sub-queries did not provide specific information regarding the interaction between Flumazenil and benzodiazepines when administered before or with them. Therefore, I will provide a general explanation based on existing knowledge.\n\nFlumazenil is a benzodiazepine receptor antagonist. It works by competitively inhibiting the action of benzodiazepines at the gamma-aminobutyric acid (GABA) receptor complex. Benzodiazepines enhance the effect of the neurotransmitter GABA, leading to sedative, anxiolytic, muscle relaxant, and anticonvulsant effects.\n\nWhen Flumazenil is administered before or with benzodiazepines, it can block or reverse the effects of benzodiazepines. This means that Flumazenil can be used to counteract benzodiazepine overdoses or to reverse their sedative effects after procedures. However, its use must be carefully managed, as it can precipitate withdrawal symptoms in individuals dependent on benzodiazepines and may lead to seizures, especially if other proconvulsant drugs are involved.\n\nIn summary, Flumazenil interacts with benzodiazepines by blocking their effects at the receptor level, which can reverse sedation and other effects of benzodiazepines when administered before or with them.",
+      "gt_sources": [
+        "Target-8693922",
+        "None"
+      ],
+      "system_sources": [],
+      "metrics": {
+        "rouge1": 0.2561576354679803,
+        "rouge2": 0.09950248756218906,
+        "rougeL": 0.17733990147783252,
+        "string_similarity": 0.05894448252227553,
+        "source_precision": 0.0,
+        "source_recall": 0.0,
+        "source_f1": 0.0,
+        "processing_time": 18.089101314544678,
+        "llm_correctness": 0.8
+      }
+    },
+    {
+      "question": "What are the indications for using Flumazenil in a clinical setting?",
+      "gt_answer": "The indications for using Flumazenil include the reversal of benzodiazepine-induced sedation, termination of benzodiazepine-induced anesthesia, return of spontaneous respiration and consciousness in intensive care patients, and the treatment of paradoxical reactions to benzodiazepines.",
+      "system_answer": "The context does not provide this information.",
+      "gt_sources": [
+        "Target-8693922",
+        "None"
+      ],
+      "system_sources": [],
+      "metrics": {
+        "rouge1": 0.04761904761904761,
+        "rouge2": 0.0,
+        "rougeL": 0.04761904761904761,
+        "string_similarity": 0.03614457831325301,
+        "source_precision": 0.0,
+        "source_recall": 0.0,
+        "source_f1": 0.0,
+        "processing_time": 6.0892744064331055,
+        "llm_correctness": 0.0
+      }
+    },
+    {
+      "question": "What is the affinity range for dicyclomine, trihexyphenidyl, and pirenzepine for the M1 muscarinic receptor subtype, and how does it compare to atropine?",
+      "gt_answer": "Dicyclomine, trihexyphenidyl, and pirenzepine have an affinity range of 3.7-14 nM for the M1 muscarinic receptor subtype, which is slightly lower than that of atropine, which has an affinity of 1.6 nM.",
+      "system_answer": "The available information does not provide specific affinity ranges for dicyclomine, trihexyphenidyl, pirenzepine, or atropine for the M1 muscarinic receptor subtype. Therefore, a comparison of their affinities to each other or to atropine cannot be made based on the current context.",
+      "gt_sources": [
+        "Target-2432979",
+        "None"
+      ],
+      "system_sources": [],
+      "metrics": {
+        "rouge1": 0.368421052631579,
+        "rouge2": 0.18918918918918917,
+        "rougeL": 0.2894736842105263,
+        "string_similarity": 0.23917525773195877,
+        "source_precision": 0.0,
+        "source_recall": 0.0,
+        "source_f1": 0.0,
+        "processing_time": 12.497313022613525,
+        "llm_correctness": 0.0
+      }
+    },
+    {
+      "question": "How do the affinity profiles of dicyclomine, trihexyphenidyl, and pirenzepine differ for cardiac and glandular (salivary) membranes when compared to atropine?",
+      "gt_answer": "Dicyclomine, trihexyphenidyl, and pirenzepine display low affinity for cardiac receptors and intermediate affinity for glandular receptors, while atropine shows similar affinities for both these peripheral muscarinic subtypes.",
+      "system_answer": "The available information does not provide specific details on how the affinity profiles of dicyclomine, trihexyphenidyl, and pirenzepine for cardiac and glandular (salivary) membranes differ when compared to atropine.",
+      "gt_sources": [
+        "Target-2432979",
+        "None"
+      ],
+      "system_sources": [],
+      "metrics": {
+        "rouge1": 0.35714285714285715,
+        "rouge2": 0.14814814814814817,
+        "rougeL": 0.32142857142857145,
+        "string_similarity": 0.018018018018018018,
+        "source_precision": 0.0,
+        "source_recall": 0.0,
+        "source_f1": 0.0,
+        "processing_time": 13.706859827041626,
+        "llm_correctness": 0.0
+      }
+    },
+    {
+      "question": "Based on the passage, which muscarinic receptor subtype do dicyclomine, trihexyphenidyl, and pirenzepine have the highest affinity for, and what does this suggest about their selectivity?",
+      "gt_answer": "Dicyclomine, trihexyphenidyl, and pirenzepine have the highest affinity for the M1 muscarinic receptor subtype, suggesting they are more selective for cortical rather than peripheral muscarinic subtypes such as cardiac and glandular receptors.",
+      "system_answer": "The passage does not provide specific information about which muscarinic receptor subtypes dicyclomine, trihexyphenidyl, and pirenzepine have the highest affinity for, nor does it provide details on what this suggests about their selectivity.",
+      "gt_sources": [
+        "Target-2432979",
+        "None"
+      ],
+      "system_sources": [],
+      "metrics": {
+        "rouge1": 0.4615384615384615,
+        "rouge2": 0.3174603174603175,
+        "rougeL": 0.3384615384615385,
+        "string_similarity": 0.05360824742268041,
+        "source_precision": 0.0,
+        "source_recall": 0.0,
+        "source_f1": 0.0,
+        "processing_time": 13.306356430053711,
+        "llm_correctness": 0.0
+      }
+    },
+    {
+      "question": "What is the mechanism of action for balsalazide in the treatment of ulcerative colitis?",
+      "gt_answer": "Balsalazide is a prodrug of 5-aminosalicylate (5-ASA) that utilizes azoreduction by colonic bacteria to achieve a sustained release of active 5-ASA throughout the colon. This mechanism is critical for its effectiveness in treating ulcerative colitis.",
+      "system_answer": "The context does not provide this information.",
+      "gt_sources": [
+        "Target-19743890",
+        "None"
+      ],
+      "system_sources": [],
+      "metrics": {
+        "rouge1": 0.08888888888888889,
+        "rouge2": 0.0,
+        "rougeL": 0.08888888888888889,
+        "string_similarity": 0.02702702702702703,
+        "source_precision": 0.0,
+        "source_recall": 0.0,
+        "source_f1": 0.0,
+        "processing_time": 5.403907060623169,
+        "llm_correctness": 0.0
+      }
+    },
+    {
+      "question": "How does balsalazide compare to mesalamine in terms of inducing remission in ulcerative colitis?",
+      "gt_answer": "Balsalazide has been shown to induce symptomatic remission in ulcerative colitis both more swiftly and more frequently compared to mesalamine, according to recent clinical trial data.",
+      "system_answer": "The available information does not provide specific details on the effectiveness of either balsalazide or mesalamine in inducing remission in ulcerative colitis. Therefore, a direct comparison between the two medications in this context cannot be made based on the provided data. For a comprehensive comparison, further research or consultation with clinical studies and medical guidelines would be necessary.",
+      "gt_sources": [
+        "Target-19743890",
+        "None"
+      ],
+      "system_sources": [],
+      "metrics": {
+        "rouge1": 0.23809523809523808,
+        "rouge2": 0.07317073170731707,
+        "rougeL": 0.16666666666666666,
+        "string_similarity": 0.3614864864864865,
+        "source_precision": 0.0,
+        "source_recall": 0.0,
+        "source_f1": 0.0,
+        "processing_time": 5.0043416023254395,
+        "llm_correctness": 0.0
+      }
+    },
+    {
+      "question": "What is the recommended dose of balsalazide for inducing remission in symptomatic ulcerative colitis?",
+      "gt_answer": "A recent clinical trial has demonstrated that balsalazide at a dose of 6.7 grams per day is superior to placebo in inducing remission in symptomatic ulcerative colitis.",
+      "system_answer": "The context does not provide this information.",
+      "gt_sources": [
+        "Target-19743890",
+        "None"
+      ],
+      "system_sources": [],
+      "metrics": {
+        "rouge1": 0.0,
+        "rouge2": 0.0,
+        "rougeL": 0.0,
+        "string_similarity": 0.08411214953271028,
+        "source_precision": 0.0,
+        "source_recall": 0.0,
+        "source_f1": 0.0,
+        "processing_time": 8.967349529266357,
+        "llm_correctness": 0.0
+      }
+    },
+    {
+      "question": "What is the safety profile of balsalazide compared to other oral 5-ASA agents?",
+      "gt_answer": "Balsalazide is well tolerated, with a safety profile comparable to other oral 5-ASA agents, making it a viable option for the treatment of ulcerative colitis.",
+      "system_answer": "The available information does not provide specific details on the safety profile of balsalazide or other oral 5-ASA agents. Therefore, a direct comparison of their safety profiles cannot be made based on the provided context.",
+      "gt_sources": [
+        "Target-19743890",
+        "None"
+      ],
+      "system_sources": [],
+      "metrics": {
+        "rouge1": 0.3548387096774194,
+        "rouge2": 0.16666666666666666,
+        "rougeL": 0.2903225806451613,
+        "string_similarity": 0.4114583333333333,
+        "source_precision": 0.0,
+        "source_recall": 0.0,
+        "source_f1": 0.0,
+        "processing_time": 9.285943984985352,
+        "llm_correctness": 0.0
+      }
+    },
+    {
+      "question": "What databases were reviewed to obtain current data on balsalazide?",
+      "gt_answer": "The systematic review of published literature was performed on PubMed using the search terms 'Balsalazide' and 'Colazal(TM)', and the Cochrane database was also reviewed to gather current data on balsalazide.",
+      "system_answer": "The context does not provide this information.",
+      "gt_sources": [
+        "Target-19743890",
+        "None"
+      ],
+      "system_sources": [],
+      "metrics": {
+        "rouge1": 0.052631578947368425,
+        "rouge2": 0.0,
+        "rougeL": 0.052631578947368425,
+        "string_similarity": 0.07086614173228346,
+        "source_precision": 0.0,
+        "source_recall": 0.0,
+        "source_f1": 0.0,
+        "processing_time": 5.161517143249512,
+        "llm_correctness": 0.0
+      }
+    },
+    {
+      "question": "What is the mechanism of action of valdecoxib described in the passage?",
+      "gt_answer": "Valdecoxib is described as a potent and selective inhibitor of COX-2. It functions by inhibiting the cyclooxygenase-2 enzyme, which is part of the prostaglandin-endoperoxide synthases family, involved in the inflammatory process.",
+      "system_answer": "The context does not provide this information.",
+      "gt_sources": [
+        "Target-10715145",
+        "None"
+      ],
+      "system_sources": [],
+      "metrics": {
+        "rouge1": 0.04878048780487805,
+        "rouge2": 0.0,
+        "rougeL": 0.04878048780487805,
+        "string_similarity": 0.02181818181818182,
+        "source_precision": 0.0,
+        "source_recall": 0.0,
+        "source_f1": 0.0,
+        "processing_time": 3.4499166011810303,
+        "llm_correctness": 0.0
+      }
+    },
+    {
+      "question": "What is the role of isoxazoles in the context of valdecoxib?",
+      "gt_answer": "Isoxazoles are part of the chemical structure of valdecoxib, specifically mentioned as 4-[5-Methyl-3-phenylisoxazol-4-yl]- benzenesulfonamide, indicating that isoxazole forms a component of the molecule that contributes to its COX-2 inhibitory properties.",
+      "system_answer": "Valdecoxib is a drug known for its function as a potent and selective inhibitor of COX-2. Although the specific role of isoxazoles in the chemical structure of valdecoxib is not provided in the available data, isoxazoles are generally known to be a class of compounds that can contribute to the pharmacological properties of drugs, potentially influencing their activity and selectivity. In the context of valdecoxib, the isoxazole moiety likely plays a role in its ability to selectively inhibit the COX-2 enzyme.",
+      "gt_sources": [
+        "Target-10715145",
+        "None"
+      ],
+      "system_sources": [],
+      "metrics": {
+        "rouge1": 0.35,
+        "rouge2": 0.11864406779661017,
+        "rougeL": 0.25,
+        "string_similarity": 0.02340702210663199,
+        "source_precision": 0.0,
+        "source_recall": 0.0,
+        "source_f1": 0.0,
+        "processing_time": 16.370801210403442,
+        "llm_correctness": 0.5
+      }
+    },
+    {
+      "question": "How is valdecoxib categorized in terms of its pharmaceutical class?",
+      "gt_answer": "Valdecoxib is categorized as a non-steroidal anti-inflammatory agent (NSAID), which is used to reduce inflammation and pain in conditions like experimental arthritis.",
+      "system_answer": "Valdecoxib is categorized as a potent and selective inhibitor of COX-2, which is a type of non-steroidal anti-inflammatory agent.",
+      "gt_sources": [
+        "Target-10715145",
+        "None"
+      ],
+      "system_sources": [],
+      "metrics": {
+        "rouge1": 0.5652173913043478,
+        "rouge2": 0.4090909090909091,
+        "rougeL": 0.43478260869565216,
+        "string_similarity": 0.46779661016949153,
+        "source_precision": 0.0,
+        "source_recall": 0.0,
+        "source_f1": 0.0,
+        "processing_time": 5.09886908531189,
+        "llm_correctness": 1.0
+      }
+    },
+    {
+      "question": "In what organisms is valdecoxib's effect primarily studied, according to the passage?",
+      "gt_answer": "The passage mentions that valdecoxib's effects are studied in both humans and animals, specifically rats, for its COX-2 inhibitory and anti-inflammatory properties.",
+      "system_answer": "The context does not provide this information.",
+      "gt_sources": [
+        "Target-10715145",
+        "None"
+      ],
+      "system_sources": [],
+      "metrics": {
+        "rouge1": 0.0625,
+        "rouge2": 0.0,
+        "rougeL": 0.0625,
+        "string_similarity": 0.18095238095238095,
+        "source_precision": 0.0,
+        "source_recall": 0.0,
+        "source_f1": 0.0,
+        "processing_time": 2.256556987762451,
+        "llm_correctness": 0.0
+      }
+    },
+    {
+      "question": "What additional molecular components are associated with valdecoxib's function as a COX-2 inhibitor?",
+      "gt_answer": "In addition to being a COX-2 inhibitor, valdecoxib is related to enzyme inhibitors, membrane proteins, and prostaglandin-endoperoxide synthases, which are involved in its mechanism of action regarding inflammation and edema reduction.",
+      "system_answer": "The sub-queries did not yield specific information about the molecular components associated with valdecoxib's function as a COX-2 inhibitor. Therefore, based on general knowledge, valdecoxib, like other COX-2 inhibitors, functions by selectively targeting the cyclooxygenase-2 (COX-2) enzyme, which is involved in the inflammatory process. This selective inhibition reduces inflammation and pain with fewer gastrointestinal side effects compared to non-selective COX inhibitors. The molecular structure of valdecoxib allows it to fit into the COX-2 enzyme's active site, blocking its activity. Additional molecular components that may be associated with its function include the specific binding interactions between valdecoxib and the COX-2 enzyme, which are crucial for its inhibitory action.",
+      "gt_sources": [
+        "Target-10715145",
+        "None"
+      ],
+      "system_sources": [],
+      "metrics": {
+        "rouge1": 0.2933333333333333,
+        "rouge2": 0.08108108108108109,
+        "rougeL": 0.17333333333333334,
+        "string_similarity": 0.11661807580174927,
+        "source_precision": 0.0,
+        "source_recall": 0.0,
+        "source_f1": 0.0,
+        "processing_time": 8.167720079421997,
+        "llm_correctness": 0.5
+      }
+    },
+    {
+      "question": "What analytical methods were used in the study to detect amoxicillin modification of human serum albumin, and how do these methods compare to the information provided in the drugbank-drug table?",
+      "gt_answer": "The study used multiple reaction monitoring (MRM), precursor ion scan (PIS), and data-dependent and targeted MS/MS analyses to detect the modification of human serum albumin by amoxicillin. These methods were performed using HPLC coupled to a triple quadrupole MS analyzer and a nano-LC system coupled to a high-resolution MS system (LTQ Orbitrap XL). In comparison, the drugbank-drug table provides information about drugs like Lepirudin and Cetuximab, which are analyzed using different recombinant DNA technologies rather than mass spectrometry.",
+      "system_answer": "The information needed to answer the original query is not available. The sub-queries did not provide details on the analytical methods used in the study to detect amoxicillin modification of human serum albumin, nor did they provide information from the drugbank-drug table. Therefore, it is not possible to compare the methods used in the study with the information from the drugbank-drug table based on the provided context.",
+      "gt_sources": [
+        "Target-25088930",
+        "drugbank-drug"
+      ],
+      "system_sources": [],
+      "metrics": {
+        "rouge1": 0.3137254901960784,
+        "rouge2": 0.13245033112582785,
+        "rougeL": 0.2222222222222222,
+        "string_similarity": 0.08205128205128205,
+        "source_precision": 0.0,
+        "source_recall": 0.0,
+        "source_f1": 0.0,
+        "processing_time": 9.546998739242554,
+        "llm_correctness": 0.0
+      }
+    },
+    {
+      "question": "How does the modification site of human serum albumin by amoxicillin in the study relate to the production method of Lepirudin according to the drugbank-drug table?",
+      "gt_answer": "The study identified Lys 190 as the only modification site of human serum albumin by amoxicillin. This modification is a specific chemical interaction, whereas Lepirudin, as described in the drugbank-drug table, is produced via yeast cells and involves a substitution of leucine for isoleucine at the N-terminal end and the absence of a sulfate group on tyrosine, representing a different type of molecular modification.",
+      "system_answer": "The information regarding the modification site of human serum albumin by amoxicillin and the production method of Lepirudin according to the drugbank-drug table is not available in the provided context. Therefore, it is not possible to relate these two aspects based on the current data.",
+      "gt_sources": [
+        "Target-25088930",
+        "drugbank-drug"
+      ],
+      "system_sources": [],
+      "metrics": {
+        "rouge1": 0.41071428571428575,
+        "rouge2": 0.23636363636363636,
+        "rougeL": 0.32142857142857145,
+        "string_similarity": 0.2740112994350282,
+        "source_precision": 0.0,
+        "source_recall": 0.0,
+        "source_f1": 0.0,
+        "processing_time": 11.924040794372559,
+        "llm_correctness": 0.0
+      }
+    },
+    {
+      "question": "How does the oral administration regimen of amoxicillin in the study compare to the administration details of drugs like Cetuximab and Dornase alfa provided in the drugbank-drug table?",
+      "gt_answer": "The study involved the oral administration of amoxicillin at 1 g every 8 hours for 48 hours. In contrast, Cetuximab is administered as part of a regimen costing approximately $30,790 for an eight-week course, and Dornase alfa is administered using recombinant DNA technology involving genetically modified cells, indicating differences in administration routes and costs compared to the simple oral regimen of amoxicillin.",
+      "system_answer": "The original query seeks to compare the oral administration regimen of amoxicillin in a study with the administration details of drugs like Cetuximab and Dornase alfa as provided in the drugbank-drug table. However, the sub-queries reveal that the table does not provide administration details for any of these drugs. Therefore, it is not possible to make a comparison based on the available information.",
+      "gt_sources": [
+        "Target-25088930",
+        "drugbank-drug"
+      ],
+      "system_sources": [],
+      "metrics": {
+        "rouge1": 0.37209302325581395,
+        "rouge2": 0.09448818897637795,
+        "rougeL": 0.23255813953488372,
+        "string_similarity": 0.09927360774818401,
+        "source_precision": 0.0,
+        "source_recall": 0.0,
+        "source_f1": 0.0,
+        "processing_time": 12.537088632583618,
+        "llm_correctness": 0.0
+      }
+    },
+    {
+      "question": "What does the study reveal about the specificity of human serum albumin modification by amoxicillin, and how does this relate to the specificity of Cetuximab described in the drugbank-drug table?",
+      "gt_answer": "The study reveals that Lys 190 is the specific site of modification on human serum albumin by amoxicillin, indicating a high level of specificity in the interaction. In comparison, Cetuximab specifically binds to the epidermal growth factor receptor (EGFr), illustrating specificity in targeted therapeutic action as described in the drugbank-drug table.",
+      "system_answer": "The available information does not provide details on the specificity of human serum albumin modification by amoxicillin, nor does it describe the specificity of Cetuximab as outlined in the drugbank-drug table. Therefore, it is not possible to compare or relate the specificity of amoxicillin's effect on human serum albumin with that of Cetuximab based on the provided context.",
+      "gt_sources": [
+        "Target-25088930",
+        "drugbank-drug"
+      ],
+      "system_sources": [],
+      "metrics": {
+        "rouge1": 0.48214285714285715,
+        "rouge2": 0.16363636363636366,
+        "rougeL": 0.30357142857142855,
+        "string_similarity": 0.10914051841746249,
+        "source_precision": 0.0,
+        "source_recall": 0.0,
+        "source_f1": 0.0,
+        "processing_time": 9.647436141967773,
+        "llm_correctness": 0.0
+      }
+    }
+  ],
+  "aggregate_metrics": {
+    "rouge1": {
+      "mean": 0.2801050604162826,
+      "median": 0.3318627450980392,
+      "min": 0.0,
+      "max": 0.5652173913043478,
+      "std": 0.16872176414453302
+    },
+    "rouge2": {
+      "mean": 0.12967642412204988,
+      "median": 0.10907327767939962,
+      "min": 0.0,
+      "max": 0.4090909090909091,
+      "std": 0.12136464171171166
+    },
+    "rougeL": {
+      "mean": 0.21501350597508945,
+      "median": 0.22739018087855295,
+      "min": 0.0,
+      "max": 0.47826086956521735,
+      "std": 0.132106445471626
+    },
+    "string_similarity": {
+      "mean": 0.1688314131747335,
+      "median": 0.09169287864044715,
+      "min": 0.018018018018018018,
+      "max": 0.6407185628742516,
+      "std": 0.17149401388040308
+    },
+    "source_precision": {
+      "mean": 0.0,
+      "median": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "std": 0.0
+    },
+    "source_recall": {
+      "mean": 0.0,
+      "median": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "std": 0.0
+    },
+    "source_f1": {
+      "mean": 0.0,
+      "median": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "std": 0.0
+    },
+    "llm_correctness": {
+      "mean": 0.19,
+      "median": 0.0,
+      "min": 0.0,
+      "max": 1.0,
+      "std": 0.34770677301427416
+    }
+  }
+}

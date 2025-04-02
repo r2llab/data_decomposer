@@ -89,7 +89,8 @@ class ReSPImplementation(BaseImplementation):
         self.pipeline = ReSPPipeline(
             index_path=self.index_path,
             openai_api_key=self.openai_api_key,
-            max_iterations=self.config.get('max_iterations', 5)
+            max_iterations=self.config.get('max_iterations', 5),
+            log_file="logs/resp_pipeline.log"
         )
     
     def process_query(self, query: str) -> Any:
@@ -180,9 +181,9 @@ class ReSPImplementation(BaseImplementation):
         total_items = len(dataset)
         
         for item in dataset:
-            # Truncate text to max 8000 tokens (approximate limit for safety)
-            if len(item.split()) > 8000:
-                item = ' '.join(item.split()[:8000])
+            # # Truncate text to max 8000 tokens (approximate limit for safety)
+            # if len(item.split()) > 8000:
+            #     item = ' '.join(item.split()[:8000])
                 
             items_to_process.append(item)
             
@@ -289,60 +290,60 @@ class ReSPImplementation(BaseImplementation):
                 logger.error(f"Error loading embeddings: {e}")
                 logger.info("Regenerating embeddings")
                 
-                # Load dataset and generate embeddings
-                logger.info(f"Loading dataset from {data_dir}")
-                dataset = CrossModalDataset.from_directory(data_dir, batch_size=128)  # Larger batch size for efficiency
+                # # Load dataset and generate embeddings
+                # logger.info(f"Loading dataset from {data_dir}")
+                # dataset = CrossModalDataset.from_directory(data_dir, batch_size=128)  # Larger batch size for efficiency
                 
-                logger.info(f"Generating embeddings for {len(dataset)} items")
-                # Create embedder with larger batch size and token limits
-                embedder = AutoEmbedder(api_key=self.openai_api_key, max_tokens=8192)
-                try:
-                    # Use the optimized embed_dataset method with larger batch size
-                    logger.info("Using optimized batch embedding process")
-                    embeddings = embedder.embed_dataset(dataset, batch_size=128)
+                # logger.info(f"Generating embeddings for {len(dataset)} items")
+                # # Create embedder with larger batch size and token limits
+                # embedder = AutoEmbedder(api_key=self.openai_api_key, max_tokens=8192)
+                # try:
+                #     # Use the optimized embed_dataset method with larger batch size
+                #     logger.info("Using optimized batch embedding process")
+                #     embeddings = embedder.embed_dataset(dataset, batch_size=128)
                     
-                    # Save embeddings
-                    np.save(embeddings_path, embeddings)
-                    logger.info(f"Saved embeddings to {embeddings_path}")
-                except Exception as embed_err:
-                    logger.error(f"Error during embedding: {embed_err}")
-                    # Fall back to the embed_data method which is more resilient
-                    logger.info("Falling back to individual item embedding")
-                    embeddings = self.embed_data(
-                        data_dir=data_dir,
-                        embedder=embedder,
-                        batch_size=64,  # Increased batch size
-                        output_dir=os.path.dirname(embeddings_path)
-                    )
-        else:
-            # Embeddings don't exist, generate them
-            logger.info(f"Embeddings file not found at {embeddings_path}. Generating new embeddings.")
+                #     # Save embeddings
+                #     np.save(embeddings_path, embeddings)
+                #     logger.info(f"Saved embeddings to {embeddings_path}")
+                # except Exception as embed_err:
+                #     logger.error(f"Error during embedding: {embed_err}")
+                #     # Fall back to the embed_data method which is more resilient
+                #     logger.info("Falling back to individual item embedding")
+                #     embeddings = self.embed_data(
+                #         data_dir=data_dir,
+                #         embedder=embedder,
+                #         batch_size=64,  # Increased batch size
+                #         output_dir=os.path.dirname(embeddings_path)
+                #     )
+        # else:
+        #     # Embeddings don't exist, generate them
+        #     logger.info(f"Embeddings file not found at {embeddings_path}. Generating new embeddings.")
             
-            # Load dataset and generate embeddings
-            logger.info(f"Loading dataset from {data_dir}")
-            dataset = CrossModalDataset.from_directory(data_dir, batch_size=128)  # Increased batch size
+        #     # Load dataset and generate embeddings
+        #     logger.info(f"Loading dataset from {data_dir}")
+        #     dataset = CrossModalDataset.from_directory(data_dir, batch_size=128)  # Increased batch size
             
-            logger.info(f"Starting embedding extraction with {len(dataset)} items")
-            # Create embedder with larger batch size and token limits
-            embedder = AutoEmbedder(api_key=self.openai_api_key, max_tokens=8192)
-            try:
-                # Try using the new optimized method with larger batch size
-                logger.info("Using optimized batch embedding process")
-                embeddings = embedder.embed_dataset(dataset, batch_size=128)
+        #     logger.info(f"Starting embedding extraction with {len(dataset)} items")
+        #     # Create embedder with larger batch size and token limits
+        #     embedder = AutoEmbedder(api_key=self.openai_api_key, max_tokens=8192)
+        #     try:
+        #         # Try using the new optimized method with larger batch size
+        #         logger.info("Using optimized batch embedding process")
+        #         embeddings = embedder.embed_dataset(dataset, batch_size=128)
                 
-                # Save embeddings
-                np.save(embeddings_path, embeddings)
-                logger.info(f"Saved embeddings to {embeddings_path} ({len(embeddings)} embeddings)")
-            except Exception as e:
-                logger.error(f"Error using embed_dataset, falling back to embed_data: {e}")
-                # Fall back to the old method which processes one-by-one if needed
-                logger.info("Falling back to individual item embedding")
-                embeddings = self.embed_data(
-                    data_dir=data_dir,
-                    embedder=embedder,
-                    batch_size=64,  # Increased batch size
-                    output_dir=os.path.dirname(embeddings_path)
-                )
+        #         # Save embeddings
+        #         np.save(embeddings_path, embeddings)
+        #         logger.info(f"Saved embeddings to {embeddings_path} ({len(embeddings)} embeddings)")
+        #     except Exception as e:
+        #         logger.error(f"Error using embed_dataset, falling back to embed_data: {e}")
+        #         # Fall back to the old method which processes one-by-one if needed
+        #         logger.info("Falling back to individual item embedding")
+        #         embeddings = self.embed_data(
+        #             data_dir=data_dir,
+        #             embedder=embedder,
+        #             batch_size=64,  # Increased batch size
+        #             output_dir=os.path.dirname(embeddings_path)
+        #         )
         
         # Create index using embeddings
         logger.info(f"Creating index with {len(embeddings)} embeddings")

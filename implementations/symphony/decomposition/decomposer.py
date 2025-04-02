@@ -41,10 +41,13 @@ class Decomposer:
         
         # Create the prompt
         prompt = self._create_decomposition_prompt(query, items_context)
+        # Print prompt to file for debugging/logging
+        with open('decomposer_context.txt', 'w') as f:
+            f.write(prompt)
         
         # Get decomposition from GPT
         response = self.client.chat.completions.create(
-            model="gpt-3.5-turbo",
+            model="gpt-4o",
             messages=[
                 {"role": "system", "content": """You are a query decomposition expert. 
                 Your task is to break down complex queries into sub-queries that can be 

@@ -1,6 +1,14 @@
 import numpy as np
 import pandas as pd
 import openai
+import os
+
+# Set custom cache directory for tiktoken before importing it
+# This prevents permission errors in shared environments
+os.environ["TIKTOKEN_CACHE_DIR"] = os.path.expanduser("~/.cache/tiktoken")
+# Create the directory if it doesn't exist
+os.makedirs(os.environ["TIKTOKEN_CACHE_DIR"], exist_ok=True)
+
 import tiktoken
 from typing import List, Union, Dict, Any, Optional
 from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
@@ -207,26 +215,26 @@ class AutoEmbedder:
         else:
             return np.zeros((len(text), self.embedding_dim))
 
-    def embed_dataset(self, dataset, batch_size: int = 64) -> np.ndarray:
-        """
-        Embed an entire dataset with proper batching.
+    # def embed_dataset(self, dataset, batch_size: int = 64) -> np.ndarray:
+    #     """
+    #     Embed an entire dataset with proper batching.
         
-        Args:
-            dataset: Dataset object with __iter__ method returning text representations
-            batch_size: Batch size for processing (increased default)
+    #     Args:
+    #         dataset: Dataset object with __iter__ method returning text representations
+    #         batch_size: Batch size for processing (increased default)
             
-        Returns:
-            np.ndarray: Embeddings for all items
-        """
-        print(f"Preparing to embed dataset with {len(dataset)} items")
+    #     Returns:
+    #         np.ndarray: Embeddings for all items
+    #     """
+    #     print(f"Preparing to embed dataset with {len(dataset)} items")
         
-        # Collect all items first to allow for optimal batching
-        all_items = []
-        for item in dataset:
-            all_items.append(item)
+    #     # Collect all items first to allow for optimal batching
+    #     all_items = []
+    #     for item in dataset:
+    #         all_items.append(item)
         
-        # Embed all items with optimized batching
-        return self.embed_text(all_items, batch_size=batch_size)
+    #     # Embed all items with optimized batching
+    #     return self.embed_text(all_items, batch_size=batch_size)
 
     def embed_tabular(self, df: pd.DataFrame, columns: List[str] = None) -> np.ndarray:
         """

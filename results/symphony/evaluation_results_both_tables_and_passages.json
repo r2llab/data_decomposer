@@ -1,0 +1,482 @@
+{
+  "individual_results": [
+    {
+      "question": "What is the clinical role of Flumazenil, and how does its method of administration differ from that of Lepirudin?",
+      "gt_answer": "Flumazenil is used to reverse the effects of benzodiazepine sedation and is typically administered intravenously due to its low oral bioavailability. In contrast, Lepirudin, another drug listed in the \"drugbank-drug\" table, is a liquid form that Bayer ceased producing in 2012. While the passage discusses Flumazenil's role and preferred administration route, the table provides details about Lepirudin's state and production history.",
+      "system_answer": "I'm unable to provide specific information about the clinical role of Flumazenil or the methods of administration for both Flumazenil and Lepirudin based on the given context. However, generally speaking, Flumazenil is commonly used as a benzodiazepine antagonist to reverse the effects of benzodiazepines, typically administered intravenously. Lepirudin, on the other hand, is an anticoagulant used to treat heparin-induced thrombocytopenia and is also administered intravenously. The main difference in their administration lies in their clinical applications rather than the method, as both are given via intravenous routes.",
+      "gt_sources": [
+        "Target-8693922",
+        "drugbank-drug"
+      ],
+      "system_sources": [],
+      "metrics": {
+        "rouge1": 0.4052287581699347,
+        "rouge2": 0.1324503311258278,
+        "rougeL": 0.23529411764705882,
+        "string_similarity": 0.10367577756833177,
+        "source_precision": 0.0,
+        "source_recall": 0.0,
+        "source_f1": 0.0,
+        "processing_time": 13.729557752609253,
+        "llm_correctness": 0.7
+      }
+    },
+    {
+      "question": "How does the classification of Flumazenil as an imidazobenzodiazepine compare to the classification of Cetuximab?",
+      "gt_answer": "Flumazenil is an imidazobenzodiazepine, which is a benzodiazepine antagonist used to reverse the effects of benzodiazepines. Cetuximab, on the other hand, is categorized as a biotech drug in the DrugBank database, specifically an epidermal growth factor receptor binding FAB used for other therapeutic purposes.",
+      "system_answer": "The original query seeks to compare the classifications of Flumazenil and Cetuximab. However, the sub-queries did not yield specific classifications for either compound. Generally, Flumazenil is classified as an imidazobenzodiazepine, which is a type of benzodiazepine receptor antagonist used primarily to reverse the effects of benzodiazepines. On the other hand, Cetuximab is classified as a monoclonal antibody used in cancer treatment, specifically targeting the epidermal growth factor receptor (EGFR). These classifications highlight that Flumazenil is primarily used in the context of pharmacology related to the central nervous system, while Cetuximab is used in oncology.",
+      "gt_sources": [
+        "Target-8693922",
+        "drugbank-drug"
+      ],
+      "system_sources": [],
+      "metrics": {
+        "rouge1": 0.47482014388489213,
+        "rouge2": 0.2773722627737226,
+        "rougeL": 0.4316546762589928,
+        "string_similarity": 0.012096774193548387,
+        "source_precision": 0.0,
+        "source_recall": 0.0,
+        "source_f1": 0.0,
+        "processing_time": 12.108154773712158,
+        "llm_correctness": 0.9
+      }
+    },
+    {
+      "question": "What is the mechanism of action of Flumazenil, and how does it differ from that of Denileukin diftitox?",
+      "gt_answer": "Flumazenil acts as a specific competitive antagonist at benzodiazepine receptors, reversing the effects of benzodiazepines. Denileukin diftitox, according to the \"drugbank-drug\" table, is a recombinant DNA-derived cytotoxic protein composed of diphtheria toxin fragments and interleukin-2, indicating a different mechanism of action involving cytotoxicity rather than receptor antagonism.",
+      "system_answer": "The mechanism of action for both Flumazenil and Denileukin diftitox is not provided in the context. Therefore, a detailed comparison of their mechanisms cannot be made based on the available information. For accurate and specific details, consulting pharmacological resources or scientific literature would be necessary.",
+      "gt_sources": [
+        "Target-8693922",
+        "drugbank-drug"
+      ],
+      "system_sources": [],
+      "metrics": {
+        "rouge1": 0.27368421052631575,
+        "rouge2": 0.06451612903225806,
+        "rougeL": 0.16842105263157894,
+        "string_similarity": 0.096045197740113,
+        "source_precision": 0.0,
+        "source_recall": 0.0,
+        "source_f1": 0.0,
+        "processing_time": 10.048115491867065,
+        "llm_correctness": 0.0
+      }
+    },
+    {
+      "question": "How does the administration route of Flumazenil influence its clinical application, and how does this compare to the state and administration characteristics of Etanercept?",
+      "gt_answer": "Flumazenil is administered intravenously due to its low bioavailability when taken orally, which is crucial for its role in quickly reversing benzodiazepine sedation. Etanercept, listed in the \"drugbank-drug\" table, is a liquid administered in a different manner as it is a dimeric fusion protein used for other therapeutic indications, demonstrating that the state and administration route of a drug are tailored to its specific clinical use.",
+      "system_answer": "The sub-queries did not yield specific information about the administration routes and clinical applications of Flumazenil or the state and administration characteristics of Etanercept. Therefore, I will provide a general answer based on known medical information.\n\nFlumazenil is typically administered intravenously, which allows for rapid onset of action. This is crucial in clinical settings where it is used to reverse the effects of benzodiazepines, such as in cases of overdose or to hasten recovery from anesthesia. The intravenous route ensures that Flumazenil can quickly reach the bloodstream and exert its effects promptly, which is essential in emergency situations.\n\nEtanercept, on the other hand, is a biologic medication administered via subcutaneous injection. It is used primarily for the treatment of autoimmune conditions like rheumatoid arthritis and psoriasis. The subcutaneous route allows for slower absorption and a more prolonged effect, which is suitable for chronic conditions requiring regular, ongoing treatment. Unlike Flumazenil, Etanercept is not used in acute settings but rather for long-term management of disease symptoms.\n\nIn summary, Flumazenil's intravenous administration is suited for acute, rapid interventions, while Etanercept's subcutaneous administration is designed for sustained, long-term therapy.",
+      "gt_sources": [
+        "Target-8693922",
+        "drugbank-drug"
+      ],
+      "system_sources": [],
+      "metrics": {
+        "rouge1": 0.3100775193798449,
+        "rouge2": 0.078125,
+        "rougeL": 0.18604651162790697,
+        "string_similarity": 0.03353828954723309,
+        "source_precision": 0.0,
+        "source_recall": 0.0,
+        "source_f1": 0.0,
+        "processing_time": 12.625752925872803,
+        "llm_correctness": 0.9
+      }
+    },
+    {
+      "question": "What are the therapeutic uses of Flumazenil, and how do they differ from those of Dornase alfa?",
+      "gt_answer": "Flumazenil is used for reversing benzodiazepine-induced sedation, terminating benzodiazepine-induced anesthesia, and restoring spontaneous respiration and consciousness in intensive care patients. Dornase alfa, according to the \"drugbank-drug\" table, is a biosynthetic form of human deoxyribonuclease I used to reduce sputum viscosity in cystic fibrosis patients, highlighting a distinct therapeutic indication compared to Flumazenil.",
+      "system_answer": "I'm unable to provide specific information about the therapeutic uses of Flumazenil and Dornase alfa based on the current context. However, generally speaking, Flumazenil is typically used as a benzodiazepine antagonist to reverse the effects of benzodiazepines in cases of overdose or to help wake patients after surgery. On the other hand, Dornase alfa is used primarily in the treatment of cystic fibrosis to help break down mucus in the lungs, improving lung function and reducing the risk of infection. These drugs serve different purposes: Flumazenil is used in the context of sedation and overdose management, while Dornase alfa is used for respiratory therapy in cystic fibrosis.",
+      "gt_sources": [
+        "Target-8693922",
+        "drugbank-drug"
+      ],
+      "system_sources": [],
+      "metrics": {
+        "rouge1": 0.3680981595092025,
+        "rouge2": 0.07453416149068323,
+        "rougeL": 0.22085889570552147,
+        "string_similarity": 0.030330062444246207,
+        "source_precision": 0.0,
+        "source_recall": 0.0,
+        "source_f1": 0.0,
+        "processing_time": 10.639345645904541,
+        "llm_correctness": 0.9
+      }
+    },
+    {
+      "question": "What similar target organism is shared by drugs with the same target organism as Valdecoxib?",
+      "gt_answer": "The passage mentions both humans and rats as target organisms for the study of Valdecoxib. In the drugbank-targets table, several targets, such as the Epidermal growth factor receptor, also list humans as the target organism, which is common in the study and application of many therapeutic drugs.",
+      "system_answer": "The context does not provide information regarding the target organism of Valdecoxib, nor does it identify other drugs that share the same target organism. Consequently, it is not possible to determine a similar target organism shared by these drugs.",
+      "gt_sources": [
+        "Target-10715145",
+        "drugbank-targets"
+      ],
+      "system_sources": [],
+      "metrics": {
+        "rouge1": 0.27586206896551724,
+        "rouge2": 0.09411764705882353,
+        "rougeL": 0.22988505747126434,
+        "string_similarity": 0.03290676416819013,
+        "source_precision": 0.0,
+        "source_recall": 0.0,
+        "source_f1": 0.0,
+        "processing_time": 11.219846487045288,
+        "llm_correctness": 0.0
+      }
+    },
+    {
+      "question": "What is the primary modification site of human serum albumin when modified by amoxicillin in ex vivo samples, and is amoxicillin included in the drug databases?",
+      "gt_answer": "The primary modification site of human serum albumin (HSA) when modified by amoxicillin (AX) in ex vivo samples is Lys 190. However, amoxicillin is not listed in the provided DrugBank tables, which focus on biotech drugs.",
+      "system_answer": "The available information does not specify the primary modification site of human serum albumin when modified by amoxicillin in ex vivo samples, nor does it confirm whether amoxicillin is included in drug databases. Further research or access to specific scientific literature and drug databases would be necessary to obtain these details.",
+      "gt_sources": [
+        "Target-25088930",
+        "drugbank-drug"
+      ],
+      "system_sources": [],
+      "metrics": {
+        "rouge1": 0.5057471264367817,
+        "rouge2": 0.3294117647058824,
+        "rougeL": 0.4597701149425288,
+        "string_similarity": 0.1392857142857143,
+        "source_precision": 0.0,
+        "source_recall": 0.0,
+        "source_f1": 0.0,
+        "processing_time": 10.33397388458252,
+        "llm_correctness": 0.0
+      }
+    },
+    {
+      "question": "What analytical techniques were used in the study to investigate amoxicillin's effect on human serum albumin, and are these techniques relevant to the analysis of other drugs?",
+      "gt_answer": "The study employed multiple reaction monitoring (MRM), precursor ion scan (PIS), and high-resolution MS systems such as LTQ Orbitrap XL to investigate amoxicillin's effect on human serum albumin. These advanced analytical techniques are relevant to the analysis of biotech drugs listed in the DrugBank tables, such as Cetuximab and Lepirudin, which also require precise analytical methodologies for their characterization and quality control.",
+      "system_answer": "The context provided does not include specific information about the analytical techniques used in the study to investigate amoxicillin's effect on human serum albumin, nor does it indicate whether these techniques are relevant to the analysis of other drugs. Therefore, without additional details from the study, it is not possible to determine the techniques used or their applicability to other drug analyses.",
+      "gt_sources": [
+        "Target-25088930",
+        "drugbank-drug"
+      ],
+      "system_sources": [],
+      "metrics": {
+        "rouge1": 0.3779527559055118,
+        "rouge2": 0.272,
+        "rougeL": 0.3464566929133858,
+        "string_similarity": 0.17096018735362997,
+        "source_precision": 0.0,
+        "source_recall": 0.0,
+        "source_f1": 0.0,
+        "processing_time": 9.05349087715149,
+        "llm_correctness": 0.0
+      }
+    },
+    {
+      "question": "What are the IC50 values for nifedipine in blocking T-type and L-type Ca2+ channel currents, and is nifedipine included in any comprehensive drug database?",
+      "gt_answer": "The IC50 values for nifedipine in blocking T-type and L-type Ca2+ channel currents are 1.2 micromol/l and 0.14 nmol/l, respectively. However, nifedipine is not included in the sample rows of the drugbank-drug table provided.",
+      "system_answer": "The available information does not provide specific IC50 values for nifedipine in blocking either T-type or L-type Ca2+ channel currents. Additionally, there is no information regarding whether nifedipine is included in any comprehensive drug database.",
+      "gt_sources": [
+        "Target-16899990",
+        "drugbank-drug"
+      ],
+      "system_sources": [],
+      "metrics": {
+        "rouge1": 0.5384615384615384,
+        "rouge2": 0.3157894736842105,
+        "rougeL": 0.48717948717948717,
+        "string_similarity": 0.3739495798319328,
+        "source_precision": 0.0,
+        "source_recall": 0.0,
+        "source_f1": 0.0,
+        "processing_time": 10.388892650604248,
+        "llm_correctness": 0.0
+      }
+    },
+    {
+      "question": "What organism is associated with the target of the drug identified as DB00001, and how does this relate to any of the calcium channel blockers mentioned?",
+      "gt_answer": "The organism associated with the target of the drug with primary_key DB00001 (Lepirudin) is humans. This does not directly relate to any of the calcium channel blockers (efonidipine, nifedipine, mibefradil) discussed in the passage.",
+      "system_answer": "The available context does not provide information on the organism associated with the target of the drug identified as DB00001, nor does it mention any specific calcium channel blockers. Consequently, there is no information on how the organism associated with DB00001 might relate to any calcium channel blockers.",
+      "gt_sources": [
+        "Target-16899990",
+        "drugbank-targets"
+      ],
+      "system_sources": [],
+      "metrics": {
+        "rouge1": 0.5301204819277109,
+        "rouge2": 0.3209876543209876,
+        "rougeL": 0.40963855421686746,
+        "string_similarity": 0.2376599634369287,
+        "source_precision": 0.0,
+        "source_recall": 0.0,
+        "source_f1": 0.0,
+        "processing_time": 9.179576873779297,
+        "llm_correctness": 0.0
+      }
+    },
+    {
+      "question": "Are any of the calcium channel blockers identified as biotech drugs?",
+      "gt_answer": "None of the calcium channel blockers discussed in the passage (efonidipine, nifedipine, mibefradil) appear in the sample rows of the drugbank-drug table as biotech drugs.",
+      "system_answer": "The available information does not identify specific calcium channel blockers or determine if any are classified as biotech drugs. Therefore, based on the current context, we cannot confirm whether any calcium channel blockers are identified as biotech drugs.",
+      "gt_sources": [
+        "Target-16899990",
+        "drugbank-drug"
+      ],
+      "system_sources": [],
+      "metrics": {
+        "rouge1": 0.28125,
+        "rouge2": 0.12903225806451613,
+        "rougeL": 0.25,
+        "string_similarity": 0.27972027972027974,
+        "source_precision": 0.0,
+        "source_recall": 0.0,
+        "source_f1": 0.0,
+        "processing_time": 11.210382223129272,
+        "llm_correctness": 0.5
+      }
+    },
+    {
+      "question": "Which human transporter is associated with the multidrug resistance of adrenocortical carcinoma, and what is the effect of mitotane on this transporter?",
+      "gt_answer": "The human transporter implicated in the multidrug resistance of adrenocortical carcinoma is P-glycoprotein 1 (P-gp). The passage suggests that mitotane may have a direct action on P-gp, potentially reducing its activity and consequently decreasing chemoresistance, although the known action from the table is listed as \"unknown.\"",
+      "system_answer": "The available information does not specify which human transporter is associated with the multidrug resistance of adrenocortical carcinoma, nor does it detail the effect of mitotane on this transporter.",
+      "gt_sources": [
+        "Target-25096913",
+        "drugbank-transporters"
+      ],
+      "system_sources": [],
+      "metrics": {
+        "rouge1": 0.3333333333333333,
+        "rouge2": 0.15789473684210525,
+        "rougeL": 0.3076923076923077,
+        "string_similarity": 0.05273069679849341,
+        "source_precision": 0.0,
+        "source_recall": 0.0,
+        "source_f1": 0.0,
+        "processing_time": 8.486711502075195,
+        "llm_correctness": 0.0
+      }
+    },
+    {
+      "question": "Can you identify a drug that is known to be produced using recombinant DNA technology, similar to the study's use of recombinant technology in Xenopus laevis oocytes?",
+      "gt_answer": "Dornase alfa is a drug produced using recombinant DNA technology in genetically modified Chinese hamster ovary (CHO) cells, which is similar to the study's use of recombinant technology in Xenopus laevis oocytes to express Oat1 for studying the transport of mercapturic acids.",
+      "system_answer": "The available data mentions the drug Prochlorperazine, but it does not specify whether this drug is produced using recombinant DNA technology. Therefore, based on the information provided, we cannot identify a drug produced using recombinant DNA technology similar to the study's use of recombinant technology in Xenopus laevis oocytes.",
+      "gt_sources": [
+        "Target-11641438",
+        "drugbank-drug"
+      ],
+      "system_sources": [],
+      "metrics": {
+        "rouge1": 0.4731182795698925,
+        "rouge2": 0.39560439560439564,
+        "rougeL": 0.45161290322580644,
+        "string_similarity": 0.14052287581699346,
+        "source_precision": 0.0,
+        "source_recall": 0.0,
+        "source_f1": 0.0,
+        "processing_time": 8.663264274597168,
+        "llm_correctness": 0.0
+      }
+    },
+    {
+      "question": "What is the significance of the selectivity of second-generation antihistamines for the H(1) receptor compared to other target proteins?",
+      "gt_answer": "The high selectivity of second-generation antihistamines for the H(1) receptor enhances their efficacy in treating allergic conditions while minimizing side effects, contrasting with the varied target proteins like the Epidermal Growth Factor Receptor and Complement C1q subcomponents found in other drugs listed in the drugbank-targets table, which can lead to broader systemic effects.",
+      "system_answer": "The available context does not provide specific information on the selectivity of second-generation antihistamines for the H(1) receptor or their selectivity compared to other target proteins. Therefore, a detailed answer regarding the significance of this selectivity cannot be provided based on the current data.",
+      "gt_sources": [
+        "Target-18336052",
+        "drugbank-targets"
+      ],
+      "system_sources": [],
+      "metrics": {
+        "rouge1": 0.3725490196078432,
+        "rouge2": 0.19999999999999998,
+        "rougeL": 0.3137254901960784,
+        "string_similarity": 0.2253922967189729,
+        "source_precision": 0.0,
+        "source_recall": 0.0,
+        "source_f1": 0.0,
+        "processing_time": 9.330995798110962,
+        "llm_correctness": 0.0
+      }
+    },
+    {
+      "question": "How does the development of second-generation antihistamines address the adverse effects associated with first-generation agents, and how does this compare with the descriptions of biotech drugs?",
+      "gt_answer": "Second-generation antihistamines such as desloratadine, fexofenadine, and levocetirizine were developed to reduce adverse effects, particularly CNS-related ones, which were more common with first-generation agents. This is achieved through high selectivity for the H(1) receptor and minimal drug-drug interactions. In contrast, biotech drugs listed in the drugbank-drug table, such as Etanercept and Cetuximab, have complex mechanisms and targets, potentially leading to more varied side effects.",
+      "system_answer": "The development of second-generation antihistamines primarily aimed to address the adverse effects associated with first-generation agents. First-generation antihistamines often caused sedation and drowsiness because they could cross the blood-brain barrier and affect the central nervous system. In contrast, second-generation antihistamines were designed to minimize these side effects by being more selective for peripheral histamine receptors and having limited ability to cross into the brain, thus reducing sedation.\n\nBiotech drugs, on the other hand, are typically described as medications that are produced using living organisms or their components. They often include complex molecules like proteins, antibodies, or nucleic acids, and are used to treat a variety of conditions, including those that are difficult to address with traditional small-molecule drugs.\n\nIn comparison, while second-generation antihistamines represent an advancement in reducing specific side effects of earlier drugs, biotech drugs represent a broader shift in pharmaceutical development towards utilizing biological processes to create treatments that can target diseases more precisely.",
+      "gt_sources": [
+        "Target-18336052",
+        "drugbank-drug"
+      ],
+      "system_sources": [],
+      "metrics": {
+        "rouge1": 0.34334763948497854,
+        "rouge2": 0.09523809523809523,
+        "rougeL": 0.19742489270386265,
+        "string_similarity": 0.010771992818671455,
+        "source_precision": 0.0,
+        "source_recall": 0.0,
+        "source_f1": 0.0,
+        "processing_time": 11.174957036972046,
+        "llm_correctness": 0.8
+      }
+    },
+    {
+      "question": "What is the proposed mechanism by which salmeterol achieves its long duration of action in asthma treatment, and is this mechanism associated with any specific biological targets?",
+      "gt_answer": "Salmeterol achieves its long duration of action in asthma treatment by binding with high affinity to the beta2-adrenergic receptor (beta 2AR) and potentially to a secondary site termed the \"exosite.\" However, the specific targets listed in the drugbank-targets table do not include beta2-adrenergic receptor, as they are primarily associated with drugs like Cetuximab and Lepirudin, which target different proteins such as the Epidermal growth factor receptor and Prothrombin, respectively.",
+      "system_answer": "The sub-queries did not yield specific information about the proposed mechanism by which salmeterol achieves its long duration of action in asthma treatment, nor did they identify any specific biological targets associated with this mechanism. Therefore, the original query remains unanswered based on the provided context.",
+      "gt_sources": [
+        "Target-10471277",
+        "drugbank-targets"
+      ],
+      "system_sources": [],
+      "metrics": {
+        "rouge1": 0.3697478991596639,
+        "rouge2": 0.17094017094017094,
+        "rougeL": 0.2521008403361345,
+        "string_similarity": 0.06150061500615006,
+        "source_precision": 0.0,
+        "source_recall": 0.0,
+        "source_f1": 0.0,
+        "processing_time": 9.994892835617065,
+        "llm_correctness": 0.0
+      }
+    },
+    {
+      "question": "How does the mechanism of action of salmeterol compare to the type of drugs commonly used for similar purposes?",
+      "gt_answer": "Salmeterol is a long-acting beta2-adrenergic receptor agonist used for asthma, whereas the drugs listed in the drugbank-drug table, such as Lepirudin and Etanercept, are biotech drugs with different mechanisms, focusing on anticoagulation and tumor necrosis factor inhibition, respectively. These drugs are produced biotechnologically, unlike salmeterol, which is a small molecule drug.",
+      "system_answer": "The results from the sub-queries did not provide specific information on the mechanism of action of salmeterol or the types of drugs commonly used for similar purposes. However, I can provide a general answer based on existing knowledge.\n\nSalmeterol is a long-acting beta-2 adrenergic agonist (LABA) used primarily for the treatment of asthma and chronic obstructive pulmonary disease (COPD). Its mechanism of action involves stimulating beta-2 adrenergic receptors in the lungs, leading to relaxation of bronchial smooth muscle and prolonged bronchodilation.\n\nDrugs commonly used for similar purposes include other LABAs like formoterol, as well as inhaled corticosteroids (ICS), which reduce inflammation in the airways. While LABAs like salmeterol and formoterol primarily focus on bronchodilation, ICS target the underlying inflammation associated with asthma and COPD. These medications are often used in combination to manage respiratory conditions effectively.",
+      "gt_sources": [
+        "Target-10471277",
+        "drugbank-drug"
+      ],
+      "system_sources": [],
+      "metrics": {
+        "rouge1": 0.27835051546391754,
+        "rouge2": 0.07291666666666667,
+        "rougeL": 0.1958762886597938,
+        "string_similarity": 0.017738359201773836,
+        "source_precision": 0.0,
+        "source_recall": 0.0,
+        "source_f1": 0.0,
+        "processing_time": 12.546364307403564,
+        "llm_correctness": 0.7
+      }
+    },
+    {
+      "question": "Is there any information about the synthesis or FDA labeling of salmeterol, and how does this relate to the research described?",
+      "gt_answer": "The drugbank-drug table includes synthesis references and FDA labeling for some drugs, but not for salmeterol specifically. The passage describes the design and synthesis of a photoaffinity label for salmeterol ([125I]IAS), indicating advanced research efforts, yet this specific synthesis detail is not covered in the table entries, which focus on other drugs like Etanercept and Lepirudin.",
+      "system_answer": "The available context does not provide information about the synthesis or FDA labeling of salmeterol, nor does it explain how these aspects relate to any described research.",
+      "gt_sources": [
+        "Target-10471277",
+        "drugbank-drug"
+      ],
+      "system_sources": [],
+      "metrics": {
+        "rouge1": 0.23529411764705885,
+        "rouge2": 0.024096385542168672,
+        "rougeL": 0.16470588235294117,
+        "string_similarity": 0.0851063829787234,
+        "source_precision": 0.0,
+        "source_recall": 0.0,
+        "source_f1": 0.0,
+        "processing_time": 11.717525005340576,
+        "llm_correctness": 0.5
+      }
+    },
+    {
+      "question": "How does loperamide's mechanism of action in rodent models relate to its classification as a drug?",
+      "gt_answer": "Loperamide acts by stimulating [35S]guanosine-5'-O-(3-thio)triphosphate binding and inhibiting forskolin-stimulated cAMP accumulation in rodent models, indicating its role as an opioid receptor agonist. However, loperamide itself is not listed in the drugbank-drug table, which primarily includes biotech drugs like lepirudin and cetuximab, suggesting loperamide might be classified differently or is missing from this specific dataset.",
+      "system_answer": "Loperamide is classified as an anti-diarrheal drug. Although the specific mechanism of action in rodent models was not provided, generally, loperamide works by slowing down gut movement and increasing the absorption of fluids and electrolytes in the intestines. This action is primarily due to its ability to bind to opioid receptors in the gut, which reduces peristalsis and prolongs transit time. This mechanism is consistent with its classification as a drug used to treat diarrhea by reducing bowel movements and making stools less watery.",
+      "gt_sources": [
+        "Target-10087042",
+        "drugbank-drug"
+      ],
+      "system_sources": [],
+      "metrics": {
+        "rouge1": 0.35374149659863946,
+        "rouge2": 0.06896551724137931,
+        "rougeL": 0.163265306122449,
+        "string_similarity": 0.049029622063329927,
+        "source_precision": 0.0,
+        "source_recall": 0.0,
+        "source_f1": 0.0,
+        "processing_time": 10.47401475906372,
+        "llm_correctness": 0.5
+      }
+    },
+    {
+      "question": "What target proteins are associated with the drugs in the study, and how does diclofenac's mechanism relate to these targets?",
+      "gt_answer": "The passage describes diclofenac's effect on prostaglandin E2 and thromboxane B2, which are indicators of COX-2 and COX-1 activity. While the passage focuses on diclofenac, the related tables mention targets such as the epidermal growth factor receptor for other drugs like Cetuximab. Diclofenac, however, is known to work by inhibiting COX enzymes, which is not directly related to the targets listed in the tables.",
+      "system_answer": "The study identifies human serum albumin (HSA) as the target protein associated with the drugs being investigated. However, the specific relationship between diclofenac's mechanism and these target proteins is not provided in the available context.",
+      "gt_sources": [
+        "Target-12534640",
+        "drugbank-targets"
+      ],
+      "system_sources": [],
+      "metrics": {
+        "rouge1": 0.3106796116504854,
+        "rouge2": 0.09900990099009901,
+        "rougeL": 0.1941747572815534,
+        "string_similarity": 0.030120481927710843,
+        "source_precision": 0.0,
+        "source_recall": 0.0,
+        "source_f1": 0.0,
+        "processing_time": 8.192911386489868,
+        "llm_correctness": 0.0
+      }
+    }
+  ],
+  "aggregate_metrics": {
+    "rouge1": {
+      "mean": 0.37057323378415313,
+      "median": 0.360919828053921,
+      "min": 0.23529411764705885,
+      "max": 0.5384615384615384,
+      "std": 0.08870259056836603
+    },
+    "rouge2": {
+      "mean": 0.16865012756609962,
+      "median": 0.13074129459517198,
+      "min": 0.024096385542168672,
+      "max": 0.39560439560439564,
+      "std": 0.10779217806217606
+    },
+    "rougeL": {
+      "mean": 0.28328919145827597,
+      "median": 0.2426470588235294,
+      "min": 0.163265306122449,
+      "max": 0.48717948717948717,
+      "std": 0.10717875844116886
+    },
+    "string_similarity": {
+      "mean": 0.10915409568104835,
+      "median": 0.07330349899243674,
+      "min": 0.010771992818671455,
+      "max": 0.3739495798319328,
+      "std": 0.09905628592639515
+    },
+    "source_precision": {
+      "mean": 0.0,
+      "median": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "std": 0.0
+    },
+    "source_recall": {
+      "mean": 0.0,
+      "median": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "std": 0.0
+    },
+    "source_f1": {
+      "mean": 0.0,
+      "median": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "std": 0.0
+    },
+    "llm_correctness": {
+      "mean": 0.32,
+      "median": 0.0,
+      "min": 0.0,
+      "max": 0.9,
+      "std": 0.3709447398198282
+    }
+  }
+}

@@ -43,7 +43,7 @@ class Aggregator:
         
         # Get aggregated answer from GPT
         response = self.client.chat.completions.create(
-            model="gpt-3.5-turbo",
+            model="gpt-4o",
             messages=[
                 {"role": "system", "content": "You are a precise answer aggregator. Combine the results of sub-queries into a complete answer."},
                 {"role": "user", "content": context}

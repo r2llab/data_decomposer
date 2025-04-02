@@ -61,7 +61,7 @@ class Discovery:
         
         # Search index
         results, scores = self.index.search(query_embedding, k=k)
-        
+
         # Filter by score and add relevance score to items
         relevant_items = []
         for i, (item, score) in enumerate(zip(results, scores)):

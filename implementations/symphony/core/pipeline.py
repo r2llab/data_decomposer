@@ -89,6 +89,8 @@ class Pipeline:
         if not decomposition["requires_decomposition"]:
             # Simple query - just execute on the most relevant item
             logger.info("Simple query - executing on most relevant item")
+            logger.info(f"Executing query: {query}")
+            logger.info(f"On item: {relevant_items[0].get('data', relevant_items[0].get('content', 'No content'))[:100]}...")
             return self._execute(query, relevant_items[0])
             
         # 3. Execute each sub-query
@@ -132,7 +134,7 @@ class Pipeline:
 
     def _discover(self, query: str) -> List[Dict[str, Any]]:
         """Use the discovery module to find relevant items."""
-        return self.discovery.discover(query, k=3, min_score=0.3)
+        return self.discovery.discover(query, k=4, min_score=0.3)
 
     def _execute(self, query: str, item: Dict[str, Any]) -> Dict[str, Any]:
         """Execute the query on a single item."""

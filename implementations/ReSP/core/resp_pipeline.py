@@ -1,13 +1,33 @@
 from typing import List, Dict, Any, Optional
 from pathlib import Path
 import logging
+import os
 from dataclasses import dataclass
 from queue import Queue
 import re
 
 # Configure logging
-logging.basicConfig(level=logging.INFO, 
-                   format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+def setup_logging(log_file=None):
+    """Configure logging to output to both console and file if specified"""
+    handlers = [
+        logging.StreamHandler()  # Console handler
+    ]
+    
+    # Add file handler if log_file is provided
+    if log_file:
+        os.makedirs(os.path.dirname(log_file), exist_ok=True)
+        file_handler = logging.FileHandler(log_file)
+        handlers.append(file_handler)
+    
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+        handlers=handlers
+    )
+    
+    return logging.getLogger(__name__)
+
+# Default logger (console only)
 logger = logging.getLogger(__name__)
 
 @dataclass
@@ -25,7 +45,8 @@ class ReSPPipeline:
     def __init__(self, 
                  index_path: Optional[Path] = None, 
                  openai_api_key: Optional[str] = None,
-                 max_iterations: int = 5):
+                 max_iterations: int = 5,
+                 log_file: Optional[str] = None):
         """
         Initialize the ReSP pipeline components.
         
@@ -33,19 +54,25 @@ class ReSPPipeline:
             index_path: Optional path to load an existing discovery index
             openai_api_key: Optional OpenAI API key
             max_iterations: Maximum number of iterations for the recursive process
+            log_file: Optional path to a log file where logs will be written
         """
         if not openai_api_key:
             raise ValueError("OpenAI API key is required for ReSP pipeline")
+        
+        # Setup logging
+        self.logger = setup_logging(log_file)
+        self.logger.info("Initializing ReSP Pipeline")
             
         # Initialize the four main components
         self.reasoner = LLMReasoner(api_key=openai_api_key)
         self.retriever = VectorRetriever(index_path=index_path, api_key=openai_api_key)
         self.summarizer = LLMSummarizer(api_key=openai_api_key)
         self.generator = LLMGenerator(api_key=openai_api_key)
-        
+
         # Configuration
         self.max_iterations = max_iterations
         self.openai_api_key = openai_api_key
+        self.log_file = log_file
         
         # Initialize memory queues
         self.memory = MemoryQueues(
@@ -66,7 +93,7 @@ class ReSPPipeline:
         Returns:
             Dict containing the answer and metadata
         """
-        logger.info(f"\n\n=== Processing Query: {query} ===")
+        self.logger.info(f"\n\n=== Processing Query: {query} ===")
         
         # Initialize for new query
         self._reset_memory_queues()
@@ -75,21 +102,21 @@ class ReSPPipeline:
         current_sub_question = query  # Initial sub-question is the main question
         
         while current_iteration < self.max_iterations:
-            logger.info(f"\n--- Iteration {current_iteration + 1} ---")
+            self.logger.info(f"\n--- Iteration {current_iteration + 1} ---")
             # Log the current sub-question being processed
-            logger.info(f"Processing sub-question: {current_sub_question}")
+            self.logger.info(f"Processing sub-question: {current_sub_question}")
             # 1. Retrieval Phase
             retrieved_docs = self._retrieve(current_sub_question)
             if not retrieved_docs:
-                logger.warning("No relevant documents found")
+                self.logger.warning("No relevant documents found")
                 break
                 
             # Log retrieved documents
-            logger.info("Retrieved documents:")
+            self.logger.info("Retrieved documents:")
             for i, doc in enumerate(retrieved_docs, 1):
-                logger.info(f"\nDocument {i}:")
-                logger.info(f"Content: {doc.get('content', 'No content')}")
-                logger.info(f"Metadata: {doc.get('metadata', {})}")
+                self.logger.info(f"\nDocument {i}:")
+                self.logger.info(f"Content: {doc.get('content', 'No content')}")
+                self.logger.info(f"Metadata: {doc.get('metadata', {})}")
                 
                 # Track document sources
                 if 'metadata' in doc and 'source' in doc['metadata']:
@@ -111,7 +138,7 @@ class ReSPPipeline:
             )
             
             # Log reasoning output
-            logger.info(f"Reasoning result: {next_step}")
+            self.logger.info(f"Reasoning result: {next_step}")
             
             # Decide what to do next
             if not next_step.get("should_exit", False):
@@ -119,17 +146,17 @@ class ReSPPipeline:
                 current_sub_question = next_step.get("next_sub_question")
                 if not current_sub_question:
                     # If no new sub-question is provided, exit the loop
-                    logger.info("No further sub-questions generated, generating final answer")
+                    self.logger.info("No further sub-questions generated, generating final answer")
                     break
                 current_iteration += 1
-                logger.info(f"Continuing with sub-question: {current_sub_question}")
+                self.logger.info(f"Continuing with sub-question: {current_sub_question}")
             else:
                 # If we're done, generate the final answer
-                logger.info("Reasoning complete, generating final answer")
+                self.logger.info("Reasoning complete, generating final answer")
                 break
         
         # Log document sources
-        logger.info(f"Document sources used: {self.document_sources}")
+        self.logger.info(f"Document sources used: {self.document_sources}")
                 
         # Generate final answer
         final_result = self._generate(
@@ -140,7 +167,7 @@ class ReSPPipeline:
         if 'document_sources' not in final_result:
             final_result['document_sources'] = list(self.document_sources)
         
-        logger.info(f"Final answer: {final_result.get('answer')}")
+        self.logger.info(f"Final answer: {final_result.get('answer')}")
         
         return final_result
 
@@ -168,7 +195,7 @@ class ReSPPipeline:
                     self.document_sources.add(source)
             
         # Log tracked sources
-        logger.info(f"Currently tracked document sources: {self.document_sources}")
+        self.logger.info(f"Currently tracked document sources: {self.document_sources}")
             
         return retrieved_docs
 
@@ -184,8 +211,8 @@ class ReSPPipeline:
         )
 
         # Log the summaries
-        logger.info(f"Global summary: {summaries.get('global_summary')}")
-        logger.info(f"Local summary: {summaries.get('local_summary')}")
+        self.logger.info(f"Global summary: {summaries.get('global_summary')}")
+        self.logger.info(f"Local summary: {summaries.get('local_summary')}")
         
         # Update memory queues
         self.memory.global_evidence.put(summaries.get("global_summary"))
@@ -212,7 +239,7 @@ class ReSPPipeline:
         document_sources = list(self.document_sources) if self.document_sources else []
         
         # Log document sources being passed to generator
-        logger.info(f"Passing {len(document_sources)} document sources to generator: {document_sources}")
+        self.logger.info(f"Passing {len(document_sources)} document sources to generator: {document_sources}")
         
         # Call generator with document sources
         result = self.generator.generate(

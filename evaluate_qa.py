@@ -19,6 +19,8 @@ from core.factory import ImplementationFactory
 from core.config import ConfigurationManager
 # Import implementations to register them
 import implementations
+import openai
+import re
 
 # Optional: Import BERT-based metrics if available
 try:
@@ -58,6 +60,72 @@ def calculate_bert_score(hypothesis: str, reference: str) -> Dict[str, float]:
         'R': R.item(),
         'F1': F1.item()
     }
+
+def calculate_llm_correctness(hypothesis: str, reference: str, question: str) -> float:
+    """
+    Use an LLM to evaluate the correctness of the hypothesis compared to the reference.
+    
+    Args:
+        hypothesis: The system-generated answer
+        reference: The ground truth answer
+        question: The original question
+        api_key: OpenAI API key (optional if set as environment variable)
+        
+    Returns:
+        A score between 0 and 1 representing correctness (1 = fully correct, 0 = incorrect)
+    """
+    
+
+    
+    openai.api_key = os.environ["OPENAI_API_KEY"]
+    
+    if not openai.api_key:
+        print("No OpenAI API key provided, skipping LLM correctness evaluation")
+        return 0.0
+    
+    try:
+        # Create prompt for the LLM
+        prompt = f"""
+You are an expert evaluator assessing the correctness of an answer to a question.
+
+Question: {question}
+
+Ground Truth Answer: {reference}
+
+System Answer: {hypothesis}
+
+Evaluate how correct the System Answer is compared to the Ground Truth Answer.
+Give a score from 0 to 1 where:
+- 1.0 means the System Answer is fully correct and contains all the information from the Ground Truth
+- 0.0 means the System Answer is completely incorrect
+- Values between 0 and 1 indicate partial correctness
+
+Output a single line with just the score as a decimal between 0 and 1.
+"""
+
+        # Call OpenAI API
+        response = openai.chat.completions.create(
+            model="gpt-4o",  # Can be changed to a different model if needed
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.0,  # Use low temperature for more consistent evaluations
+            max_tokens=300
+        )
+        
+        # Extract the response text
+        response_text = response.choices[0].message.content.strip()
+        
+        # Extract the score from the response - find the last number between 0 and 1
+        score_matches = re.findall(r'(?:^|\s)(0(?:\.\d+)?|1(?:\.0+)?)(?:$|\s)', response_text)
+        if score_matches:
+            score = float(score_matches[-1])  # Take the last match as the final score
+            return min(max(score, 0.0), 1.0)  # Ensure score is between 0 and 1
+        else:
+            print(f"Could not extract a score from LLM response: {response_text}")
+            return 0.0
+            
+    except Exception as e:
+        print(f"Error in LLM evaluation: {e}")
+        return 0.0
 
 def calculate_string_similarity(hypothesis: str, reference: str) -> float:
     """Calculate simple string similarity using SequenceMatcher."""
@@ -99,6 +167,7 @@ def run_evaluation(implementation, gt_data: List[Dict[str, str]], output_file: s
         'source_precision': [],
         'source_recall': [],
         'source_f1': [],
+        'llm_correctness': [],  # New metric for LLM-based correctness
     }
     
     if BERT_SCORE_AVAILABLE:
@@ -140,6 +209,13 @@ def run_evaluation(implementation, gt_data: List[Dict[str, str]], output_file: s
             string_sim = calculate_string_similarity(system_answer, gt_answer)
             source_metrics = calculate_source_metrics(system_sources, gt_sources)
             
+            # Calculate LLM-based correctness score
+            llm_correctness = 0.0
+            llm_correctness = calculate_llm_correctness(
+                system_answer, gt_answer, question
+            )
+            metrics['llm_correctness'].append(llm_correctness)
+            
             item_metrics = {
                 'rouge1': rouge_scores['rouge1'],
                 'rouge2': rouge_scores['rouge2'],
@@ -148,7 +224,8 @@ def run_evaluation(implementation, gt_data: List[Dict[str, str]], output_file: s
                 'source_precision': source_metrics['precision'],
                 'source_recall': source_metrics['recall'],
                 'source_f1': source_metrics['f1'],
-                'processing_time': processing_time
+                'processing_time': processing_time,
+                'llm_correctness': llm_correctness,  # Add LLM correctness score
             }
             
             if BERT_SCORE_AVAILABLE:
@@ -188,6 +265,7 @@ def run_evaluation(implementation, gt_data: List[Dict[str, str]], output_file: s
             print(f"Processed in {processing_time:.2f}s")
             print(f"ROUGE-L: {rouge_scores['rougeL']:.4f}, String similarity: {string_sim:.4f}")
             print(f"Source F1: {source_metrics['f1']:.4f} (P: {source_metrics['precision']:.4f}, R: {source_metrics['recall']:.4f})")
+            print(f"LLM Correctness: {llm_correctness:.4f}")
             
         except Exception as e:
             print(f"Error processing question: {e}")
