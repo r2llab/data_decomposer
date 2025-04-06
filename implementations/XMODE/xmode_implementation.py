@@ -14,11 +14,12 @@ class XMODEImplementation(BaseImplementation):
         
         
     
-    def process_query(self, query: str) -> Any:
+    def process_query(self, query: str, ground_truth_answer: Optional[str] = None) -> Any:
         """Process a query using Symphony.
         
         Args:
             query: The query string to process
+            ground_truth_answer: Optional ground truth answer for relevance scoring
             
         Returns:
             Dict containing the answer and metadata

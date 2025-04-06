@@ -68,3 +68,67 @@ The aggregator combines results from multiple sub-queries into a coherent final 
 ```
 python main.py --config config.yaml "your query here"
 ```
+
+# Data Decomposer with Source Relevance Scoring
+
+This project implements a query processing system that can evaluate relevance of retrieved sources against a ground truth answer.
+
+## Key Features
+
+- Process natural language queries and extract information from various data sources
+- Calculate relevance scores between retrieved sources and a ground truth answer
+- Support for multiple implementation frameworks (Symphony, ReSP)
+- Evaluation tools for performance metrics
+
+## Usage
+
+### Processing a Single Query
+
+To process a query with ground truth answer for source relevance scoring:
+
+```bash
+python main.py --config config.yaml --ground-truth-answer "Ground truth answer text" "Your query here"
+```
+
+### Running Evaluation on Multiple Queries
+
+To evaluate the system against a dataset of queries and ground truth answers:
+
+```bash
+python evaluate_qa.py --config config.yaml --gt-file path/to/groundtruth.csv --output results.json
+```
+
+The ground truth file should be a CSV with columns: `question`, `answer`, `text`, `table`. Where:
+- `question`: The query to process
+- `answer`: The ground truth answer
+- `text`: Comma-separated list of expected text source files
+- `table`: Comma-separated list of expected table source files
+
+Example:
+```csv
+"question","answer","text","table"
+"What is the mechanism of action for Cetuximab?","Cetuximab is an EGFR binding FAB, targeting the EGFR in humans.","None","drugbank-targets"
+```
+
+## Source Relevance Scoring
+
+The system now calculates how relevant each retrieved document is to the ground truth answer. This addresses the limitation of simple source comparison, as the system might use equivalent sources with different names or draw information from sources that contain the same data.
+
+The relevance score is calculated using string similarity between each retrieved document's content and the ground truth answer. The system tracks:
+
+- Average relevance score across all retrieved documents
+- Maximum relevance score (best match)
+- Individual scores for each document
+
+These metrics help evaluate if the system is retrieving relevant information regardless of source names.
+
+## Implementation Details
+
+The source relevance scoring is implemented by:
+
+1. Passing the ground truth answer to the implementation's `process_query` method
+2. Intercepting document retrieval to calculate similarity between document content and ground truth
+3. Accumulating scores for all retrieved documents
+4. Returning the aggregate metrics in the result
+
+This approach works with both Symphony and ReSP implementations.

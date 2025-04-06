@@ -30,6 +30,17 @@ except ImportError:
     BERT_SCORE_AVAILABLE = False
     print("BERTScore not available. Install with: pip install bert-score")
 
+# Custom JSON encoder to handle NumPy types
+class NumpyJSONEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, np.integer):
+            return int(obj)
+        elif isinstance(obj, np.floating):
+            return float(obj)
+        elif isinstance(obj, np.ndarray):
+            return obj.tolist()
+        return super(NumpyJSONEncoder, self).default(obj)
+
 def load_ground_truth(gt_file: str) -> List[Dict[str, str]]:
     """Load ground truth data from CSV file."""
     gt_data = []
@@ -156,6 +167,65 @@ def calculate_source_metrics(system_sources: List[str], gt_sources: List[str]) -
         'gt_sources_count': len(gt_set)
     }
 
+def extract_cost_metrics(result: Dict[str, Any]) -> Dict[str, Any]:
+    """Extract cost metrics from result if available."""
+    cost_metrics = result.get('cost_metrics', {})
+    if not cost_metrics:
+        return {
+            'total_cost': 0.0,
+            'total_tokens': 0,
+            'api_calls': 0
+        }
+    
+    # Convert numpy ints to Python ints to ensure JSON serialization works
+    total_tokens = cost_metrics.get('total_tokens', 0)
+    if hasattr(total_tokens, 'item'):  # Check if it's a numpy type
+        total_tokens = total_tokens.item()
+    
+    api_calls = cost_metrics.get('api_calls', 0)
+    if hasattr(api_calls, 'item'):
+        api_calls = api_calls.item()
+    
+    # Process model_breakdown to ensure all values are JSON serializable
+    model_breakdown = {}
+    for model, stats in cost_metrics.get('model_breakdown', {}).items():
+        model_breakdown[model] = {
+            'cost': float(stats.get('cost', 0.0)),
+            'tokens': int(stats.get('tokens', 0)),
+            'calls': int(stats.get('calls', 0))
+        }
+    
+    # Process endpoint_breakdown to ensure all values are JSON serializable
+    endpoint_breakdown = {}
+    for endpoint, stats in cost_metrics.get('endpoint_breakdown', {}).items():
+        endpoint_breakdown[endpoint] = {
+            'cost': float(stats.get('cost', 0.0)),
+            'tokens': int(stats.get('tokens', 0)),
+            'calls': int(stats.get('calls', 0))
+        }
+    
+    return {
+        'total_cost': float(cost_metrics.get('total_cost', 0.0)),
+        'total_tokens': int(total_tokens),
+        'api_calls': int(api_calls),
+        'model_breakdown': model_breakdown,
+        'endpoint_breakdown': endpoint_breakdown
+    }
+
+def extract_source_relevance_metrics(result: Dict[str, Any]) -> Dict[str, float]:
+    """Extract source relevance metrics from result if available."""
+    source_relevance = result.get('source_relevance_score', {})
+    if not source_relevance:
+        return {
+            'average': 0.0,
+            'maximum': 0.0
+        }
+    
+    return {
+        'average': float(source_relevance.get('average', 0.0)),
+        'maximum': float(source_relevance.get('maximum', 0.0))
+    }
+
 def run_evaluation(implementation, gt_data: List[Dict[str, str]], output_file: str):
     """Run evaluation on all questions in ground truth data."""
     results = []
@@ -168,6 +238,11 @@ def run_evaluation(implementation, gt_data: List[Dict[str, str]], output_file: s
         'source_recall': [],
         'source_f1': [],
         'llm_correctness': [],  # New metric for LLM-based correctness
+        'inference_cost': [],   # New metric for cost tracking
+        'inference_tokens': [], # New metric for token usage tracking
+        'api_calls': [],        # New metric for API call count tracking
+        'source_relevance_avg': [], # New metric for source relevance
+        'source_relevance_max': [], # New metric for maximum source relevance
     }
     
     if BERT_SCORE_AVAILABLE:
@@ -194,7 +269,7 @@ def run_evaluation(implementation, gt_data: List[Dict[str, str]], output_file: s
         # Run the question through the implementation
         start_time = time.time()
         try:
-            response = implementation.process_query(question)
+            response = implementation.process_query(question, gt_answer)
             processing_time = time.time() - start_time
             
             # Extract answer and sources
@@ -216,6 +291,17 @@ def run_evaluation(implementation, gt_data: List[Dict[str, str]], output_file: s
             )
             metrics['llm_correctness'].append(llm_correctness)
             
+            # Extract cost metrics
+            cost_metrics = extract_cost_metrics(response)
+            metrics['inference_cost'].append(cost_metrics['total_cost'])
+            metrics['inference_tokens'].append(cost_metrics['total_tokens'])
+            metrics['api_calls'].append(cost_metrics['api_calls'])
+            
+            # Extract source relevance metrics
+            source_relevance = extract_source_relevance_metrics(response)
+            metrics['source_relevance_avg'].append(source_relevance['average'])
+            metrics['source_relevance_max'].append(source_relevance['maximum'])
+            
             item_metrics = {
                 'rouge1': rouge_scores['rouge1'],
                 'rouge2': rouge_scores['rouge2'],
@@ -226,6 +312,11 @@ def run_evaluation(implementation, gt_data: List[Dict[str, str]], output_file: s
                 'source_f1': source_metrics['f1'],
                 'processing_time': processing_time,
                 'llm_correctness': llm_correctness,  # Add LLM correctness score
+                'inference_cost': cost_metrics['total_cost'], 
+                'inference_tokens': cost_metrics['total_tokens'],
+                'api_calls': cost_metrics['api_calls'],
+                'source_relevance_avg': source_relevance['average'],
+                'source_relevance_max': source_relevance['maximum'],
             }
             
             if BERT_SCORE_AVAILABLE:
@@ -257,7 +348,9 @@ def run_evaluation(implementation, gt_data: List[Dict[str, str]], output_file: s
                 'system_answer': system_answer,
                 'gt_sources': gt_sources,
                 'system_sources': system_sources,
-                'metrics': item_metrics
+                'metrics': item_metrics,
+                'cost_metrics': cost_metrics,
+                'source_relevance': source_relevance
             }
             
             results.append(result_item)
@@ -266,6 +359,8 @@ def run_evaluation(implementation, gt_data: List[Dict[str, str]], output_file: s
             print(f"ROUGE-L: {rouge_scores['rougeL']:.4f}, String similarity: {string_sim:.4f}")
             print(f"Source F1: {source_metrics['f1']:.4f} (P: {source_metrics['precision']:.4f}, R: {source_metrics['recall']:.4f})")
             print(f"LLM Correctness: {llm_correctness:.4f}")
+            print(f"Inference Cost: ${cost_metrics['total_cost']:.6f}, Tokens: {cost_metrics['total_tokens']}, API Calls: {cost_metrics['api_calls']}")
+            print(f"Source Relevance: Avg={source_relevance['average']:.4f}, Max={source_relevance['maximum']:.4f}")
             
         except Exception as e:
             print(f"Error processing question: {e}")
@@ -299,7 +394,7 @@ def run_evaluation(implementation, gt_data: List[Dict[str, str]], output_file: s
     
     # Save results
     with open(output_file, 'w', encoding='utf-8') as f:
-        json.dump(final_results, f, indent=2)
+        json.dump(final_results, f, indent=2, cls=NumpyJSONEncoder)
     
     print(f"\nEvaluation complete. Results saved to {output_file}")
     print("\nAggregate metrics:")

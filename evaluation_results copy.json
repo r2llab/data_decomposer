@@ -3,48 +3,48 @@
     {
       "question": "What is the mechanism of action for Cetuximab and which receptor does it target?",
       "gt_answer": "Cetuximab is an epidermal growth factor receptor (EGFR) binding fragment antigen-binding (FAB), targeting the EGFR in humans. Its mechanism of action involves binding to the N-terminal portion of human EGFR.",
-      "system_answer": "Cetuximab is a monoclonal antibody that targets the epidermal growth factor receptor (EGFR). Its mechanism of action involves binding to the extracellular domain of EGFR, thereby inhibiting the receptor's activation and subsequent signaling pathways that promote cell proliferation and survival. This action helps to slow down or stop the growth of cancer cells that overexpress EGFR.",
+      "system_answer": "Cetuximab is a monoclonal antibody that targets the epidermal growth factor receptor (EGFR). Its mechanism of action involves binding to the extracellular domain of EGFR, thereby inhibiting the receptor's activation and subsequent downstream signaling pathways. This inhibition can lead to reduced tumor cell proliferation and survival, making Cetuximab effective in treating certain types of cancer.",
       "gt_sources": [
         "None",
         "drugbank-targets"
       ],
       "system_sources": [
-        "pubmed-targets/Target-16416305",
-        "pubmed-targets/Target-12943486",
         "pubmed-targets/Target-9029042",
-        "pubmed-targets/Target-15004073"
+        "pubmed-targets/Target-15004073",
+        "pubmed-targets/Target-16416305",
+        "pubmed-targets/Target-12943486"
       ],
       "metrics": {
-        "rouge1": 0.449438202247191,
-        "rouge2": 0.2988505747126437,
-        "rougeL": 0.3820224719101123,
-        "string_similarity": 0.3790186125211506,
+        "rouge1": 0.45454545454545453,
+        "rouge2": 0.3023255813953488,
+        "rougeL": 0.38636363636363635,
+        "string_similarity": 0.36902800658978585,
         "source_precision": 0.0,
         "source_recall": 0.0,
         "source_f1": 0.0,
-        "processing_time": 4.579852819442749,
+        "processing_time": 5.111201524734497,
         "llm_correctness": 1.0,
-        "inference_cost": 0.02563,
-        "inference_tokens": 2053,
+        "inference_cost": 0.02587,
+        "inference_tokens": 2061,
         "api_calls": 4,
         "source_relevance_avg": 0.009366238738782291,
         "source_relevance_max": 0.010771992818671455
       },
       "cost_metrics": {
-        "total_cost": 0.02563,
-        "total_tokens": 2053,
+        "total_cost": 0.02587,
+        "total_tokens": 2061,
         "api_calls": 4,
         "model_breakdown": {
           "gpt-4o": {
-            "cost": 0.02563,
-            "tokens": 2053,
+            "cost": 0.02587,
+            "tokens": 2061,
             "calls": 4
           }
         },
         "endpoint_breakdown": {
           "chat.completions": {
-            "cost": 0.02563,
-            "tokens": 2053,
+            "cost": 0.02587,
+            "tokens": 2061,
             "calls": 4
           }
         }
@@ -57,7 +57,7 @@
     {
       "question": "What are the components of Etanercept and how is it produced?",
       "gt_answer": "Etanercept is a dimeric fusion protein consisting of the extracellular ligand-binding portion of the human 75 kilodalton (p75) tumor necrosis factor receptor (TNFR) linked to the Fc portion of human IgG1. It is produced by recombinant DNA technology in a Chinese hamster ovary (CHO) mammalian cell expression system.",
-      "system_answer": "I'm sorry, but the provided information does not include details on the components of Etanercept or how it is produced. For accurate and detailed information, I recommend consulting scientific literature or official sources related to pharmaceutical manufacturing.",
+      "system_answer": "The table does not provide information on the components of Etanercept or how it is produced.",
       "gt_sources": [
         "None",
         "drugbank-drug"
@@ -67,36 +67,36 @@
         "drugbank-drug_international_brands.csv"
       ],
       "metrics": {
-        "rouge1": 0.1839080459770115,
-        "rouge2": 0.047058823529411764,
-        "rougeL": 0.13793103448275865,
-        "string_similarity": 0.020689655172413793,
+        "rouge1": 0.2153846153846154,
+        "rouge2": 0.06349206349206349,
+        "rougeL": 0.1846153846153846,
+        "string_similarity": 0.02444987775061125,
         "source_precision": 0.0,
         "source_recall": 0.0,
         "source_f1": 0.0,
-        "processing_time": 3.877880811691284,
+        "processing_time": 5.972775220870972,
         "llm_correctness": 0.0,
-        "inference_cost": 0.05157,
-        "inference_tokens": 4723,
+        "inference_cost": 0.05154,
+        "inference_tokens": 4722,
         "api_calls": 4,
         "source_relevance_avg": 0.019379746295892647,
         "source_relevance_max": 0.027600849256900213
       },
       "cost_metrics": {
-        "total_cost": 0.05157,
-        "total_tokens": 4723,
+        "total_cost": 0.05154,
+        "total_tokens": 4722,
         "api_calls": 4,
         "model_breakdown": {
           "gpt-4o": {
-            "cost": 0.05157,
-            "tokens": 4723,
+            "cost": 0.05154,
+            "tokens": 4722,
             "calls": 4
           }
         },
         "endpoint_breakdown": {
           "chat.completions": {
-            "cost": 0.05157,
-            "tokens": 4723,
+            "cost": 0.05154,
+            "tokens": 4722,
             "calls": 4
           }
         }
@@ -109,32 +109,32 @@
   ],
   "aggregate_metrics": {
     "rouge1": {
-      "mean": 0.31667312411210125,
-      "median": 0.31667312411210125,
-      "min": 0.1839080459770115,
-      "max": 0.449438202247191,
-      "std": 0.13276507813508975
+      "mean": 0.33496503496503494,
+      "median": 0.33496503496503494,
+      "min": 0.2153846153846154,
+      "max": 0.45454545454545453,
+      "std": 0.11958041958041957
     },
     "rouge2": {
-      "mean": 0.17295469912102773,
-      "median": 0.17295469912102773,
-      "min": 0.047058823529411764,
-      "max": 0.2988505747126437,
-      "std": 0.12589587559161597
+      "mean": 0.18290882244370615,
+      "median": 0.18290882244370615,
+      "min": 0.06349206349206349,
+      "max": 0.3023255813953488,
+      "std": 0.11941675895164267
     },
     "rougeL": {
-      "mean": 0.2599767531964355,
-      "median": 0.2599767531964355,
-      "min": 0.13793103448275865,
-      "max": 0.3820224719101123,
-      "std": 0.12204571871367682
+      "mean": 0.2854895104895105,
+      "median": 0.2854895104895105,
+      "min": 0.1846153846153846,
+      "max": 0.38636363636363635,
+      "std": 0.10087412587412588
     },
     "string_similarity": {
-      "mean": 0.1998541338467822,
-      "median": 0.1998541338467822,
-      "min": 0.020689655172413793,
-      "max": 0.3790186125211506,
-      "std": 0.1791644786743684
+      "mean": 0.19673894217019855,
+      "median": 0.19673894217019855,
+      "min": 0.02444987775061125,
+      "max": 0.36902800658978585,
+      "std": 0.1722890644195873
     },
     "source_precision": {
       "mean": 0.0,
@@ -165,18 +165,18 @@
       "std": 0.5
     },
     "inference_cost": {
-      "mean": 0.038599999999999995,
-      "median": 0.038599999999999995,
-      "min": 0.02563,
-      "max": 0.05157,
-      "std": 0.012969999999999999
+      "mean": 0.038705,
+      "median": 0.038705,
+      "min": 0.02587,
+      "max": 0.05154,
+      "std": 0.012835
     },
     "inference_tokens": {
-      "mean": 3388.0,
-      "median": 3388.0,
-      "min": 2053,
-      "max": 4723,
-      "std": 1335.0
+      "mean": 3391.5,
+      "median": 3391.5,
+      "min": 2061,
+      "max": 4722,
+      "std": 1330.5
     },
     "api_calls": {
       "mean": 4.0,

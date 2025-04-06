@@ -10,6 +10,8 @@ from .embeddings.dataset import CrossModalDataset
 from .discovery.index import VectorIndex
 from .utils.cost_tracker import CostTracker
 import os
+from difflib import SequenceMatcher
+import pandas as pd
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, 
@@ -31,6 +33,10 @@ class ReSPImplementation(BaseImplementation):
         
         # Create cost tracker
         self.cost_tracker = CostTracker()
+        
+        # Source relevance tracking
+        self.ground_truth_answer = None
+        self.source_relevance_scores = []
             
         # If data path is provided and no index path, process the data first
         data_path = self.config.get('data_path')
@@ -97,18 +103,81 @@ class ReSPImplementation(BaseImplementation):
             log_file="logs/resp_pipeline.log",
             cost_tracker=self.cost_tracker
         )
+        
+        # Patch the pipeline to track source relevance
+        self._patch_pipeline_for_source_relevance()
     
-    def process_query(self, query: str) -> Any:
+    def _patch_pipeline_for_source_relevance(self):
+        """Patch pipeline methods to track source relevance."""
+        original_retrieve = self.pipeline._retrieve
+        
+        def wrapped_retrieve(query):
+            """Wrapper for retrieve that tracks source relevance."""
+            retrieved_docs = original_retrieve(query)
+            
+            # Calculate relevance scores if ground truth is available
+            if self.ground_truth_answer and retrieved_docs:
+                for doc in retrieved_docs:
+                    content = doc.get('content')
+                    if content is not None:
+                        relevance = self._calculate_text_similarity(content, self.ground_truth_answer)
+                        self.source_relevance_scores.append(relevance)
+                        print(f"Source relevance score: {relevance:.4f}")
+            
+            return retrieved_docs
+        
+        # Replace the method
+        self.pipeline._retrieve = wrapped_retrieve
+    
+    def _calculate_text_similarity(self, content: Any, reference: str) -> float:
+        """
+        Calculate the similarity between content and reference text.
+        Handles different content types including DataFrames.
+        
+        Args:
+            content: The content to compare (could be text, DataFrame, etc.)
+            reference: The reference text to compare against
+            
+        Returns:
+            float: Similarity score between 0 and 1
+        """
+        # Handle pandas DataFrame
+        if isinstance(content, pd.DataFrame):
+            try:
+                # Convert DataFrame to string representation
+                # Limit to first 10 rows for performance
+                df_sample = content.head(10)
+                text = df_sample.to_string()
+                return SequenceMatcher(None, text, reference).ratio()
+            except Exception as e:
+                logger.error(f"Error processing DataFrame for similarity: {e}")
+                return 0.0
+        # Handle string content
+        elif isinstance(content, str):
+            return SequenceMatcher(None, content, reference).ratio()
+        # Handle other types by converting to string
+        else:
+            try:
+                text = str(content)
+                return SequenceMatcher(None, text, reference).ratio()
+            except Exception as e:
+                logger.error(f"Error converting content to string for similarity: {e}")
+                return 0.0
+    
+    def process_query(self, query: str, ground_truth_answer: Optional[str] = None) -> Any:
         """Process a query using ReSP.
         
         Args:
             query: The query string to process
+            ground_truth_answer: Optional ground truth answer for relevance scoring
             
         Returns:
             Dict containing the answer and metadata
         """
-        # Reset query-specific cost tracking
+        # Reset query-specific cost tracking and source relevance tracking
         self.cost_tracker.reset_query_stats()
+        self.ground_truth_answer = ground_truth_answer
+        self.source_relevance_scores = []
         
         # Log the start of processing
         logger.info(f"Processing query: {query}")
@@ -154,6 +223,20 @@ class ReSPImplementation(BaseImplementation):
         
         # Add formatted document_sources back to result
         result['document_sources'] = document_sources
+        
+        # Add source relevance score if ground truth was provided
+        if self.ground_truth_answer and self.source_relevance_scores:
+            # Calculate average relevance score
+            avg_relevance = sum(self.source_relevance_scores) / len(self.source_relevance_scores)
+            # Calculate max relevance score
+            max_relevance = max(self.source_relevance_scores) if self.source_relevance_scores else 0.0
+            
+            result['source_relevance_score'] = {
+                'average': float(avg_relevance),
+                'maximum': float(max_relevance),
+                'scores': [float(score) for score in self.source_relevance_scores]
+            }
+            print(f"Source relevance: avg={avg_relevance:.4f}, max={max_relevance:.4f}")
         
         # Log cost summary
         cost_summary = self.cost_tracker.get_query_summary()

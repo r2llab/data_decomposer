@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 
 class BaseImplementation(ABC):
     """Base class that all implementations must inherit from."""
@@ -19,11 +19,12 @@ class BaseImplementation(ABC):
         pass
     
     @abstractmethod
-    def process_query(self, query: str) -> Any:
+    def process_query(self, query: str, ground_truth_answer: Optional[str] = None) -> Any:
         """Process a query using the implementation.
         
         Args:
             query: The query string to process
+            ground_truth_answer: Optional ground truth answer for relevance scoring
             
         Returns:
             Implementation-specific response

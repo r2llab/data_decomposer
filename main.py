@@ -19,6 +19,8 @@ def main():
     parser.add_argument('--config', type=str, default='config.yaml',
                        help='Path to configuration file')
     parser.add_argument('query', type=str, help='Query to process')
+    parser.add_argument('--ground-truth-answer', type=str, 
+                       help='Ground truth answer for relevance scoring', default=None)
     args = parser.parse_args()
     print("Arguments parsed")
     # Load configuration
@@ -40,7 +42,7 @@ def main():
         print("Implementation created")
         
         # Process query
-        result = implementation.process_query(args.query)
+        result = implementation.process_query(args.query, args.ground_truth_answer)
         
         # Print answer
         print("\nAnswer:")
@@ -51,6 +53,13 @@ def main():
             print("\nDocument Sources:")
             for source in result["document_sources"]:
                 print(f" - {source}")
+        
+        # Print source relevance score if available
+        if "source_relevance_score" in result:
+            print("\nSource Relevance Score:")
+            relevance = result["source_relevance_score"]
+            print(f" - Average: {relevance['average']:.4f}")
+            print(f" - Maximum: {relevance['maximum']:.4f}")
         
     finally:
         # Cleanup
