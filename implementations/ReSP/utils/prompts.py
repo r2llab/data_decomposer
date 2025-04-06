@@ -4,6 +4,7 @@ from openai import OpenAI
 import logging
 import time
 from tenacity import retry, stop_after_attempt, wait_exponential
+from .cost_tracker import CostTracker
 
 logger = logging.getLogger(__name__)
 
@@ -28,6 +29,8 @@ def create_chat_completion(
     top_p: float = 1.0,
     frequency_penalty: float = 0.0,
     presence_penalty: float = 0.0,
+    cost_tracker: Optional[CostTracker] = None,
+    metadata: Optional[Dict[str, Any]] = None
 ) -> str:
     """
     Create a chat completion using OpenAI's API with retry logic.
@@ -40,6 +43,8 @@ def create_chat_completion(
         top_p: Nucleus sampling parameter (default: 1.0)
         frequency_penalty: Frequency penalty parameter (default: 0.0)
         presence_penalty: Presence penalty parameter (default: 0.0)
+        cost_tracker: Optional cost tracker to track API costs
+        metadata: Optional metadata for cost tracking
         
     Returns:
         The generated response text
@@ -72,6 +77,15 @@ def create_chat_completion(
         # Log the response time
         duration = end_time - start_time
         logger.debug(f"Request completed in {duration:.2f} seconds")
+        
+        # Track API costs if a cost tracker is provided
+        if cost_tracker is not None:
+            cost_tracker.track_chat_completion_call(
+                model=model,
+                prompt_tokens=response.usage.prompt_tokens,
+                completion_tokens=response.usage.completion_tokens,
+                metadata=metadata or {}
+            )
         
         # Extract and return the response text
         response_text = response.choices[0].message.content

@@ -118,22 +118,22 @@ class XMODEPipeline:
         # # Optional, add tracing in LangSmith
 
         os.environ["LANGCHAIN_TRACING_V2"] = "true"
-        os.environ["LANGCHAIN_PROJECT"] = "XMODE-ArtWork"
+        os.environ["LANGCHAIN_PROJECT"] = "XMODE-pubmed"
         
         model="gpt-4o" #gpt-4-turbo-preview
         
-        # Use relative paths instead of hardcoded absolute paths
+        # Use relative paths instead of hardcoded absolute paths - COME BACK TO THIS
         current_dir = os.path.dirname(os.path.abspath(__file__))
         db_path = os.path.join(current_dir, "art.db")
         temperature = 0
         language = 'en'
         
-        ceasura_artWork = []
-        output_path = os.path.join(current_dir, "experiments", language)
-        pathlib.Path(output_path).mkdir(parents=True, exist_ok=True) 
-        output_file = os.path.join(output_path, f'ceasura_artWork-{language}-test.json')
+        # ceasura_artWork = []
+        # output_path = os.path.join(current_dir, "experiments", language)
+        # pathlib.Path(output_path).mkdir(parents=True, exist_ok=True) 
+        # output_file = os.path.join(output_path, f'ceasura_artWork-{language}-test.json')
     
-        load_json(output_file, ceasura_artWork)
+        # load_json(output_file, ceasura_artWork)
         
         results = []
         
@@ -192,17 +192,18 @@ class XMODEPipeline:
         result["xmode"] = to_json
         result["prediction"]= prediction
         
+        print(result)
         
-        results.append(result)
-        file_result_path = os.path.join(use_case_log_path, "xmode.json")
-        with open(file_result_path, 'w') as f:
-            json.dump([result], f, ensure_ascii=False, indent=4)
+        # results.append(result)
+        # file_result_path = os.path.join(use_case_log_path, "xmode.json")
+        # with open(file_result_path, 'w') as f:
+        #     json.dump([result], f, ensure_ascii=False, indent=4)
         
         path = os.path.join(use_case_log_path, "steps-values.log")
         with open(path, "w") as f: 
             print(result_str, file=f)
         
-        append_json(results,output_file)
+        # append_json(results,output_file)
     
         # all_states = []
         # for state in chain.get_state(config):

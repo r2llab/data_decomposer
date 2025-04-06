@@ -1,20 +1,23 @@
 from typing import Dict, Any, List, Optional
 import openai
 from ..utils.prompts import create_chat_completion, init_openai
+from ..utils.cost_tracker import CostTracker
 
 class LLMReasoner:
     """LLM-based implementation of the ReSP Reasoner component"""
     
-    def __init__(self, api_key: str, model: str = "gpt-4o"):
+    def __init__(self, api_key: str, model: str = "gpt-4o", cost_tracker: Optional[CostTracker] = None):
         """
         Initialize the LLM Reasoner.
         
         Args:
             api_key: OpenAI API key
             model: Model to use for reasoning
+            cost_tracker: Optional cost tracker for tracking API usage
         """
         self.api_key = api_key
         self.model = model
+        self.cost_tracker = cost_tracker
         init_openai(api_key)
         
     def reason(self,
@@ -51,7 +54,9 @@ class LLMReasoner:
                 {"role": "system", "content": self._get_system_prompt()},
                 {"role": "user", "content": prompt}
             ],
-            model=self.model
+            model=self.model,
+            cost_tracker=self.cost_tracker,
+            metadata={"component": "reasoner", "type": "reasoning", "main_question": main_question}
         )
         
         # Parse response

@@ -5,22 +5,25 @@ import openai
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+from ..utils.cost_tracker import CostTracker
 
 load_dotenv()
 
 class Executor:
-    def __init__(self, api_key: Optional[str] = None):
+    def __init__(self, api_key: Optional[str] = None, cost_tracker: Optional[CostTracker] = None):
         """
         Initialize the executor with OpenAI client.
         
         Args:
             api_key: OpenAI API key. If None, loads from environment variable.
+            cost_tracker: Optional cost tracker to track API usage
         """
         self.api_key = api_key or os.getenv("OPENAI_API_KEY")
         if not self.api_key:
             raise ValueError("OpenAI API key must be provided or set in OPENAI_API_KEY environment variable")
             
         self.client = openai.OpenAI(api_key=self.api_key)
+        self.cost_tracker = cost_tracker
         
     def execute_query(self, query: str, item: Dict[str, Any]) -> Dict[str, Any]:
         """
@@ -64,6 +67,15 @@ class Executor:
             ],
             temperature=0.3
         )
+        
+        # Track API usage if cost tracker is available
+        if self.cost_tracker:
+            self.cost_tracker.track_chat_completion_call(
+                model="gpt-4o",
+                prompt_tokens=response.usage.prompt_tokens,
+                completion_tokens=response.usage.completion_tokens,
+                metadata={"component": "executor", "query_type": "text", "query": query}
+            )
         
         return {
             "answer": response.choices[0].message.content,
@@ -118,6 +130,15 @@ class Executor:
                 ],
                 temperature=0.3
             )
+            
+            # Track API usage if cost tracker is available
+            if self.cost_tracker:
+                self.cost_tracker.track_chat_completion_call(
+                    model="gpt-4o",
+                    prompt_tokens=response.usage.prompt_tokens,
+                    completion_tokens=response.usage.completion_tokens,
+                    metadata={"component": "executor", "query_type": "table", "query": query}
+                )
             
             # For source, provide a brief description
             source_description = f"Table with {table.shape[0]} rows and {table.shape[1]} columns: {', '.join(table.columns)}"

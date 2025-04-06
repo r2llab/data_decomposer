@@ -5,22 +5,25 @@ import os
 from dotenv import load_dotenv
 import json
 import pandas as pd
+from ..utils.cost_tracker import CostTracker
 
 load_dotenv()
 
 class Decomposer:
-    def __init__(self, api_key: Optional[str] = None):
+    def __init__(self, api_key: Optional[str] = None, cost_tracker: Optional[CostTracker] = None):
         """
         Initialize the decomposer with OpenAI API.
         
         Args:
             api_key: OpenAI API key. If None, loads from environment variable.
+            cost_tracker: Optional cost tracker to track API usage
         """
         self.api_key = api_key or os.getenv("OPENAI_API_KEY")
         if not self.api_key:
             raise ValueError("OpenAI API key must be provided or set in OPENAI_API_KEY environment variable")
         
         self.client = openai.OpenAI(api_key=self.api_key)
+        self.cost_tracker = cost_tracker
         
     @retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=4, max=10))
     def decompose_query(self, 
@@ -57,6 +60,15 @@ class Decomposer:
             temperature=0.3,
             response_format={"type": "json_object"}
         )
+        
+        # Track API usage if cost tracker is available
+        if self.cost_tracker:
+            self.cost_tracker.track_chat_completion_call(
+                model="gpt-4o",
+                prompt_tokens=response.usage.prompt_tokens,
+                completion_tokens=response.usage.completion_tokens,
+                metadata={"component": "decomposer", "query": query}
+            )
         
         # Parse the response
         try:

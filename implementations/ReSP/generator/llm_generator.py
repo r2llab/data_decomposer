@@ -1,20 +1,23 @@
-from typing import Dict, Any, List
+from typing import Dict, Any, List, Optional
 import openai
 from ..utils.prompts import create_chat_completion, init_openai
+from ..utils.cost_tracker import CostTracker
 
 class LLMGenerator:
     """LLM-based implementation of the ReSP Generator component"""
     
-    def __init__(self, api_key: str, model: str = "gpt-4o"):
+    def __init__(self, api_key: str, model: str = "gpt-4o", cost_tracker: Optional[CostTracker] = None):
         """
         Initialize the LLM Generator.
         
         Args:
             api_key: OpenAI API key
             model: Model to use for generation
+            cost_tracker: Optional cost tracker for tracking API usage
         """
         self.api_key = api_key
         self.model = model
+        self.cost_tracker = cost_tracker
         init_openai(api_key)
         
     def generate(self,
@@ -48,7 +51,9 @@ class LLMGenerator:
                 {"role": "system", "content": self._get_system_prompt()},
                 {"role": "user", "content": prompt}
             ],
-            model=self.model
+            model=self.model,
+            cost_tracker=self.cost_tracker,
+            metadata={"component": "generator", "type": "final_answer", "question": question}
         )
         
         # Parse response

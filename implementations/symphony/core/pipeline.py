@@ -13,6 +13,7 @@ from implementations.symphony.discovery.index import VectorIndex
 from implementations.symphony.execution import Executor
 from implementations.symphony.execution.aggregator import Aggregator
 from implementations.symphony.decomposition import Decomposer
+from implementations.symphony.utils.cost_tracker import CostTracker
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, 
@@ -20,20 +21,26 @@ logging.basicConfig(level=logging.INFO,
 logger = logging.getLogger(__name__)
 
 class Pipeline:
-    def __init__(self, index_path: Optional[Path] = None, openai_api_key: Optional[str] = None):
+    def __init__(self, index_path: Optional[Path] = None, openai_api_key: Optional[str] = None, 
+                 cost_tracker: Optional[CostTracker] = None):
         """
         Initialize the pipeline components.
         
         Args:
             index_path: Optional path to load an existing discovery index
             openai_api_key: Optional OpenAI API key for decomposition and aggregation
+            cost_tracker: Optional cost tracker instance to track API usage
         """
         print(index_path)
+        self.cost_tracker = cost_tracker or CostTracker()
         self.embedder = AutoEmbedder(api_key=openai_api_key)
         self.discovery = Discovery(embedder=self.embedder, index_path=index_path)
-        self.executor = Executor(api_key=openai_api_key)
-        self.decomposer = Decomposer(api_key=openai_api_key)
-        self.aggregator = Aggregator(api_key=openai_api_key)
+        self.executor = Executor(api_key=openai_api_key, cost_tracker=self.cost_tracker)
+        self.decomposer = Decomposer(api_key=openai_api_key, cost_tracker=self.cost_tracker)
+        self.aggregator = Aggregator(api_key=openai_api_key, cost_tracker=self.cost_tracker)
+        
+        # Add a set to track document sources used, similar to ReSP
+        self.document_sources = set()
 
     def run_query(self, query: str) -> Dict[str, Any]:
         """
@@ -48,6 +55,9 @@ class Pipeline:
 
         logger.info(f"\n\n=== Processing Query: {query} ===")
         
+        # Reset document sources for new query
+        self.document_sources = set()
+        
         # 1. Discovery phase
         logger.info("\n--- Discovery Phase ---")
         relevant_items = self._discover(query)
@@ -56,6 +66,17 @@ class Pipeline:
             logger.info(f"Item {idx}: {item.get('type')} - Score: {item.get('relevance_score', 'N/A')}")
             # Handle both data and content fields
             content = item.get('data') if item.get('data') is not None else item.get('content')
+            
+            # Track document sources
+            if 'metadata' in item and 'source' in item['metadata']:
+                source = item['metadata']['source']
+                if source and source != "unknown":
+                    self.document_sources.add(source)
+            elif 'source' in item:
+                source = item['source']
+                if source and source != "unknown":
+                    self.document_sources.add(source)
+            
             if content is not None:  # Check if content exists
                 if isinstance(content, str):
                     logger.info(f"Content: {content[:100]}...")
@@ -74,7 +95,8 @@ class Pipeline:
                 "answer": "I could not find any relevant information to answer your question.",
                 "confidence": 0.0,
                 "source_type": None,
-                "source": None
+                "source": None,
+                "document_sources": []
             }
         
         # 2. Decomposition phase - break down complex queries
@@ -91,7 +113,13 @@ class Pipeline:
             logger.info("Simple query - executing on most relevant item")
             logger.info(f"Executing query: {query}")
             logger.info(f"On item: {relevant_items[0].get('data', relevant_items[0].get('content', 'No content'))[:100]}...")
-            return self._execute(query, relevant_items[0])
+            result = self._execute(query, relevant_items[0])
+            
+            # Add document sources to the result
+            result['document_sources'] = list(self.document_sources)
+            logger.info(f"Document sources used: {self.document_sources}")
+            
+            return result
             
         # 3. Execute each sub-query
         logger.info("\n--- Execution Phase ---")
@@ -100,6 +128,17 @@ class Pipeline:
             target_idx = sub_query["target_item_index"] - 1
             if target_idx < len(relevant_items):
                 logger.info(f"Executing sub-query '{sub_query['sub_query']}' on item {relevant_items[target_idx]['data']}")
+                
+                # Track document source from the target item
+                if 'metadata' in relevant_items[target_idx] and 'source' in relevant_items[target_idx]['metadata']:
+                    source = relevant_items[target_idx]['metadata']['source']
+                    if source and source != "unknown":
+                        self.document_sources.add(source)
+                elif 'source' in relevant_items[target_idx]:
+                    source = relevant_items[target_idx]['source']
+                    if source and source != "unknown":
+                        self.document_sources.add(source)
+                
                 result = self._execute(
                     sub_query["sub_query"],
                     relevant_items[target_idx]
@@ -113,12 +152,14 @@ class Pipeline:
                 "answer": "Failed to execute any sub-queries successfully.",
                 "confidence": 0.0,
                 "source_type": None,
-                "source": None
+                "source": None,
+                "document_sources": list(self.document_sources)
             }
             
         # 4. Aggregate results
         if len(sub_results) == 1:
             logger.info("\n--- Single Result - No Aggregation Needed ---")
+            sub_results[0]['document_sources'] = list(self.document_sources)
             return sub_results[0]
             
         logger.info("\n--- Aggregation Phase ---")
@@ -130,6 +171,10 @@ class Pipeline:
         )
         logger.info(f"Final Answer: {final_result['answer']}")
         
+        # Add document sources to the final result
+        final_result['document_sources'] = list(self.document_sources)
+        logger.info(f"Document sources used: {self.document_sources}")
+        
         return final_result
 
     def _discover(self, query: str) -> List[Dict[str, Any]]:
@@ -138,6 +183,16 @@ class Pipeline:
 
     def _execute(self, query: str, item: Dict[str, Any]) -> Dict[str, Any]:
         """Execute the query on a single item."""
+        # Track document source from the item if available
+        if 'metadata' in item and 'source' in item['metadata']:
+            source = item['metadata']['source']
+            if source and source != "unknown":
+                self.document_sources.add(source)
+        elif 'source' in item:
+            source = item['source']
+            if source and source != "unknown":
+                self.document_sources.add(source)
+                
         return self.executor.execute_query(query, item)
     
     def embed_data(self, data_dir: str, batch_size: int = 16, output_dir: Optional[str] = None) -> np.ndarray:

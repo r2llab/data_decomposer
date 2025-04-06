@@ -40,13 +40,15 @@ from ..reasoner.llm_reasoner import LLMReasoner
 from ..retriever.vector_retriever import VectorRetriever
 from ..summarizer.llm_summarizer import LLMSummarizer
 from ..generator.llm_generator import LLMGenerator
+from ..utils.cost_tracker import CostTracker
 
 class ReSPPipeline:
     def __init__(self, 
                  index_path: Optional[Path] = None, 
                  openai_api_key: Optional[str] = None,
                  max_iterations: int = 5,
-                 log_file: Optional[str] = None):
+                 log_file: Optional[str] = None,
+                 cost_tracker: Optional[CostTracker] = None):
         """
         Initialize the ReSP pipeline components.
         
@@ -55,6 +57,7 @@ class ReSPPipeline:
             openai_api_key: Optional OpenAI API key
             max_iterations: Maximum number of iterations for the recursive process
             log_file: Optional path to a log file where logs will be written
+            cost_tracker: Optional cost tracker instance to track API usage
         """
         if not openai_api_key:
             raise ValueError("OpenAI API key is required for ReSP pipeline")
@@ -62,12 +65,15 @@ class ReSPPipeline:
         # Setup logging
         self.logger = setup_logging(log_file)
         self.logger.info("Initializing ReSP Pipeline")
+        
+        # Initialize cost tracker or use provided one
+        self.cost_tracker = cost_tracker or CostTracker()
             
         # Initialize the four main components
-        self.reasoner = LLMReasoner(api_key=openai_api_key)
+        self.reasoner = LLMReasoner(api_key=openai_api_key, cost_tracker=self.cost_tracker)
         self.retriever = VectorRetriever(index_path=index_path, api_key=openai_api_key)
-        self.summarizer = LLMSummarizer(api_key=openai_api_key)
-        self.generator = LLMGenerator(api_key=openai_api_key)
+        self.summarizer = LLMSummarizer(api_key=openai_api_key, cost_tracker=self.cost_tracker)
+        self.generator = LLMGenerator(api_key=openai_api_key, cost_tracker=self.cost_tracker)
 
         # Configuration
         self.max_iterations = max_iterations
@@ -98,6 +104,10 @@ class ReSPPipeline:
         # Initialize for new query
         self._reset_memory_queues()
         self.document_sources = set()  # Reset document sources
+        
+        # Reset cost tracking for this query
+        self.cost_tracker.reset_query_stats()
+        
         current_iteration = 0
         current_sub_question = query  # Initial sub-question is the main question
         
@@ -166,6 +176,35 @@ class ReSPPipeline:
         # Ensure document sources are in the result
         if 'document_sources' not in final_result:
             final_result['document_sources'] = list(self.document_sources)
+        
+        # Add cost metrics to the result
+        cost_summary = self.cost_tracker.get_query_summary()
+        final_result['cost_metrics'] = {
+            'total_cost': float(cost_summary['query_cost']),
+            'total_tokens': int(cost_summary['query_tokens']),
+            'api_calls': int(cost_summary['query_calls']),
+            'model_breakdown': {
+                model: {
+                    'cost': float(stats['cost']),
+                    'tokens': int(stats['tokens']),
+                    'calls': int(stats['calls'])
+                }
+                for model, stats in cost_summary['models'].items()
+            },
+            'endpoint_breakdown': {
+                endpoint: {
+                    'cost': float(stats['cost']),
+                    'tokens': int(stats['tokens']),
+                    'calls': int(stats['calls'])
+                }
+                for endpoint, stats in cost_summary['endpoints'].items()
+            }
+        }
+        
+        # Log cost information
+        self.logger.info(f"Query cost: ${cost_summary['query_cost']:.6f}")
+        self.logger.info(f"Total tokens: {cost_summary['query_tokens']}")
+        self.logger.info(f"API calls: {cost_summary['query_calls']}")
         
         self.logger.info(f"Final answer: {final_result.get('answer')}")
         

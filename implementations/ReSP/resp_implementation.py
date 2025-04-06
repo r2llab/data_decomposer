@@ -8,6 +8,7 @@ from .core import ReSPPipeline
 from .embeddings import AutoEmbedder
 from .embeddings.dataset import CrossModalDataset
 from .discovery.index import VectorIndex
+from .utils.cost_tracker import CostTracker
 import os
 
 # Configure logging
@@ -27,6 +28,9 @@ class ReSPImplementation(BaseImplementation):
         self.index_path = self.config.get('index_path')
         if self.index_path:
             self.index_path = Path(self.index_path)
+        
+        # Create cost tracker
+        self.cost_tracker = CostTracker()
             
         # If data path is provided and no index path, process the data first
         data_path = self.config.get('data_path')
@@ -90,7 +94,8 @@ class ReSPImplementation(BaseImplementation):
             index_path=self.index_path,
             openai_api_key=self.openai_api_key,
             max_iterations=self.config.get('max_iterations', 5),
-            log_file="logs/resp_pipeline.log"
+            log_file="logs/resp_pipeline.log",
+            cost_tracker=self.cost_tracker
         )
     
     def process_query(self, query: str) -> Any:
@@ -102,6 +107,9 @@ class ReSPImplementation(BaseImplementation):
         Returns:
             Dict containing the answer and metadata
         """
+        # Reset query-specific cost tracking
+        self.cost_tracker.reset_query_stats()
+        
         # Log the start of processing
         logger.info(f"Processing query: {query}")
         
@@ -146,6 +154,12 @@ class ReSPImplementation(BaseImplementation):
         
         # Add formatted document_sources back to result
         result['document_sources'] = document_sources
+        
+        # Log cost summary
+        cost_summary = self.cost_tracker.get_query_summary()
+        logger.info(f"Query cost: ${cost_summary['query_cost']:.6f}")
+        logger.info(f"Total tokens: {cost_summary['query_tokens']}")
+        logger.info(f"API calls: {cost_summary['query_calls']}")
         
         return result
     
@@ -366,5 +380,16 @@ class ReSPImplementation(BaseImplementation):
     
     def cleanup(self) -> None:
         """Cleanup ReSP resources."""
-        # Currently no cleanup needed for ReSP
+        # Print cost summary
+        cost_summary = self.cost_tracker.get_cost_summary()
+        print("\nTotal API usage summary:")
+        print(f"Total cost: ${cost_summary['total_cost']:.6f}")
+        print(f"Total tokens: {cost_summary['total_tokens']}")
+        print(f"Total API calls: {cost_summary['total_calls']}")
+        print("\nModel breakdown:")
+        for model, stats in cost_summary['models'].items():
+            print(f"  {model}: ${stats['cost']:.6f} ({stats['calls']} calls)")
+        print("\nEndpoint breakdown:")
+        for endpoint, stats in cost_summary['endpoints'].items():
+            print(f"  {endpoint}: ${stats['cost']:.6f} ({stats['calls']} calls)")
         pass
