@@ -1,12 +1,12 @@
 Given the following query and available data items, break down the query into sub-queries.
 
-Query: What is the FDA-approved formulation of Dornase alfa, and what is its primary use?
+Query: What are the components of Etanercept and how is it produced?
 
 Available Data Items:
-Item 1: A table with columns: ref-id, title, url, parent_key
+Item 1: A table with columns: brand, company, drugbank-id
 Item 2: A table with columns: brand, company, drugbank-id
-Item 3: A table with columns: affected_organism, drugbank_id
-Item 4: A table with columns: ref-id, title, url, parent_key
+Item 3: A table with columns: brand, company, drugbank-id
+Item 4: text content: Epirubicin is one of the most active agents for breast cancer. The formation of epirubicin glucuroni...
 
 For each sub-query, you MUST specify which item from the available items should be used to answer it (using the item number).
 If you can't determine which item to use for a sub-query, use item 1 as default.
