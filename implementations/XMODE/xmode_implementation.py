@@ -35,7 +35,16 @@ class XMODEImplementation(BaseImplementation):
             Dict containing the answer and metadata
         """
         print(f"Running query: {query}")
-        return self.pipeline.run_query(query)
+        result = self.pipeline.run_query(query)
+        
+        # Ensure required fields exist
+        if "answer" not in result:
+            result["answer"] = "No answer found"
+        
+        if "document_sources" not in result:
+            result["document_sources"] = []
+            
+        return result
     
     def cleanup(self) -> None:
         """Cleanup XMODE resources."""

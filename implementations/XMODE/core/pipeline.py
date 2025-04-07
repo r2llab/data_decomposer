@@ -206,10 +206,64 @@ class Pipeline:
         print("Result (to json): ", result["xmode"])
         print("Result (prediction): ", result["prediction"])
         
-        # results.append(result)
-        # file_result_path = os.path.join(use_case_log_path, "xmode.json")
-        # with open(file_result_path, 'w') as f:
-        #     json.dump([result], f, ensure_ascii=False, indent=4)
+        # Format the result to match what main.py expects
+        formatted_result = {}
+        
+        # Convert the prediction to a string regardless of its original type
+        pred_str = str(prediction)
+        if isinstance(prediction, list) and len(prediction) > 0:
+            pred_str = str(prediction[0])
+        
+        # Use regex to extract the Summary and details directly from the string
+        import re
+        
+        # Extract Summary
+        summary_match = re.search(r"'Summary':\s*'([^']*)'", pred_str)
+        summary = summary_match.group(1) if summary_match else ""
+        
+        # Extract details
+        details_match = re.search(r"'details':\s*'([^']*)'", pred_str)
+        details = details_match.group(1) if details_match else ""
+        
+        # Combine summary and details
+        answer_parts = []
+        if summary:
+            answer_parts.append(summary)
+        if details:
+            answer_parts.append(details)
+            
+        if answer_parts:
+            formatted_result["answer"] = "\n\n".join(answer_parts)
+        else:
+            # If we couldn't extract either summary or details, use the whole output
+            formatted_result["answer"] = pred_str
+        
+        # Extract source information if available
+        source_match = re.search(r"'source':\s*'([^']*)'", pred_str)
+        if source_match:
+            source_str = source_match.group(1)
+            formatted_result["document_sources"] = [src.strip() for src in source_str.split(',')]
+        else:
+            formatted_result["document_sources"] = []
+        
+        # Check for tables_used in the last message content
+        if isinstance(step, list) and len(step) > 0:
+            last_message = step[-1]
+            if hasattr(last_message, 'content') and 'Tables used in this query:' in last_message.content:
+                # Extract tables from the message
+                content = last_message.content
+                tables_part = content.split('Tables used in this query:')[-1].strip()
+                tables = [table.strip() for table in tables_part.split(',')]
+                formatted_result["document_sources"] = tables
+        
+        # If we still don't have document sources, try to get from additional_kwargs
+        if not formatted_result["document_sources"]:
+            for msg in to_json:
+                if isinstance(msg, dict) and msg.get('additional_kwargs') and 'tables_used' in msg['additional_kwargs']:
+                    formatted_result["document_sources"] = msg['additional_kwargs']['tables_used']
+                    break
+                    
+        print("Formatted answer:", formatted_result["answer"])
         
         path = os.path.join(use_case_log_path, "steps-values.log")
         with open(path, "w") as f: 
@@ -222,4 +276,4 @@ class Pipeline:
         #    print(state) 
         # it is better to creat graph for each question
         
-        return result
+        return formatted_result
