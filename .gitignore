@@ -4,3 +4,5 @@ __pycache__/
 symphony.egg-info/
 sample_index/
 .env
+data/embeddings/
+data/index/
