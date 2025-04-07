@@ -21,4 +21,4 @@ langchain-core
 langchain-openai
 langgraph
 pydantic
-re
+langchain-experimental

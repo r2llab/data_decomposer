@@ -10,7 +10,7 @@ from langchain_core.messages import (
     SystemMessage,
 )
 
-from src.output_parser import Task
+from implementations.XMODE.src.output_parser import Task
 
 from langchain_core.runnables import (
     chain as as_runnable,

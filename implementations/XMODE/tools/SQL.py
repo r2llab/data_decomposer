@@ -13,7 +13,7 @@ from langchain_community.utilities import SQLDatabase
 from sqlalchemy import create_engine
 from typing import Any, Callable, Dict, Literal, Optional, Sequence, Type, Union,List
 
-from src.utils import _get_db_schema
+from implementations.XMODE.src.utils import _get_db_schema
 
 
 _meta_data="""
@@ -133,11 +133,18 @@ def get_text2SQL_tools(llm: ChatOpenAI, db_path:str):
 
     _db_schema = _get_db_schema(db_path)
     
+    # Ensure any curly braces in the schema are escaped properly for string formatting
+    _db_schema_str = str(_db_schema).replace("{", "{{").replace("}", "}}")
+    # _meta_data_str = str(_meta_data).replace("{", "{{").replace("}", "}}")
+    
+    # Create a combined schema and metadata string
+    # schema_and_metadata = f"{_db_schema_str}\n{_meta_data_str}"
+    
     prompt = ChatPromptTemplate.from_messages(
         [
             ("system", _SYSTEM_PROMPT),
             ("user", "{problem}"),
-            ("user", f"{_db_schema}/n{_meta_data}"),
+            ("user", _db_schema_str),
             MessagesPlaceholder(variable_name="info", optional=True),
         ]
     )

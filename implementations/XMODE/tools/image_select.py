@@ -16,8 +16,8 @@ from langchain_openai import ChatOpenAI
 from PIL import Image
 import base64
 from pathlib import Path
-from utils import correct_malformed_json
-from tools.backend.image_retrieval import ImageRetriever
+from implementations.XMODE.src.utils import correct_malformed_json
+from implementations.XMODE.tools.backend.image_retrieval import ImageRetriever
 
 from langchain_core.messages import (
     BaseMessage,

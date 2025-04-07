@@ -16,7 +16,7 @@ from langchain_openai import ChatOpenAI
 from PIL import Image
 import base64
 from pathlib import Path
-from src.utils import correct_malformed_json
+from implementations.XMODE.src.utils import correct_malformed_json
 
 
 

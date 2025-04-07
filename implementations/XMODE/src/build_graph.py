@@ -5,8 +5,8 @@ from langchain_openai import ChatOpenAI
 from langchain.chains.openai_functions import create_structured_output_runnable
 from langchain_core.messages import AIMessage
 from pydantic import BaseModel, Field
-from src.joiner import Replan, JoinOutputs
-from src.joiner import *
+from implementations.XMODE.src.joiner import Replan, JoinOutputs
+from implementations.XMODE.src.joiner import *
 
 
 from langchain import hub
@@ -22,21 +22,21 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI
 
 import itertools
-from src.planner import *
-from src.task_fetching_unit import *
-from src.joiner import *
-from src.joiner import parse_joiner_output
+from implementations.XMODE.src.planner import *
+from implementations.XMODE.src.task_fetching_unit import *
+from implementations.XMODE.src.joiner import *
+from implementations.XMODE.src.joiner import parse_joiner_output
 from typing import Dict
 
 from langgraph.graph import END, MessageGraph, START
 
 
 
-from tools.backend.image_qa import VisualQA
-from tools.SQL import get_text2SQL_tools
-from tools.visual_qa import get_image_analysis_tools
-from tools.plot import get_plotting_tools
-from tools.data import get_data_preparation_tools
+from implementations.XMODE.tools.backend.image_qa import VisualQA
+from implementations.XMODE.tools.SQL import get_text2SQL_tools
+from implementations.XMODE.tools.visual_qa import get_image_analysis_tools
+from implementations.XMODE.tools.plot import get_plotting_tools
+from implementations.XMODE.tools.data import get_data_preparation_tools
 from langgraph.checkpoint.memory import MemorySaver
 
 

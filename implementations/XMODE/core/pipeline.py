@@ -18,7 +18,7 @@ from pydantic import BaseModel, Field
 from langgraph.graph import END, MessageGraph, START
 
 
-from typing import Sequence, Dict
+from typing import Sequence, Dict, Optional
 
 from langchain import hub
 from langchain_core.language_models import BaseChatModel
@@ -36,13 +36,14 @@ from langchain_core.output_parsers import JsonOutputParser
 
 import sys
 # sys.path.append(os.path.dirname(os.getcwd()) + '/ceasura_langgraph')
-sys.path.append(os.path.dirname(os.getcwd()) )
+sys.path.append(os.path.dirname(os.getcwd()))
 
-from src.joiner import *
-from src.planner import *
-from src.task_fetching_unit import *
-from src.build_graph import graph_construction
-from src.utils import *
+# Fix imports to use relative imports from XMODE's src directory
+from implementations.XMODE.src.joiner import *
+from implementations.XMODE.src.planner import *
+from implementations.XMODE.src.task_fetching_unit import *
+from implementations.XMODE.src.build_graph import graph_construction
+from implementations.XMODE.src.utils import *
 
 
 import json
@@ -60,18 +61,18 @@ import sys
 # sys.path.append(os.path.dirname(os.getcwd()) + '/src')
 # sys.path.append(os.path.dirname(os.getcwd()) + '/ceasura_langgraph/tools')
 
-class XMODEPipeline:
+class Pipeline:
     def __init__(self, index_path: Optional[Path] = None, openai_api_key: Optional[str] = None, langchain_api_key: Optional[str] = None):
         self.index_path = index_path
         self.openai_api_key = openai_api_key
         self.langchain_api_key = langchain_api_key
 
-
+    @staticmethod
     def _set_if_undefined(var: str):
         if not os.environ.get(var):
             os.environ[var] = getpass.getpass(f"Please provide your {var}")
             
-
+    @staticmethod
     def pretty_print_stream_chunk(chunk):
         for node, updates in chunk.items():
             print(f"Update from node: {node}")
@@ -82,6 +83,7 @@ class XMODEPipeline:
 
             print("\n")
             
+    @staticmethod
     def load_json(file_path, data):
         fp = Path(file_path)
         if not fp.exists():
@@ -93,6 +95,7 @@ class XMODEPipeline:
                 data = json.load(f)
         return data
 
+    @staticmethod
     def append_json(data, file_path):
         fp = Path(file_path)
         if not fp.exists():
@@ -109,7 +112,7 @@ class XMODEPipeline:
             json.dump(_data, f, ensure_ascii=False, indent=4)
         return _data
 
-    def run_query(query: str):
+    def run_query(self, query: str):
         logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
         logger = logging.getLogger(__name__)
 
@@ -122,9 +125,13 @@ class XMODEPipeline:
         
         model="gpt-4o" #gpt-4-turbo-preview
         
+        
         # Use relative paths instead of hardcoded absolute paths - COME BACK TO THIS
         current_dir = os.path.dirname(os.path.abspath(__file__))
-        db_path = os.path.join(current_dir, "art.db")
+        print(f"Current directory: {current_dir}")
+        # Update path to point to the data directory in the project root
+        project_root = os.path.abspath(os.path.join(current_dir, "../../../"))
+        db_path = os.path.join(project_root, "data/drugbank.db")
         temperature = 0
         language = 'en'
         
@@ -141,12 +148,15 @@ class XMODEPipeline:
         pathlib.Path(LOG_PATH).mkdir(parents=True, exist_ok=True)
         
         
-
+        # Generate a unique ID for this query
+        import uuid
+        query_id = str(uuid.uuid4())[:8]
+        
         iddx = 1
         result={}
         result_str=''
         #logging the current use-case
-        use_case_log_path = os.path.join(LOG_PATH, str(id))
+        use_case_log_path = os.path.join(LOG_PATH, str(query_id))
         pathlib.Path(use_case_log_path).mkdir(parents=True, exist_ok=True) 
         for handler in logging.root.handlers:
                 handler.level = logging.root.level
@@ -158,7 +168,8 @@ class XMODEPipeline:
         logger.debug(f"Question: {query}")
         
         result["question"]=query
-        result["id"]=id
+        result["id"]=query_id
+        print(f"Running graph construction")
         chain = graph_construction(model,temperature=temperature, db_path=db_path,log_path=use_case_log_path)
         # steps=[]
         
@@ -192,7 +203,8 @@ class XMODEPipeline:
         result["xmode"] = to_json
         result["prediction"]= prediction
         
-        print(result)
+        print("Result (to json): ", result["xmode"])
+        print("Result (prediction): ", result["prediction"])
         
         # results.append(result)
         # file_result_path = os.path.join(use_case_log_path, "xmode.json")
@@ -209,3 +221,5 @@ class XMODEPipeline:
         # for state in chain.get_state(config):
         #    print(state) 
         # it is better to creat graph for each question
+        
+        return result

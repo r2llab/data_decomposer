@@ -132,3 +132,9 @@ The source relevance scoring is implemented by:
 4. Returning the aggregate metrics in the result
 
 This approach works with both Symphony and ReSP implementations.
+
+
+Sample query over the db:
+```
+sqlite3 data/drugbank.db "SELECT COUNT(*) FROM drugbank_drug;"
+```
