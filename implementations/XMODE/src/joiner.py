@@ -33,6 +33,10 @@ class FinalResponse(BaseModel):
         }
     }
     response: Union[str,Dict]
+    tables_used: Optional[List[str]] = Field(
+        default=[],
+        description="List of tables used during the query execution."
+    )
 
 
 class Replan(BaseModel):
@@ -78,7 +82,12 @@ def parse_joiner_output(decision: JoinOutputs) -> List[BaseMessage]:
             )
         ]
     else:
-        return response + [AIMessage(content=str(decision.action.response))]
+        # Extract tables_used if present
+        if hasattr(decision.action, 'tables_used') and decision.action.tables_used:
+            tables_info = f"\nTables used in this query: {', '.join(decision.action.tables_used)}"
+            return response + [AIMessage(content=str(decision.action.response) + tables_info)]
+        else:
+            return response + [AIMessage(content=str(decision.action.response))]
 
 
 def select_recent_messages(messages: list) -> dict:

@@ -98,6 +98,33 @@ class ExecuteCode(BaseModel):
 #             "columns":[]
 #         }
     
+def _extract_tables_from_sql(sql_query: str) -> List[str]:
+    """
+    Extract table names from a SQL query using regex.
+    
+    Args:
+        sql_query (str): The SQL query to analyze
+        
+    Returns:
+        List[str]: List of table names used in the query
+    """
+    # Case insensitive pattern to match table names after FROM and JOIN clauses
+    # This regex finds tables in patterns like "FROM table" and "JOIN table"
+    tables = []
+    
+    # Pattern for FROM clause
+    from_pattern = re.compile(r'FROM\s+([a-zA-Z_][a-zA-Z0-9_]*)', re.IGNORECASE)
+    from_matches = from_pattern.findall(sql_query)
+    tables.extend(from_matches)
+    
+    # Pattern for JOIN clauses
+    join_pattern = re.compile(r'JOIN\s+([a-zA-Z_][a-zA-Z0-9_]*)', re.IGNORECASE)
+    join_matches = join_pattern.findall(sql_query)
+    tables.extend(join_matches)
+    
+    # Remove duplicates and return
+    return list(set(tables))
+    
 def _execute_sql_query(query: str, db_path: str, as_dict=True) -> Dict[str, Any]:
     try:
         if as_dict:
@@ -108,12 +135,16 @@ def _execute_sql_query(query: str, db_path: str, as_dict=True) -> Dict[str, Any]
             # print("SQL:",change_current_time(query))
             cur.execute(query)
             results = [dict(row) for row in cur.fetchall()]
+            # Extract tables used in the query
+            tables_used = _extract_tables_from_sql(query)
             # print("results of SQL",results)
         else:
             engine = create_engine(f'sqlite:///{db_path}')
             database = SQLDatabase(engine, sample_rows_in_table_info=0)
             results = database.run(query)
-        return {"status": "success", "data": results}
+            tables_used = _extract_tables_from_sql(query)
+            
+        return {"status": "success", "data": results, "tables_used": tables_used}
     except Exception as e:
         return {"status": "error", "message": str(e)}
 

@@ -166,7 +166,33 @@ def graph_construction(model, temperature, db_path, log_path, saver=None):
     
     runnable = create_structured_output_runnable(JoinOutputs, llm, joiner_prompt)
     
-    joiner = select_recent_messages | runnable | parse_joiner_output
+    # Create a function to process messages and collect tables_used information
+    @as_runnable
+    def process_messages_and_collect_tables(state):
+        messages = select_recent_messages(state)
+        
+        # Collect tables_used from any SQL query results in the messages
+        tables_used = []
+        for message in state:
+            # Check for tables_used in additional_kwargs (new location)
+            if hasattr(message, 'additional_kwargs') and isinstance(message.additional_kwargs, dict):
+                if 'tables_used' in message.additional_kwargs:
+                    tables_used.extend(message.additional_kwargs['tables_used'])
+            
+            # Also check in content (legacy/fallback location)
+            if hasattr(message, 'content') and isinstance(message.content, dict):
+                if 'tables_used' in message.content:
+                    tables_used.extend(message.content['tables_used'])
+        
+        # Get the joiner output
+        joiner_output = runnable.invoke(messages)
+        
+        # If this is a final response, add the tables_used information
+        if isinstance(joiner_output.action, FinalResponse):
+            joiner_output.action.tables_used = list(set(tables_used))
+        
+        # Parse and return the output
+        return parse_joiner_output(joiner_output)
     
     graph_builder = MessageGraph()
 
@@ -174,7 +200,7 @@ def graph_construction(model, temperature, db_path, log_path, saver=None):
     # We defined plan_and_schedule above already
     # Assign each node to a state variable to update
     graph_builder.add_node("plan_and_schedule", plan_and_schedule)
-    graph_builder.add_node("join", joiner)
+    graph_builder.add_node("join", process_messages_and_collect_tables)
 
 
     ## Define edges

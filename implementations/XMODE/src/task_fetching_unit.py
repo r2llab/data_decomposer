@@ -1,5 +1,6 @@
 import re
 import time
+import json
 from concurrent.futures import ThreadPoolExecutor, wait
 from typing import Any, Dict, Iterable, List, Union
 from langchain import hub
@@ -163,10 +164,25 @@ def schedule_tasks(scheduler_input: SchedulerInput) -> List[FunctionMessage]:
         k: (task_names[k], args_for_tasks[k], observations[k])
         for k in sorted(observations.keys() - originals)
     }
-    tool_messages = [
-        FunctionMessage(
-            name=name, content=str(obs), additional_kwargs={"idx": k, "args": task_args}
+    tool_messages = []
+    for k, (name, task_args, obs) in new_observations.items():
+        # Check if obs is from a SQL tool and has tables_used information
+        additional_kwargs = {"idx": k, "args": task_args}
+        
+        # Store tables_used in additional_kwargs if available
+        tables_used = []
+        if name == "text2SQL" and isinstance(obs, dict) and "tables_used" in obs:
+            tables_used = obs.get("tables_used", [])
+            additional_kwargs["tables_used"] = tables_used
+        
+        # Convert dictionary to string for FunctionMessage content
+        content = str(obs) if not isinstance(obs, (str, list)) else obs
+            
+        tool_messages.append(
+            FunctionMessage(
+                name=name, 
+                content=content, 
+                additional_kwargs=additional_kwargs
+            )
         )
-        for k, (name, task_args, obs) in new_observations.items()
-    ]
     return tool_messages
