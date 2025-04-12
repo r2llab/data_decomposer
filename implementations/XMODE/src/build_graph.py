@@ -31,34 +31,112 @@ from typing import Dict
 from langgraph.graph import END, MessageGraph, START
 
 
-
 from implementations.XMODE.tools.backend.image_qa import VisualQA
 from implementations.XMODE.tools.SQL import get_text2SQL_tools
 from implementations.XMODE.tools.visual_qa import get_image_analysis_tools
 from implementations.XMODE.tools.plot import get_plotting_tools
 from implementations.XMODE.tools.data import get_data_preparation_tools
+from implementations.XMODE.tools.passage_retriever import get_passage_retriever_tool
 from langgraph.checkpoint.memory import MemorySaver
+from pathlib import Path
+
+from langchain_core.callbacks import CallbackManager
+from langchain_core.callbacks.base import BaseCallbackHandler
 
 
-
-def graph_construction(model, temperature, db_path, log_path, saver=None):
+def graph_construction(model, temperature, db_path, log_path, passage_embeddings_dir=None, passage_index_dir=None, cost_tracker=None, saver=None):
+    # Initialize cost tracker if not provided
+    if cost_tracker is None:
+        # Import here to avoid circular imports
+        from implementations.XMODE.utils.cost_tracker import CostTracker
+        cost_tracker = CostTracker()
 
     ## Tools
     # vqa_model = VisualQA()
-    translate= get_text2SQL_tools(ChatOpenAI(model=model, temperature=temperature), db_path)
+    # Create a callback handler to track token usage
+    class TokenUsageCallbackHandler(BaseCallbackHandler):
+        def __init__(self, cost_tracker, model):
+            self.cost_tracker = cost_tracker
+            self.model = model
+        
+        def on_llm_end(self, response, **kwargs):
+            """Record token usage when the LLM call completes."""
+            if hasattr(response, "llm_output") and response.llm_output:
+                usage = response.llm_output.get("token_usage", {})
+                prompt_tokens = usage.get("prompt_tokens", 0)
+                completion_tokens = usage.get("completion_tokens", 0)
+                
+                self.cost_tracker.track_chat_completion_call(
+                    model=self.model,
+                    prompt_tokens=prompt_tokens,
+                    completion_tokens=completion_tokens
+                )
+                
+        def on_chat_model_start(self, serialized, messages, **kwargs):
+            """Approximately estimate tokens before the call if we can't get them after."""
+            # This is just a fallback in case on_llm_end doesn't fire or doesn't have token info
+            try:
+                # Rough estimate - in a production system you'd want to use a tokenizer
+                text_length = sum(len(str(m)) for m in messages)
+                # Roughly 4 characters per token for English text
+                token_estimate = text_length // 4
+                self.cost_tracker.track_chat_completion_call(
+                    model=self.model,
+                    prompt_tokens=token_estimate,
+                    completion_tokens=0  # We don't know completion tokens yet
+                )
+            except Exception as e:
+                print(f"Failed to estimate token usage: {e}")
+    
+    # Create a callback manager with our handler
+    token_callback = TokenUsageCallbackHandler(cost_tracker, model)
+    callback_manager = CallbackManager([token_callback])
+    
+    # Create the LLM with callbacks for tracking
+    llm = ChatOpenAI(
+        model=model, 
+        temperature=temperature,
+        callbacks=[token_callback]
+    )
+    
+    translate = get_text2SQL_tools(llm, db_path)
     # image_analysis = get_image_analysis_tools(vqa_model)
-    data_preparation= get_data_preparation_tools(ChatOpenAI(model=model, temperature= temperature),log_path=log_path)
-    plotting= get_plotting_tools(ChatOpenAI(model=model, temperature= temperature),log_path=log_path)
-
-    tools = [translate,data_preparation,plotting]
-    llm = ChatOpenAI(model=model, temperature=temperature)
-
-# In sub_question related to text2SQL include all requested information to be retrieved at once.
- # For each image analysis task, generate three distinct questions that each convey the same idea in different wording.
+    data_preparation = get_data_preparation_tools(llm, log_path=log_path)
+    plotting = get_plotting_tools(llm, log_path=log_path)
+    
+    # Add passage retriever tool if embeddings and index directories are provided
+    tools = [translate, data_preparation, plotting]
+    
+    if passage_embeddings_dir and passage_index_dir:
+        try:
+            embeddings_dir = Path(passage_embeddings_dir) if not isinstance(passage_embeddings_dir, Path) else passage_embeddings_dir
+            index_dir = Path(passage_index_dir) if not isinstance(passage_index_dir, Path) else passage_index_dir
+            
+            passage_retriever = get_passage_retriever_tool(
+                llm,
+                embeddings_dir=embeddings_dir,
+                index_dir=index_dir
+            )
+            tools.append(passage_retriever)
+            
+            # Track embedding usage (estimation)
+            # Estimate the number of passages that might be indexed
+            estimated_passages = 100
+            cost_tracker.track_embedding_call(
+                model="text-embedding-ada-002",  # Assuming this is the model used
+                input_count=estimated_passages
+            )
+                
+            print(f"Passage retriever tool loaded successfully")
+        except Exception as e:
+            print(f"Failed to load passage retriever tool: {e}")
+    
+    # In sub_question related to text2SQL include all requested information to be retrieved at once.
+    # For each image analysis task, generate three distinct questions that each convey the same idea in different wording.
     prompt = ChatPromptTemplate.from_messages(
       [
         ("system",'''Given a user question, a database schema and tools descriptions, analyze the question to identify and break it down into relevant sub-questions. 
-            Determine which tools (e.g., text2SQL, data_preparation, plotting) are appropriate for answering each sub-question based on the available database information and tools.
+            Determine which tools (e.g., text2SQL, data_preparation, plotting, passage_retriever) are appropriate for answering each sub-question based on the available database information and tools.
             Decompose the user question into sub_questions that capture all elements of the question's intent. This includes identifying the main objective, relevant sub-questions, necessary background information, assumptions, and any secondary requirements. 
             Ensure that no part of the original question's intent is omitted, and create a list of individual steps to answer the question fully and accurately using tools. 
             You may need to use one tool multiple times to answer to the original question.
@@ -67,6 +145,7 @@ def graph_construction(model, temperature, db_path, log_path, saver=None):
             For each sub-question, provide all the required information that may required in other tasks. In order to find this information look at the user question and the database inforamtion.
             Ensure you include all necessary information, including columns used for filtering in the retrieve part of the database related task (i.e. Text2SQL), especially when the user question involves plotting or data exploration.
             Each sub-question or step should focus exclusively on a single task.
+            In cases where the user's question involves unstructured text search or finding information in passages/documents, use the passage_retriever tool to search through the document collection.
             In cases where the user's question involves data that is not directly available in the database schema —such as when there is no corresponding table or column for the required information or image analysis— you must consider the need for image analysis using the image_analysis tools. 
             For instance, if the question involves comparision of image, or asking for specific objects or a object, concepts or a concepts which is not found in the database schema, you must retrieve the `imag_path` and call image analysis task, (e.g, which image depicts <X>).
             The database does not contain any information about what is or are depicted in a painting, to discover that you should include image analysis task.
@@ -142,11 +221,15 @@ def graph_construction(model, temperature, db_path, log_path, saver=None):
     - Ensure the final answer is provided in a structured format as JSON as follows:
         {{'Summary': <concise summary of the answer>,
          'details': <detailed explanation and supporting information>,
-         'source': <source of the information or how it was obtained>,
+         'source': <source of the information or how it was obtained - include document names or database tables used>,
          'inference':<your final inference as YES, No, or list of requested information without any extra information which you can take from the `labels` as given below>,
          'extra explanation':<put here the extra information that you dont provide in inference >,
          }}
          In the `inferencer` do not provide additinal explanation or description. Put them in `extra explanation`.
+    
+    - When answering questions that involved passage retrieval, be sure to mention the document names in the 'source' field. 
+    - For SQL-based answers, include the database tables that were queried.
+    - Be specific about your sources so the user knows where the information came from.
 
        
     Available actions:
@@ -158,11 +241,12 @@ def graph_construction(model, temperature, db_path, log_path, saver=None):
         Using the above previous actions, decide whether to replan or finish. 
         If all the required information is present, you may finish. 
         If you have made many attempts to find the information without success, admit so and respond with whatever information you have gathered so the user can work well with you. 
+        Be sure to include the source documents or database tables where the information was found.
         '''),
         ]
     ).partial(
         examples=""
-    )  
+    )
     
     runnable = create_structured_output_runnable(JoinOutputs, llm, joiner_prompt)
     
@@ -173,23 +257,40 @@ def graph_construction(model, temperature, db_path, log_path, saver=None):
         
         # Collect tables_used from any SQL query results in the messages
         tables_used = []
+        passage_sources = []
+        
         for message in state:
             # Check for tables_used in additional_kwargs (new location)
             if hasattr(message, 'additional_kwargs') and isinstance(message.additional_kwargs, dict):
                 if 'tables_used' in message.additional_kwargs:
                     tables_used.extend(message.additional_kwargs['tables_used'])
+                # Check for passage sources from the passage retriever
+                if 'passage_sources' in message.additional_kwargs:
+                    passage_sources.extend(message.additional_kwargs['passage_sources'])
             
             # Also check in content (legacy/fallback location)
             if hasattr(message, 'content') and isinstance(message.content, dict):
                 if 'tables_used' in message.content:
                     tables_used.extend(message.content['tables_used'])
+                # Check for passage sources in content
+                if 'sources_used' in message.content:
+                    passage_sources.extend(message.content['sources_used'])
+                if 'passages_used' in message.content:
+                    passage_sources.extend(message.content['passages_used'])
         
         # Get the joiner output
         joiner_output = runnable.invoke(messages)
         
-        # If this is a final response, add the tables_used information
+        # If this is a final response, add the tables_used and passage sources information
         if isinstance(joiner_output.action, FinalResponse):
+            # Add SQL tables used
             joiner_output.action.tables_used = list(set(tables_used))
+            
+            # Add passage sources as document sources if any exist
+            if passage_sources:
+                if not hasattr(joiner_output.action, 'document_sources'):
+                    joiner_output.action.document_sources = []
+                joiner_output.action.document_sources.extend(list(set(passage_sources)))
         
         # Parse and return the output
         return parse_joiner_output(joiner_output)

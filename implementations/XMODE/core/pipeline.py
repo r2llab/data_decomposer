@@ -44,6 +44,7 @@ from implementations.XMODE.src.planner import *
 from implementations.XMODE.src.task_fetching_unit import *
 from implementations.XMODE.src.build_graph import graph_construction
 from implementations.XMODE.src.utils import *
+from implementations.XMODE.utils.cost_tracker import CostTracker
 
 
 import json
@@ -62,10 +63,20 @@ import sys
 # sys.path.append(os.path.dirname(os.getcwd()) + '/ceasura_langgraph/tools')
 
 class Pipeline:
-    def __init__(self, index_path: Optional[Path] = None, openai_api_key: Optional[str] = None, langchain_api_key: Optional[str] = None):
+    def __init__(self, index_path: Optional[Path] = None, openai_api_key: Optional[str] = None, langchain_api_key: Optional[str] = None, cost_tracker: Optional[CostTracker] = None):
         self.index_path = index_path
         self.openai_api_key = openai_api_key
         self.langchain_api_key = langchain_api_key
+        
+        # Set up cost tracking
+        self.cost_tracker = cost_tracker if cost_tracker else CostTracker()
+        self.document_sources = set()  # Track document sources used
+        
+        # Paths for passage retrieval
+        if index_path:
+            project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../"))
+            self.passage_embeddings_dir = Path(project_root) / "data/passage-embeddings"
+            self.passage_index_dir = Path(project_root) / "data/passage-index"
 
     @staticmethod
     def _set_if_undefined(var: str):
@@ -116,6 +127,9 @@ class Pipeline:
         logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
         logger = logging.getLogger(__name__)
 
+        # Reset query-specific tracking
+        self.cost_tracker.reset_query_stats()
+        self.document_sources = set()
 
         # _set_if_undefined("TAVILY_API_KEY")
         # # Optional, add tracing in LangSmith
@@ -170,7 +184,10 @@ class Pipeline:
         result["question"]=query
         result["id"]=query_id
         print(f"Running graph construction")
-        chain = graph_construction(model,temperature=temperature, db_path=db_path,log_path=use_case_log_path)
+        chain = graph_construction(model, temperature=temperature, db_path=db_path, log_path=use_case_log_path, 
+                                  passage_embeddings_dir=self.passage_embeddings_dir, 
+                                  passage_index_dir=self.passage_index_dir,
+                                  cost_tracker=self.cost_tracker)
         # steps=[]
         
         
@@ -180,6 +197,31 @@ class Pipeline:
         
         for step in chain.stream(query, config, stream_mode="values"):
             print(step)
+            # Track document sources from the model response
+            if isinstance(step, list):
+                for msg in step:
+                    # Extract document sources from message content if available
+                    if hasattr(msg, 'content'):
+                        content = msg.content
+                        if isinstance(content, dict):
+                            if 'sources_used' in content:
+                                self.document_sources.update(content['sources_used'])
+                            if 'passages_used' in content:
+                                self.document_sources.update(content['passages_used'])
+                        elif isinstance(content, str):
+                            # Try to extract tables and sources from the string
+                            if 'Tables used in this query:' in content:
+                                tables_part = content.split('Tables used in this query:')[-1].strip()
+                                self.document_sources.update([table.strip() for table in tables_part.split(',')])
+                            
+                    # Extract from additional_kwargs if present
+                    if hasattr(msg, 'additional_kwargs'):
+                        kwargs = msg.additional_kwargs
+                        if 'tables_used' in kwargs:
+                            self.document_sources.update(kwargs['tables_used'])
+                        if 'passage_sources' in kwargs:
+                            self.document_sources.update(kwargs['passage_sources'])
+                            
             # for k,v in step.items():
             #     print(k)
             #     print("---------------------")
@@ -244,7 +286,7 @@ class Pipeline:
             source_str = source_match.group(1)
             formatted_result["document_sources"] = [src.strip() for src in source_str.split(',')]
         else:
-            formatted_result["document_sources"] = []
+            formatted_result["document_sources"] = list(self.document_sources) if self.document_sources else []
         
         # Check for tables_used in the last message content
         if isinstance(step, list) and len(step) > 0:
@@ -254,15 +296,68 @@ class Pipeline:
                 content = last_message.content
                 tables_part = content.split('Tables used in this query:')[-1].strip()
                 tables = [table.strip() for table in tables_part.split(',')]
-                formatted_result["document_sources"] = tables
+                self.document_sources.update(tables)
         
         # If we still don't have document sources, try to get from additional_kwargs
         if not formatted_result["document_sources"]:
             for msg in to_json:
-                if isinstance(msg, dict) and msg.get('additional_kwargs') and 'tables_used' in msg['additional_kwargs']:
-                    formatted_result["document_sources"] = msg['additional_kwargs']['tables_used']
-                    break
+                if isinstance(msg, dict) and msg.get('additional_kwargs'):
+                    # Check for tables used
+                    if 'tables_used' in msg['additional_kwargs']:
+                        self.document_sources.update(msg['additional_kwargs']['tables_used'])
                     
+                    # Check for passage sources
+                    if 'passage_sources' in msg['additional_kwargs']:
+                        self.document_sources.update(msg['additional_kwargs']['passage_sources'])
+        
+        # Check for passage sources in content
+        if not formatted_result["document_sources"]:
+            for msg in to_json:
+                if isinstance(msg, dict) and msg.get('content'):
+                    content = msg['content']
+                    if isinstance(content, dict):
+                        # Check for sources_used or passages_used
+                        if 'sources_used' in content:
+                            self.document_sources.update(content['sources_used'])
+                        if 'passages_used' in content:
+                            self.document_sources.update(content['passages_used'])
+        
+        # Use our tracked document sources if we have them
+        if self.document_sources:
+            formatted_result["document_sources"] = list(self.document_sources)
+            
+        # Make sure document sources are unique
+        if formatted_result["document_sources"]:
+            formatted_result["document_sources"] = list(set(formatted_result["document_sources"]))
+                    
+        # Add cost metrics to the result
+        cost_summary = self.cost_tracker.get_query_summary()
+        formatted_result['cost_metrics'] = {
+            'total_cost': float(cost_summary['query_cost']),
+            'total_tokens': int(cost_summary['query_tokens']),
+            'api_calls': int(cost_summary['query_calls']),
+            'model_breakdown': {
+                model: {
+                    'cost': float(stats['cost']),
+                    'tokens': int(stats['tokens']),
+                    'calls': int(stats['calls'])
+                }
+                for model, stats in cost_summary['models'].items()
+            },
+            'endpoint_breakdown': {
+                endpoint: {
+                    'cost': float(stats['cost']),
+                    'tokens': int(stats['tokens']),
+                    'calls': int(stats['calls'])
+                }
+                for endpoint, stats in cost_summary['endpoints'].items()
+            }
+        }
+        
+        print(f"Query cost: ${cost_summary['query_cost']:.6f}")
+        print(f"Total tokens: {cost_summary['query_tokens']}")
+        print(f"API calls: {cost_summary['query_calls']}")
+        
         print("Formatted answer:", formatted_result["answer"])
         
         path = os.path.join(use_case_log_path, "steps-values.log")
