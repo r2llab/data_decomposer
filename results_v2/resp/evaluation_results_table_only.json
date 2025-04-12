@@ -1,0 +1,1174 @@
+{
+    "individual_results": [
+      {
+        "question": "What is the mechanism of action for Cetuximab and which receptor does it target?",
+        "gt_answer": "Cetuximab is an epidermal growth factor receptor (EGFR) binding fragment antigen-binding (FAB), targeting the EGFR in humans. Its mechanism of action involves binding to the N-terminal portion of human EGFR.",
+        "system_answer": "Cetuximab is a monoclonal antibody that targets the epidermal growth factor receptor (EGFR). Its mechanism of action involves binding to the extracellular domain of EGFR, inhibiting the receptor's activation and downstream signaling pathways, which can lead to tumor growth inhibition.",
+        "gt_sources": [
+          "None",
+          "drugbank-targets"
+        ],
+        "system_sources": [
+          "pubmed-targets/Target-11454724",
+          "pubmed-targets/Target-30422518",
+          "pubmed-targets/Target-18671470",
+          "pubmed-targets/Target-12943486",
+          "pubmed-targets/Target-9029042",
+          "pubmed-targets/Target-15004073",
+          "pubmed-targets/Target-16416305"
+        ],
+        "metrics": {
+          "rouge1": 0.5205479452054794,
+          "rouge2": 0.36619718309859156,
+          "rougeL": 0.4657534246575343,
+          "string_similarity": 0.45528455284552843,
+          "source_precision": 0.0,
+          "source_recall": 0.0,
+          "source_f1": 0.0,
+          "processing_time": 21.857759952545166,
+          "llm_correctness": 1.0,
+          "inference_cost": 0.15137,
+          "inference_tokens": 13749,
+          "api_calls": 7,
+          "source_relevance_avg": 0.009658099558086438,
+          "source_relevance_max": 0.017809439002671415
+        },
+        "cost_metrics": {
+          "total_cost": 0.15137,
+          "total_tokens": 13749,
+          "api_calls": 7,
+          "model_breakdown": {
+            "gpt-4o": {
+              "cost": 0.15137,
+              "tokens": 13749,
+              "calls": 7
+            }
+          },
+          "endpoint_breakdown": {
+            "chat.completions": {
+              "cost": 0.15137,
+              "tokens": 13749,
+              "calls": 7
+            }
+          }
+        },
+        "source_relevance": {
+          "average": 0.009658099558086438,
+          "maximum": 0.017809439002671415
+        }
+      },
+      {
+        "question": "What are the components of Etanercept and how is it produced?",
+        "gt_answer": "Etanercept is a dimeric fusion protein consisting of the extracellular ligand-binding portion of the human 75 kilodalton (p75) tumor necrosis factor receptor (TNFR) linked to the Fc portion of human IgG1. It is produced by recombinant DNA technology in a Chinese hamster ovary (CHO) mammalian cell expression system.",
+        "system_answer": "ERROR: Error code: 400 - {'error': {'message': \"This model's maximum context length is 128000 tokens. However, your messages resulted in 291458 tokens. Please reduce the length of the messages.\", 'type': 'invalid_request_error', 'param': 'messages', 'code': 'context_length_exceeded'}}",
+        "gt_sources": [
+          "None",
+          "drugbank-drug"
+        ],
+        "system_sources": [],
+        "error": "Error code: 400 - {'error': {'message': \"This model's maximum context length is 128000 tokens. However, your messages resulted in 291458 tokens. Please reduce the length of the messages.\", 'type': 'invalid_request_error', 'param': 'messages', 'code': 'context_length_exceeded'}}"
+      },
+      {
+        "question": "Which drug is associated with the FDA label titled \"FDA Approved Drug Products: Lupron Depot (leuprolide acetate) depot suspension\"?",
+        "gt_answer": "The drug associated with the FDA label titled \"FDA Approved Drug Products: Lupron Depot (leuprolide acetate) depot suspension\" is linked to the parent key DB00007.",
+        "system_answer": "The drug associated with the FDA label titled \"FDA Approved Drug Products: Lupron Depot (leuprolide acetate) depot suspension\" is leuprolide acetate.",
+        "gt_sources": [
+          "None",
+          "drugbank-drugs_links"
+        ],
+        "system_sources": [
+          "drugbank-drugs_links.csv",
+          "drugbank-enzymes.csv"
+        ],
+        "metrics": {
+          "rouge1": 0.8260869565217391,
+          "rouge2": 0.8181818181818182,
+          "rougeL": 0.8260869565217391,
+          "string_similarity": 0.8974358974358975,
+          "source_precision": 0.0,
+          "source_recall": 0.0,
+          "source_f1": 0.0,
+          "processing_time": 12.630231142044067,
+          "llm_correctness": 0.5,
+          "inference_cost": 0.6120599999999999,
+          "inference_tokens": 60290,
+          "api_calls": 4,
+          "source_relevance_avg": 0.03752407059557152,
+          "source_relevance_max": 0.05526208858187728
+        },
+        "cost_metrics": {
+          "total_cost": 0.6120599999999999,
+          "total_tokens": 60290,
+          "api_calls": 4,
+          "model_breakdown": {
+            "gpt-4o": {
+              "cost": 0.6120599999999999,
+              "tokens": 60290,
+              "calls": 4
+            }
+          },
+          "endpoint_breakdown": {
+            "chat.completions": {
+              "cost": 0.6120599999999999,
+              "tokens": 60290,
+              "calls": 4
+            }
+          }
+        },
+        "source_relevance": {
+          "average": 0.03752407059557152,
+          "maximum": 0.05526208858187728
+        }
+      },
+      {
+        "question": "For which drug is Prothrombin a known target, and what is the organism associated with this target?",
+        "gt_answer": "Prothrombin is a known target for the drug Lepirudin, and the organism associated with this target is humans.",
+        "system_answer": "The drug for which Prothrombin is a known target is Warfarin. The organism associated with this target is Homo sapiens (humans).",
+        "gt_sources": [
+          "None",
+          "drugbank-targets"
+        ],
+        "system_sources": [
+          "drugbank-drug_targ_articles.csv",
+          "pubmed-targets/Target-20210688",
+          "drugbank-targets.csv",
+          "pubmed-targets/Target-20526191",
+          "drugbank-drug_enzymes_textbooks.csv"
+        ],
+        "metrics": {
+          "rouge1": 0.8205128205128205,
+          "rouge2": 0.5945945945945946,
+          "rougeL": 0.6666666666666666,
+          "string_similarity": 0.7172995780590717,
+          "source_precision": 0.0,
+          "source_recall": 0.0,
+          "source_f1": 0.0,
+          "processing_time": 8.41845703125,
+          "llm_correctness": 0.5,
+          "inference_cost": 0.3961,
+          "inference_tokens": 38938,
+          "api_calls": 4,
+          "source_relevance_avg": 0.05763172628526504,
+          "source_relevance_max": 0.09044585987261146
+        },
+        "cost_metrics": {
+          "total_cost": 0.3961,
+          "total_tokens": 38938,
+          "api_calls": 4,
+          "model_breakdown": {
+            "gpt-4o": {
+              "cost": 0.3961,
+              "tokens": 38938,
+              "calls": 4
+            }
+          },
+          "endpoint_breakdown": {
+            "chat.completions": {
+              "cost": 0.3961,
+              "tokens": 38938,
+              "calls": 4
+            }
+          }
+        },
+        "source_relevance": {
+          "average": 0.05763172628526504,
+          "maximum": 0.09044585987261146
+        }
+      },
+      {
+        "question": "What is the state of the drug Dornase alfa, and what is its primary therapeutic use?",
+        "gt_answer": "Dornase alfa is in a liquid state. Its primary therapeutic use involves the enzymatic breakdown of extracellular DNA to reduce sputum viscosity and viscoelasticity in individuals with cystic fibrosis.",
+        "system_answer": "Dornase alfa is primarily used as a mucolytic agent to treat cystic fibrosis by breaking down DNA in the mucus, thereby reducing its viscosity and aiding in improved lung function. The documents provided do not contain specific information about the current state or recent regulatory updates regarding Dornase alfa.",
+        "gt_sources": [
+          "None",
+          "drugbank-drug"
+        ],
+        "system_sources": [
+          "drugbank-drugs_links.csv",
+          "drugbank-drug_salts.csv",
+          "pubmed-targets/Target-26247717",
+          "drugbank-drug_dosages.csv",
+          "drugbank-targets.csv",
+          "drugbank-drug_affected_organisms.csv",
+          "pubmed-targets/Target-17681557",
+          "drugbank-drug_targ_links.csv"
+        ],
+        "metrics": {
+          "rouge1": 0.43589743589743585,
+          "rouge2": 0.10526315789473685,
+          "rougeL": 0.23076923076923075,
+          "string_similarity": 0.12790697674418605,
+          "source_precision": 0.0,
+          "source_recall": 0.0,
+          "source_f1": 0.0,
+          "processing_time": 61.67348504066467,
+          "llm_correctness": 0.7,
+          "inference_cost": 2.60503,
+          "inference_tokens": 256971,
+          "api_calls": 16,
+          "source_relevance_avg": 0.007378481985170211,
+          "source_relevance_max": 0.015139442231075698
+        },
+        "cost_metrics": {
+          "total_cost": 2.60503,
+          "total_tokens": 256971,
+          "api_calls": 16,
+          "model_breakdown": {
+            "gpt-4o": {
+              "cost": 2.60503,
+              "tokens": 256971,
+              "calls": 16
+            }
+          },
+          "endpoint_breakdown": {
+            "chat.completions": {
+              "cost": 2.60503,
+              "tokens": 256971,
+              "calls": 16
+            }
+          }
+        },
+        "source_relevance": {
+          "average": 0.007378481985170211,
+          "maximum": 0.015139442231075698
+        }
+      },
+      {
+        "question": "What is the mechanism of action of Cetuximab?",
+        "gt_answer": "Cetuximab is a monoclonal antibody that binds to the epidermal growth factor receptor (EGFR) on human cells. By targeting this receptor, Cetuximab inhibits the growth and survival of tumor cells that rely on the EGFR signaling pathway. This mechanism is confirmed by its known action on the EGFR in humans.",
+        "system_answer": "The provided documents do not contain information on the mechanism of action of Cetuximab. Cetuximab is known to be a monoclonal antibody that targets and inhibits the epidermal growth factor receptor (EGFR) in cancer cells, but this information is not present in the documents reviewed.",
+        "gt_sources": [
+          "None",
+          "drugbank-targets"
+        ],
+        "system_sources": [
+          "pubmed-targets/Target-11454724",
+          "pubmed-targets/Target-30422518",
+          "pubmed-targets/Target-27951518",
+          "pubmed-targets/Target-12943486",
+          "pubmed-targets/Target-17175104",
+          "pubmed-targets/Target-9029042",
+          "pubmed-targets/Target-15004073",
+          "pubmed-targets/Target-10513988",
+          "pubmed-targets/Target-16416305"
+        ],
+        "metrics": {
+          "rouge1": 0.6105263157894737,
+          "rouge2": 0.25806451612903225,
+          "rougeL": 0.3368421052631579,
+          "string_similarity": 0.2057335581787521,
+          "source_precision": 0.0,
+          "source_recall": 0.0,
+          "source_f1": 0.0,
+          "processing_time": 41.658470153808594,
+          "llm_correctness": 0.8,
+          "inference_cost": 0.39499000000000006,
+          "inference_tokens": 35863,
+          "api_calls": 16,
+          "source_relevance_avg": 0.009629005412201101,
+          "source_relevance_max": 0.03536977491961415
+        },
+        "cost_metrics": {
+          "total_cost": 0.39499000000000006,
+          "total_tokens": 35863,
+          "api_calls": 16,
+          "model_breakdown": {
+            "gpt-4o": {
+              "cost": 0.39499000000000006,
+              "tokens": 35863,
+              "calls": 16
+            }
+          },
+          "endpoint_breakdown": {
+            "chat.completions": {
+              "cost": 0.39499000000000006,
+              "tokens": 35863,
+              "calls": 16
+            }
+          }
+        },
+        "source_relevance": {
+          "average": 0.009629005412201101,
+          "maximum": 0.03536977491961415
+        }
+      },
+      {
+        "question": "What is the target organism for Lepirudin and what is its known action?",
+        "gt_answer": "The target organism for Lepirudin is humans, and its known action is to inhibit prothrombin, a key protein in the blood coagulation process.",
+        "system_answer": "Lepirudin is a recombinant hirudin used as an anticoagulant, targeting human thrombin. Its known action is to directly inhibit thrombin, which prevents the conversion of fibrinogen to fibrin, thereby reducing blood clot formation.",
+        "gt_sources": [
+          "None",
+          "drugbank-targets"
+        ],
+        "system_sources": [
+          "pubmed-targets/Target-17132209",
+          "pubmed-targets/Target-19190342",
+          "pubmed-targets/Target-20526191",
+          "pubmed-targets/Target-9035701",
+          "pubmed-targets/Target-17689532"
+        ],
+        "metrics": {
+          "rouge1": 0.4642857142857143,
+          "rouge2": 0.18518518518518515,
+          "rougeL": 0.3928571428571428,
+          "string_similarity": 0.4540540540540541,
+          "source_precision": 0.0,
+          "source_recall": 0.0,
+          "source_f1": 0.0,
+          "processing_time": 9.00039792060852,
+          "llm_correctness": 0.8,
+          "inference_cost": 0.07063,
+          "inference_tokens": 6247,
+          "api_calls": 4,
+          "source_relevance_avg": 0.07342146972894073,
+          "source_relevance_max": 0.08287795992714025
+        },
+        "cost_metrics": {
+          "total_cost": 0.07063,
+          "total_tokens": 6247,
+          "api_calls": 4,
+          "model_breakdown": {
+            "gpt-4o": {
+              "cost": 0.07063,
+              "tokens": 6247,
+              "calls": 4
+            }
+          },
+          "endpoint_breakdown": {
+            "chat.completions": {
+              "cost": 0.07063,
+              "tokens": 6247,
+              "calls": 4
+            }
+          }
+        },
+        "source_relevance": {
+          "average": 0.07342146972894073,
+          "maximum": 0.08287795992714025
+        }
+      },
+      {
+        "question": "What is the main therapeutic use of Dornase alfa, and how does it achieve this effect?",
+        "gt_answer": "Dornase alfa is primarily used in individuals with cystic fibrosis. It works by enzymatically breaking down extracellular DNA in the mucus, reducing its viscosity and improving lung function. This is achieved through its action as a biosynthetic form of the human enzyme deoxyribonuclease I (DNase I).",
+        "system_answer": "Dornase alfa is primarily used in the treatment of cystic fibrosis. It works by reducing the viscosity of mucus in the lungs, making it easier to clear, through the enzymatic cleavage of extracellular DNA, a major component of the thick mucus found in the airways of cystic fibrosis patients.",
+        "gt_sources": [
+          "None",
+          "drugbank-drug"
+        ],
+        "system_sources": [
+          "pubmed-targets/Target-17904265",
+          "drugbank-drug_affected_organisms.csv",
+          "pubmed-targets/Target-18635521",
+          "pubmed-targets/Target-10322928",
+          "pubmed-targets/Target-9118466"
+        ],
+        "metrics": {
+          "rouge1": 0.5052631578947369,
+          "rouge2": 0.2580645161290323,
+          "rougeL": 0.37894736842105264,
+          "string_similarity": 0.3136593591905565,
+          "source_precision": 0.0,
+          "source_recall": 0.0,
+          "source_f1": 0.0,
+          "processing_time": 9.423387050628662,
+          "llm_correctness": 1.0,
+          "inference_cost": 0.10221999999999999,
+          "inference_tokens": 9398,
+          "api_calls": 4,
+          "source_relevance_avg": 0.010699792401269946,
+          "source_relevance_max": 0.017450682852807285
+        },
+        "cost_metrics": {
+          "total_cost": 0.10221999999999999,
+          "total_tokens": 9398,
+          "api_calls": 4,
+          "model_breakdown": {
+            "gpt-4o": {
+              "cost": 0.10221999999999999,
+              "tokens": 9398,
+              "calls": 4
+            }
+          },
+          "endpoint_breakdown": {
+            "chat.completions": {
+              "cost": 0.10221999999999999,
+              "tokens": 9398,
+              "calls": 4
+            }
+          }
+        },
+        "source_relevance": {
+          "average": 0.010699792401269946,
+          "maximum": 0.017450682852807285
+        }
+      },
+      {
+        "question": "What is the mechanism of action of Cetuximab, and what is its primary target in humans?",
+        "gt_answer": "Cetuximab functions by binding to the epidermal growth factor receptor (EGFR) in humans. This binding inhibits the receptor's activity, which is involved in the progression of certain types of cancer.",
+        "system_answer": "Cetuximab is a monoclonal antibody that targets the epidermal growth factor receptor (EGFR) on the surface of certain cancer cells. Its mechanism of action involves binding to EGFR, inhibiting the receptor's function, which blocks downstream signaling pathways that promote cancer cell proliferation and survival. This binding prevents the receptor from interacting with its natural ligands, hindering the growth and spread of cancer cells that overexpress EGFR.",
+        "gt_sources": [
+          "None",
+          "drugbank-targets"
+        ],
+        "system_sources": [
+          "pubmed-targets/Target-11454724",
+          "pubmed-targets/Target-12943486",
+          "pubmed-targets/Target-9029042",
+          "pubmed-targets/Target-15004073",
+          "pubmed-targets/Target-10513988"
+        ],
+        "metrics": {
+          "rouge1": 0.4897959183673469,
+          "rouge2": 0.25000000000000006,
+          "rougeL": 0.32653061224489793,
+          "string_similarity": 0.21450151057401812,
+          "source_precision": 0.0,
+          "source_recall": 0.0,
+          "source_f1": 0.0,
+          "processing_time": 11.991127967834473,
+          "llm_correctness": 1.0,
+          "inference_cost": 0.08554999999999999,
+          "inference_tokens": 7413,
+          "api_calls": 4,
+          "source_relevance_avg": 0.016632389755144215,
+          "source_relevance_max": 0.022
+        },
+        "cost_metrics": {
+          "total_cost": 0.08554999999999999,
+          "total_tokens": 7413,
+          "api_calls": 4,
+          "model_breakdown": {
+            "gpt-4o": {
+              "cost": 0.08554999999999999,
+              "tokens": 7413,
+              "calls": 4
+            }
+          },
+          "endpoint_breakdown": {
+            "chat.completions": {
+              "cost": 0.08554999999999999,
+              "tokens": 7413,
+              "calls": 4
+            }
+          }
+        },
+        "source_relevance": {
+          "average": 0.016632389755144215,
+          "maximum": 0.022
+        }
+      },
+      {
+        "question": "Which drug is produced using genetically modified Chinese hamster ovary (CHO) cells, and what is its primary use in clinical settings?",
+        "gt_answer": "Dornase alfa is produced using genetically modified Chinese hamster ovary (CHO) cells through recombinant DNA technology. It is primarily used in clinical settings to reduce sputum viscosity in individuals with cystic fibrosis by enzymatically breaking down extracellular DNA.",
+        "system_answer": "The documents provided do not contain information about a specific drug produced using genetically modified Chinese hamster ovary (CHO) cells or its primary clinical use. However, CHO cells are widely used in biotechnology to produce therapeutic proteins, including monoclonal antibodies and hormones, because of their ability to produce complex proteins with human-like post-translational modifications.",
+        "gt_sources": [
+          "None",
+          "drugbank-drug"
+        ],
+        "system_sources": [
+          "drugbank-drug_salts.csv",
+          "drugbank-drug_targ_articles.csv",
+          "drugbank-targets_polypeptides_go.csv",
+          "drugbank-drug_syn.csv",
+          "drugbank-drug_pharmacology.csv",
+          "pubmed-targets/Target-18671470",
+          "drugbank-drug_affected_organisms.csv",
+          "pubmed-targets/Target-10366222",
+          "pubmed-targets/Target-2729995",
+          "pubmed-targets/Target-2123741",
+          "pubmed-targets/Target-11504826"
+        ],
+        "metrics": {
+          "rouge1": 0.2978723404255319,
+          "rouge2": 0.1956521739130435,
+          "rougeL": 0.2765957446808511,
+          "string_similarity": 0.23823529411764705,
+          "source_precision": 0.0,
+          "source_recall": 0.0,
+          "source_f1": 0.0,
+          "processing_time": 58.44542407989502,
+          "llm_correctness": 0.0,
+          "inference_cost": 1.50242,
+          "inference_tokens": 146316,
+          "api_calls": 16,
+          "source_relevance_avg": 0.010411474806477583,
+          "source_relevance_max": 0.015980331899200985
+        },
+        "cost_metrics": {
+          "total_cost": 1.50242,
+          "total_tokens": 146316,
+          "api_calls": 16,
+          "model_breakdown": {
+            "gpt-4o": {
+              "cost": 1.50242,
+              "tokens": 146316,
+              "calls": 16
+            }
+          },
+          "endpoint_breakdown": {
+            "chat.completions": {
+              "cost": 1.50242,
+              "tokens": 146316,
+              "calls": 16
+            }
+          }
+        },
+        "source_relevance": {
+          "average": 0.010411474806477583,
+          "maximum": 0.015980331899200985
+        }
+      },
+      {
+        "question": "Describe the composition and production method of Etanercept and its therapeutic role.",
+        "gt_answer": "Etanercept is a dimeric fusion protein consisting of the extracellular ligand-binding portion of the human 75 kilodalton (p75) tumor necrosis factor receptor (TNFR) linked to the Fc portion of human IgG1. It is produced by recombinant DNA technology in a Chinese hamster ovary (CHO) mammalian cell expression system. Etanercept is used therapeutically to interfere with tumor necrosis factor (TNF) activity, which plays a role in inflammatory and autoimmune diseases.",
+        "system_answer": "Etanercept is a biologic drug produced through recombinant DNA technology. It is a fusion protein composed of the soluble tumor necrosis factor receptor (TNFR) linked to the Fc portion of human immunoglobulin G1 (IgG1). This fusion protein acts as a tumor necrosis factor (TNF) inhibitor and is used to treat autoimmune diseases such as rheumatoid arthritis, ankylosing spondylitis, and psoriasis by blocking TNF's role in inflammation.",
+        "gt_sources": [
+          "None",
+          "drugbank-drug"
+        ],
+        "system_sources": [
+          "pubmed-targets/Target-11302935",
+          "pubmed-targets/Target-17618721",
+          "drugbank-drug_experimental_properties.csv",
+          "pubmed-targets/Target-8573632",
+          "drugbank-drug_international_brands.csv",
+          "pubmed-targets/Target-11447229"
+        ],
+        "metrics": {
+          "rouge1": 0.5985401459854015,
+          "rouge2": 0.3555555555555555,
+          "rougeL": 0.40875912408759124,
+          "string_similarity": 0.2901439645625692,
+          "source_precision": 0.0,
+          "source_recall": 0.0,
+          "source_f1": 0.0,
+          "processing_time": 31.166050910949707,
+          "llm_correctness": 0.8,
+          "inference_cost": 0.5726300000000001,
+          "inference_tokens": 54539,
+          "api_calls": 10,
+          "source_relevance_avg": 0.012868901650445503,
+          "source_relevance_max": 0.01990049751243781
+        },
+        "cost_metrics": {
+          "total_cost": 0.5726300000000001,
+          "total_tokens": 54539,
+          "api_calls": 10,
+          "model_breakdown": {
+            "gpt-4o": {
+              "cost": 0.5726300000000001,
+              "tokens": 54539,
+              "calls": 10
+            }
+          },
+          "endpoint_breakdown": {
+            "chat.completions": {
+              "cost": 0.5726300000000001,
+              "tokens": 54539,
+              "calls": 10
+            }
+          }
+        },
+        "source_relevance": {
+          "average": 0.012868901650445503,
+          "maximum": 0.01990049751243781
+        }
+      },
+      {
+        "question": "What is the unique structural characteristic of Lepirudin compared to natural hirudin, and when did its production cease?",
+        "gt_answer": "Lepirudin is identical to natural hirudin except for the substitution of leucine for isoleucine at the N-terminal end of the molecule and the absence of a sulfate group on the tyrosine at position 63. The production of Lepirudin (Refludan) ceased on May 31, 2012.",
+        "system_answer": "Lepirudin differs from natural hirudin due to the substitution of leucine for isoleucine at the N-terminal end. Its production ceased in May 2012.",
+        "gt_sources": [
+          "None",
+          "drugbank-drug"
+        ],
+        "system_sources": [
+          "Target-426841",
+          "Target-426838"
+        ],
+        "metrics": {
+          "rouge1": 0.5507246376811594,
+          "rouge2": 0.3283582089552239,
+          "rougeL": 0.5217391304347827,
+          "string_similarity": 0.43031784841075793,
+          "source_precision": 0.0,
+          "source_recall": 0.0,
+          "source_f1": 0.0,
+          "processing_time": 4.871568202972412,
+          "llm_correctness": 0.8,
+          "inference_cost": 0.006,
+          "inference_tokens": 374,
+          "api_calls": 1,
+          "source_relevance_avg": 0.0,
+          "source_relevance_max": 0.0
+        },
+        "cost_metrics": {
+          "total_cost": 0.006,
+          "total_tokens": 374,
+          "api_calls": 1,
+          "model_breakdown": {
+            "gpt-4o": {
+              "cost": 0.006,
+              "tokens": 374,
+              "calls": 1
+            }
+          },
+          "endpoint_breakdown": {
+            "chat.completions": {
+              "cost": 0.006,
+              "tokens": 374,
+              "calls": 1
+            }
+          }
+        },
+        "source_relevance": {
+          "average": 0.0,
+          "maximum": 0.0
+        }
+      },
+      {
+        "question": "What is the primary mechanism of action of Cetuximab?",
+        "gt_answer": "Cetuximab targets the epidermal growth factor receptor (EGFR) in humans, where it binds to the N-terminal portion of the receptor, inhibiting its action.",
+        "system_answer": "Cetuximab primarily works by binding to the epidermal growth factor receptor (EGFR) on the surface of cancer cells, thereby inhibiting cell growth and survival pathways that are activated by this receptor.",
+        "gt_sources": [
+          "None",
+          "drugbank-targets"
+        ],
+        "system_sources": [
+          "pubmed-targets/Target-11454724",
+          "pubmed-targets/Target-17175104",
+          "pubmed-targets/Target-9029042",
+          "pubmed-targets/Target-15004073",
+          "pubmed-targets/Target-10513988",
+          "pubmed-targets/Target-16416305"
+        ],
+        "metrics": {
+          "rouge1": 0.4727272727272728,
+          "rouge2": 0.26415094339622636,
+          "rougeL": 0.3636363636363636,
+          "string_similarity": 0.5363128491620112,
+          "source_precision": 0.0,
+          "source_recall": 0.0,
+          "source_f1": 0.0,
+          "processing_time": 18.978928804397583,
+          "llm_correctness": 0.9,
+          "inference_cost": 0.15814999999999999,
+          "inference_tokens": 14293,
+          "api_calls": 7,
+          "source_relevance_avg": 0.05425895126693793,
+          "source_relevance_max": 0.09185185185185185
+        },
+        "cost_metrics": {
+          "total_cost": 0.15814999999999999,
+          "total_tokens": 14293,
+          "api_calls": 7,
+          "model_breakdown": {
+            "gpt-4o": {
+              "cost": 0.15814999999999999,
+              "tokens": 14293,
+              "calls": 7
+            }
+          },
+          "endpoint_breakdown": {
+            "chat.completions": {
+              "cost": 0.15814999999999999,
+              "tokens": 14293,
+              "calls": 7
+            }
+          }
+        },
+        "source_relevance": {
+          "average": 0.05425895126693793,
+          "maximum": 0.09185185185185185
+        }
+      },
+      {
+        "question": "What is the clinical use of Dornase alfa and its mechanism of action in cystic fibrosis patients?",
+        "gt_answer": "Dornase alfa is used in cystic fibrosis patients to reduce sputum viscosity and viscoelasticity by enzymatically breaking down extracellular DNA released by degenerating leukocytes during inflammatory responses.",
+        "system_answer": "The provided documents do not contain information on the clinical use or mechanism of action of Dornase alfa in cystic fibrosis patients.",
+        "gt_sources": [
+          "None",
+          "drugbank-drug"
+        ],
+        "system_sources": [
+          "drugbank-drug_affected_organisms.csv",
+          "pubmed-targets/Target-30218717",
+          "pubmed-targets/Target-18635521",
+          "pubmed-targets/Target-20459144"
+        ],
+        "metrics": {
+          "rouge1": 0.2857142857142857,
+          "rouge2": 0.1702127659574468,
+          "rougeL": 0.24489795918367346,
+          "string_similarity": 0.06321839080459771,
+          "source_precision": 0.0,
+          "source_recall": 0.0,
+          "source_f1": 0.0,
+          "processing_time": 10.239569902420044,
+          "llm_correctness": 0.0,
+          "inference_cost": 0.09165999999999999,
+          "inference_tokens": 8268,
+          "api_calls": 4,
+          "source_relevance_avg": 0.011392478689774388,
+          "source_relevance_max": 0.01925722145804677
+        },
+        "cost_metrics": {
+          "total_cost": 0.09165999999999999,
+          "total_tokens": 8268,
+          "api_calls": 4,
+          "model_breakdown": {
+            "gpt-4o": {
+              "cost": 0.09165999999999999,
+              "tokens": 8268,
+              "calls": 4
+            }
+          },
+          "endpoint_breakdown": {
+            "chat.completions": {
+              "cost": 0.09165999999999999,
+              "tokens": 8268,
+              "calls": 4
+            }
+          }
+        },
+        "source_relevance": {
+          "average": 0.011392478689774388,
+          "maximum": 0.01925722145804677
+        }
+      },
+      {
+        "question": "Which drug targets the Epidermal growth factor receptor (EGFR) and what is its known action?",
+        "gt_answer": "Cetuximab targets the Epidermal growth factor receptor (EGFR) in humans, and its action is known.",
+        "system_answer": "Erlotinib, Gefitinib, and Cetuximab are drugs known to target the Epidermal Growth Factor Receptor (EGFR). These drugs are used in the treatment of certain cancers by inhibiting the EGFR signaling pathway, which is involved in the proliferation and survival of cancer cells.",
+        "gt_sources": [
+          "None",
+          "drugbank-targets"
+        ],
+        "system_sources": [
+          "pubmed-targets/Target-25300043",
+          "pubmed-targets/Target-12943486",
+          "pubmed-targets/Target-12386117",
+          "pubmed-targets/Target-8736630",
+          "pubmed-targets/Target-9029042",
+          "pubmed-targets/Target-15004073",
+          "pubmed-targets/Target-16416305"
+        ],
+        "metrics": {
+          "rouge1": 0.4210526315789473,
+          "rouge2": 0.2181818181818182,
+          "rougeL": 0.3508771929824562,
+          "string_similarity": 0.4474393530997305,
+          "source_precision": 0.0,
+          "source_recall": 0.0,
+          "source_f1": 0.0,
+          "processing_time": 42.96350717544556,
+          "llm_correctness": 1.0,
+          "inference_cost": 0.44016000000000005,
+          "inference_tokens": 39780,
+          "api_calls": 16,
+          "source_relevance_avg": 0.03379153263439794,
+          "source_relevance_max": 0.056807935076645624
+        },
+        "cost_metrics": {
+          "total_cost": 0.44016000000000005,
+          "total_tokens": 39780,
+          "api_calls": 16,
+          "model_breakdown": {
+            "gpt-4o": {
+              "cost": 0.44016000000000005,
+              "tokens": 39780,
+              "calls": 16
+            }
+          },
+          "endpoint_breakdown": {
+            "chat.completions": {
+              "cost": 0.44016000000000005,
+              "tokens": 39780,
+              "calls": 16
+            }
+          }
+        },
+        "source_relevance": {
+          "average": 0.03379153263439794,
+          "maximum": 0.056807935076645624
+        }
+      },
+      {
+        "question": "How is Etanercept produced and what is its composition?",
+        "gt_answer": "Etanercept is produced by recombinant DNA technology in a Chinese hamster ovary (CHO) mammalian cell expression system. It is a dimeric fusion protein consisting of the extracellular ligand-binding portion of the human 75 kilodalton (p75) tumor necrosis factor receptor (TNFR) linked to the Fc portion of human IgG1.",
+        "system_answer": "The provided documents do not contain specific information on how Etanercept is produced or its composition. However, Etanercept is typically produced using recombinant DNA technology in mammalian cell lines. It is composed of a fusion protein that combines the tumor necrosis factor receptor with the Fc portion of human IgG1.",
+        "gt_sources": [
+          "None",
+          "drugbank-drug"
+        ],
+        "system_sources": [
+          "drugbank-drug_salts.csv",
+          "drugbank-transporters_polypeptides_syn.csv",
+          "pubmed-targets/Target-11302935",
+          "drugbank-drug_experimental_properties.csv",
+          "pubmed-targets/Target-8573632",
+          "drugbank-drug_international_brands.csv"
+        ],
+        "metrics": {
+          "rouge1": 0.5454545454545455,
+          "rouge2": 0.32989690721649484,
+          "rougeL": 0.5050505050505051,
+          "string_similarity": 0.2986003110419907,
+          "source_precision": 0.0,
+          "source_recall": 0.0,
+          "source_f1": 0.0,
+          "processing_time": 40.74082088470459,
+          "llm_correctness": 0.8,
+          "inference_cost": 1.3122200000000004,
+          "inference_tokens": 127736,
+          "api_calls": 16,
+          "source_relevance_avg": 0.015237564425251031,
+          "source_relevance_max": 0.028308563340410473
+        },
+        "cost_metrics": {
+          "total_cost": 1.3122200000000004,
+          "total_tokens": 127736,
+          "api_calls": 16,
+          "model_breakdown": {
+            "gpt-4o": {
+              "cost": 1.3122200000000004,
+              "tokens": 127736,
+              "calls": 16
+            }
+          },
+          "endpoint_breakdown": {
+            "chat.completions": {
+              "cost": 1.3122200000000004,
+              "tokens": 127736,
+              "calls": 16
+            }
+          }
+        },
+        "source_relevance": {
+          "average": 0.015237564425251031,
+          "maximum": 0.028308563340410473
+        }
+      },
+      {
+        "question": "What is the mechanism of action for Cetuximab, and under what brand name is it marketed?",
+        "gt_answer": "Cetuximab is an epidermal growth factor receptor binding FAB, composed of variable regions of the 225 murine EGFr monoclonal antibody specific for the N-terminal portion of human EGFr, with human IgG1 heavy and kappa light chain constant regions. It is marketed under the brand name Erbitux by Eli Lilly and Company.",
+        "system_answer": "Cetuximab works by inhibiting the epidermal growth factor receptor (EGFR), which is involved in the growth and spread of cancer cells. It is marketed under the brand name Erbitux.",
+        "gt_sources": [
+          "None",
+          "drugbank-drug"
+        ],
+        "system_sources": [
+          "pubmed-targets/Target-11454724",
+          "drugbank-drug_mixtures.csv",
+          "pubmed-targets/Target-22511482",
+          "pubmed-targets/Target-12943486",
+          "pubmed-targets/Target-17175104",
+          "pubmed-targets/Target-8736630",
+          "pubmed-targets/Target-9029042",
+          "pubmed-targets/Target-15004073",
+          "pubmed-targets/Target-10513988"
+        ],
+        "metrics": {
+          "rouge1": 0.4938271604938272,
+          "rouge2": 0.2531645569620253,
+          "rougeL": 0.39506172839506176,
+          "string_similarity": 0.26262626262626265,
+          "source_precision": 0.0,
+          "source_recall": 0.0,
+          "source_f1": 0.0,
+          "processing_time": 34.748377084732056,
+          "llm_correctness": 0.8,
+          "inference_cost": 0.42147999999999997,
+          "inference_tokens": 39204,
+          "api_calls": 16,
+          "source_relevance_avg": 0.006942764131887059,
+          "source_relevance_max": 0.014342629482071713
+        },
+        "cost_metrics": {
+          "total_cost": 0.42147999999999997,
+          "total_tokens": 39204,
+          "api_calls": 16,
+          "model_breakdown": {
+            "gpt-4o": {
+              "cost": 0.42147999999999997,
+              "tokens": 39204,
+              "calls": 16
+            }
+          },
+          "endpoint_breakdown": {
+            "chat.completions": {
+              "cost": 0.42147999999999997,
+              "tokens": 39204,
+              "calls": 16
+            }
+          }
+        },
+        "source_relevance": {
+          "average": 0.006942764131887059,
+          "maximum": 0.014342629482071713
+        }
+      },
+      {
+        "question": "What is the therapeutic use of Dornase alfa, and in what condition is it primarily used?",
+        "gt_answer": "Dornase alfa is used to cleave extracellular DNA into 5\u00b4-phosphodinucleotide and 5\u00b4-phosphooligonucleotide end products, thereby reducing sputum viscosity and viscoelasticity. It is primarily used in individuals with cystic fibrosis to manage the accumulation of extracellular DNA released by degenerating leukocytes during inflammatory responses to infections.",
+        "system_answer": "Dornase alfa is primarily used as a mucolytic agent to manage cystic fibrosis by reducing the viscosity of mucus in the lungs.",
+        "gt_sources": [
+          "None",
+          "drugbank-drug"
+        ],
+        "system_sources": [
+          "drugbank-drug_salts.csv",
+          "drugbank-drug_dosages.csv",
+          "drugbank-drug_affected_organisms.csv",
+          "pubmed-targets/Target-18635521",
+          "pubmed-targets/Target-10322928"
+        ],
+        "metrics": {
+          "rouge1": 0.43478260869565216,
+          "rouge2": 0.17910447761194026,
+          "rougeL": 0.2608695652173913,
+          "string_similarity": 0.08213552361396304,
+          "source_precision": 0.0,
+          "source_recall": 0.0,
+          "source_f1": 0.0,
+          "processing_time": 7.983089923858643,
+          "llm_correctness": 0.8,
+          "inference_cost": 0.27143000000000006,
+          "inference_tokens": 26387,
+          "api_calls": 4,
+          "source_relevance_avg": 0.007411561849022282,
+          "source_relevance_max": 0.012738853503184714
+        },
+        "cost_metrics": {
+          "total_cost": 0.27143000000000006,
+          "total_tokens": 26387,
+          "api_calls": 4,
+          "model_breakdown": {
+            "gpt-4o": {
+              "cost": 0.27143000000000006,
+              "tokens": 26387,
+              "calls": 4
+            }
+          },
+          "endpoint_breakdown": {
+            "chat.completions": {
+              "cost": 0.27143000000000006,
+              "tokens": 26387,
+              "calls": 4
+            }
+          }
+        },
+        "source_relevance": {
+          "average": 0.007411561849022282,
+          "maximum": 0.012738853503184714
+        }
+      },
+      {
+        "question": "How is Etanercept produced, and what is its structural composition?",
+        "gt_answer": "Etanercept is produced using recombinant DNA technology in a Chinese hamster ovary (CHO) mammalian cell expression system. It is a dimeric fusion protein consisting of the extracellular ligand-binding portion of the human 75 kilodalton (p75) tumor necrosis factor receptor (TNFR) linked to the Fc portion of human IgG1, containing the CH2 domain, the CH3 domain, and hinge region, but not the CH1 domain of IgG1.",
+        "system_answer": "The provided documents do not contain specific information on the production process of Etanercept. However, Etanercept is known to be a biologic medication composed of a fusion protein that includes the extracellular ligand-binding portion of the human tumor necrosis factor receptor linked to the Fc portion of human IgG1. According to the document with the parent key \"DB08879\" from the source \"drugbank-drug_experimental_properties.csv\", the molecular formula of Etanercept is \"C6358H9904N1728O2010S44,\" and its molecular weight is approximately 147,000 Da.",
+        "gt_sources": [
+          "None",
+          "drugbank-drug"
+        ],
+        "system_sources": [
+          "drugbank-drug_salts.csv",
+          "drugbank-drug_calculated_properties.csv",
+          "drugbank-drug_dosages.csv",
+          "pubmed-targets/Target-16410677",
+          "drugbank-transporters_polypeptides_syn.csv",
+          "pubmed-targets/Target-11302935",
+          "drugbank-drug_experimental_properties.csv",
+          "pubmed-targets/Target-8573632",
+          "drugbank-drug_international_brands.csv"
+        ],
+        "metrics": {
+          "rouge1": 0.4697986577181208,
+          "rouge2": 0.25850340136054417,
+          "rougeL": 0.40268456375838924,
+          "string_similarity": 0.13771839671120248,
+          "source_precision": 0.0,
+          "source_recall": 0.0,
+          "source_f1": 0.0,
+          "processing_time": 49.46019506454468,
+          "llm_correctness": 0.5,
+          "inference_cost": 1.1539200000000003,
+          "inference_tokens": 112074,
+          "api_calls": 16,
+          "source_relevance_avg": 0.01598460615555142,
+          "source_relevance_max": 0.02478551000953289
+        },
+        "cost_metrics": {
+          "total_cost": 1.1539200000000003,
+          "total_tokens": 112074,
+          "api_calls": 16,
+          "model_breakdown": {
+            "gpt-4o": {
+              "cost": 1.1539200000000003,
+              "tokens": 112074,
+              "calls": 16
+            }
+          },
+          "endpoint_breakdown": {
+            "chat.completions": {
+              "cost": 1.1539200000000003,
+              "tokens": 112074,
+              "calls": 16
+            }
+          }
+        },
+        "source_relevance": {
+          "average": 0.01598460615555142,
+          "maximum": 0.02478551000953289
+        }
+      },
+      {
+        "question": "What is the FDA-approved formulation of Dornase alfa, and what is its primary use?",
+        "gt_answer": "The FDA-approved formulations of Dornase alfa include Pulmozyme and Pulmozyme 1mg/ml. Dornase alfa is primarily used to reduce sputum viscosity in patients with cystic fibrosis.",
+        "system_answer": "The FDA-approved formulation of Dornase alfa is an inhalation solution marketed under the brand name Pulmozyme. Its primary use is for the management of cystic fibrosis. It works by breaking down DNA in the mucus, reducing its viscosity, and improving lung function in patients with this condition.",
+        "gt_sources": [
+          "None",
+          "drugbank-drug_mixtures"
+        ],
+        "system_sources": [
+          "drugbank-drugs_links.csv",
+          "drugbank-drug_targ_attachments.csv",
+          "drugbank-drug_affected_organisms.csv",
+          "drugbank-drug_international_brands.csv",
+          "drugbank-drug_prices.csv"
+        ],
+        "metrics": {
+          "rouge1": 0.4800000000000001,
+          "rouge2": 0.273972602739726,
+          "rougeL": 0.37333333333333335,
+          "string_similarity": 0.5010526315789474,
+          "source_precision": 0.0,
+          "source_recall": 0.0,
+          "source_f1": 0.0,
+          "processing_time": 57.04596304893494,
+          "llm_correctness": 1.0,
+          "inference_cost": 2.6504599999999994,
+          "inference_tokens": 261580,
+          "api_calls": 16,
+          "source_relevance_avg": 0.05648213192394002,
+          "source_relevance_max": 0.11207970112079702
+        },
+        "cost_metrics": {
+          "total_cost": 2.6504599999999994,
+          "total_tokens": 261580,
+          "api_calls": 16,
+          "model_breakdown": {
+            "gpt-4o": {
+              "cost": 2.6504599999999994,
+              "tokens": 261580,
+              "calls": 16
+            }
+          },
+          "endpoint_breakdown": {
+            "chat.completions": {
+              "cost": 2.6504599999999994,
+              "tokens": 261580,
+              "calls": 16
+            }
+          }
+        },
+        "source_relevance": {
+          "average": 0.05648213192394002,
+          "maximum": 0.11207970112079702
+        }
+      }
+    ],
+    "aggregate_metrics": {
+      "rouge1": {
+        "mean": 0.5117584500499731,
+        "median": 0.4897959183673469,
+        "min": 0.2857142857142857,
+        "max": 0.8260869565217391,
+        "std": 0.13343482776185792
+      },
+      "rouge2": {
+        "mean": 0.29801602016121237,
+        "median": 0.2580645161290323,
+        "min": 0.10526315789473685,
+        "max": 0.8181818181818182,
+        "std": 0.15835226839531596
+      },
+      "rougeL": {
+        "mean": 0.4067346693769379,
+        "median": 0.37894736842105264,
+        "min": 0.23076923076923075,
+        "max": 0.8260869565217391,
+        "std": 0.14210749508909945
+      },
+      "string_similarity": {
+        "mean": 0.3512461217269339,
+        "median": 0.2986003110419907,
+        "min": 0.06321839080459771,
+        "max": 0.8974358974358975,
+        "std": 0.21091027298411624
+      },
+      "source_precision": {
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "std": 0.0
+      },
+      "source_recall": {
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "std": 0.0
+      },
+      "source_f1": {
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "std": 0.0
+      },
+      "llm_correctness": {
+        "mean": 0.7210526315789474,
+        "median": 0.8,
+        "min": 0.0,
+        "max": 1.0,
+        "std": 0.2948308120875983
+      },
+      "inference_cost": {
+        "mean": 0.6841305263157895,
+        "median": 0.3961,
+        "min": 0.006,
+        "max": 2.6504599999999994,
+        "std": 0.7870262021417188
+      },
+      "inference_tokens": {
+        "mean": 66285.26315789473,
+        "median": 38938.0,
+        "min": 374,
+        "max": 261580,
+        "std": 77844.0254590395
+      },
+      "api_calls": {
+        "mean": 9.526315789473685,
+        "median": 7.0,
+        "min": 1,
+        "max": 16,
+        "std": 5.779896384544145
+      },
+      "source_relevance_avg": {
+        "mean": 0.023545105434491283,
+        "median": 0.012868901650445503,
+        "min": 0.0,
+        "max": 0.07342146972894073,
+        "std": 0.021137930068341932
+      },
+      "source_relevance_max": {
+        "mean": 0.0385478075074725,
+        "median": 0.022,
+        "min": 0.0,
+        "max": 0.11207970112079702,
+        "std": 0.03202629611523144
+      }
+    }
+  }

@@ -37,7 +37,7 @@ def create_planner(
         " - In the Current Plan, you should NEVER repeat the actions that are already executed in the Previous Plan.\n"
         " - You must continue the task index from the end of the previous one. Do not repeat task indices.",
         num_tools = len(tools) + 1,
-        tool_descriptions=tool_descriptions,
+        tool_descriptions=tool_descriptions
         #database_schema=database_schema,
     )
 

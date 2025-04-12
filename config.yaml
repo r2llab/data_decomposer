@@ -1,9 +1,10 @@
 # Configuration for R2L implementations and data lakes
 implementation:
-  name: symphony  # Name of the implementation to use
+  name: xmode  # Name of the implementation to use
   config:
     # ReSP-specific configuration
     openai_api_key: !env OPENAI_API_KEY  # Will be replaced with environment variable
+    langchain_api_key: !env LANGCHAIN_API_KEY
     # embedding_model: "sentence-transformers/all-mpnet-base-v2"
     # max_chunks: 100
     # chunk_size: 1000
