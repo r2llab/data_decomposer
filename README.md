@@ -9,76 +9,98 @@
 
 3. Install requirements: `pip install -r requirements.txt`
 
-# Symphony Architecture Overview
+# Project Architecture Overview
 
 ## Repository Structure
 
 The repository is organized into the following main directories:
 
-- `symphony/`: Main package directory containing all core components
-  - `core/`: Core pipeline and interfaces
-  - `embeddings/`: Embedding models and utilities
-  - `discovery/`: Search and retrieval components
-  - `decomposition/`: Query decomposition logic
-  - `execution/`: Query execution engine
-  - `utils/`: Shared utility functions
+- `core/`: Core pipeline interfaces and system setup
+  - `base_implementation.py`: Abstract base class for all implementations
+  - `config.py`: Configuration management 
+  - `factory.py`: Factory pattern for creating implementation instances
+
+- `data/`: Data storage for input datasets
+
+- `data_processing/`: Data processing and question generation scripts
+  - Jupyter notebooks for generating questions from different data types (passages, tables, etc.)
+
+- `implementations/`: Contains different system implementations
+  - `symphony/`: Symphony implementation with data decomposition and execution
+  - `ReSP/`: Retrieval-enhanced Structured Processing implementation
+  - `XMODE/`: Cross-modal data handling implementation
+  - `baseline/`: Baseline implementation for comparison
+
+- `results/`: Results storage for evaluation outputs
+
+- `results_v2/`: Extended results storage with additional metrics
 
 - `scripts/`: Command-line tools and utilities
   - `auto_extract_embeddings.py`: Extract embeddings from data using a GPT embedding model
-  - `build_index.py`: Build search indices
+  - `build_index.py`: Build search indices for data retrieval
   - `run_query.py`: Run queries against the system
   - `train.py`: Training a T5-based autoencoder model
   - `extract_embeddings.py`: Extracting embeddings from the trained T5-based autoencoder model
+  - `passage_embedd_and_index.py`: Process and index passage data
+  - `build_representation_index.py`: Build indices for cross-modal representations
+  - `csv_to_sqlite.py`: Convert CSV data to SQLite database format
 
-- `data/`: Data storage
-  - `traindev_tables_tok/`: Tokenized table data from Open Table-and-Text Question Answering (OTT-QA)
-  - `traindev_request_tok/`: Tokenized text data from Open Table-and-Text Question Answering (OTT-QA)
-
-- `checkpoints/`: Model checkpoints for AutoEncoder embedding model
-- `embeddings/`: Generated embeddings
-- `index/`: Built search indices
-- `tests/`: Test suite
-
-The main interface for interacting with Symphony's components is through `core/pipeline.py`, which orchestrates the flow between different components.
+- `tests/`: Test suite for validating system functionality
 
 ## Component Overview
 
-### Dataset (`embeddings/dataset.py`)
-The `CrossModalDataset` class handles both tabular and text data, providing a unified interface for loading and preprocessing data. It supports loading from directories and serializing items into a format suitable for embedding.
+The system is built around multiple implementations that share a common interface but offer different approaches to data handling and query processing:
 
-### Embedding (`embeddings/`)
-Symphony implements two embedding approaches:
-- `AutoEmbedder`: Uses OpenAI's embedding models (text-embedding-3-small by default) for production use
-- `SymphonyAutoEncoder`: A custom T5-based autoencoder model for research and offline use
+1. **Core Infrastructure**:
+   - Base implementation interface that defines the contract for all implementations
+   - Configuration management for flexible system setup
+   - Factory pattern for creating implementation instances
 
-### Discovery (`discovery/`)
-The discovery component implements semantic search using vector indices. It combines both semantic similarity and keyword matching for improved retrieval, with configurable boosting of keyword matches.
+2. **Symphony Implementation**:
+   - Focuses on data decomposition and structured execution
+   - Separates discovery, decomposition, and execution phases
+   - Uses vector embeddings for similarity search
 
-### Decomposition (`decomposition/`)
-The decomposer breaks down complex queries into simpler sub-queries that can be executed independently. It uses OpenAI's API for natural language understanding and query planning.
+3. **ReSP Implementation**:
+   - Retrieval-enhanced Structured Processing 
+   - Combines retrieval with structured reasoning
+   - Specialized handling for different data modalities
 
-### Execution (`execution/`)
-The executor processes decomposed queries against the retrieved context. It handles both direct lookups and more complex reasoning tasks using the OpenAI API.
+4. **XMODE Implementation**:
+   - Cross-modal data handling capabilities
+   - Unified representation for text and tabular data
 
-### Aggregation (`execution/aggregator.py`)
-The aggregator combines results from multiple sub-queries into a coherent final response, ensuring consistency and handling any conflicts in the intermediate results.
-
-# Running Main
-
-```
-python main.py --config config.yaml "your query here"
-```
-
-# Data Decomposer with Source Relevance Scoring
-
-This project implements a query processing system that can evaluate relevance of retrieved sources against a ground truth answer.
+5. **Evaluation Framework**:
+   - Comprehensive metrics for answer quality
+   - Source relevance scoring
+   - Cost tracking and efficiency analysis
 
 ## Key Features
 
-- Process natural language queries and extract information from various data sources
-- Calculate relevance scores between retrieved sources and a ground truth answer
-- Support for multiple implementation frameworks (Symphony, ReSP)
-- Evaluation tools for performance metrics
+1. **Multi-Modal Data Support**:
+   - Process both textual and tabular data
+   - Cross-modal querying capabilities
+   - Unified representation for heterogeneous data sources
+
+2. **Relevance Scoring**:
+   - Source relevance tracking against ground truth answers
+   - Precision, recall, and F1 metrics for source selection
+   - Text similarity scoring for answer evaluation
+
+3. **Cost Tracking**:
+   - Detailed tracking of API usage and costs
+   - Model-specific and endpoint-specific breakdowns
+   - Query-level cost summaries
+
+4. **Flexible Evaluation**:
+   - Multiple metrics including ROUGE, string similarity, and LLM-based scoring
+   - Source overlap analysis
+   - Performance benchmarking across implementations
+
+5. **Modular Design**:
+   - Common interface for all implementations
+   - Pluggable components for embedding, retrieval, and reasoning
+   - Extensible architecture for adding new implementations
 
 ## Usage
 
@@ -110,31 +132,32 @@ Example:
 "What is the mechanism of action for Cetuximab?","Cetuximab is an EGFR binding FAB, targeting the EGFR in humans.","None","drugbank-targets"
 ```
 
-## Source Relevance Scoring
-
-The system now calculates how relevant each retrieved document is to the ground truth answer. This addresses the limitation of simple source comparison, as the system might use equivalent sources with different names or draw information from sources that contain the same data.
-
-The relevance score is calculated using string similarity between each retrieved document's content and the ground truth answer. The system tracks:
-
-- Average relevance score across all retrieved documents
-- Maximum relevance score (best match)
-- Individual scores for each document
-
-These metrics help evaluate if the system is retrieving relevant information regardless of source names.
-
 ## Implementation Details
 
-The source relevance scoring is implemented by:
+The system incorporates several key implementation features:
 
-1. Passing the ground truth answer to the implementation's `process_query` method
-2. Intercepting document retrieval to calculate similarity between document content and ground truth
-3. Accumulating scores for all retrieved documents
-4. Returning the aggregate metrics in the result
+1. **Vector Embedding and Indexing**:
+   - Both implementations use vector embeddings for semantic search
+   - Supports pre-computing embeddings for efficient retrieval
+   - Uses specialized indices for handling different data modalities
 
-This approach works with both Symphony and ReSP implementations.
+2. **Source Relevance Scoring**:
+   - Computes similarity between retrieved content and ground truth answers
+   - Supports different content types including text and dataframes
+   - Implements both average and maximum relevance metrics
 
+3. **Pipeline Architecture**:
+   - Symphony uses a three-stage pipeline: discovery, decomposition, execution
+   - ReSP implements a retrieval-reasoning-generation workflow
+   - Both track document sources and provide detailed metadata
 
-Sample query over the db:
-```
-sqlite3 data/drugbank.db "SELECT COUNT(*) FROM drugbank_drug;"
-```
+4. **Evaluation Methodology**:
+   - Uses multiple metrics to evaluate answer quality
+   - Implements both automated scoring and LLM-based evaluation
+   - Provides detailed reports for both individual queries and aggregate results
+
+5. **Extensibility**:
+   - Common base class for all implementations
+   - Standardized input/output formats
+   - Flexible configuration for tuning system parameters
+
