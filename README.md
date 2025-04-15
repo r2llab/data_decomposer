@@ -47,61 +47,6 @@ The repository is organized into the following main directories:
 
 - `tests/`: Test suite for validating system functionality
 
-## Component Overview
-
-The system is built around multiple implementations that share a common interface but offer different approaches to data handling and query processing:
-
-1. **Core Infrastructure**:
-   - Base implementation interface that defines the contract for all implementations
-   - Configuration management for flexible system setup
-   - Factory pattern for creating implementation instances
-
-2. **Symphony Implementation**:
-   - Focuses on data decomposition and structured execution
-   - Separates discovery, decomposition, and execution phases
-   - Uses vector embeddings for similarity search
-
-3. **ReSP Implementation**:
-   - Retrieval-enhanced Structured Processing 
-   - Combines retrieval with structured reasoning
-   - Specialized handling for different data modalities
-
-4. **XMODE Implementation**:
-   - Cross-modal data handling capabilities
-   - Unified representation for text and tabular data
-
-5. **Evaluation Framework**:
-   - Comprehensive metrics for answer quality
-   - Source relevance scoring
-   - Cost tracking and efficiency analysis
-
-## Key Features
-
-1. **Multi-Modal Data Support**:
-   - Process both textual and tabular data
-   - Cross-modal querying capabilities
-   - Unified representation for heterogeneous data sources
-
-2. **Relevance Scoring**:
-   - Source relevance tracking against ground truth answers
-   - Precision, recall, and F1 metrics for source selection
-   - Text similarity scoring for answer evaluation
-
-3. **Cost Tracking**:
-   - Detailed tracking of API usage and costs
-   - Model-specific and endpoint-specific breakdowns
-   - Query-level cost summaries
-
-4. **Flexible Evaluation**:
-   - Multiple metrics including ROUGE, string similarity, and LLM-based scoring
-   - Source overlap analysis
-   - Performance benchmarking across implementations
-
-5. **Modular Design**:
-   - Common interface for all implementations
-   - Pluggable components for embedding, retrieval, and reasoning
-   - Extensible architecture for adding new implementations
-
 ## Usage
 
 ### Processing a Single Query
@@ -131,36 +76,6 @@ Example:
 "question","answer","text","table"
 "What is the mechanism of action for Cetuximab?","Cetuximab is an EGFR binding FAB, targeting the EGFR in humans.","None","drugbank-targets"
 ```
-
-## Implementation Details
-
-The system incorporates several key implementation features:
-
-1. **Vector Embedding and Indexing**:
-   - Both implementations use vector embeddings for semantic search
-   - Supports pre-computing embeddings for efficient retrieval
-   - Uses specialized indices for handling different data modalities
-
-2. **Source Relevance Scoring**:
-   - Computes similarity between retrieved content and ground truth answers
-   - Supports different content types including text and dataframes
-   - Implements both average and maximum relevance metrics
-
-3. **Pipeline Architecture**:
-   - Symphony uses a three-stage pipeline: discovery, decomposition, execution
-   - ReSP implements a retrieval-reasoning-generation workflow
-   - Both track document sources and provide detailed metadata
-
-4. **Evaluation Methodology**:
-   - Uses multiple metrics to evaluate answer quality
-   - Implements both automated scoring and LLM-based evaluation
-   - Provides detailed reports for both individual queries and aggregate results
-
-5. **Extensibility**:
-   - Common base class for all implementations
-   - Standardized input/output formats
-   - Flexible configuration for tuning system parameters
-
 
 # Acknowledgements
 
