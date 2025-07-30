@@ -70,6 +70,11 @@ Your task is to:
 2. If more information is needed, generate a focused sub-question
 3. If sufficient information exists, signal to exit the iteration
 
+Special considerations:
+- If no relevant documents were found for the current question, consider whether a different sub-question might yield better results
+- If multiple attempts have failed to find relevant documents, it may be appropriate to exit and generate an answer based on general knowledge
+- Balance the need for evidence with the practical limitations of the knowledge base
+
 Respond in the following format:
 SHOULD_EXIT: true/false
 REASONING: <your reasoning>

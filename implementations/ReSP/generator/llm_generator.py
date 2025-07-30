@@ -68,10 +68,14 @@ class LLMGenerator:
     def _get_system_prompt(self) -> str:
         """Get the system prompt for generation"""
         return """You are an expert question answerer in a recursive evidence-based question answering system.
-Your task is to generate a final answer to a user question based on the provided evidence.
+Your task is to generate a final answer to a user question based on the provided evidence and your knowledge.
 Follow the requested output format precisely.
-Be faithful to the evidence - do not make up information not supported by the evidence.
-Include ONLY information that is directly supported by the provided evidence.
+
+Guidelines:
+- Use the provided evidence to support your answer when available.
+- You may supplement with your general knowledge to provide a comprehensive answer.
+- Be accurate and informative in your responses.
+- Maintain appropriate confidence levels based on the strength of available evidence.
 """
     
     def _construct_generation_prompt(self,
@@ -112,16 +116,16 @@ Reasoning Pathway:
 {local_pathway_text}
 {document_sources_text}
 
-Based on the provided evidence and reasoning pathway, please generate a final answer to the question.
+Based on the provided evidence, reasoning pathway, and your knowledge, please generate a comprehensive answer to the question.
 Your response should follow this structure:
 
-ANSWER: [Your concise answer]
+ANSWER: [Your comprehensive answer to the question]
 
 CONFIDENCE: [A number between 0.0 and 1.0 indicating your confidence in the answer]
 
 EVIDENCE: 
-- [Key piece of evidence supporting the answer]
-- [Another key piece of evidence]
+- [Key pieces of evidence supporting the answer]
+- [Additional evidence if available]
 ...
 
 DOCUMENT SOURCES:

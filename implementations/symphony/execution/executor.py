@@ -51,19 +51,19 @@ class Executor:
         # Print context to file for debugging/logging
         with open('text_query_executor.txt', 'w') as f:
             f.write(str(context))
-        if context is None:
-            return {
-                "answer": "No content available to answer the query.",
-                "confidence": 0.0,
-                "source_type": item.get('type'),
-                "source": None
-            }
+        # if context is None:
+        #     return {
+        #         "answer": "No content available to answer the query.",
+        #         "confidence": 0.0,
+        #         "source_type": item.get('type'),
+        #         "source": None
+        #     }
             
         response = self.client.chat.completions.create(
             model="gpt-4o",
             messages=[
-                {"role": "system", "content": "You are a precise question answering assistant. Answer questions based solely on the provided context."},
-                {"role": "user", "content": f"Context:\n{context}\n\nQuestion: {query}\n\nProvide a concise answer based only on the context provided. If the context doesn't contain the information needed to answer the question, say 'The context does not provide this information.'"}
+                {"role": "system", "content": "You are a question answering assistant. You dont have to use the context if you dont have to or if the context is not relevant to the question."},
+                {"role": "user", "content": f"Context:\n{context}\n\nQuestion: {query}\n\n"}
             ],
             temperature=0.3
         )

@@ -118,30 +118,37 @@ class ReSPPipeline:
             # 1. Retrieval Phase
             retrieved_docs = self._retrieve(current_sub_question)
             if not retrieved_docs:
-                self.logger.warning("No relevant documents found")
-                break
-                
-            # Log retrieved documents
-            self.logger.info("Retrieved documents:")
-            for i, doc in enumerate(retrieved_docs, 1):
-                self.logger.info(f"\nDocument {i}:")
-                self.logger.info(f"Content: {doc.get('content', 'No content')}")
-                self.logger.info(f"Metadata: {doc.get('metadata', {})}")
-                
-                # Track document sources
-                if 'metadata' in doc and 'source' in doc['metadata']:
-                    source = doc['metadata']['source']
-                    if source and source != "unknown":
-                        self.document_sources.add(source)
+                self.logger.warning("No relevant documents found, continuing with available evidence")
+                # Continue processing even without documents - the generator can use general knowledge
+                # Break only if we have no evidence at all and this is the first iteration
+                if current_iteration == 0 and self.memory.global_evidence.empty():
+                    self.logger.info("No documents found on first iteration, proceeding to generate answer with general knowledge")
+                    break
+                else:
+                    # If we have some evidence from previous iterations, continue to reasoning
+                    self.logger.info("Using evidence from previous iterations")
+            else:
+                # Log retrieved documents
+                self.logger.info("Retrieved documents:")
+                for i, doc in enumerate(retrieved_docs, 1):
+                    self.logger.info(f"\nDocument {i}:")
+                    self.logger.info(f"Content: {doc.get('content', 'No content')}")
+                    self.logger.info(f"Metadata: {doc.get('metadata', {})}")
+                    
+                    # Track document sources
+                    if 'metadata' in doc and 'source' in doc['metadata']:
+                        source = doc['metadata']['source']
+                        if source and source != "unknown":
+                            self.document_sources.add(source)
 
-            # 2. Summarization Phase
-            self._summarize(
-                documents=retrieved_docs,
-                main_question=query,
-                sub_question=current_sub_question
-            )
+                # 2. Summarization Phase
+                self._summarize(
+                    documents=retrieved_docs,
+                    main_question=query,
+                    sub_question=current_sub_question
+                )
             
-            # 3. Reasoning Phase
+            # 3. Reasoning Phase (always execute, even if no new documents were found)
             next_step = self._reason(
                 main_question=query,
                 current_sub_question=current_sub_question
