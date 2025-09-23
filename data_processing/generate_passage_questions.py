@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import re
 from collections import defaultdict
 from pathlib import Path
 from typing import Dict, Iterable, List, Optional
@@ -119,15 +120,9 @@ def parse_llm_response(
     response_text: str, pubmed_id: str, pubmed_text: str
 ) -> List[Dict[str, str]]:
     """Parse an LLM response into structured question-answer dictionaries."""
-    qa_pairs: List[Dict[str, str]] = []
 
-    entries = response_text.strip().split("\n\n")
-    for entry in entries:
-        if not entry.strip():
-            continue
-
-        lines = entry.strip().split("\n")
-        current = {
+    def new_record() -> Dict[str, str]:
+        return {
             "question": "",
             "answer": "",
             "pubmed_text": pubmed_text,
@@ -135,29 +130,78 @@ def parse_llm_response(
             "pubmed_id": pubmed_id,
         }
 
-        for line in lines:
-            line = line.strip()
-            if not line or line.replace(".", "").strip().isdigit():
-                continue
+    qa_pairs: List[Dict[str, str]] = []
+    current = new_record()
+    active_field: Optional[str] = None
 
-            label, _, value = line.partition(":")
-            lowered_label = label.lower().strip()
+    label_pattern = re.compile(
+        r"^\s*(?:-\s*)?(?:\d+\.\s*)?([A-Za-z_ ]+?)(?:\s*[:\-–]\s*)(.*)$"
+    )
+
+    def normalise_label(label: str) -> Optional[str]:
+        label_key = label.lower().strip().replace(" ", "_")
+        if label_key in {"q", "question"}:
+            return "question"
+        if label_key in {"a", "answer", "ans"}:
+            return "answer"
+        if label_key in {"pubmed_id", "pubmedid", "id"}:
+            return "pubmed_id"
+        if label_key in {"pubmed_text", "passage", "passage_text", "text"}:
+            return "pubmed_text"
+        if label_key in {"table", "table_id"}:
+            return "table"
+        return None
+
+    def commit_current() -> None:
+        nonlocal current, active_field
+        if current["question"].strip() and current["answer"].strip():
+            qa_pairs.append(current)
+        current = new_record()
+        active_field = None
+
+    for raw_line in response_text.splitlines():
+        line = raw_line.strip()
+        if not line:
+            continue
+
+        match = label_pattern.match(line)
+        if match:
+            label, value = match.groups()
+            normalised = normalise_label(label)
             value = value.strip()
 
-            if lowered_label == "question":
+            if normalised == "question":
+                if current["question"] and current["answer"]:
+                    commit_current()
                 current["question"] = value
-            elif lowered_label == "answer":
+                active_field = "question"
+            elif normalised == "answer":
                 current["answer"] = value
-            elif lowered_label in {"pubmed_id", "text"}:
+                active_field = "answer"
+            elif normalised == "pubmed_id":
                 current["pubmed_id"] = value or pubmed_id
-            elif lowered_label == "table":
-                table_value = value
+                active_field = None
+            elif normalised == "pubmed_text":
+                current["pubmed_text"] = value or pubmed_text
+                active_field = None
+            elif normalised == "table":
+                table_value = value or "None"
                 if table_value.upper() in {"NA", "N/A", "NONE"}:
                     table_value = "None"
                 current["table"] = table_value
+                active_field = None
+            else:
+                active_field = None
+            continue
 
-        if current["question"] and current["answer"]:
-            qa_pairs.append(current.copy())
+        if active_field in {"question", "answer"}:
+            if current[active_field]:
+                current[active_field] += f" {line}"
+            else:
+                current[active_field] = line
+
+    if current["question"].strip() and current["answer"].strip():
+        qa_pairs.append(current)
 
     return qa_pairs
 
