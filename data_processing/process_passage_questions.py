@@ -144,7 +144,8 @@ def paraphrase_questions(
     paraphrased_data: List[Dict[str, str]] = []
 
     for _, row in tqdm(list(df.iterrows()), desc="Paraphrasing questions"):
-        question = row["question"]
+        row_dict = row.to_dict()
+        question = row_dict.get("question", "")
         prompt = f"""
         Your task is to paraphrase the following question to remove references to specific tables, datasets, or passages.
         If the question is solely about dataset structure or tables (e.g., "Does the dataset provide any links...") return "REMOVE".
@@ -170,21 +171,26 @@ def paraphrase_questions(
         paraphrased = response.choices[0].message.content.strip()
         if paraphrased == "REMOVE":
             continue
-        paraphrased_data.append(
-            {
-                "question": paraphrased,
-                "answer": row["answer"],
-                "text": row["text"],
-                "table": row["table"],
-            }
-        )
+        row_dict["question"] = paraphrased
+        paraphrased_data.append(row_dict)
 
     output_csv.parent.mkdir(parents=True, exist_ok=True)
+    fieldnames = df.columns.tolist()
+    if not paraphrased_data:
+        with output_csv.open("w", newline="", encoding="utf-8") as handle:
+            writer = csv.writer(handle, quoting=csv.QUOTE_ALL)
+            writer.writerow(fieldnames)
+        print(
+            "Processed %s questions, kept %s after paraphrasing and filtering"
+            % (len(df), 0)
+        )
+        return paraphrased_data
+
     with output_csv.open("w", newline="", encoding="utf-8") as handle:
-        writer = csv.writer(handle, quoting=csv.QUOTE_ALL)
-        writer.writerow(["question", "answer", "text", "table"])
+        writer = csv.DictWriter(handle, fieldnames=fieldnames, quoting=csv.QUOTE_ALL)
+        writer.writeheader()
         for item in paraphrased_data:
-            writer.writerow([item["question"], item["answer"], item["text"], item["table"]])
+            writer.writerow({name: item.get(name, "") for name in fieldnames})
 
     print(
         "Processed %s questions, kept %s after paraphrasing and filtering"

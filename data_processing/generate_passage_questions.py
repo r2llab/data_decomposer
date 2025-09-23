@@ -115,7 +115,9 @@ Ensure every question uses information from the passage.
     return prompt
 
 
-def parse_llm_response(response_text: str, passage_id: str) -> List[Dict[str, str]]:
+def parse_llm_response(
+    response_text: str, passage_id: str, passage_text: str
+) -> List[Dict[str, str]]:
     """Parse an LLM response into structured question-answer dictionaries."""
     qa_pairs: List[Dict[str, str]] = []
 
@@ -125,7 +127,13 @@ def parse_llm_response(response_text: str, passage_id: str) -> List[Dict[str, st
             continue
 
         lines = entry.strip().split("\n")
-        current = {"question": "", "answer": "", "text": passage_id, "table": "None"}
+        current = {
+            "question": "",
+            "answer": "",
+            "text": passage_text,
+            "table": "None",
+            "passage_id": passage_id,
+        }
 
         for line in lines:
             line = line.strip()
@@ -137,7 +145,7 @@ def parse_llm_response(response_text: str, passage_id: str) -> List[Dict[str, st
             elif "answer:" in line:
                 current["answer"] = line.split("answer:", 1)[1].strip()
             elif "text:" in line:
-                current["text"] = line.split("text:", 1)[1].strip()
+                current["passage_id"] = line.split("text:", 1)[1].strip() or passage_id
             elif "table:" in line:
                 table_value = line.split("table:", 1)[1].strip()
                 if table_value.upper() in {"NA", "N/A", "NONE"}:
@@ -174,19 +182,25 @@ def generate_questions_for_passage(
         temperature=0.7,
     )
     content = response.choices[0].message.content
-    return parse_llm_response(content, passage_id)
+    return parse_llm_response(content, passage_id, passage_text)
 
 
 def write_qa_pairs(output_file: Path, qa_pairs: Iterable[Dict[str, str]]) -> None:
     """Persist QA pairs to disk using the .gt CSV format."""
     output_file.parent.mkdir(parents=True, exist_ok=True)
+    qa_pairs = list(qa_pairs)
+    if not qa_pairs:
+        with output_file.open("w", newline="", encoding="utf-8") as handle:
+            writer = csv.writer(handle, quoting=csv.QUOTE_ALL)
+            writer.writerow(["question", "answer", "text", "table", "passage_id"])
+        return
+
+    fieldnames = ["question", "answer", "text", "table", "passage_id"]
     with output_file.open("w", newline="", encoding="utf-8") as handle:
-        writer = csv.writer(handle, quoting=csv.QUOTE_ALL)
-        writer.writerow(["question", "answer", "text", "table"])
+        writer = csv.DictWriter(handle, fieldnames=fieldnames, quoting=csv.QUOTE_ALL)
+        writer.writeheader()
         for qa_pair in qa_pairs:
-            writer.writerow(
-                [qa_pair["question"], qa_pair["answer"], qa_pair["text"], qa_pair["table"]]
-            )
+            writer.writerow({name: qa_pair.get(name, "") for name in fieldnames})
 
 
 def main() -> None:
