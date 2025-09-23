@@ -20,8 +20,8 @@ DEFAULT_MAPPING_FILE = BASE_DIR.parent / "data" / "Pharma" / "pubmed-drugbank-ta
 DEFAULT_OUTPUT_FILE = BASE_DIR / "passage_output.gt"
 
 
-def load_passage_table_mapping(mapping_path: Path) -> Dict[str, List[str]]:
-    """Load the mapping between passages and relevant tables."""
+def load_pubmed_table_mapping(mapping_path: Path) -> Dict[str, List[str]]:
+    """Load the mapping between PubMed passages and relevant tables."""
     mapping: Dict[str, List[str]] = defaultdict(list)
     if not mapping_path.exists():
         return mapping
@@ -31,8 +31,8 @@ def load_passage_table_mapping(mapping_path: Path) -> Dict[str, List[str]]:
             line = line.strip()
             if not line:
                 continue
-            passage_id, table_name = line.split(",", 1)
-            mapping[passage_id].append(table_name)
+            pubmed_id, table_name = line.split(",", 1)
+            mapping[pubmed_id].append(table_name)
     return mapping
 
 
@@ -78,13 +78,13 @@ def get_relevant_table_content(
 
 
 def build_prompt(
-    passage_id: str,
-    passage_text: str,
+    pubmed_id: str,
+    pubmed_text: str,
     table_content: Optional[Dict[str, Dict[str, object]]] = None,
 ) -> str:
     """Create the prompt used to request new question-answer pairs."""
-    if len(passage_text) > 1000:
-        passage_text = passage_text[:1000] + "..."
+    if len(pubmed_text) > 1000:
+        pubmed_text = pubmed_text[:1000] + "..."
 
     context_blocks: List[str] = []
     if table_content:
@@ -99,15 +99,15 @@ IMPORTANT: Each question MUST be answerable using information from ONLY the pass
 Only generate questions that require information from the passage.
 Focus on pharmaceutical and medical aspects. Try and make the question as difficult and technical as possible.
 
-Passage (ID: {passage_id}):
-{passage_text}
+PubMed passage (ID: {pubmed_id}):
+{pubmed_text}
 
 {context_str}
 
 Generate questions in the following format:
 1. question: [specific question about drug/treatment]
    answer: [detailed answer combining information from passage and tables]
-   text: [passage ID if information from passage was used (e.g. Target-123456789)]
+   pubmed_id: [passage ID if information from passage was used (e.g. Target-123456789)]
    table: [None]
 
 Ensure every question uses information from the passage.
@@ -116,7 +116,7 @@ Ensure every question uses information from the passage.
 
 
 def parse_llm_response(
-    response_text: str, passage_id: str, passage_text: str
+    response_text: str, pubmed_id: str, pubmed_text: str
 ) -> List[Dict[str, str]]:
     """Parse an LLM response into structured question-answer dictionaries."""
     qa_pairs: List[Dict[str, str]] = []
@@ -130,9 +130,9 @@ def parse_llm_response(
         current = {
             "question": "",
             "answer": "",
-            "text": passage_text,
+            "pubmed_text": pubmed_text,
             "table": "None",
-            "passage_id": passage_id,
+            "pubmed_id": pubmed_id,
         }
 
         for line in lines:
@@ -140,14 +140,18 @@ def parse_llm_response(
             if not line or line.replace(".", "").strip().isdigit():
                 continue
 
-            if "question:" in line:
-                current["question"] = line.split("question:", 1)[1].strip()
-            elif "answer:" in line:
-                current["answer"] = line.split("answer:", 1)[1].strip()
-            elif "text:" in line:
-                current["passage_id"] = line.split("text:", 1)[1].strip() or passage_id
-            elif "table:" in line:
-                table_value = line.split("table:", 1)[1].strip()
+            label, _, value = line.partition(":")
+            lowered_label = label.lower().strip()
+            value = value.strip()
+
+            if lowered_label == "question":
+                current["question"] = value
+            elif lowered_label == "answer":
+                current["answer"] = value
+            elif lowered_label in {"pubmed_id", "text"}:
+                current["pubmed_id"] = value or pubmed_id
+            elif lowered_label == "table":
+                table_value = value
                 if table_value.upper() in {"NA", "N/A", "NONE"}:
                     table_value = "None"
                 current["table"] = table_value
@@ -160,13 +164,13 @@ def parse_llm_response(
 
 def generate_questions_for_passage(
     client: OpenAI,
-    passage_id: str,
-    passage_text: str,
+    pubmed_id: str,
+    pubmed_text: str,
     model: str,
     table_content: Optional[Dict[str, Dict[str, object]]] = None,
 ) -> List[Dict[str, str]]:
     """Use the OpenAI client to generate question-answer pairs for a passage."""
-    prompt = build_prompt(passage_id, passage_text, table_content)
+    prompt = build_prompt(pubmed_id, pubmed_text, table_content)
     response = client.chat.completions.create(
         model=model,
         messages=[
@@ -182,7 +186,7 @@ def generate_questions_for_passage(
         temperature=0.7,
     )
     content = response.choices[0].message.content
-    return parse_llm_response(content, passage_id, passage_text)
+    return parse_llm_response(content, pubmed_id, pubmed_text)
 
 
 def write_qa_pairs(output_file: Path, qa_pairs: Iterable[Dict[str, str]]) -> None:
@@ -192,10 +196,10 @@ def write_qa_pairs(output_file: Path, qa_pairs: Iterable[Dict[str, str]]) -> Non
     if not qa_pairs:
         with output_file.open("w", newline="", encoding="utf-8") as handle:
             writer = csv.writer(handle, quoting=csv.QUOTE_ALL)
-            writer.writerow(["question", "answer", "text", "table", "passage_id"])
+            writer.writerow(["question", "answer", "pubmed_text", "table", "pubmed_id"])
         return
 
-    fieldnames = ["question", "answer", "text", "table", "passage_id"]
+    fieldnames = ["question", "answer", "pubmed_text", "table", "pubmed_id"]
     with output_file.open("w", newline="", encoding="utf-8") as handle:
         writer = csv.DictWriter(handle, fieldnames=fieldnames, quoting=csv.QUOTE_ALL)
         writer.writeheader()
@@ -253,15 +257,15 @@ def main() -> None:
 
     passages = load_target_passages(args.pubmed_targets_dir)
     tables = load_drugbank_tables(args.drugbank_tables_dir)
-    mapping = load_passage_table_mapping(args.mapping_file)
+    mapping = load_pubmed_table_mapping(args.mapping_file)
 
-    passage_items = list(passages.items())
+    pubmed_items = list(passages.items())
     if args.limit is not None:
-        passage_items = passage_items[: args.limit]
+        pubmed_items = pubmed_items[: args.limit]
 
     all_pairs: List[Dict[str, str]] = []
-    for passage_id, passage_text in tqdm(passage_items, desc="Generating questions"):
-        relevant_tables = mapping.get(passage_id, [])
+    for pubmed_id, pubmed_text in tqdm(pubmed_items, desc="Generating questions"):
+        relevant_tables = mapping.get(pubmed_id, [])
         table_content = None
         if relevant_tables and tables:
             table_content = get_relevant_table_content(
@@ -269,8 +273,8 @@ def main() -> None:
             )
         qa_pairs = generate_questions_for_passage(
             client,
-            passage_id,
-            passage_text,
+            pubmed_id,
+            pubmed_text,
             model=args.model,
             table_content=table_content,
         )
