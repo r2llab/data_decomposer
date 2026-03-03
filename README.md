@@ -77,6 +77,32 @@ Example:
 "What is the mechanism of action for Cetuximab?","Cetuximab is an EGFR binding FAB, targeting the EGFR in humans.","None","drugbank-targets"
 ```
 
+## Passage QA Pipeline (OpenRouter)
+
+All passage QA generation and processing scripts use OpenRouter for LLM calls. Place your key in `.env` at the repo root as `OPENROUTER_API_KEY`.
+
+- End-to-end runner (workers decide mode):
+  - Sequential (workers=1):
+    - `python data_processing/run_passage_pipeline.py --num-questions 100 --workers 1`
+  - Parallel (workers>1):
+    - `python data_processing/run_passage_pipeline.py --workers 4 --num-questions 100`
+  - Optional: restrict sources considered to the first N passages for debugging: `--limit N`
+  - Passage source for each generation attempt is randomly sampled from the available passage set.
+  - Optional reproducibility: `--seed 42`
+  - Default model is `openai/gpt-5.2` (override with `--model`)
+  - Outputs are CSV files:
+    - all generated QA rows: `--generated-file` (default `data_processing/passage_generated.csv`)
+    - processed QA rows: `--processed-file` (default `data_processing/passage_processed.csv`)
+  - Each output row includes:
+    - `question_id`: unique ID to reference the question
+    - `short_answer`: direct short answer
+    - `answer_reasoning`: brief supporting reasoning
+  - Files are flushed to disk every 20 written rows during execution.
+
+- Individual stages remain available:
+  - Generation only: `python data_processing/generate_passage_questions.py --model openai/gpt-5.2`
+  - Processing only: `python data_processing/process_passage_questions.py --model openai/gpt-5.2`
+
 # Acknowledgements
 
 While building the benchmark and implementing the three methods, I used Github Co-pilot as an assistive tool. I primary used Co-pilot for assisting in writing boiler plate code for functions that I planned, designed and architected myself.

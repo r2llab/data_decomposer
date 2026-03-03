@@ -1,0 +1,563 @@
+{
+  "individual_results": [
+    {
+      "question": "Which drug has the earliest patent expiration date in the United States, and what clinical considerations should healthcare professionals evaluate regarding this expiration date for treatment access and cost implications?",
+      "gt_answer": "The drug with parent_key **DB00001** has the earliest patent expiration in the United States on **2010-01-19** (patent number 5180668). Healthcare professionals should consider that the expiration of this patent likely enabled the introduction of generic equivalents post-2010, potentially reducing costs and improving treatment accessibility for patients. This timing may influence prescribing decisions, especially in resource-limited settings or when managing long-term therapies where cost is a critical factor.",
+      "system_answer": "ERROR: RetryError[<Future at 0x2ac2065f0 state=finished raised RateLimitError>]",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_patents']"
+      ],
+      "system_sources": [],
+      "error": "RetryError[<Future at 0x2ac2065f0 state=finished raised RateLimitError>]"
+    },
+    {
+      "question": "\"Which drugs have both RxList and Drugs.com patient education resources available, and what are their generic names?\"",
+      "gt_answer": "\"The following drugs have both RxList and Drugs.com links with their associated generic names derived from the URLs:",
+      "system_answer": "ERROR: RetryError[<Future at 0x2ac8377c0 state=finished raised RateLimitError>]",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_external_links']"
+      ],
+      "system_sources": [],
+      "error": "RetryError[<Future at 0x2ac8377c0 state=finished raised RateLimitError>]"
+    },
+    {
+      "question": "Which enzymes are commonly involved in two specific metabolic pathways, and what clinical implications might this shared enzymatic involvement have for patients receiving multiple medications metabolized through these pathways?",
+      "gt_answer": "The enzymes P00734 (CYP3A4), P00748 (CYP2D6), P02452 (CYP2C9), P03952 (CYP1A2), P03951 (CYP2E1), P00740 (CYP2C19), P00451 (CYP2B6), P12259 (CYP2A6), P00742 (CYP2C8), P02671 (CYP2J2), P02675 (CYP2W1), P02679 (CYP2S1), P00488 (CYP2U1), P05160 (CYP3A7), P00747 (CYP2F2), P00750 (CYP2G1), and P08709 (CYP4F2) are shared between SMP0000277 and SMP0000278 pathways. This overlap suggests that drugs metabolized by these enzymes (e.g., CYP3A4, CYP2D6, CYP2C9) may exhibit complex drug-drug interactions when co-administered, as competitive inhibition or induction of these enzymes could alter the metabolism of multiple substrates, increasing the risk of toxicity or therapeutic failure.",
+      "system_answer": "ERROR: RetryError[<Future at 0x2ac957be0 state=finished raised RateLimitError>]",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_pathway_enzymes']"
+      ],
+      "system_sources": [],
+      "error": "RetryError[<Future at 0x2ac957be0 state=finished raised RateLimitError>]"
+    },
+    {
+      "question": "For a patient requiring 25 mg of Enbrel weekly for 4 weeks, which formulation (kit, syringe, or boxed quantity) offers the most cost-effective treatment option?",
+      "gt_answer": "The most cost-effective option is the Enbrel 50 mg/ml sureclick syringe at $488.74 per syringe (50 mg dose), which provides two 25 mg doses per syringe. For 4 weeks (8 total 25 mg doses), this would require 4 syringes at a total cost of $1,954.96. This is cheaper than the 25 mg kit ($250.37/kit \u00d7 4 kits = $1,001.48 for 4 weeks) or the 4 \u00d7 25 mg box ($1,016.57 for 4 kits).",
+      "system_answer": "ERROR: RetryError[<Future at 0x2ac5411e0 state=finished raised RateLimitError>]",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_prices']"
+      ],
+      "system_sources": [],
+      "error": "RetryError[<Future at 0x2ac5411e0 state=finished raised RateLimitError>]"
+    },
+    {
+      "question": "Which drug metabolized by CYP3A4 is associated with a potential pharmacokinetic interaction when co-administered with clotrimazole, and what specific study supports this interaction mechanism?",
+      "gt_answer": "Sildenafil is metabolized by CYP3A4, and co-administration with clotrimazole (a CYP3A4 inhibitor) could increase sildenafil plasma concentrations, potentially enhancing its pharmacologic effects or toxicity. This interaction is supported by the study titled \"Effects of oral clotrimazole troches on the pharmacokinetics of oral and intravenous midazolam\" (ref-id: F3109), which demonstrates that clotrimazole inhibits CYP3A4 activity. The CYP3A4 metabolic pathway is critical for sildenafil's clearance, as indicated in the Sildenafil FDA label (ref-id: F1870).",
+      "system_answer": "ERROR: RetryError[<Future at 0x2ac177040 state=finished raised RateLimitError>]",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_enzymes_attachments']"
+      ],
+      "system_sources": [],
+      "error": "RetryError[<Future at 0x2ac177040 state=finished raised RateLimitError>]"
+    },
+    {
+      "question": "Which metabolic pathway has the highest number of enzymes and what does this suggest about potential drug targets or interactions in that pathway?",
+      "gt_answer": "\"The pathway ID **SMP0000278** is associated with the largest number of enzymes in the dataset (20 entries), compared to **SMP0000277** (10 entries) and **SMP0000474** (1 entry). This suggests that enzymes within SMP0000278 are more likely to be involved in complex drug metabolism or pharmacological interactions, as their involvement in multiple pathways may increase the risk of polypharmacy-related adverse effects or therapeutic conflicts. Clinically, this highlights the need for careful monitoring of drug interactions involving enzymes in this pathway, particularly for drugs that inhibit or induce these enzymes (e.g., cytochrome P450s).\"",
+      "system_answer": "ERROR: RetryError[<Future at 0x2ad839930 state=finished raised RateLimitError>]",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_pathway_enzymes']"
+      ],
+      "system_sources": [],
+      "error": "RetryError[<Future at 0x2ad839930 state=finished raised RateLimitError>]"
+    },
+    {
+      "question": "For a specific drug",
+      "gt_answer": " how many manufacturers produce generic formulations compared to non-generic formulations",
+      "system_answer": "ERROR: RetryError[<Future at 0x2addfb550 state=finished raised RateLimitError>]",
+      "gt_sources": [
+        " and what are the names of the manufacturers in each category?\"\"\"",
+        "\"Drugbank-id DB00035 is associated with **6 generic manufacturers** and **4 non-generic manufacturers**. The generic manufacturers include Bedford Laboratories (generic=true)",
+        " Hospira Inc (generic=true)",
+        " Teva Parenteral Medicines Inc (generic=true)",
+        " Apotex Inc Etobicoke Site (generic=true)",
+        " Teva Pharmaceuticals USA (generic=true)",
+        " and Watson Laboratories Inc (generic=true). The non-generic manufacturers include Sanofi Aventis US LLC (generic=false)",
+        " Ferring Pharmaceuticals Inc (generic=false)",
+        " Apotex Inc Richmond Hill (generic=false)",
+        " and CSL Bering LLC (generic=false).\""
+      ],
+      "system_sources": [],
+      "error": "RetryError[<Future at 0x2addfb550 state=finished raised RateLimitError>]"
+    },
+    {
+      "question": "Which drug interacts with both CYP2D6 and CYP2C9 enzymes, and what are the specific inhibition/induction strengths observed for these interactions?",
+      "gt_answer": "The drug with parent_key DB00022 interacts with both CYP2D6 and CYP2C9 enzymes. For CYP2D6 (BE0002363), the inhibition strength is \"weak,\" while for CYP2C9 (BE0002793), the induction strength is \"weak.\" This suggests the drug may have moderate metabolic interaction potential with drugs metabolized by these enzymes.",
+      "system_answer": "ERROR: RetryError[<Future at 0x2ad83a230 state=finished raised RateLimitError>]",
+      "gt_sources": [
+        "None",
+        "['drugbank-enzymes']"
+      ],
+      "system_sources": [],
+      "error": "RetryError[<Future at 0x2ad83a230 state=finished raised RateLimitError>]"
+    },
+    {
+      "question": "For a patient requiring 100 mg of Enbrel monthly, which formulation offers the most cost-effective dosing strategy, and what is the total monthly cost?",
+      "gt_answer": "The most cost-effective formulation is using two 50 mg/ml sureclick syringes. Each 50 mg syringe costs $488.74, totaling $977.48 for 100 mg. This is cheaper than the 4 x 25 mg box ($1016.57 for 100 mg) or the 4 x 50 mg box ($2033.14 for 200 mg).",
+      "system_answer": "ERROR: RetryError[<Future at 0x2acd8fb50 state=finished raised RateLimitError>]",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_prices']"
+      ],
+      "system_sources": [],
+      "error": "RetryError[<Future at 0x2acd8fb50 state=finished raised RateLimitError>]"
+    },
+    {
+      "question": "Which drug has the most linguistically diverse synonyms across multiple languages, and what does this suggest about its international naming conventions and therapeutic classification?",
+      "gt_answer": "The drug with the most linguistically diverse synonyms is **Cetuximab** (drugbank-id: DB00002), which has synonyms in English, Spanish, German, and French (e.g., \"C\u00e9\u00e9tuximab\" in French and \"Cetuximabum\" in Latin). This diversity reflects its classification as an **International Nonproprietary Name (INN)** and **United States Adopted Name (USAN)**, as indicated by its \"inn/usan\" coder. The multiple language synonyms underscore its global clinical adoption, particularly as a **monoclonal antibody targeting the epidermal growth factor receptor (EGFR)** used in oncology, necessitating standardized nomenclature for multinational use and regulatory approval.",
+      "system_answer": "ERROR: RetryError[<Future at 0x2aca10610 state=finished raised RateLimitError>]",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_syn']"
+      ],
+      "system_sources": [],
+      "error": "RetryError[<Future at 0x2aca10610 state=finished raised RateLimitError>]"
+    },
+    {
+      "question": "Which drug (by DrugBank ID) has the most distinct manufacturers, including both brand-name and generic manufacturers, and what clinical implications might this have for formulary management or drug supply chain stability?",
+      "gt_answer": "The drug with DrugBank ID **DB00035** has the most distinct manufacturers listed (12 total), including 8 generic manufacturers (Bedford Laboratories, Hospira, Teva Parenteral Medicines, Ferring Pharmaceuticals, Apotex Inc Etobicoke Site, Teva Pharmaceuticals USA, Watson Laboratories, and Bausch and Lomb Pharmaceuticals) and 4 brand-name manufacturers (Apotex Inc Richmond Hill, CSL Behring LLC, Ferring Pharmaceuticals Inc, and Apotex Inc Etobicoke Site). This high number of manufacturers may indicate a drug with multiple suppliers, potentially enhancing supply chain resilience and formulary flexibility, but also requiring careful evaluation of bioequivalence and interchangeability between manufacturers for clinical consistency.",
+      "system_answer": "ERROR: RetryError[<Future at 0x2ac0cec80 state=finished raised RateLimitError>]",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_manufacturers']"
+      ],
+      "system_sources": [],
+      "error": "RetryError[<Future at 0x2ac0cec80 state=finished raised RateLimitError>]"
+    },
+    {
+      "question": "How do the molecular and functional characteristics of the ABCB1-encoded Multidrug Resistance Protein 1 (MDR1), such as its isoelectric point, molecular weight, and cellular localization, relate to its role in xenobiotic efflux and multidrug resistance in cancer treatment?",
+      "gt_answer": "The ABCB1-encoded Multidrug Resistance Protein 1 (MDR1) functions as an energy-dependent efflux pump (specific function) that reduces intracellular drug accumulation, directly contributing to multidrug resistance in cancer cells. Its cellular localization to the plasma membrane (cellular_location) positions it to actively transport xenobiotics (general_function) out of the cell. The protein's high molecular weight (141,477.26 Da) and basic isoelectric point (pI 9.44) suggest a large, positively charged structure that may interact with anionic drug substrates or membrane phospholipids, facilitating its efflux mechanism. These properties, combined with its role in xenobiotic transport, explain its clinical relevance in reducing the efficacy of chemotherapy agents by limiting their intracellular concentration.",
+      "system_answer": "ERROR: RetryError[<Future at 0x2ac2434f0 state=finished raised RateLimitError>]",
+      "gt_sources": [
+        "None",
+        "['drugbank-transporters_polypeptides']"
+      ],
+      "system_sources": [],
+      "error": "RetryError[<Future at 0x2ac2434f0 state=finished raised RateLimitError>]"
+    },
+    {
+      "question": "Which parent key is linked to the highest number of unique pharmaceutical companies, and what does this imply about potential drug distribution and manufacturer collaboration in clinical practice?",
+      "gt_answer": "The parent_key DB00005 is associated with the most distinct pharmaceutical companies (6 total), including Amgen Inc., Boehringer Ingelheim Ltd., DSM Corp., Immunex Corp., Physicians Total Care Inc., and Vetter Pharma Fertigung GmbH and Co. KG. This implies that drugs linked to DB00005 likely involve multi-manufacturer collaboration, which could enhance supply chain resilience, facilitate broader distribution, or support specialized manufacturing requirements (e.g., biologics or complex formulations). Clinically, this may affect drug availability, potential for generic alternatives, and the need for consistent quality assurance across multiple producers.",
+      "system_answer": "ERROR: RetryError[<Future at 0x2acf04250 state=finished raised RateLimitError>]",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_packagers']"
+      ],
+      "system_sources": [],
+      "error": "RetryError[<Future at 0x2acf04250 state=finished raised RateLimitError>]"
+    },
+    {
+      "question": "Which drug is identified by specific RxCUI, PubChem Substance ID, and KEGG Drug ID, and what is its marketed name?",
+      "gt_answer": "The drug identified by the RxCUI 237057, PubChem Substance ID 46507011, and KEGG Drug ID D06880 is **Lepirudin**, as confirmed by its Wikipedia identifier.",
+      "system_answer": "ERROR: RetryError[<Future at 0x2ac834be0 state=finished raised RateLimitError>]",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_external_identifiers']"
+      ],
+      "system_sources": [],
+      "error": "RetryError[<Future at 0x2ac834be0 state=finished raised RateLimitError>]"
+    },
+    {
+      "question": "Which transporters are associated with the drug, and how might their functional overlap or redundancy influence the pharmacokinetics and drug-drug interaction potential of this drug?",
+      "gt_answer": "The drug with parent_key DB00091 is associated with multiple transporters, including P-glycoprotein 1 (P-gp), Bile salt export pump (BSEP), Ileal sodium/bile acid cotransporter (ISBT), Sodium/bile acid cotransporter (ASBT), Solute carrier family 22 member 6 (SLC22A6), Multidrug resistance-associated protein 7 (MRP7), ATP-binding cassette sub-family G member 2 (ABCG2), Solute carrier organic anion transporter family member 1B1 (SLCO1B1), and Solute carrier organic anion transporter family member 1B3 (SLCO1B3). These transporters are involved in hepatic bile acid efflux, intestinal absorption of bile acids, and hepatic uptake of organic anions. Functional redundancy among these transporters (e.g., ISBT and ASBT for bile acid reabsorption) may buffer against single transporter inhibition but could amplify drug-drug interactions if multiple pathways are simultaneously inhibited. For example, co-administration of a P-gp and SLCO1B1 inhibitor could reduce hepatic uptake and intestinal efflux, leading to increased systemic exposure and toxicity risk.",
+      "system_answer": "ERROR: RetryError[<Future at 0x2bda50b50 state=finished raised RateLimitError>]",
+      "gt_sources": [
+        "None",
+        "['drugbank-transporters']"
+      ],
+      "system_sources": [],
+      "error": "RetryError[<Future at 0x2bda50b50 state=finished raised RateLimitError>]"
+    },
+    {
+      "question": "Which pharmacological property or mechanism is most prominently discussed in the references of a drug, and how does this relate to its therapeutic relevance in clinical practice?",
+      "gt_answer": "The pharmacological property most prominently discussed in the references for the drug linked to parent_key \"BE0000703\" is **predictive drug metabolism and pharmacokinetics**, as detailed in Wilson A.'s 2016 work published by The Royal Society of Chemistry (ISBN 978-1-84973-828-6). This reference is cited seven times in the table, indicating its significance. Predictive pharmacokinetics is critical for optimizing drug dosing regimens, minimizing toxicity, and enhancing therapeutic efficacy by understanding how the body absorbs, distributes, metabolizes, and excretes the drug. This aligns with clinical practices such as personalized medicine, where metabolic profiles guide dosage adjustments to achieve desired pharmacological effects.",
+      "system_answer": "ERROR: RetryError[<Future at 0x2bdccbfd0 state=finished raised RateLimitError>]",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_trans_textbooks']"
+      ],
+      "system_sources": [],
+      "error": "RetryError[<Future at 0x2bdccbfd0 state=finished raised RateLimitError>]"
+    },
+    {
+      "question": "Which drug has the most diverse dosing formulations and administration routes, and what are the specific combinations of form and route for this drug?",
+      "gt_answer": "The drug with the most diverse dosing formulations and administration routes is **DB00005**. It includes the following unique combinations of form and route:",
+      "system_answer": "ERROR: RetryError[<Future at 0x2ae2dba90 state=finished raised RateLimitError>]",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_dosages']"
+      ],
+      "system_sources": [],
+      "error": "RetryError[<Future at 0x2ae2dba90 state=finished raised RateLimitError>]"
+    },
+    {
+      "question": "Which enzymes are commonly involved in two metabolic pathways, and what clinical implications might this shared enzymatic involvement have for drug metabolism or pharmacokinetic interactions?",
+      "gt_answer": "The enzymes shared between the pathways SMP0000278 and SMP0000277 include **P00734 (CYP2C19), P00748 (CYP2C9), P02452 (CYP3A4), P03952 (CYP2C8), P03951 (CYP2C18), P00740 (CYP2B6), P00451 (CYP2D6), P12259 (CYP2A6), and P00742 (CYP2C19)**. This overlap suggests that drugs metabolized by these enzymes (e.g., CYP2C9, CYP2C19, CYP3A4) may have pharmacokinetic interactions when co-administered, as competitive inhibition or induction of these shared enzymes could alter drug clearance, potentially leading to toxicity or reduced efficacy. For example, a drug inhibiting CYP2C9/2C19 might affect the metabolism of warfarin or other substrates in both pathways.",
+      "system_answer": "ERROR: RetryError[<Future at 0x2ae43df60 state=finished raised RateLimitError>]",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_pathway_enzymes']"
+      ],
+      "system_sources": [],
+      "error": "RetryError[<Future at 0x2ae43df60 state=finished raised RateLimitError>]"
+    },
+    {
+      "question": "Paraphrased question: For a drug with two U.S. patents that include pediatric extensions, what is the combined duration of market exclusivity provided by these extensions, and how does this compare to the standard 20-year patent term?",
+      "gt_answer": "The two U.S. patents for DB00006 (7598343 and 7582727) have original expiration dates of 2029-01-27 and share a 20-year standard term from their approval date of 2009-09/10. The pediatric extensions (both marked as \"true\") typically add up to 6 months of market exclusivity per patent under the Hatch-Waxman Act. Since these patents share the same expiration date (2029-01-27), the combined extension would not add additional months beyond the standard 20-year term (2009-09 to 2029-09). However, the extensions delay the actual market exclusivity expiration by 6 months, resulting in a final exclusivity end date of 2029-07-27. This is 6 months longer than the standard 20-year term (2029-09), providing the patent holder with a total of 20 years and 6 months of exclusivity for this drug.",
+      "system_answer": "ERROR: RetryError[<Future at 0x2be9b5270 state=finished raised RateLimitError>]",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_patents']"
+      ],
+      "system_sources": [],
+      "error": "RetryError[<Future at 0x2be9b5270 state=finished raised RateLimitError>]"
+    },
+    {
+      "question": "How do distinct cellular components and functional annotations of polypeptides contribute to pharmacological interactions involving drug metabolism and transport mechanisms?",
+      "gt_answer": "The two polypeptide entries demonstrate complementary roles in drug-related processes. BE0000537 is annotated with **serine-type endopeptidase inhibitor activity** (function) and **response to drug** (process), suggesting involvement in modulating enzymatic pathways critical for drug degradation. Its **extracellular exosome** and **extracellular space** (components) imply potential roles in intercellular communication and drug delivery. Conversely, BE0000530 exhibits **drug binding** (function) and is localized in **endoplasmic reticulum**, **Golgi apparatus**, and **platelet alpha granule lumen** (components), indicating direct participation in intracellular drug processing and transport. Together, these annotations highlight how BE0000537 may inhibit proteolytic enzymes affecting drug stability, while BE0000530 facilitates drug sequestration or trafficking, both influencing pharmacokinetics and therapeutic outcomes.",
+      "system_answer": "ERROR: RetryError[<Future at 0x2bef0ece0 state=finished raised RateLimitError>]",
+      "gt_sources": [
+        "None",
+        "['drugbank-carriers_polypeptides_go']"
+      ],
+      "system_sources": [],
+      "error": "RetryError[<Future at 0x2bef0ece0 state=finished raised RateLimitError>]"
+    },
+    {
+      "question": "Which drug is associated with both weak CYP2D6 inhibition and weak CYP2C9 induction, and what are the clinical implications for patients co-administered drugs metabolized by these enzymes?",
+      "gt_answer": "The drug associated with weak CYP2D6 inhibition and weak CYP2C9 induction is linked to parent_key DB00022 (as evidenced by BE0002363 for CYP2D6 with inhibition-strength \"weak\" and BE0002793 for CYP2C9 with induction-strength \"weak\"). Clinically, this suggests the drug may modestly reduce CYP2D6-mediated metabolism of co-administered substrates (e.g., antidepressants, antipsychotics), potentially increasing their plasma concentrations, while weakly inducing CYP2C9 (e.g., affecting warfarin or NSAIDs), which could decrease the efficacy of CYP2C9 substrates. Dose adjustments or alternative therapies may be needed for drugs with narrow therapeutic indices metabolized by these enzymes.",
+      "system_answer": "ERROR: RetryError[<Future at 0x2bf1b27a0 state=finished raised RateLimitError>]",
+      "gt_sources": [
+        "None",
+        "['drugbank-enzymes']"
+      ],
+      "system_sources": [],
+      "error": "RetryError[<Future at 0x2bf1b27a0 state=finished raised RateLimitError>]"
+    },
+    {
+      "question": "Which drug, based on its interactions, demonstrates the most complex immunomodulatory mechanism by simultaneously targeting multiple components of both adaptive and innate immune pathways, and what specific molecular interactions support this classification?",
+      "gt_answer": "The drug with parent key **DB00005** demonstrates the most complex immunomodulatory mechanism. It simultaneously targets **Tumor Necrosis Factor (TNF)** (known_action: yes), **Fc gamma receptors (III-A, II-a, II-b, II-c, III-B)** (known_action: unknown), and **Lymphotoxin-alpha** (known_action: yes), as well as **Complement C1q** (known_action: unknown). This drug modulates both adaptive (e.g., TNF and Lymphotoxin-alpha signaling in T-cell activation and inflammation) and innate immune pathways (e.g., Fc receptor-mediated phagocytosis and complement system activation). The targeting of multiple Fc receptor isoforms and complement components suggests a broad immunosuppressive or anti-inflammatory profile, potentially used in autoimmune disorders or oncology.",
+      "system_answer": "ERROR: RetryError[<Future at 0x2bf90b6d0 state=finished raised RateLimitError>]",
+      "gt_sources": [
+        "None",
+        "['drugbank-targets']"
+      ],
+      "system_sources": [],
+      "error": "RetryError[<Future at 0x2bf90b6d0 state=finished raised RateLimitError>]"
+    },
+    {
+      "question": "How do polymorphisms in the CYP2D6 gene influence the metabolism and therapeutic outcomes of fluvoxamine, venlafaxine, and metoprolol, and what specific SNPs and alleles are associated with these effects?",
+      "gt_answer": "Polymorphisms in the CYP2D6 gene significantly impact the metabolism of fluvoxamine, venlafaxine, and metoprolol, with distinct SNPs and alleles contributing to these effects. For fluvoxamine, reduced metabolism is associated with the CYP2D6*3 polymorphism (rs35742686, 2549delA), CYP2D6*4 (rs3892097, A allele), CYP2D6*6 (rs5030655, 1707delT), and CYP2D6*3 (rs1135824, G allele). For venlafaxine, CYP2D6*4 (rs3892097, A allele), CYP2D6*6 (rs5030655, T deletion), and CYP2D6*5 (whole-gene deletion, homozygote) are linked to reduced metabolism. For metoprolol, CYP2D6*4 (rs3892097, A allele) and CYP2D6*3 (rs1135824, G allele) are associated with decreased metabolism. These genetic variants classify patients as poor metabolizers, leading to increased drug exposure and potential adverse effects or necessitating dose adjustments. Additionally, SNPs in the ADRB1 gene (rs1801252 and rs1801253) enhance metoprolol\u2019s blood pressure-lowering efficacy, complementing CYP2D6-related metabolic effects.",
+      "system_answer": "ERROR: RetryError[<Future at 0x2bfaf9bd0 state=finished raised RateLimitError>]",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_snp_effects']"
+      ],
+      "system_sources": [],
+      "error": "RetryError[<Future at 0x2bfaf9bd0 state=finished raised RateLimitError>]"
+    },
+    {
+      "question": "What is the mechanistic distinction between paroxetine's effect on (R)-methadone metabolism in CYP2D6 extensive metabolizers versus interferon-alpha/beta's effect on CYP1A1/1A2 expression, and how might these findings influence clinical dosing strategies for co-administered drugs metabolized by these pathways?",
+      "gt_answer": "Paroxetine, as a CYP2D6 inhibitor, increases (R)-methadone concentrations in CYP2D6 extensive metabolizers (but not poor metabolizers) by directly competing for CYP2D6-mediated methadone metabolism (Begre et al., J Clin Psychopharmacol 2002;22:211-5). In contrast, interferon-alpha/beta downregulates both transcriptional and post-transcriptional expression of CYP1A1 and CYP1A2, as demonstrated in studies showing reduced enzyme activity under interferon-induced conditions (Delaporte & Renton, Life Sci 1997;60:787-96). Clinically, this suggests that paroxetine co-administration with CYP2D6 substrates (e.g., methadone) requires dose reduction in extensive metabolizers to prevent toxicity, while interferon therapy may necessitate monitoring of CYP1A2-metabolized drugs (e.g., theophylline, clozapine) due to reduced metabolic clearance caused by enzyme downregulation.",
+      "system_answer": "ERROR: RetryError[<Future at 0x2be9b4df0 state=finished raised RateLimitError>]",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_enzymes_articles']"
+      ],
+      "system_sources": [],
+      "error": "RetryError[<Future at 0x2be9b4df0 state=finished raised RateLimitError>]"
+    },
+    {
+      "question": "Which drug has URLs containing the terms \"diphtheria\" and \"diftitox,\" and what does this suggest about its pharmacological classification or mechanism of action based on the terminology used in the URLs?",
+      "gt_answer": "The drug associated with this pattern is **denileukin diftitox** (parent key DB00004). The RxList URL (`denileukin.htm`) and Drugs.com URL (`denileukin-diftitox.html`) both contain the term \"diftitox,\" which refers to its composition as a fusion protein combining the diphtheria toxin with the IL-2 receptor-binding domain of denileukin. This nomenclature reflects its mechanism as an **immunotoxin** that targets IL-2 receptors on tumor cells, delivering the diphtheria toxin to inhibit protein synthesis in the affected cells.",
+      "system_answer": "ERROR: RetryError[<Future at 0x2bea9e680 state=finished raised RateLimitError>]",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_external_links']"
+      ],
+      "system_sources": [],
+      "error": "RetryError[<Future at 0x2bea9e680 state=finished raised RateLimitError>]"
+    },
+    {
+      "question": "Which PFAM domain is associated with the greatest number of distinct parent keys, and what clinical implications might this have regarding drug transport or interaction mechanisms?",
+      "gt_answer": "The PFAM domain **Lipocalin (PF00061)** is associated with the most distinct parent keys (BE0000682, BE0000532, BE0000314, BE0000505, BE0000301, BE0000925), appearing 6 times with unique identifiers. In contrast, **CRAL_TRIO (PF00650)** and **CRAL_TRIO_N (PF03765)** are also repeated with multiple parent keys (BE0000786, BE0000643, BE0000256, BE0000339). This suggests that Lipocalin and CRAL_TRIO domains are likely involved in diverse drug transport or binding roles, potentially affecting pharmacokinetics or interactions. For example, Lipocalin proteins are known to bind small hydrophobic molecules, so drugs interacting with multiple Lipocalin variants may exhibit variable distribution or clearance. Similarly, CRAL_TRIO domains (e.g., in retinoid-binding proteins) could influence lipid-soluble drug interactions. Clinically, this diversity might necessitate careful monitoring of drug efficacy or adverse effects in patients with polymorphic carrier expression.",
+      "system_answer": "ERROR: RetryError[<Future at 0x2bf787190 state=finished raised RateLimitError>]",
+      "gt_sources": [
+        "None",
+        "['drugbank-carriers_polypeptides_pfams']"
+      ],
+      "system_sources": [],
+      "error": "RetryError[<Future at 0x2bf787190 state=finished raised RateLimitError>]"
+    },
+    {
+      "question": "Which pharmaceutical company is listed as a packager for the most distinct drug products, and how many different drug products does it manufacture?",
+      "gt_answer": "Cardinal Health is listed as a packager for three distinct drug products, corresponding to parent_keys DB00002, DB00003, and DB00007. This is the highest number among the listed companies, which reflects its role in manufacturing or distributing multiple therapeutics.",
+      "system_answer": "ERROR: RetryError[<Future at 0x2bdb9b8e0 state=finished raised RateLimitError>]",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_packagers']"
+      ],
+      "system_sources": [],
+      "error": "RetryError[<Future at 0x2bdb9b8e0 state=finished raised RateLimitError>]"
+    },
+    {
+      "question": "Which drug modulates both a pro-inflammatory cytokine and multiple Fc gamma receptors, and what are the pharmacological implications of this multi-target mechanism for its therapeutic use in autoimmune diseases?",
+      "gt_answer": "The drug with **parent_key DB00005** (e.g., potentially a monoclonal antibody or cytokine modulator) targets **Tumor Necrosis Factor (TNF)**, a key pro-inflammatory cytokine, and multiple **Fc gamma receptors (e.g., Fc\u03b3RI, Fc\u03b3RII-a, Fc\u03b3RII-b, Fc\u03b3RII-c, Fc\u03b3RIII-A, Fc\u03b3RIII-B)**. This dual mechanism suggests it may suppress immune-mediated inflammation by neutralizing TNF while also modulating antibody-dependent cellular cytotoxicity (ADCC) and phagocytosis via Fc receptor interactions. However, the \"known_action\" for TNF is confirmed (\"yes\"), while Fc receptor interactions are \"unknown,\" indicating potential off-target effects. This multi-target profile could enhance efficacy in autoimmune disorders like rheumatoid arthritis or lupus by reducing inflammation and immune cell activation but may also increase risks of immunosuppression or paradoxical hypersensitivity reactions.",
+      "system_answer": "ERROR: RetryError[<Future at 0x2abf39c00 state=finished raised RateLimitError>]",
+      "gt_sources": [
+        "None",
+        "['drugbank-targets']"
+      ],
+      "system_sources": [],
+      "error": "RetryError[<Future at 0x2abf39c00 state=finished raised RateLimitError>]"
+    },
+    {
+      "question": "A patient is receiving a novel anticoagulant targeting multiple components of the hemostatic cascade. Based on biological processes, which two specific pathways should be prioritized for monitoring to detect potential drug-induced alterations in hemostasis, and what is the clinical rationale for this selection?",
+      "gt_answer": "The two pathways to prioritize are \"blood coagulation, intrinsic pathway\" and \"platelet activation.\" This is because the listed data includes direct regulation of both coagulation (via intrinsic pathway inhibition) and platelet activation (via \"negative regulation of platelet activation\"). These processes are central to hemostasis and thrombosis, and a drug affecting both would require monitoring of clotting factor activity (e.g., PT/INR, aPTT) and platelet function tests to prevent bleeding complications or paradoxical thrombosis.",
+      "system_answer": "ERROR: RetryError[<Future at 0x2be919600 state=finished raised RateLimitError>]",
+      "gt_sources": [
+        "None",
+        "['drugbank-targets_polypeptides_go']"
+      ],
+      "system_sources": [],
+      "error": "RetryError[<Future at 0x2be919600 state=finished raised RateLimitError>]"
+    },
+    {
+      "question": "What is the clinical significance of Fluvoxamine's FDA label and the Flockhart Table of Drug Interactions being linked to the same DrugBank entry, and how does this relate to its CYP450 enzyme interactions and drug interaction management in clinical practice?",
+      "gt_answer": "The linkage of Fluvoxamine's FDA label (L7544) and the Flockhart Table of Drug Interactions (L162) under the same parent key (BE0002638) indicates that Fluvoxamine is a drug with clinically significant CYP450 enzyme interactions. The FDA label (L7544) provides detailed pharmacokinetic data, including Fluvoxamine's role as a moderate CYP2D6 inhibitor and a weak CYP3A4 inhibitor, which directly impacts the metabolism of co-administered drugs like SSRIs, tricyclic antidepressants, and beta-blockers. The Flockhart Table (L162) serves as a comprehensive clinical resource that categorizes Fluvoxamine as a CYP2D6 inhibitor, aiding healthcare providers in identifying high-risk drug combinations (e.g., with metoprolol or codeine). Together, these resources emphasize the need for dose adjustments, alternative drug selection, or enhanced monitoring when prescribing Fluvoxamine with CYP2D6/3A4 substrates, particularly in patients with genetic polymorphisms affecting CYP enzyme activity.",
+      "system_answer": "ERROR: RetryError[<Future at 0x2bf732710 state=finished raised RateLimitError>]",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_enzymes_links']"
+      ],
+      "system_sources": [],
+      "error": "RetryError[<Future at 0x2bf732710 state=finished raised RateLimitError>]"
+    },
+    {
+      "question": "Which drug is referenced in two different textbooks, and what pharmacological aspects are discussed in each regarding this drug?",
+      "gt_answer": "The drug associated with **parent_key BE0000530** is referenced in both texts. In *Medications & Mothers' Milk* (2017, ref-id T445), it is discussed in the context of maternal lactation and drug excretion into breast milk. In *Xenobiotic Metabolism and Disposition* (1988, ref-id T89), the drug is analyzed for its metabolism and disposition pathways. This dual reference highlights its clinical relevance in both lactation safety and pharmacokinetic profiling.",
+      "system_answer": "ERROR: RetryError[<Future at 0x2ae1e6f80 state=finished raised RateLimitError>]",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_carriers_textbooks']"
+      ],
+      "system_sources": [],
+      "error": "RetryError[<Future at 0x2ae1e6f80 state=finished raised RateLimitError>]"
+    },
+    {
+      "question": "Which drug has the highest systemic clearance in its intended patient population, and how does its administration route or formulation strategy compensate for this to achieve therapeutic efficacy?",
+      "gt_answer": "Leuprolide has the highest systemic clearance of 7.6\u20138.3 L/h in healthy males, as reported in its pharmacology data. Despite this high clearance, leuprolide is administered as a long-acting formulation (e.g., microsphere or biodegradable depot) to extend its therapeutic effect. This formulation strategy ensures sustained release, allowing for less frequent dosing (typically monthly or quarterly) despite rapid systemic clearance. In contrast, other drugs with high clearance (e.g., etanercept at 160 mL/hr in rheumatoid arthritis patients) rely on different mechanisms, such as larger molecular size (as a dimeric TNF receptor) or alternate administration routes (e.g., subcutaneous injection for etanercept). Leuprolide\u2019s depot formulation directly addresses its rapid clearance by maintaining steady-state concentrations over time.",
+      "system_answer": "ERROR: RetryError[<Future at 0x2acecbd90 state=finished raised RateLimitError>]",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_pharmacology']"
+      ],
+      "system_sources": [],
+      "error": "RetryError[<Future at 0x2acecbd90 state=finished raised RateLimitError>]"
+    },
+    {
+      "question": "Which protein domain is most commonly associated with drug carriers, and what is a potential clinical implication of this domain's role in drug transport mechanisms?",
+      "gt_answer": "The **Lipocalin** domain (identifier: PF00061) is most frequently associated with drug carriers, appearing in 9 distinct parent_key entries (e.g., BE0000532, BE0000314, BE0000505). Clinically, Lipocalin domains are known to bind and transport small hydrophobic molecules, including drugs and endogenous ligands. This structural feature may influence drug pharmacokinetics by facilitating transport across membranes or modulating interactions with other proteins, potentially affecting drug bioavailability or metabolism. For example, drugs bound to Lipocalin-containing carriers might exhibit altered tissue distribution or require dose adjustments in patients with impaired Lipocalin function.",
+      "system_answer": "ERROR: RetryError[<Future at 0x2be85b940 state=finished raised RateLimitError>]",
+      "gt_sources": [
+        "None",
+        "['drugbank-carriers_polypeptides_pfams']"
+      ],
+      "system_sources": [],
+      "error": "RetryError[<Future at 0x2be85b940 state=finished raised RateLimitError>]"
+    },
+    {
+      "question": "Which drug combination is associated with potential interactions via the CYP3A4 enzyme system, and what are the specific drugs involved along with their enzyme interactions?",
+      "gt_answer": "The parent key **BE0000530** is associated with **ritonavir (NORVIR)** and **oxcarbazepine**. Ritonavir is a potent inhibitor of the CYP3A4 enzyme, while oxcarbazepine is primarily metabolized by CYP3A4. Co-administration of these two drugs could lead to significantly elevated plasma concentrations of oxcarbazepine due to reduced hepatic metabolism, increasing the risk of adverse effects such as dizziness, sedation, or hyponatremia. This interaction is clinically relevant and would require dose adjustments or close monitoring of oxcarbazepine levels in patients receiving both agents.",
+      "system_answer": "ERROR: RetryError[<Future at 0x2adffef80 state=finished raised RateLimitError>]",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_carriers_links']"
+      ],
+      "system_sources": [],
+      "error": "RetryError[<Future at 0x2adffef80 state=finished raised RateLimitError>]"
+    },
+    {
+      "question": "Which drugs included in the FDA's drug interaction database are associated with CYP3A4 substrate/inhibitor status, and what is the clinical significance of this status when co-administered with cyclosporine?",
+      "gt_answer": "The drugs associated with the FDA's drug interaction table (L2953) in the drugbank-drug_trans_links table include cyclosporine (BE0001032), fluconazole (BE0001032), ranolazine (BE0001032), tenofovir alafenamide (BE0001032), and sulfamethoxazole/trimethoprim (BE0001032). Cyclosporine is a CYP3A4 substrate and inhibitor, while fluconazole is a CYP3A4 inhibitor. Co-administration of these agents with cyclosporine increases the risk of additive CYP3A4 inhibition, leading to elevated cyclosporine plasma concentrations and heightened toxicity (e.g., nephrotoxicity, hepatotoxicity). The FDA table (L2953) provides detailed substrate/inhibitor profiles for these drugs, emphasizing the need for therapeutic drug monitoring and dose adjustments to mitigate drug interaction risks.",
+      "system_answer": "ERROR: RetryError[<Future at 0x2acc9af50 state=finished raised RateLimitError>]",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_trans_links']"
+      ],
+      "system_sources": [],
+      "error": "RetryError[<Future at 0x2acc9af50 state=finished raised RateLimitError>]"
+    },
+    {
+      "question": "Which drug is both a CYP3A4 substrate and inhibitor, and what clinical implications arise from its interaction with P-glycoprotein?",
+      "gt_answer": "Cyclosporine (parent_key: BE0001032) is a CYP3A4 substrate and inhibitor, as documented in the FDA Drug Interactions Table (L2953). Its interaction with P-glycoprotein, highlighted in L8393, affects blood-brain barrier permeability, potentially altering CNS drug distribution. Clinically, this necessitates dose adjustments for co-administered drugs metabolized by CYP3A4 or transported by P-glycoprotein (e.g., statins, antifungals) to avoid toxicity or reduced efficacy.",
+      "system_answer": "ERROR: RetryError[<Future at 0x2addf97b0 state=finished raised RateLimitError>]",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_trans_links']"
+      ],
+      "system_sources": [],
+      "error": "RetryError[<Future at 0x2addf97b0 state=finished raised RateLimitError>]"
+    },
+    {
+      "question": "Which drug generally has the most associated regulatory documents, and what clinical implication does this frequency suggest regarding its therapeutic use and monitoring requirements?",
+      "gt_answer": "Liotiyronine (CYTOMEL) has the most associated regulatory documents in the table, with 23 entries for its FDA label. This high frequency reflects its narrow therapeutic index and the critical need for precise dosing and close monitoring to prevent toxicity (e.g., thyrotoxicosis) or underdosing in hypothyroidism management. The repeated inclusion of its FDA label underscores the importance of detailed prescribing guidance for a drug with significant pharmacokinetic variability and potential for adverse effects if not carefully titrated.",
+      "system_answer": "ERROR: RetryError[<Future at 0x2ac9562c0 state=finished raised RateLimitError>]",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_carriers_attachments']"
+      ],
+      "system_sources": [],
+      "error": "RetryError[<Future at 0x2ac9562c0 state=finished raised RateLimitError>]"
+    },
+    {
+      "question": "Which drug is associated with the most transporter proteins, and what are the names of these transporters?",
+      "gt_answer": "The drug with parent_key **DB00091** is associated with the most transporter proteins (10 transporters). These include **P-glycoprotein 1**, **Bile salt export pump**, **Ileal sodium/bile acid cotransporter**, **Sodium/bile acid cotransporter**, **Solute carrier family 22 member 6**, **Multidrug resistance-associated protein 7**, **ATP-binding cassette sub-family G member 2**, **Solute carrier organic anion transporter family member 1B1**, **Solute carrier organic anion transporter family member 1B3**, and **Canalicular multispecific organic anion transporter 1**. This extensive interaction with transporters may clinically impact its absorption, distribution, and elimination, particularly in patients with transporter-related genetic variations or co-administered drugs that modulate these transporters.",
+      "system_answer": "ERROR: RetryError[<Future at 0x2aea88760 state=finished raised RateLimitError>]",
+      "gt_sources": [
+        "None",
+        "['drugbank-transporters']"
+      ],
+      "system_sources": [],
+      "error": "RetryError[<Future at 0x2aea88760 state=finished raised RateLimitError>]"
+    },
+    {
+      "question": "What combination of cross-database identifiers would uniquely confirm the identity of a monoclonal antibody therapy suspected to be cetuximab in a patient experiencing an adverse reaction?",
+      "gt_answer": "Cetuximab can be uniquely confirmed by its combination of identifiers in the Therapeutic Targets Database (DNC000788) and the GenBank database (J00228). These identifiers are specifically linked to the drugbank ID DB00002 in the provided tables, which corresponds to cetuximab. This cross-database confirmation is critical for ensuring accurate drug identification in clinical documentation and research contexts.",
+      "system_answer": "ERROR: RetryError[<Future at 0x2c0b7eb30 state=finished raised RateLimitError>]",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_external_identifiers']"
+      ],
+      "system_sources": [],
+      "error": "RetryError[<Future at 0x2c0b7eb30 state=finished raised RateLimitError>]"
+    },
+    {
+      "question": "Which drug has both branded and generic manufacturers, and what are the specific manufacturers associated with this drug?",
+      "gt_answer": "The drug with DrugBank ID DB00035 is associated with both branded and generic manufacturers. Branded manufacturers include Ferring Pharmaceuticals Inc, Apotex Inc Richmond Hill, and CSL Bering LLC. Generic manufacturers listed for this drug include Bedford Laboratories, Hospira Inc, Teva Parenteral Medicines Inc, Apotex Inc Etobicoke Site, and Watson Laboratories Inc. This indicates the drug is available in both branded and generic formulations, which may influence clinical decisions regarding cost and patient access.",
+      "system_answer": "ERROR: RetryError[<Future at 0x2acd33610 state=finished raised RateLimitError>]",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_manufacturers']"
+      ],
+      "system_sources": [],
+      "error": "RetryError[<Future at 0x2acd33610 state=finished raised RateLimitError>]"
+    },
+    {
+      "question": "Which drug requires patients to avoid alcohol and grapefruit products, limit caffeine intake, and take the medication with or without food, while also noting that food does not affect its absorption?",
+      "gt_answer": "The drug with DrugBank ID DB00176 requires patients to avoid alcohol, grapefruit products, and limit caffeine intake. It may be taken with or without food, and its absorption is unaffected by food.",
+      "system_answer": "ERROR: RetryError[<Future at 0x2acdcaf50 state=finished raised RateLimitError>]",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_food_interactions']"
+      ],
+      "system_sources": [],
+      "error": "RetryError[<Future at 0x2acdcaf50 state=finished raised RateLimitError>]"
+    },
+    {
+      "question": "Which protein family is associated with the highest number of distinct carrier proteins, and what are the clinical implications of this association with regard to drug transport and pharmacokinetic interactions?",
+      "gt_answer": "The **Lipocalin** protein family (identifier **PF00061**) is associated with the highest number of distinct carrier proteins (parent keys: BE0000682, BE0000532, BE0000314, BE0000505, BE0000301, BE0000925, and BE0004879), appearing **7 times** in the dataset. Clinically, Lipocalin family members are lipid-binding transport proteins that facilitate the solubilization and delivery of hydrophobic molecules, including endogenous ligands and xenobiotics. Their association with multiple carrier proteins suggests a role in diverse pharmacokinetic processes, such as drug absorption, distribution, and excretion. For example, Lipocalin-mediated transport could influence the bioavailability of fat-soluble drugs or modulate interactions with serum proteins like albumin (e.g., serum_albumin, PF00273), potentially affecting drug stability, tissue penetration, or competition for binding sites. This highlights the importance of considering Lipocalin-family proteins in drug development and dosing strategies, particularly for lipophilic agents.",
+      "system_answer": "ERROR: RetryError[<Future at 0x2c090e950 state=finished raised RateLimitError>]",
+      "gt_sources": [
+        "None",
+        "['drugbank-carriers_polypeptides_pfams']"
+      ],
+      "system_sources": [],
+      "error": "RetryError[<Future at 0x2c090e950 state=finished raised RateLimitError>]"
+    },
+    {
+      "question": "A patient is prescribed a specific drug. What are the critical dietary and supplement considerations that must be addressed to optimize therapeutic outcomes and minimize adverse effects, and how do these interactions mechanistically influence the drug's pharmacokinetics or pharmacodynamics?",
+      "gt_answer": "For the drug with DrugBank ID DB00091, patients must avoid potassium-containing products (to reduce hyperkalemia risk due to pharmacodynamic additive effects), avoid St. John's Wort (which may alter drug metabolism via CYP450 induction), and ensure consistent dosing with regard to food (to maintain stable plasma concentrations and avoid erratic absorption). Mechanistically, potassium-containing products increase serum potassium levels, which is particularly dangerous if the drug has renin-angiotensin-aldosterone system (RAAS) modulating effects. St. John's Wort induces CYP3A4 and P-glycoprotein, potentially reducing the drug's bioavailability. Consistent food intake timing is critical because food may alter gastrointestinal absorption or first-pass metabolism, affecting therapeutic efficacy and safety.",
+      "system_answer": "ERROR: RetryError[<Future at 0x2adc0f2e0 state=finished raised RateLimitError>]",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_food_interactions']"
+      ],
+      "system_sources": [],
+      "error": "RetryError[<Future at 0x2adc0f2e0 state=finished raised RateLimitError>]"
+    },
+    {
+      "question": "Which drug is associated with both brand-name and generic manufacturers, and what are the names of these manufacturers?",
+      "gt_answer": "The drug with DrugBank ID **DB00035** is associated with both brand-name and generic manufacturers. Brand-name manufacturers include **Ferring Pharmaceuticals Inc**, **Apotex Inc Richmond Hill**, and **CSL Behring LLC**, while generic manufacturers include **Hospira Inc**, **Teva Parenteral Medicines Inc**, **Bausch and Lomb Pharmaceuticals Inc**, **Apotex Inc Etobicoke Site**, and **Watson Laboratories Inc**.",
+      "system_answer": "ERROR: RetryError[<Future at 0x2ac1104c0 state=finished raised RateLimitError>]",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_manufacturers']"
+      ],
+      "system_sources": [],
+      "error": "RetryError[<Future at 0x2ac1104c0 state=finished raised RateLimitError>]"
+    },
+    {
+      "question": "Which structural domains are associated with multiple drug carriers, and what does this suggest about their potential roles in drug transport or stability?",
+      "gt_answer": "\"The Lipocalin domain (PF00061) is associated with multiple parent keys (BE0000682, BE0000532, BE0000314, BE0000505, BE0000301, BE0000925, BE0000532, BE0000505, BE0004879), indicating its versatility in binding and transporting diverse lipophilic molecules, such as retinoids or drugs. Similarly, the CRAL_TRIO domain (PF00650) appears in multiple parent keys (BE0000786, BE0000643, BE0000256, BE0000339), suggesting a role in retinoid metabolism or transport. These domains' repeated associations imply they are critical for maintaining drug stability, solubility, or targeted delivery, as seen in carriers like serum albumin (PF00273) and Ig domains (PF00047, PF13895) linked to immune-related transport functions.\"",
+      "system_answer": "ERROR: RetryError[<Future at 0x2bff39450 state=finished raised RateLimitError>]",
+      "gt_sources": [
+        "None",
+        "['drugbank-carriers_polypeptides_pfams']"
+      ],
+      "system_sources": [],
+      "error": "RetryError[<Future at 0x2bff39450 state=finished raised RateLimitError>]"
+    },
+    {
+      "question": "Which specific drug identifier is linked to a drug with multiple manufacturers, including both branded and generic versions, and what are the manufacturers associated with each type of version?",
+      "gt_answer": "DrugBank ID **DB00035** is associated with a drug that has both branded and generic manufacturers. The **branded manufacturers** include Ferring Pharmaceuticals Inc, Apotex Inc Richmond Hill, and CSL Bering LLC (all marked as non-generic, \"generic\": false). The **generic manufacturers** include Bausch and Lomb Pharmaceuticals Inc, Apotex Inc Etobicoke Site, Teva Pharmaceuticals USA, and Watson Laboratories Inc (marked as generic, \"generic\": true). This highlights a scenario where a single drug (DB00035) is produced by multiple entities, with some operating under a branded label and others as generic equivalents.",
+      "system_answer": "ERROR: RetryError[<Future at 0x2af8ea290 state=finished raised RateLimitError>]",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_manufacturers']"
+      ],
+      "system_sources": [],
+      "error": "RetryError[<Future at 0x2af8ea290 state=finished raised RateLimitError>]"
+    },
+    {
+      "question": "A patient is concurrently prescribed liothyronine (CYTOMEL) and pitavastatin. What specific identifiers would a clinician need to reference in FDA-approved labeling to evaluate potential drug-drug interactions between these two agents?",
+      "gt_answer": "The clinician would need to reference the parent_key identifiers BE0000537 for liothyronine (CYTOMEL, ref-id F3799) and BE0000530/BE0000925 for pitavastatin (ref-id F4667) in the drugbank-drug_carriers_attachments table. These identifiers link to their respective FDA-approved labeling documents, which must be consulted to assess interactions (e.g., potential for statin-induced myopathy exacerbated by thyroid hormone therapy or overlapping hepatic metabolism pathways).",
+      "system_answer": "ERROR: RetryError[<Future at 0x2af836a40 state=finished raised RateLimitError>]",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_carriers_attachments']"
+      ],
+      "system_sources": [],
+      "error": "RetryError[<Future at 0x2af836a40 state=finished raised RateLimitError>]"
+    },
+    {
+      "question": "What is the clinical significance of a drug associated with both a carrier protein with a known action and serum albumin, and which specific drug exhibits this dual association?",
+      "gt_answer": "The drug with parent_key **DB00159** is associated with **fatty acid-binding protein, brain** (known_action = \"yes\") and **serum albumin** (known_action = \"unknown\"). Clinically, this dual binding suggests that the drug's distribution and efficacy may be influenced by the active role of fatty acid-binding proteins in intracellular transport and storage, potentially affecting its metabolic fate or tissue availability. The unknown interaction with serum albumin implies variable plasma binding dynamics, which could alter free drug concentrations and risk of toxicity or subtherapeutic effects. Healthcare professionals should monitor therapeutic outcomes and consider dose adjustments in patients with altered hepatic function or hypoalbuminemia.",
+      "system_answer": "ERROR: RetryError[<Future at 0x2adb03d30 state=finished raised RateLimitError>]",
+      "gt_sources": [
+        "None",
+        "['drugbank-carriers']"
+      ],
+      "system_sources": [],
+      "error": "RetryError[<Future at 0x2adb03d30 state=finished raised RateLimitError>]"
+    },
+    {
+      "question": "A clinician is considering an antibiotic for a mixed bacterial infection involving Staphylococcus aureus, Streptococcus agalactiae, and Haemophilus influenzae. Based on the affected organisms listed in the database, which drug (by DrugBank ID) would be most appropriate for broad-spectrum coverage of all three pathogens, and what is the clinical implication of this multi-organism activity?",
+      "gt_answer": "The DrugBank ID **DB00027** is associated with activity against all three pathogens (Staphylococcus aureus, Streptococcus agalactiae, and Haemophilus influenzae) in addition to Streptococcus pneumoniae and Escherichia coli. This multi-organism activity suggests that DB00027 is likely a broad-spectrum antibiotic, making it suitable for empirical treatment of mixed infections or severe infections with uncertain etiology, though specific dosing and resistance patterns would need to be confirmed.",
+      "system_answer": "ERROR: RetryError[<Future at 0x2adffc670 state=finished raised RateLimitError>]",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_affected_organisms']"
+      ],
+      "system_sources": [],
+      "error": "RetryError[<Future at 0x2adffc670 state=finished raised RateLimitError>]"
+    },
+    {
+      "question": "A patient is prescribed both lepirudin and bivalirudin for anticoagulation management. A pharmacist needs to verify the FDA-approved labeling and clinical use information for both drugs. What external resources can be used to obtain this information for each drug?",
+      "gt_answer": "For lepirudin (parent key DB00001), RxList provides the URL \"http://www.rxlist.com/cgi/generic/lepirudin.htm\" and Drugs.com provides \"http://www.drugs.com/cdi/lepirudin.html\". For bivalirudin (parent key DB00006), RxList provides \"http://www.rxlist.com/cgi/generic/angiomax.htm\" and Drugs.com provides \"http://www.drugs.com/cdi/bivalirudin.html\".",
+      "system_answer": "ERROR: RetryError[<Future at 0x2bdb02830 state=finished raised RateLimitError>]",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_external_links']"
+      ],
+      "system_sources": [],
+      "error": "RetryError[<Future at 0x2bdb02830 state=finished raised RateLimitError>]"
+    }
+  ],
+  "aggregate_metrics": {}
+}

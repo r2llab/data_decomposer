@@ -1,4 +1,9 @@
-"""Verification and paraphrasing pipeline for passage-based QA datasets."""
+"""Verification and paraphrasing pipeline for passage-based QA datasets.
+
+This pipeline preserves any extra columns present in the input .gt file,
+including 'passage_text' (the actual passage content used for generation)
+and 'pubmed_text' for backward compatibility.
+"""
 from __future__ import annotations
 
 import argparse
@@ -28,11 +33,14 @@ def load_ground_truth(gt_file: Path) -> List[Dict[str, str]]:
         return list(reader)
 
 
-def generate_llm_answer(client: OpenAI, question: str, model: str = "gpt-4o") -> str:
+def generate_llm_answer(client: OpenAI, question: str, model: str = "gpt-5-mini") -> str:
     """Generate an answer for the provided question using an LLM."""
     try:
         prompt = f"Answer this question with detailed information: {question}"
-        response = client.chat.completions.create(
+        from .openrouter_client import create_chat_completion
+
+        response = create_chat_completion(
+            client,
             model=model,
             messages=[{"role": "user", "content": prompt}],
             temperature=0.0,
@@ -50,7 +58,7 @@ def calculate_llm_correctness(
     hypothesis: str,
     reference: str,
     question: str,
-    model: str = "gpt-4o",
+    model: str = "gpt-5-mini",
 ) -> float:
     """Ask the LLM to evaluate the correctness of a generated answer."""
     try:
@@ -71,7 +79,10 @@ Give a score from 0 to 1 where:
 
 Output a single line with just the score as a decimal between 0 and 1.
 """
-        response = client.chat.completions.create(
+        from .openrouter_client import create_chat_completion
+
+        response = create_chat_completion(
+            client,
             model=model,
             messages=[{"role": "user", "content": prompt}],
             temperature=0.0,
@@ -92,7 +103,7 @@ Output a single line with just the score as a decimal between 0 and 1.
 def filter_qa_pairs(
     client: OpenAI,
     qa_data: Iterable[Dict[str, str]],
-    llm_model: str = "gpt-4o",
+    llm_model: str = "gpt-5-mini",
     threshold: float = 0.5,
 ) -> List[Dict[str, str]]:
     """Filter QA pairs that the LLM can answer correctly above a threshold."""
@@ -137,7 +148,7 @@ def paraphrase_questions(
     client: OpenAI,
     input_csv: Path,
     output_csv: Path,
-    model: str = "gpt-4o",
+    model: str = "gpt-5-mini",
 ) -> List[Dict[str, str]]:
     """Paraphrase questions to remove references to specific tables or passages."""
     df = pd.read_csv(input_csv, quoting=csv.QUOTE_ALL)
@@ -154,7 +165,10 @@ def paraphrase_questions(
         Original question: {question}
         Paraphrased question:
         """
-        response = client.chat.completions.create(
+        from .openrouter_client import create_chat_completion
+
+        response = create_chat_completion(
+            client,
             model=model,
             messages=[
                 {
@@ -209,7 +223,10 @@ def run_pipeline(
     skip_paraphrasing: bool,
 ) -> None:
     """Execute the correctness filtering and paraphrasing pipeline."""
-    client = OpenAI()
+    # Use OpenRouter as the backend for OpenAI client
+    from .openrouter_client import get_openrouter_client
+
+    client = get_openrouter_client()
     qa_data = load_ground_truth(input_file)
     print(f"Loaded {len(qa_data)} QA pairs from {input_file}")
 
@@ -254,7 +271,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--model",
-        default="gpt-4o",
+        default="gpt-5-mini",
         help="OpenAI model identifier to use for all LLM calls.",
     )
     parser.add_argument(

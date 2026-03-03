@@ -1,0 +1,28 @@
+Given the following query and available data items, break down the query into sub-queries.
+
+Query: What is the genetic risk associated with citalopram treatment in male patients with certain polymorphisms, and how does this compare to the risk of Stevens-Johnson syndrome in patients carrying the HLA-B*15:02 allele when treated with carbamazepine?
+
+Available Data Items:
+Item 1: text content: Using selective cytochrome P450 (CYP) inhibitors and clinical concentrations (4 microM) of dapsone (...
+Item 2: text content: The first antibiotic of the ansamycin family, rifampicin (RIF), was isolated in 1959 and was introdu...
+Item 3: text content: The electrocardiographic parameters relating occurrence of ventricular fibrillation (VF) episodes in...
+Item 4: text content: The binding of [3H]acetazolamide (AZ), a carbonic anhydrase (CA) inhibitor, to soluble and particula...
+
+For each sub-query, you MUST specify which item from the available items should be used to answer it (using the item number).
+If you can't determine which item to use for a sub-query, use item 1 as default.
+
+Return a JSON object with the following structure:
+{
+    "requires_decomposition": boolean,  // Whether the query needs to be decomposed
+    "reasoning": string,  // Explanation of why/how the query is decomposed
+    "sub_queries": [  // List of sub-queries, empty if requires_decomposition is false
+        {
+            "sub_query": string,  // The sub-query text
+            "target_item_index": number,  // Index of the relevant item (1-based). REQUIRED. Default to 1 if unsure.
+            "expected_answer_type": string  // Type of answer expected (text, number, date, etc.)
+        }
+    ],
+    "aggregation_strategy": string  // How to combine sub-query results, null if no aggregation needed
+}
+
+IMPORTANT: Each sub-query MUST have a target_item_index specified. If you're unsure which item to use, default to 1.

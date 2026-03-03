@@ -1,4 +1,11 @@
-"""Utility for generating question-answer pairs from passage data using the OpenAI API."""
+"""Utility for generating question-answer pairs from passage data using the OpenAI API.
+
+The generated .gt output includes:
+- question, answer
+- passage_text: the actual passage content used (full text from the source file)
+- pubmed_text: alias kept for backward compatibility
+- table, pubmed_id
+"""
 from __future__ import annotations
 
 import argparse
@@ -126,6 +133,7 @@ def parse_llm_response(
             "question": "",
             "answer": "",
             "pubmed_text": pubmed_text,
+            "passage_text": pubmed_text,  # explicit alias for passage content
             "table": "None",
             "pubmed_id": pubmed_id,
         }
@@ -183,6 +191,8 @@ def parse_llm_response(
                 active_field = None
             elif normalised == "pubmed_text":
                 current["pubmed_text"] = value or pubmed_text
+                # keep alias in sync
+                current["passage_text"] = current["pubmed_text"]
                 active_field = None
             elif normalised == "table":
                 table_value = value or "None"
@@ -215,7 +225,10 @@ def generate_questions_for_passage(
 ) -> List[Dict[str, str]]:
     """Use the OpenAI client to generate question-answer pairs for a passage."""
     prompt = build_prompt(pubmed_id, pubmed_text, table_content)
-    response = client.chat.completions.create(
+    from .openrouter_client import create_chat_completion
+
+    response = create_chat_completion(
+        client,
         model=model,
         messages=[
             {
@@ -240,10 +253,12 @@ def write_qa_pairs(output_file: Path, qa_pairs: Iterable[Dict[str, str]]) -> Non
     if not qa_pairs:
         with output_file.open("w", newline="", encoding="utf-8") as handle:
             writer = csv.writer(handle, quoting=csv.QUOTE_ALL)
-            writer.writerow(["question", "answer", "pubmed_text", "table", "pubmed_id"])
+            writer.writerow(
+                ["question", "answer", "passage_text", "pubmed_text", "table", "pubmed_id"]
+            )
         return
 
-    fieldnames = ["question", "answer", "pubmed_text", "table", "pubmed_id"]
+    fieldnames = ["question", "answer", "passage_text", "pubmed_text", "table", "pubmed_id"]
     with output_file.open("w", newline="", encoding="utf-8") as handle:
         writer = csv.DictWriter(handle, fieldnames=fieldnames, quoting=csv.QUOTE_ALL)
         writer.writeheader()
@@ -279,7 +294,7 @@ def main() -> None:
     )
     parser.add_argument(
         "--model",
-        default="gpt-4o",
+        default="gpt-5-mini",
         help="OpenAI model identifier used for generation.",
     )
     parser.add_argument(
@@ -297,7 +312,10 @@ def main() -> None:
 
     args = parser.parse_args()
 
-    client = OpenAI()
+    # Use OpenRouter as the backend for OpenAI client
+    from .openrouter_client import get_openrouter_client
+
+    client = get_openrouter_client()
 
     passages = load_target_passages(args.pubmed_targets_dir)
     tables = load_drugbank_tables(args.drugbank_tables_dir)

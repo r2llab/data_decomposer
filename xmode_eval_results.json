@@ -1,0 +1,849 @@
+{
+  "individual_results": [
+    {
+      "question": "Which polypeptide carrier is involved in the binding of vitamin D, and what is its corresponding identifier?",
+      "gt_answer": "The polypeptide carrier involved in the binding of vitamin D is \"VitD-bind_III,\" and its corresponding identifier is \"PF09164.\"",
+      "system_answer": "The polypeptide carrier involved in the binding of vitamin D is the vitamin D-binding protein.\n\nThe vitamin D-binding protein is responsible for carrying vitamin D in the bloodstream. It plays a crucial role in the transport and regulation of vitamin D levels in the body.",
+      "gt_sources": [
+        "None",
+        "['drugbank-carriers_polypeptides_pfams']"
+      ],
+      "system_sources": [],
+      "metrics": {
+        "rouge1": 0.417910447761194,
+        "rouge2": 0.3076923076923077,
+        "rougeL": 0.3880597014925373,
+        "string_similarity": 0.44611528822055135,
+        "source_precision": 0.0,
+        "source_recall": 0.0,
+        "source_f1": 0.0,
+        "processing_time": 11.516993045806885,
+        "llm_correctness": 0.5,
+        "inference_cost": 0.38778,
+        "inference_tokens": 48122,
+        "api_calls": 7,
+        "source_relevance_avg": 0.0,
+        "source_relevance_max": 0.0
+      },
+      "cost_metrics": {
+        "total_cost": 0.38778,
+        "total_tokens": 48122,
+        "api_calls": 7,
+        "model_breakdown": {
+          "text-embedding-ada-002": {
+            "cost": 0.001,
+            "tokens": 10000,
+            "calls": 1
+          },
+          "gpt-4o": {
+            "cost": 0.38678,
+            "tokens": 38122,
+            "calls": 6
+          }
+        },
+        "endpoint_breakdown": {
+          "embedding": {
+            "cost": 0.001,
+            "tokens": 10000,
+            "calls": 1
+          },
+          "chat.completions": {
+            "cost": 0.38678,
+            "tokens": 38122,
+            "calls": 6
+          }
+        }
+      },
+      "source_relevance": {
+        "average": 0.0,
+        "maximum": 0.0
+      }
+    },
+    {
+      "question": "What is the duration of patent protection for drugs approved in Canada, and what is the latest year they can be marketed without pediatric extension under Canadian law?",
+      "gt_answer": "The drug approved in Canada on March 2, 1999, has a patent that expires on March 2, 2016. Since there is no pediatric extension indicated in the data, it can be marketed without this extension until the patent expiration date.",
+      "system_answer": "The specific information about the duration of patent protection for drugs in Canada and the latest year they can be marketed without pediatric extension was not found in the retrieved passages.\n\nThe retrieved passages focused on drug interactions, pharmacokinetics, and clinical trials, but did not address the legal aspects of patent protection or pediatric extension in Canada.",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_patents']"
+      ],
+      "system_sources": [
+        "Target-11772242",
+        "Target-15805193.",
+        "Target-11587492",
+        "The passages were retrieved from various sources such as Target-12614192",
+        "Target-16166415",
+        "Target-11459198",
+        "Target-21666702",
+        "Target-10768303",
+        "Target-12537513"
+      ],
+      "metrics": {
+        "rouge1": 0.35051546391752575,
+        "rouge2": 0.12631578947368421,
+        "rougeL": 0.24742268041237106,
+        "string_similarity": 0.06930693069306931,
+        "source_precision": 0.0,
+        "source_recall": 0.0,
+        "source_f1": 0.0,
+        "processing_time": 23.776735305786133,
+        "llm_correctness": 0.0,
+        "inference_cost": 1.6897700000000002,
+        "inference_tokens": 177695,
+        "api_calls": 13,
+        "source_relevance_avg": 0.0,
+        "source_relevance_max": 0.0
+      },
+      "cost_metrics": {
+        "total_cost": 1.6897700000000002,
+        "total_tokens": 177695,
+        "api_calls": 13,
+        "model_breakdown": {
+          "text-embedding-ada-002": {
+            "cost": 0.001,
+            "tokens": 10000,
+            "calls": 1
+          },
+          "gpt-4o": {
+            "cost": 1.6887699999999999,
+            "tokens": 167695,
+            "calls": 12
+          }
+        },
+        "endpoint_breakdown": {
+          "embedding": {
+            "cost": 0.001,
+            "tokens": 10000,
+            "calls": 1
+          },
+          "chat.completions": {
+            "cost": 1.6887699999999999,
+            "tokens": 167695,
+            "calls": 12
+          }
+        }
+      },
+      "source_relevance": {
+        "average": 0.0,
+        "maximum": 0.0
+      }
+    },
+    {
+      "question": "What are the implications of the different identifiers associated with the gene related to the protein involved in the transport of various substances in the human body, particularly concerning its function and potential therapeutic applications?",
+      "gt_answer": "The gene identified as \"SERPINA7\" (HGNC:11583) is associated with various databases, including GenAtlas, GenBank, and UniProtKB. This gene encodes the protein that is crucial for transporting substances such as steroid hormones and drugs, thus playing a significant role in pharmacokinetics and drug metabolism. Understanding the mechanisms by which SERPINA7 functions can provide insights into treating conditions related to its dysfunction, such as hormonal imbalances and drug interactions. The identifiers from multiple resources (like UniProtKB: P05543 and GenBank Protein Database: 338697) help in studying this gene's structure, function, and interactions, thereby informing therapeutic strategies targeting related diseases.",
+      "system_answer": "The identifiers associated with genes related to transport proteins have significant implications for their function and therapeutic applications, particularly in drug distribution and resistance.\n\nTransport proteins such as P-glycoprotein and organic cation transport proteins play critical roles in drug distribution and resistance. Genetic variations in these transporters can affect drug efficacy and the risk of adverse events, as seen with drugs like metformin and cabergoline. These proteins are also involved in the blood-brain barrier transport, influencing central side effects and drug resistance in conditions like epilepsy and Parkinson\u2019s disease.",
+      "gt_sources": [
+        "None",
+        "['drugbank-carriers_polypeptides_ext_id']"
+      ],
+      "system_sources": [],
+      "metrics": {
+        "rouge1": 0.3894736842105263,
+        "rouge2": 0.07446808510638299,
+        "rougeL": 0.2631578947368421,
+        "string_similarity": 0.04454022988505747,
+        "source_precision": 0.0,
+        "source_recall": 0.0,
+        "source_f1": 0.0,
+        "processing_time": 5.655761957168579,
+        "llm_correctness": 0.0,
+        "inference_cost": 0.1143,
+        "inference_tokens": 20740,
+        "api_calls": 4,
+        "source_relevance_avg": 0.0,
+        "source_relevance_max": 0.0
+      },
+      "cost_metrics": {
+        "total_cost": 0.1143,
+        "total_tokens": 20740,
+        "api_calls": 4,
+        "model_breakdown": {
+          "text-embedding-ada-002": {
+            "cost": 0.001,
+            "tokens": 10000,
+            "calls": 1
+          },
+          "gpt-4o": {
+            "cost": 0.1133,
+            "tokens": 10740,
+            "calls": 3
+          }
+        },
+        "endpoint_breakdown": {
+          "embedding": {
+            "cost": 0.001,
+            "tokens": 10000,
+            "calls": 1
+          },
+          "chat.completions": {
+            "cost": 0.1133,
+            "tokens": 10740,
+            "calls": 3
+          }
+        }
+      },
+      "source_relevance": {
+        "average": 0.0,
+        "maximum": 0.0
+      }
+    },
+    {
+      "question": "Which enzymes are involved in the same metabolic pathway and could potentially interact with drugs metabolized through that pathway, and what implications does this have for dosing considerations in patients taking such medications?",
+      "gt_answer": "The enzymes involved in the SMP0000278 pathway that could potentially interact with drugs include P00734, P00748, P02452, P03952, P03951, P00740, P00451, P12259, P00742, P02671, P02675, P02679, P00488, P05160, P00747, P00750, P08709, P13726, Q9BQB6, and P38435. When prescribing medications that are metabolized via this pathway, healthcare providers must consider potential drug interactions and adjust dosing accordingly, especially in patients with altered enzyme activity due to genetic polymorphisms or co-administration of other drugs that inhibit or induce these enzymes.",
+      "system_answer": "Enzymes such as CYP2C9, CYP3A4, and CYP2D6 are involved in metabolic pathways and can interact with drugs metabolized through these pathways, affecting drug metabolism and potentially leading to drug-drug interactions.\n\nCYP2C9 is involved in the metabolism of drugs like tolbutamide and valsartan, with potential interactions when co-administered with sulfonamides. CYP3A4 is involved in the metabolism of drugs like dofetilide and can be inhibited by drugs like ketoconazole, affecting drug clearance. CYP2D6 is inhibited by drugs like terbinafine, affecting the metabolism of drugs like dextromethorphan. These interactions can lead to increased drug plasma levels and require careful dosing considerations.",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_pathway_enzymes']"
+      ],
+      "system_sources": [],
+      "metrics": {
+        "rouge1": 0.3146067415730337,
+        "rouge2": 0.06818181818181818,
+        "rougeL": 0.21348314606741575,
+        "string_similarity": 0.024864024864024864,
+        "source_precision": 0.0,
+        "source_recall": 0.0,
+        "source_f1": 0.0,
+        "processing_time": 6.878896236419678,
+        "llm_correctness": 0.3,
+        "inference_cost": 0.17783,
+        "inference_tokens": 26933,
+        "api_calls": 4,
+        "source_relevance_avg": 0.0,
+        "source_relevance_max": 0.0
+      },
+      "cost_metrics": {
+        "total_cost": 0.17783,
+        "total_tokens": 26933,
+        "api_calls": 4,
+        "model_breakdown": {
+          "text-embedding-ada-002": {
+            "cost": 0.001,
+            "tokens": 10000,
+            "calls": 1
+          },
+          "gpt-4o": {
+            "cost": 0.17683,
+            "tokens": 16933,
+            "calls": 3
+          }
+        },
+        "endpoint_breakdown": {
+          "embedding": {
+            "cost": 0.001,
+            "tokens": 10000,
+            "calls": 1
+          },
+          "chat.completions": {
+            "cost": 0.17683,
+            "tokens": 16933,
+            "calls": 3
+          }
+        }
+      },
+      "source_relevance": {
+        "average": 0.0,
+        "maximum": 0.0
+      }
+    },
+    {
+      "question": "Which polypeptides associated with a specific parent key are involved in coagulation, and what are their specific identifiers?",
+      "gt_answer": "The polypeptides associated with the parent key BE0000048 that are involved in coagulation include Gla (identifier: PF00594), Kringle (identifier: PF00051), Trypsin (identifier: PF00089), and Thrombin_light (identifier: PF09396).",
+      "system_answer": "ERROR: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+      "gt_sources": [
+        "None",
+        "['drugbank-targets_polypeptides_pfams']"
+      ],
+      "system_sources": [],
+      "error": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
+    },
+    {
+      "question": "Which drug can be utilized for treating infections caused by both Staphylococcus aureus and Streptococcus pneumoniae, and what organisms does it affect?",
+      "gt_answer": "The drug associated with the drugbank ID DB00027 is effective against infections caused by both Staphylococcus aureus and Streptococcus pneumoniae. It also affects a range of other organisms including Streptococcus agalactiae, Escherichia coli, Haemophilus influenzae, Klebsiella, Enterobacter, Neisseria gonorrhoeae, Neisseria meningitidis, and Pseudomonas aeruginosa.",
+      "system_answer": "ERROR: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_affected_organisms']"
+      ],
+      "system_sources": [],
+      "error": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
+    },
+    {
+      "question": "What are the molecular weights and isoelectric points of certain drugs, and how might these properties influence their use in therapeutic applications?",
+      "gt_answer": "Drug DB00001 has a molecular weight of 6963.425 and an isoelectric point of 4.04, while drug DB00002 has a molecular weight of 145781.6 and an isoelectric point of 8.48. The lower molecular weight of DB00001 may allow for better tissue penetration and a faster pharmacokinetic profile, which is advantageous for therapeutic applications requiring rapid onset. In contrast, the higher molecular weight of DB00002 could suggest a longer half-life and potentially reduced clearance, making it suitable for conditions that benefit from sustained action. Additionally, the isoelectric points indicate that DB00001 is more likely to be positively charged at physiological pH, which may affect its interaction with other biomolecules and influence its therapeutic efficacy.",
+      "system_answer": "ERROR: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_experimental_properties']"
+      ],
+      "system_sources": [],
+      "error": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
+    },
+    {
+      "question": "Which manufacturer is associated with the drug identified by a specific DrugBank ID, and what is the significance of the drug's generic status in clinical practice?",
+      "gt_answer": "The manufacturer associated with the drug that has the DrugBank ID of DB00035 is Sanofi aventis us llc, as well as several other manufacturers including Bedford laboratories div ben venue laboratories inc, Hospira inc, and Teva pharmaceuticals usa, among others. The significance of the drug's generic status is that it indicates that multiple manufacturers produce a generic version of the drug, which can lead to cost savings for patients and increased accessibility compared to branded versions.",
+      "system_answer": "ERROR: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_manufacturers']"
+      ],
+      "system_sources": [],
+      "error": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
+    },
+    {
+      "question": "What are the available intravenous dosage forms and strengths for a drug that can be administered as an injection or solution and is indicated for emergency conditions requiring rapid action?",
+      "gt_answer": "The drug available for intravenous administration includes the following dosage forms: Injection, solution, concentrate with strengths of 20 mg and 50 mg; Powder for solution with a strength of 50 mg; and Injection, solution with a strength of 5 mg/ml. All these formulations are suitable for rapid administration in emergency settings.",
+      "system_answer": "ERROR: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_dosages']"
+      ],
+      "system_sources": [],
+      "error": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
+    },
+    {
+      "question": "What carrier protein is involved in the transport of fatty acids in the brain, and what are its alternative names?",
+      "gt_answer": "The carrier protein involved in the transport of fatty acids in the brain is Brain lipid-binding protein, which also goes by the alternative names Brain-type fatty acid-binding protein, B-FABP, and FABPB.",
+      "system_answer": "ERROR: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+      "gt_sources": [
+        "None",
+        "['drugbank-carriers_polypeptides_syn']"
+      ],
+      "system_sources": [],
+      "error": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
+    },
+    {
+      "question": "What are the available intravenous dosage forms and strengths for a specific drug, and how do they compare to the subcutaneous forms available for another drug in terms of strengths and routes of administration?",
+      "gt_answer": "For the drug listed as DB00001, the available intravenous dosage forms include: 20 mg and 50 mg as injection solutions, and a powder form for solution at 50 mg/1mL. In contrast, the drug DB00005 has subcutaneous forms with strengths of 10 mg, 25 mg, and 50 mg available in both injection powder for solution and solution forms. Therefore, DB00001 is administered exclusively via the intravenous route, while DB00005 is available in multiple subcutaneous dosage forms with varying strengths.",
+      "system_answer": "ERROR: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_dosages']"
+      ],
+      "system_sources": [],
+      "error": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
+    },
+    {
+      "question": "Which enzymes are involved in the same biochemical pathway, and what implications might this have for drug metabolism and potential interactions in clinical settings?",
+      "gt_answer": "The enzymes involved in the biochemical pathway associated with pathway ID SMP0000278 include P00734, P00748, P02452, P03952, P03951, P00740, P00451, P12259, P00742, P02671, P02675, P02679, P00488, P05160, P00747, P00750, P08709, P13726, Q9BQB6, and P38435. Since these enzymes are part of the same pathway, drugs metabolized by these enzymes may exhibit drug-drug interactions if co-administered, leading to altered pharmacokinetics, efficacy, or toxicity. It is crucial to monitor patients for side effects or therapeutic failure when prescribing medications that share these metabolic pathways.",
+      "system_answer": "ERROR: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_pathway_enzymes']"
+      ],
+      "system_sources": [],
+      "error": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
+    },
+    {
+      "question": "What is the relationship between the actions of agonists and antagonists in terms of their therapeutic implications, particularly concerning their potential use in managing conditions related to receptor activity?",
+      "gt_answer": "Agonists, as indicated in the data, function by activating receptors to produce a biological response, making them suitable for conditions where there is a deficiency or lack of receptor activity. In contrast, antagonists inhibit receptor activity, which can be beneficial in conditions where excessive receptor activation is harmful. The choice between an agonist and an antagonist will depend on the specific clinical scenario\u2014if a patient requires stimulation of a pathway (e.g., in hormonal deficiencies), an agonist would be indicated, while an antagonist might be prescribed to block overactive pathways (e.g., in certain cancers or endocrine disorders). This relationship underscores the importance of understanding receptor dynamics in treatment planning.",
+      "system_answer": "ERROR: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+      "gt_sources": [
+        "None",
+        "['drugbank-targets_actions']"
+      ],
+      "system_sources": [],
+      "error": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
+    },
+    {
+      "question": "What drug action pathways are involved in the treatment of thrombotic conditions, and how do they compare regarding their mechanisms of action?",
+      "gt_answer": "The drug action pathways involved in the treatment of thrombotic conditions include the Lepirudin Action Pathway, Bivalirudin Action Pathway, Alteplase Action Pathway, Urokinase Action Pathway, Reteplase Action Pathway, Anistreplase Action Pathway, and Tenecteplase Action Pathway. Lepirudin and Bivalirudin are direct thrombin inhibitors that help to prevent clot formation by inhibiting thrombin's ability to convert fibrinogen to fibrin. On the other hand, Alteplase, Urokinase, Reteplase, Anistreplase, and Tenecteplase are thrombolytic agents that work by activating plasminogen to plasmin, which leads to the breakdown of fibrin in blood clots. Thus, while Lepirudin and Bivalirudin directly inhibit thrombin in the coagulation cascade, the thrombolytic agents promote clot dissolution by enhancing fibrinolysis.",
+      "system_answer": "ERROR: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_pathway']"
+      ],
+      "system_sources": [],
+      "error": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
+    },
+    {
+      "question": "What pharmacological actions are associated with the drug identified by a specific parent ID, and how do these actions compare with those of another drug identified by a different parent ID in terms of their respective therapeutic implications?",
+      "gt_answer": "The drug associated with parent ID \"BE0002117\" acts as an antagonist, while the drug with parent ID \"BE0000969\" functions as both a substrate and an inducer. This indicates that the former may inhibit specific receptor activities, potentially leading to reduced physiological responses, which is particularly useful in conditions where receptor activation is undesirable, such as in certain types of hypertension or anxiety. In contrast, the latter's dual action as a substrate and inducer suggests its role in enhancing metabolic processes or facilitating drug interactions, which may be beneficial in managing conditions that require increased metabolic clearance or therapeutic effects through enzymatic induction.",
+      "system_answer": "ERROR: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+      "gt_sources": [
+        "None",
+        "['drugbank-targets_actions']"
+      ],
+      "system_sources": [],
+      "error": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
+    },
+    {
+      "question": "What are the key pharmacokinetic properties, including solubility and bioavailability, of bivalirudin compared to leuprorelin, and how do these properties influence their therapeutic applications in clinical practice?",
+      "gt_answer": "Bivalirudin has a water solubility of 4.64e-02 g/l and a bioavailability of 0, indicating it is poorly absorbed in the gastrointestinal tract. In contrast, leuprorelin has a water solubility of 3.38e-02 g/l, also with a bioavailability of 0. These low solubility and bioavailability values suggest that both drugs may require parenteral administration for effective therapeutic use. Bivalirudin is primarily used as an anticoagulant during percutaneous coronary interventions, while leuprorelin is indicated for hormone-sensitive cancers, such as prostate cancer, highlighting how their pharmacokinetic properties dictate their routes of administration and therapeutic contexts.",
+      "system_answer": "ERROR: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_calculated_properties']"
+      ],
+      "system_sources": [],
+      "error": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
+    },
+    {
+      "question": "What actions are associated with BE0000658, and how do they compare to the actions of BE0000767 regarding their therapeutic implications?",
+      "gt_answer": "BE0000658 is identified as a binder, which typically suggests its role in stabilizing or promoting interactions between molecules, potentially enhancing the efficacy of therapeutic agents. In contrast, BE0000767 functions as an antagonist, indicating that it inhibits the action of a receptor or a signaling pathway, which can be crucial in conditions where excessive activation is harmful, such as in certain cancers or inflammatory diseases. The therapeutic implications of these actions suggest that BE0000658 might be utilized in scenarios requiring enhancement of molecular interactions, while BE0000767 would be beneficial in cases where blocking a receptor's activity is necessary.",
+      "system_answer": "ERROR: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+      "gt_sources": [
+        "None",
+        "['drugbank-targets_actions']"
+      ],
+      "system_sources": [],
+      "error": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
+    },
+    {
+      "question": "What are the common drug salts used in hormone therapy, and how do their average masses compare, particularly for Leuprolide acetate and Goserelin acetate?",
+      "gt_answer": "In hormone therapy, Leuprolide acetate has an average mass of 1269.473 g/mol, while Goserelin acetate has a slightly higher average mass of 1329.4624 g/mol. This indicates that Goserelin acetate is heavier than Leuprolide acetate, which may have implications for dosing and administration in clinical practice.",
+      "system_answer": "ERROR: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_salts']"
+      ],
+      "system_sources": [],
+      "error": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
+    },
+    {
+      "question": "Which pharmaceutical companies are involved in the packaging of drugs associated with a specific compound, and what is their significance in terms of drug delivery and manufacturing?",
+      "gt_answer": "The pharmaceutical companies involved in the packaging of drugs associated with DB00002 are Cardinal Health, Catalent Pharma Solutions, ImClone Systems Inc., and Oso Biopharmaceuticals Manufacturing LLC. These companies play a crucial role in drug delivery and manufacturing as they ensure the safe and effective distribution of pharmaceutical products, maintain quality control throughout the manufacturing process, and comply with regulatory standards to meet patient needs.",
+      "system_answer": "ERROR: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_packagers']"
+      ],
+      "system_sources": [],
+      "error": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
+    },
+    {
+      "question": "What are the identifiers for the gene associated with the protein responsible for the transport of certain drugs in human plasma, and how does its function relate to the metabolism of anticoagulants?",
+      "gt_answer": "The gene associated with the protein responsible for the transport of certain drugs in human plasma is identified as \"HGNC:11583\" by the HUGO Gene Nomenclature Committee, \"SERPINA7\" in GenAtlas, and has a UniProtKB identifier of \"P05543\". This protein plays a crucial role in the metabolism of anticoagulants as it interacts with various drugs, influencing their bioavailability and therapeutic efficacy, which is critical in managing conditions requiring anticoagulation therapy.",
+      "system_answer": "ERROR: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+      "gt_sources": [
+        "None",
+        "['drugbank-carriers_polypeptides_ext_id']"
+      ],
+      "system_sources": [],
+      "error": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
+    },
+    {
+      "question": "What drug targets the \"Gla\" and \"Kringle\" polypeptide domains for managing thrombotic disorders, and what are its potential therapeutic implications for patients with specific coagulation factor deficiencies?",
+      "gt_answer": "The drug that targets the \"Gla\" and \"Kringle\" polypeptide domains, which are integral in the coagulation pathway, is likely related to anticoagulant therapies used in managing thrombotic disorders. The therapeutic implications in patients with specific coagulation factor deficiencies include the potential for improved management of conditions such as hemophilia or vitamin K deficiency, where traditional therapies may not be effective. Understanding the role of these domains in coagulation can aid in developing targeted therapies that improve patient outcomes.",
+      "system_answer": "ERROR: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+      "gt_sources": [
+        "None",
+        "['drugbank-targets_polypeptides_pfams']"
+      ],
+      "system_sources": [],
+      "error": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
+    },
+    {
+      "question": "Which drug approved in the United States has a patent that expired and does not have a pediatric extension?",
+      "gt_answer": "The drug that was approved in the United States on January 19, 1993, and has a patent that expired on January 19, 2010, without a pediatric extension is associated with the patent number 5180668.",
+      "system_answer": "ERROR: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_patents']"
+      ],
+      "system_sources": [],
+      "error": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
+    },
+    {
+      "question": "What transporters are associated with certain drug entries, and what implications might they have on the pharmacokinetics of drugs targeting these transporters in humans?",
+      "gt_answer": "The drug entry DB00091 is associated with several transporters, including P-glycoprotein 1, Bile salt export pump, and various solute carrier transporters, which may influence the absorption, distribution, and excretion of drugs by mediating efflux and uptake processes. Meanwhile, DB00115 is associated with transporters such as Cubilin and Multidrug resistance-associated protein 1, which could impact the bioavailability and therapeutic efficacy of drugs by affecting their transport across cellular membranes. Given the unknown actions of these transporters, their exact role in drug interactions and efficacy remains to be thoroughly elucidated, suggesting the need for careful consideration in drug development and clinical application.",
+      "system_answer": "ERROR: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+      "gt_sources": [
+        "None",
+        "['drugbank-transporters']"
+      ],
+      "system_sources": [],
+      "error": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
+    },
+    {
+      "question": "How do the pharmacokinetic properties, including solubility and bioavailability, of bivalirudin and leuprorelin compare, and what implications might these differences have on their clinical use in anticoagulation and hormone therapy?",
+      "gt_answer": "Bivalirudin has a water solubility of 4.64e-02 g/l and a bioavailability of 0, indicating it is poorly absorbed when administered orally, which is critical for its use as a direct thrombin inhibitor in anticoagulation therapy. In contrast, leuprorelin also has a bioavailability of 0, suggesting it is not suitable for oral administration, but it has a lower water solubility of 3.38e-02 g/l. Given these characteristics, both drugs require parenteral administration to achieve therapeutic effects, but their distinct solubility profiles may influence the choice of formulation and delivery method in clinical practice.",
+      "system_answer": "ERROR: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_calculated_properties']"
+      ],
+      "system_sources": [],
+      "error": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
+    },
+    {
+      "question": "Which drugs could be used in the management of thrombotic conditions, and what common cofactor is associated with their therapeutic action?",
+      "gt_answer": "The drugs that can be used in the management of thrombotic conditions include Lepirudin (DB00001), Bivalirudin (DB00006), Alteplase (DB00009), Reteplase (DB00015), Tenecteplase (DB00031), and Streptokinase (DB00086). A common cofactor associated with their therapeutic action is Phylloquinone (DB01022), which is involved in the coagulation cascade. Calcium (DB01373) is also mentioned as associated with these drugs, highlighting its role in clotting processes.",
+      "system_answer": "ERROR: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_pathway_drugs']"
+      ],
+      "system_sources": [],
+      "error": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
+    },
+    {
+      "question": "What are the available intravenous strengths and forms of a drug that can also be administered subcutaneously, and how do these strengths compare to those offered for subcutaneous administration of the same drug?",
+      "gt_answer": "The drug with a subcutaneous route of administration has various strengths available in intravenous form, including \"20 mg,\" \"50 mg,\" and \"150 ug/1mL\" as injectable solutions, as well as \"250 mg/1\" and \"250 mg/5mL\" for powdered solutions. In contrast, for the subcutaneous route, the drug offers strengths such as \"10 mg,\" \"25 mg,\" and \"50 mg\" in powder form for solution, and \"25 mg/0.5mL\" and \"50 mg\" in solution form. This indicates that while the intravenous administration has higher concentrated forms available (up to 250 mg), the subcutaneous administration has a variety of smaller, more manageable doses suited for different patient needs.",
+      "system_answer": "ERROR: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_dosages']"
+      ],
+      "system_sources": [],
+      "error": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
+    },
+    {
+      "question": "What coagulation-related drugs share a common therapeutic pathway, and what role does Phylloquinone play in this pathway?",
+      "gt_answer": "The drugs Lepirudin, Bivalirudin, and Phylloquinone all share a common therapeutic pathway associated with coagulation. Phylloquinone, also known as vitamin K1, is crucial for the synthesis of clotting factors in the liver and plays a significant role in promoting coagulation, thereby supporting the action of anticoagulant therapies like Lepirudin and Bivalirudin, which are used in the management of thrombotic disorders.",
+      "system_answer": "ERROR: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_pathway_drugs']"
+      ],
+      "system_sources": [],
+      "error": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
+    },
+    {
+      "question": "What is the genetic risk associated with citalopram treatment in male patients with certain polymorphisms, and how does this compare to the risk of Stevens-Johnson syndrome in patients carrying the HLA-B*15:02 allele when treated with carbamazepine?",
+      "gt_answer": "Male patients with the T allele, homozygous for the CREB1 gene (rs4675690), have an increased risk of suicide when treated with citalopram. In contrast, patients carrying the HLA-B*15:02 allele are at a higher risk of developing Stevens-Johnson syndrome and toxic epidermal necrolysis when treated with carbamazepine. Both scenarios highlight the importance of pharmacogenetic testing in optimizing treatment and minimizing adverse effects.",
+      "system_answer": "ERROR: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+      "gt_sources": [
+        "None",
+        "['drugbank-snp_adverse_reactions']"
+      ],
+      "system_sources": [],
+      "error": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
+    },
+    {
+      "question": "What is the cost difference between a 50 mg Enbrel kit and a 200 mg Lufyllin tablet, and which of the two has a higher cost per unit?",
+      "gt_answer": "The cost of a 50 mg Enbrel kit is $250.37, while the cost of a 200 mg Lufyllin tablet is $3.21. The cost difference between them is $250.37 - $3.21 = $247.16. The Enbrel kit has a higher cost per unit at $250.37 each compared to the Lufyllin tablet at $3.21 per tablet.",
+      "system_answer": "ERROR: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_prices']"
+      ],
+      "system_sources": [],
+      "error": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
+    },
+    {
+      "question": "Which transport protein families are associated with the specified drug, and what might be the implications of these transport mechanisms on drug absorption and efficacy in clinical settings?",
+      "gt_answer": "The drug associated with the identifier \"BE0001069\" is linked to the transport protein families \"ABC_tran\" (PF00005) and \"ABC_membrane\" (PF00664). These transporters are part of the ATP-binding cassette (ABC) superfamily, which are crucial for the transport of various molecules across cellular membranes. In clinical settings, the function of these transporters can significantly affect drug absorption, distribution, and overall efficacy. For instance, drugs that are substrates for these transporters may have altered bioavailability if their transport is inhibited or enhanced by other substances, leading to potential drug interactions or variability in therapeutic outcomes.",
+      "system_answer": "ERROR: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+      "gt_sources": [
+        "None",
+        "['drugbank-transporters_polypeptides_pfams']"
+      ],
+      "system_sources": [],
+      "error": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
+    },
+    {
+      "question": "Which enzymes are involved in the metabolic pathway SMP0000278, and how might interactions with these enzymes influence therapeutic outcomes in patients using medications that depend on this pathway?",
+      "gt_answer": "The enzymes involved in the metabolic pathway SMP0000278 include P00734, P00748, P02452, P03952, P03951, P00740, P00451, P12259, P00742, P02671, P02675, P02679, P00488, P05160, P00747, P00750, P08709, P13726, Q9BQB6, and P38435. Drug interactions that affect these enzymes could lead to altered drug metabolism, potentially resulting in increased toxicity or reduced efficacy of co-administered medications that are substrates of these enzymes. Clinicians must be vigilant about monitoring patients for adverse effects or therapeutic failures when initiating or discontinuing drugs that influence these metabolic pathways.",
+      "system_answer": "ERROR: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_pathway_enzymes']"
+      ],
+      "system_sources": [],
+      "error": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
+    },
+    {
+      "question": "What drug action pathways are associated with thrombolytic agents, and which metabolic pathways could be affected in patients undergoing these treatments?",
+      "gt_answer": "The thrombolytic agent pathways include Alteplase Action Pathway (SMP0000280), Urokinase Action Pathway (SMP0000284), Reteplase Action Pathway (SMP0000285), Anistreplase Action Pathway (SMP0000281), and Tenecteplase Action Pathway (SMP0000283). In patients receiving these therapies, metabolic disruptions could involve Glycine and Serine Metabolism (SMP0000004) and Glutamate Metabolism (SMP0000072), which may be important to monitor as these pathways are involved in amino acid metabolism and neurotransmitter function.",
+      "system_answer": "ERROR: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_pathway']"
+      ],
+      "system_sources": [],
+      "error": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
+    },
+    {
+      "question": "What are the identifiers for the gene associated with the drug linked to the UniProt Accession 'P02768', and what resources provide information on it?",
+      "gt_answer": "The gene associated with the drug that has the UniProt Accession 'P02768' is indicated by the HUGO Gene Nomenclature Committee identifier 'HGNC:399', and it is also identified in the GenAtlas as 'ALB'. Additional identifiers include 'V00494' from the GenBank Gene Database and '28590' from the GenBank Protein Database. The UniProtKB identifier for this gene is 'P02768', and the UniProt Accession is 'ALBU_HUMAN'.",
+      "system_answer": "ERROR: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+      "gt_sources": [
+        "None",
+        "['drugbank-carriers_polypeptides_ext_id']"
+      ],
+      "system_sources": [],
+      "error": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
+    },
+    {
+      "question": "What is the cost difference between two specified medications, and which of them is indicated for the treatment of moderate to severe active rheumatoid arthritis?",
+      "gt_answer": "The cost of the 50 mg vial of Refludan is $273.19, while the cost of the 25 mg kit of Enbrel is $250.37. The cost difference is $22.82, with Refludan being more expensive. Enbrel is indicated for the treatment of moderate to severe active rheumatoid arthritis.",
+      "system_answer": "ERROR: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_prices']"
+      ],
+      "system_sources": [],
+      "error": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
+    },
+    {
+      "question": "What are the available intravenous dosage forms and strengths for a drug that can be administered as both an injection and a powder for solution, and what specific routes are indicated for each form?",
+      "gt_answer": "The drug available for intravenous administration includes the following forms and strengths: Injection, solution, concentrate with strengths of 20 mg and 50 mg; Powder for solution with a strength of 50 mg; and Injection, solution with a strength of 5 mg/ml. Additionally, there are various forms of another drug that can be administered intravenously, including Injection with a strength of 150 \u00b5g/1mL and Injection, powder, lyophilized, for solution with a strength of 250 mg/1. The table indicates that all these forms are delivered via the Intravenous route.",
+      "system_answer": "ERROR: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_dosages']"
+      ],
+      "system_sources": [],
+      "error": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
+    },
+    {
+      "question": "What are the average masses of Leuprolide acetate and Goserelin acetate, and how do their chemical identifiers compare in terms of structure and potential therapeutic uses in hormone-related conditions?",
+      "gt_answer": "The average mass of Leuprolide acetate is 1269.473 g/mol, and the average mass of Goserelin acetate is 1329.4624 g/mol. The CAS number for Leuprolide acetate is 74381-53-6, while Goserelin acetate's CAS number is 145781-92-6. Both drugs are utilized in the treatment of hormone-sensitive cancers, such as prostate cancer, and for managing conditions related to hormone imbalances. Their differing molecular weights and structures may influence their pharmacokinetics and dosing regimes in clinical practice.",
+      "system_answer": "ERROR: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_salts']"
+      ],
+      "system_sources": [],
+      "error": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
+    },
+    {
+      "question": "What are the synonyms for the drug associated with the management of cystic fibrosis, and what therapeutic role does it play?",
+      "gt_answer": "The drug with DrugBank ID DB00003 has several synonyms, including \"Dornase alfa,\" \"Dornasa alfa,\" and \"Recombinant deoxyribonuclease (DNAse).\" It is primarily used in the management of cystic fibrosis to reduce the viscosity of pulmonary secretions, thus improving lung function and helping to prevent infections.",
+      "system_answer": "ERROR: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_syn']"
+      ],
+      "system_sources": [],
+      "error": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
+    },
+    {
+      "question": "Which drug packager is associated with both Amgen Inc. and Cardinal Health, and what implications might this have for healthcare professionals considering drug interactions during patient treatment planning?",
+      "gt_answer": "Amgen Inc. and Cardinal Health are both associated with several drugs, indicating that these companies may produce or distribute medications that could interact with each other. A healthcare professional should be aware of potential drug interactions when prescribing medications that are packaged by the same company, as this might suggest a higher likelihood of similar formulations or ingredients that could lead to additive effects or contraindications. This highlights the importance of thorough medication reconciliation and interaction checks in patient treatment planning.",
+      "system_answer": "ERROR: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_packagers']"
+      ],
+      "system_sources": [],
+      "error": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
+    },
+    {
+      "question": "What dietary considerations should be taken into account for a patient using octreotide capsules to ensure optimal absorption and reduce gastrointestinal side effects, and how does this differ from the administration of octreotide injections?",
+      "gt_answer": "Patients taking octreotide capsules should take the medication on an empty stomach, as food can reduce oral octreotide absorption by 90%. Conversely, octreotide injections can be taken with or without food, which indicates that the pharmacokinetics of the injectable form are not significantly affected by dietary intake. This difference is crucial for healthcare professionals to consider when advising patients on the best way to administer octreotide to ensure effective treatment outcomes.",
+      "system_answer": "ERROR: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_food_interactions']"
+      ],
+      "system_sources": [],
+      "error": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
+    },
+    {
+      "question": "What is the pharmacological action of the drug associated with the identifier BE0002100, and how does it differ from the actions of another drug with a different identifier?",
+      "gt_answer": "The drug associated with the identifier BE0002100 acts as a ligand, which typically means it binds to a receptor to elicit a response. In contrast, the drug associated with BE0000767 functions as an antagonist, which blocks or dampens the action of a receptor. This difference in action is crucial for determining the therapeutic use and potential effects of each drug in clinical practice.",
+      "system_answer": "ERROR: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+      "gt_sources": [
+        "None",
+        "['drugbank-targets_actions']"
+      ],
+      "system_sources": [],
+      "error": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
+    },
+    {
+      "question": "Which drugs act as agonists, and what are their corresponding actions in relation to substrate interaction or inhibition within a pharmacological context?",
+      "gt_answer": "The drugs that act as agonists include those with parent IDs BE0001821, BE0000782, and BE0000508. BE0001821 acts as an agonist without any specific interactions mentioned, while BE0000782 and BE0000508 also act as agonists, indicating their role in enhancing receptor activity. In contrast, BE0000537 and BE0000530 are noted as substrates, with BE0000537 also functioning as an inducer, suggesting a complex interplay between these drugs where agonists may stimulate certain pathways while substrates may be involved in drug metabolism or transport.",
+      "system_answer": "ERROR: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+      "gt_sources": [
+        "None",
+        "['drugbank-carriers_actions']"
+      ],
+      "system_sources": [],
+      "error": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
+    },
+    {
+      "question": "What drug packagers are associated with the drug identified by the parent key \"DB00002,\" and what is notable about their contributions to the pharmaceutical market?",
+      "gt_answer": "The drug packagers associated with the parent key \"DB00002\" include Cardinal Health, Catalent Pharma Solutions, ImClone Systems Inc., and Oso Biopharmaceuticals Manufacturing LLC. These companies are significant in the pharmaceutical market as they provide essential manufacturing and distribution services, which support the development and supply of various therapeutic drugs, particularly in oncology and biopharmaceuticals.",
+      "system_answer": "ERROR: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_packagers']"
+      ],
+      "system_sources": [],
+      "error": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
+    },
+    {
+      "question": "What manufacturers produce non-generic drugs associated with a specific drug ID, and what is the significance of this drug in clinical therapy?",
+      "gt_answer": "The manufacturers producing non-generic drugs associated with the drugbank ID DB00035 include Sanofi aventis us llc, Ferring pharmaceuticals inc, and Emd serono inc. The significance of DB00035, which is indicative of a specific drug, lies in its therapeutic usage, likely involving treatment for chronic conditions or complex medical issues, although specific clinical details would require further context.",
+      "system_answer": "ERROR: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_manufacturers']"
+      ],
+      "system_sources": [],
+      "error": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
+    },
+    {
+      "question": "What is the average mass of Leuprolide acetate compared to Goserelin acetate, and how might this difference in mass influence their pharmacokinetics in relation to dosing considerations?",
+      "gt_answer": "The average mass of Leuprolide acetate is 1269.473 g/mol, while the average mass of Goserelin acetate is 1329.4624 g/mol. This difference in molecular weight suggests that dosing for each drug may vary, potentially affecting their pharmacokinetics. A higher molecular weight could lead to differences in absorption rates, distribution in the body, and elimination half-lives, necessitating careful consideration of dosing regimens to achieve therapeutic efficacy while minimizing side effects.",
+      "system_answer": "ERROR: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_salts']"
+      ],
+      "system_sources": [],
+      "error": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
+    },
+    {
+      "question": "What is the relationship between the identifiers for Etanercept in different pharmaceutical databases?",
+      "gt_answer": "In the Drugs Product Database (DPD), Etanercept is listed with the identifier 12032. In the PubChem Substance database, it has the identifier 46506732. Both identifiers are linked to the same drug, ensuring that healthcare professionals can cross-reference information across different databases for accurate and comprehensive data regarding Etanercept.",
+      "system_answer": "ERROR: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_external_identifiers']"
+      ],
+      "system_sources": [],
+      "error": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
+    },
+    {
+      "question": "What enzymes are involved in the metabolic pathway SMP0000278, and how might their activities influence the pharmacokinetics of drugs that are metabolized through this pathway?",
+      "gt_answer": "The enzymes involved in the metabolic pathway SMP0000278 include P00734, P00748, P02452, P03952, P03951, P00740, P00451, P12259, P00742, P02671, P02675, P02679, P00488, P05160, P00747, P00750, P08709, P13726, Q9BQB6, and P38435. The activities of these enzymes can significantly influence the pharmacokinetics of drugs, including their absorption, distribution, metabolism, and excretion (ADME). For example, if a drug is primarily metabolized by one of these enzymes, any genetic polymorphisms, drug interactions, or inhibitors affecting these enzymes could lead to altered drug levels in the body, potentially resulting in therapeutic failure or increased toxicity.",
+      "system_answer": "ERROR: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_pathway_enzymes']"
+      ],
+      "system_sources": [],
+      "error": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
+    },
+    {
+      "question": "Which specific transporters are involved as substrates for drugs that act as inhibitors of BE0000703, and what implications could this have for drug-drug interactions in patients treated with such inhibitors?",
+      "gt_answer": "The transporters that are involved as substrates for drugs that act as inhibitors of BE0000703 include BE0001069 and BE0003651. This indicates that if a patient is receiving BE0000703 and is subsequently prescribed medications that inhibit these transporters (such as BE0001069 or BE0003651), there is a potential for drug-drug interactions that could lead to reduced effectiveness of BE0000703 due to altered pharmacokinetics and potential toxicity from increased plasma levels of the affected drugs.",
+      "system_answer": "ERROR: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+      "gt_sources": [
+        "None",
+        "['drugbank-transporters_actions']"
+      ],
+      "system_sources": [],
+      "error": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
+    },
+    {
+      "question": "What are the brand names and companies associated with the drug, and how might this drug be relevant in clinical practice considering its therapeutic application?",
+      "gt_answer": "The drug with DrugBank ID DB00006 is associated with the brand names Angiox and Hirulog, although the company information for these brands is not specified. This drug is relevant in clinical practice as it is an anticoagulant used for the treatment of conditions that require rapid anticoagulation, such as acute coronary syndrome and during percutaneous coronary interventions. Healthcare professionals should consider its dosing and potential side effects when prescribing it.",
+      "system_answer": "ERROR: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_international_brands']"
+      ],
+      "system_sources": [],
+      "error": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
+    },
+    {
+      "question": "What is the cost difference between the most expensive and least expensive vials of Epogen and Procrit, and how does this compare to the cost of a 50 mg/ml Enbrel syringe?",
+      "gt_answer": "The least expensive vial of Epogen is the 2000 unit/ml vial, costing $34.14, while the most expensive is the 4000 unit/ml vial at $61.34. The least expensive vial of Procrit is the 2000 unit/ml vial at $37.09, and the most expensive is the 4000 unit/ml vial at $74.17. The cost difference between the most expensive Procrit vial and the least expensive Epogen vial is $74.17 - $34.14 = $40.03. The cost difference between the most expensive Epogen vial and the least expensive Procrit vial is $61.34 - $37.09 = $24.25. In comparison, the cost of a 50 mg/ml Enbrel sureclick syringe is $488.74, which is significantly higher than both the cheapest and the most expensive vials of Epogen and Procrit.",
+      "system_answer": "ERROR: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_prices']"
+      ],
+      "system_sources": [],
+      "error": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
+    },
+    {
+      "question": "What are the differences in average mass between Leuprolide acetate and Goserelin acetate, and how might these differences influence their dosages in clinical practice for hormone-related therapies?",
+      "gt_answer": "Leuprolide acetate has an average mass of 1269.473 g/mol, while Goserelin acetate has an average mass of 1329.4624 g/mol. The difference in average mass is approximately 59.9894 g/mol. In clinical practice, this difference may influence their dosages; medications with higher molecular weights like Goserelin may require different dosing strategies compared to those with lower weights like Leuprolide, depending on their pharmacokinetics, therapeutic index, and the specific conditions being treated (e.g., prostate cancer or endometriosis). Accurate dosing is crucial for efficacy and minimizing side effects.",
+      "system_answer": "ERROR: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+      "gt_sources": [
+        "None",
+        "['drugbank-drug_salts']"
+      ],
+      "system_sources": [],
+      "error": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
+    }
+  ],
+  "aggregate_metrics": {
+    "rouge1": {
+      "mean": 0.3681265843655699,
+      "median": 0.369994574064026,
+      "min": 0.3146067415730337,
+      "max": 0.417910447761194,
+      "std": 0.039078948496466766
+    },
+    "rouge2": {
+      "mean": 0.14416450011354826,
+      "median": 0.1003919372900336,
+      "min": 0.06818181818181818,
+      "max": 0.3076923076923077,
+      "std": 0.09707069400881355
+    },
+    "rougeL": {
+      "mean": 0.2780308556772916,
+      "median": 0.2552902875746066,
+      "min": 0.21348314606741575,
+      "max": 0.3880597014925373,
+      "std": 0.06601291367509127
+    },
+    "string_similarity": {
+      "mean": 0.14620661841567573,
+      "median": 0.05692358028906339,
+      "min": 0.024864024864024864,
+      "max": 0.44611528822055135,
+      "std": 0.17386694033273267
+    },
+    "source_precision": {
+      "mean": 0.0,
+      "median": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "std": 0.0
+    },
+    "source_recall": {
+      "mean": 0.0,
+      "median": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "std": 0.0
+    },
+    "source_f1": {
+      "mean": 0.0,
+      "median": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "std": 0.0
+    },
+    "llm_correctness": {
+      "mean": 0.2,
+      "median": 0.15,
+      "min": 0.0,
+      "max": 0.5,
+      "std": 0.21213203435596426
+    },
+    "inference_cost": {
+      "mean": 0.5924200000000002,
+      "median": 0.282805,
+      "min": 0.1143,
+      "max": 1.6897700000000002,
+      "std": 0.6415875144124924
+    },
+    "inference_tokens": {
+      "mean": 68372.5,
+      "median": 37527.5,
+      "min": 20740,
+      "max": 177695,
+      "std": 63928.8256051212
+    },
+    "api_calls": {
+      "mean": 7.0,
+      "median": 5.5,
+      "min": 4,
+      "max": 13,
+      "std": 3.6742346141747673
+    },
+    "source_relevance_avg": {
+      "mean": 0.0,
+      "median": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "std": 0.0
+    },
+    "source_relevance_max": {
+      "mean": 0.0,
+      "median": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "std": 0.0
+    }
+  }
+}
