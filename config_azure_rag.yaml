@@ -1,0 +1,38 @@
+# Azure AI Search RAG configuration
+implementation:
+  name: rag_azure
+  config:
+    azure_search_endpoint: !env AZURE_SEARCH_ENDPOINT
+    azure_search_api_key: !env AZURE_SEARCH_API_KEY
+    openrouter_api_key: !env OPENROUTER_API_KEY
+
+    index_name: "pharma-rag-openrouter"
+    data_path: "data/Pharma"
+
+    # OpenRouter models
+    embedding_model: "openai/text-embedding-3-small"
+    generation_model: "openai/gpt-5.2"
+
+    # Retrieval settings
+    k: 5
+    min_score: 0.0
+    use_hybrid_search: true
+
+    # Index build behavior
+    build_index_on_startup: false
+    force_recreate_index: false
+    embedding_batch_size: 32
+    upload_batch_size: 200
+
+    # Chunking / ingestion controls
+    text_chunk_size: 1800
+    text_chunk_overlap: 200
+    table_rows_per_chunk: 80
+    max_table_rows: 240
+    max_files: 0  # 0 = no limit
+    max_docs: 0   # 0 = no limit
+
+data_lake:
+  name: Pharma
+  config:
+    data_path: "data/Pharma"

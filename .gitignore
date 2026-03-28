@@ -6,3 +6,4 @@ sample_index/
 .env
 data/embeddings/
 data/index/
+data/*

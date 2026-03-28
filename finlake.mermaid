@@ -1,0 +1,66 @@
+erDiagram
+    CLIENT_SPLIT {
+        string client_id
+        int fold
+        int is_balanced
+    }
+
+    TARGETS {
+        string client_id
+        string mon
+        int target_1
+        int target_2
+        int target_3
+        int target_4
+        int trans_count
+        int diff_trans_date
+        int fold
+        int is_balanced
+    }
+
+    DETAIL_TRX {
+        string client_id
+        datetime event_time
+        float amount
+        int event_type
+        int event_subtype
+        int currency
+        int src_type11
+        int src_type12
+        int dst_type11
+        int dst_type12
+        int src_type21
+        int src_type22
+        int src_type31
+        int src_type32
+        int fold
+        int is_balanced
+    }
+
+    DETAIL_GEO {
+        string client_id
+        datetime event_time
+        int geohash_4
+        int geohash_5
+        int geohash_6
+        int fold
+        int is_balanced
+    }
+
+    DETAIL_DIALOG {
+        string client_id
+        datetime event_time
+        float[] embedding
+        int fold
+        int is_balanced
+    }
+
+    %% Relationships: client-level split
+    CLIENT_SPLIT ||--o{ DETAIL_TRX     : "1 client → many trx events"
+    CLIENT_SPLIT ||--o{ DETAIL_GEO     : "1 client → many geo events"
+    CLIENT_SPLIT ||--o{ DETAIL_DIALOG  : "1 client → many dialog events"
+    CLIENT_SPLIT ||--o{ TARGETS        : "1 client → many (month) targets"
+
+
+    %% Targets share client_id/fold with events for time-sliced prediction
+    TARGETS ||--|| CLIENT_SPLIT        : "join on client_id + fold"

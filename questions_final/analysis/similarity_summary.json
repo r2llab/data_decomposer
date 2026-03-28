@@ -1,0 +1,174 @@
+{
+  "num_files_loaded": 5,
+  "files_loaded": [
+    "passage_hop_processed.csv",
+    "passage_processed.csv",
+    "passage_table_processed.csv",
+    "table_hop_processed.csv",
+    "table_processed.csv"
+  ],
+  "num_questions_analyzed": 3394,
+  "embedding_provider": "openrouter",
+  "embedding_model": "openai/text-embedding-3-large",
+  "embedding_dim": 3072,
+  "overall_similarity": {
+    "method": "sampled",
+    "total_possible_pairs": 5757921,
+    "pairs_used": 300000,
+    "mean": 0.2959018349647522,
+    "std": 0.09067390114068985,
+    "min": -0.0016551702283322811,
+    "p10": 0.18816195726394655,
+    "p25": 0.2342008873820305,
+    "median": 0.2884868383407593,
+    "p75": 0.3487658202648163,
+    "p90": 0.41184318959712984,
+    "max": 0.9940281510353088,
+    "fraction_ge_0_8": 0.00037666666666666664,
+    "fraction_ge_0_9": 0.00013333333333333334
+  },
+  "question_type_breakdown": [
+    {
+      "question_type": "passage",
+      "question_count": 797,
+      "similarity_method": "exact",
+      "total_possible_pairs": 317206,
+      "pairs_used": 317206,
+      "mean": 0.3175753057003021,
+      "std": 0.0815543532371521,
+      "min": 0.02810818888247013,
+      "p10": 0.2194213643670082,
+      "p25": 0.261460080742836,
+      "median": 0.31129543483257294,
+      "p75": 0.3661362901329994,
+      "p90": 0.4225493371486664,
+      "max": 0.8220231533050537,
+      "fraction_ge_0_8": 3.152525488168572e-06,
+      "fraction_ge_0_9": 0.0
+    },
+    {
+      "question_type": "passage_hop",
+      "question_count": 706,
+      "similarity_method": "exact",
+      "total_possible_pairs": 248865,
+      "pairs_used": 248865,
+      "mean": 0.33569806814193726,
+      "std": 0.07587604969739914,
+      "min": 0.06481436640024185,
+      "p10": 0.24395950138568878,
+      "p25": 0.28288254141807556,
+      "median": 0.33047622442245483,
+      "p75": 0.38300174474716187,
+      "p90": 0.43342986702919006,
+      "max": 0.9633828401565552,
+      "fraction_ge_0_8": 0.00030538645450344567,
+      "fraction_ge_0_9": 5.223715669137886e-05
+    },
+    {
+      "question_type": "passage_table",
+      "question_count": 406,
+      "similarity_method": "exact",
+      "total_possible_pairs": 82215,
+      "pairs_used": 82215,
+      "mean": 0.3323681950569153,
+      "std": 0.09351672232151031,
+      "min": 0.06432053446769714,
+      "p10": 0.22483939230442046,
+      "p25": 0.2680858075618744,
+      "median": 0.3208634555339813,
+      "p75": 0.3833308219909668,
+      "p90": 0.45579656958580017,
+      "max": 0.9262007474899292,
+      "fraction_ge_0_8": 0.0004257130693912303,
+      "fraction_ge_0_9": 7.297938332421091e-05
+    },
+    {
+      "question_type": "table",
+      "question_count": 654,
+      "similarity_method": "exact",
+      "total_possible_pairs": 213531,
+      "pairs_used": 213531,
+      "mean": 0.32879987359046936,
+      "std": 0.1270584762096405,
+      "min": 0.020417584106326103,
+      "p10": 0.18716534972190857,
+      "p25": 0.24360425770282745,
+      "median": 0.312471479177475,
+      "p75": 0.3917408734560013,
+      "p90": 0.483685165643692,
+      "max": 0.9989838600158691,
+      "fraction_ge_0_8": 0.00920241089115866,
+      "fraction_ge_0_9": 0.003685647517222324
+    },
+    {
+      "question_type": "table_hop",
+      "question_count": 831,
+      "similarity_method": "exact",
+      "total_possible_pairs": 344865,
+      "pairs_used": 344865,
+      "mean": 0.3806957006454468,
+      "std": 0.09665169566869736,
+      "min": 0.039497070014476776,
+      "p10": 0.26115495562553404,
+      "p25": 0.3143308162689209,
+      "median": 0.37625789642333984,
+      "p75": 0.4417802393436432,
+      "p90": 0.5062507748603822,
+      "max": 0.9662951231002808,
+      "fraction_ge_0_8": 0.00020297797688950748,
+      "fraction_ge_0_9": 8.699056152407464e-06
+    }
+  ],
+  "tsne": {
+    "status": "ok",
+    "points_plotted": 2500,
+    "perplexity_used": 30.0
+  },
+  "tsne_by_type": [
+    {
+      "question_type": "passage",
+      "status": "ok",
+      "points_plotted": 797,
+      "perplexity_used": 30.0,
+      "output_path": "questions_final/analysis/question_tsne_by_type/question_tsne_passage.png"
+    },
+    {
+      "question_type": "passage_hop",
+      "status": "ok",
+      "points_plotted": 706,
+      "perplexity_used": 30.0,
+      "output_path": "questions_final/analysis/question_tsne_by_type/question_tsne_passage_hop.png"
+    },
+    {
+      "question_type": "passage_table",
+      "status": "ok",
+      "points_plotted": 406,
+      "perplexity_used": 30.0,
+      "output_path": "questions_final/analysis/question_tsne_by_type/question_tsne_passage_table.png"
+    },
+    {
+      "question_type": "table",
+      "status": "ok",
+      "points_plotted": 654,
+      "perplexity_used": 30.0,
+      "output_path": "questions_final/analysis/question_tsne_by_type/question_tsne_table.png"
+    },
+    {
+      "question_type": "table_hop",
+      "status": "ok",
+      "points_plotted": 831,
+      "perplexity_used": 30.0,
+      "output_path": "questions_final/analysis/question_tsne_by_type/question_tsne_table_hop.png"
+    }
+  ],
+  "output_files": {
+    "combined_questions_csv": "questions_final/analysis/combined_processed_questions.csv",
+    "question_type_counts_csv": "questions_final/analysis/question_type_counts.csv",
+    "question_type_similarity_csv": "questions_final/analysis/question_type_similarity_stats.csv",
+    "overall_histogram_png": "questions_final/analysis/overall_similarity_histogram.png",
+    "question_type_counts_png": "questions_final/analysis/question_type_counts.png",
+    "question_type_boxplot_png": "questions_final/analysis/question_type_similarity_boxplot.png",
+    "tsne_png": "questions_final/analysis/question_tsne.png",
+    "tsne_by_type_dir": "questions_final/analysis/question_tsne_by_type"
+  }
+}
