@@ -22,3 +22,6 @@ langchain-openai
 langgraph
 pydantic
 langchain-experimental
+azure-search-documents
+azure-ai-ml
+azure-identity

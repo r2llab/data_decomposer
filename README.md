@@ -38,12 +38,15 @@ The repository is organized into the following main directories:
 - `scripts/`: Command-line tools and utilities
   - `auto_extract_embeddings.py`: Extract embeddings from data using a GPT embedding model
   - `build_index.py`: Build search indices for data retrieval
+  - `vector_index.py`: Build and upload a DrugBank public-abstract vector index to Azure AI Search
   - `run_query.py`: Run queries against the system
   - `train.py`: Training a T5-based autoencoder model
   - `extract_embeddings.py`: Extracting embeddings from the trained T5-based autoencoder model
   - `passage_embedd_and_index.py`: Process and index passage data
   - `build_representation_index.py`: Build indices for cross-modal representations
   - `csv_to_sqlite.py`: Convert CSV data to SQLite database format
+
+- `submit_vector_index_aml.py`: Submit `scripts/vector_index.py` as an Azure ML command job
 
 - `tests/`: Test suite for validating system functionality
 
@@ -102,6 +105,13 @@ All passage QA generation and processing scripts use OpenRouter for LLM calls. P
 - Individual stages remain available:
   - Generation only: `python data_processing/generate_passage_questions.py --model openai/gpt-5.2`
   - Processing only: `python data_processing/process_passage_questions.py --model openai/gpt-5.2`
+
+## Azure Vector Index (DrugBank Public Abstracts)
+
+- Local run:
+  - `python scripts/vector_index.py --index-name drug_bank_data_lake --sample-size 256`
+- AML submission:
+  - `python submit_vector_index_aml.py -- --index-name drug_bank_data_lake --sample-size 256`
 
 # Acknowledgements
 
