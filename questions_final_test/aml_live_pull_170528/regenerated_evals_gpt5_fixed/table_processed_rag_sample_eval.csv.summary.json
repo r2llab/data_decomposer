@@ -1,0 +1,42 @@
+{
+  "row_count": 711,
+  "average_metrics": {
+    "direct_rouge1": 0.45174764848112037,
+    "direct_rouge2": 0.24114357559275973,
+    "direct_rougeL": 0.42666034898870575,
+    "direct_string_similarity": 0.45156004213984735,
+    "reasoning_rouge1": 0.35842996053023574,
+    "reasoning_rouge2": 0.13703323338720724,
+    "reasoning_rougeL": 0.26583384986841424,
+    "reasoning_string_similarity": 0.16097189381497418,
+    "full_rouge1": 0.38503770430779777,
+    "full_rouge2": 0.1716234832521864,
+    "full_rougeL": 0.29187606882322814,
+    "full_string_similarity": 0.17270966981367036,
+    "passage_precision": 0.0,
+    "passage_recall": 0.0,
+    "passage_f1": 0.0,
+    "passage_mrr": 0.0,
+    "table_precision": 0.07032542792967215,
+    "table_recall": 0.8045007032348804,
+    "table_f1": 0.12764343178217588,
+    "table_mrr": 0.20811451792464455,
+    "llm_direct_correctness": 0.6026722925457103,
+    "llm_reasoning_correctness": 0.7580872011251758,
+    "llm_avg_correctness": 0.680379746835443,
+    "llm_prompt_tokens": 342.62306610407876,
+    "llm_completion_tokens": 16.458509142053448,
+    "llm_total_tokens": 359.0815752461322,
+    "llm_processing_time": 5.723514071697141,
+    "llm_inference_cost": 0.0005928639240506329
+  },
+  "total_llm_tokens": 255307,
+  "total_llm_api_calls": 711,
+  "total_llm_inference_cost": 0.42152624999999994,
+  "average_llm_processing_time": 5.723514071697141,
+  "pricing": {
+    "prompt_price_per_1k": 0.00125,
+    "completion_price_per_1k": 0.01,
+    "model": "openai/gpt-5"
+  }
+}

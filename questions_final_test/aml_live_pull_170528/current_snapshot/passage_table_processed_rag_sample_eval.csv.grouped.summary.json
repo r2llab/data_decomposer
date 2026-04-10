@@ -1,0 +1,33 @@
+{
+  "ptq": {
+    "sql_skipped": 0.0,
+    "direct_rouge1": 0.39326367121424793,
+    "direct_rouge2": 0.2014387456572652,
+    "direct_rougeL": 0.3568089618987207,
+    "direct_string_similarity": 0.3927907012220436,
+    "reasoning_rouge1": 0.4237241836331189,
+    "reasoning_rouge2": 0.1535970977915292,
+    "reasoning_rougeL": 0.28163409267579304,
+    "reasoning_string_similarity": 0.11045889380634019,
+    "full_rouge1": 0.44442305044426667,
+    "full_rouge2": 0.1780271446806906,
+    "full_rougeL": 0.2994945194548998,
+    "full_string_similarity": 0.12951414730868466,
+    "passage_precision": 0.14679802955665025,
+    "passage_recall": 0.7339901477832512,
+    "passage_f1": 0.2446633825944171,
+    "passage_mrr": 0.6302955665024631,
+    "table_precision": 0.22850902478184426,
+    "table_recall": 0.9770114942528736,
+    "table_f1": 0.3697717138882171,
+    "table_mrr": 0.25191375400735005,
+    "llm_direct_correctness": NaN,
+    "llm_reasoning_correctness": NaN,
+    "llm_avg_correctness": NaN,
+    "llm_prompt_tokens": 398.01477832512313,
+    "llm_completion_tokens": 16.0,
+    "llm_total_tokens": 414.01477832512313,
+    "llm_processing_time": 0.0,
+    "llm_inference_cost": 0.0006575184729064039
+  }
+}

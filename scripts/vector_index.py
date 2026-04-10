@@ -18,23 +18,40 @@ from typing import Any, Dict, Iterable, Iterator, Mapping, Optional, Sequence
 
 import numpy as np
 import torch
-from azure.core.credentials import AzureKeyCredential
-from azure.core.exceptions import ResourceNotFoundError
-from azure.search.documents import SearchClient
-from azure.search.documents.indexes import SearchIndexClient
-from azure.search.documents.indexes.models import (
-    HnswAlgorithmConfiguration,
-    SearchField,
-    SearchFieldDataType,
-    SearchIndex,
-    SearchableField,
-    SimpleField,
-    VectorSearch,
-    VectorSearchProfile,
-)
 from dotenv import load_dotenv
 from tqdm import tqdm
 from transformers import AutoModel, AutoTokenizer
+
+try:
+    from azure.core.credentials import AzureKeyCredential
+    from azure.core.exceptions import ResourceNotFoundError
+    from azure.search.documents import SearchClient
+    from azure.search.documents.indexes import SearchIndexClient
+    from azure.search.documents.indexes.models import (
+        HnswAlgorithmConfiguration,
+        SearchField,
+        SearchFieldDataType,
+        SearchIndex,
+        SearchableField,
+        SimpleField,
+        VectorSearch,
+        VectorSearchProfile,
+    )
+    _AZURE_SEARCH_SDK_AVAILABLE = True
+except ModuleNotFoundError:
+    AzureKeyCredential = Any  # type: ignore[assignment]
+    ResourceNotFoundError = Exception  # type: ignore[assignment]
+    SearchClient = Any  # type: ignore[assignment]
+    SearchIndexClient = Any  # type: ignore[assignment]
+    HnswAlgorithmConfiguration = Any  # type: ignore[assignment]
+    SearchField = Any  # type: ignore[assignment]
+    SearchFieldDataType = Any  # type: ignore[assignment]
+    SearchIndex = Any  # type: ignore[assignment]
+    SearchableField = Any  # type: ignore[assignment]
+    SimpleField = Any  # type: ignore[assignment]
+    VectorSearch = Any  # type: ignore[assignment]
+    VectorSearchProfile = Any  # type: ignore[assignment]
+    _AZURE_SEARCH_SDK_AVAILABLE = False
 
 
 LOGGER = logging.getLogger(__name__)
@@ -51,6 +68,15 @@ VECTOR_FIELD = "content_vector"
 VECTOR_PROFILE_NAME = "vector-profile"
 VECTOR_ALGORITHM_NAME = "hnsw-default"
 POINT_ID_NAMESPACE = uuid.UUID("5f43b7b6-ecaf-4c80-82ef-45ca5f4dbbd2")
+
+
+def _require_azure_search_sdk() -> None:
+    if _AZURE_SEARCH_SDK_AVAILABLE:
+        return
+    raise ModuleNotFoundError(
+        "Missing dependency `azure-search-documents`. "
+        "Install it with: python -m pip install azure-search-documents"
+    )
 
 
 @dataclass
@@ -601,6 +627,7 @@ def run(
     shard_id: Optional[int] = None,
     shard_strategy: str = "hash",
 ) -> None:
+    _require_azure_search_sdk()
     load_dotenv()
     if shard_id is None:
         shard_id = 0

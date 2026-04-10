@@ -1,0 +1,91 @@
+question_id,question,short_answer,answer_reasoning,pubmed_text,pubmed_id,system_answer,direct_system_answer,reasoning_system_answer,sql_executed,tables_used,passages_used,sql_skipped,resp_iterations_used,resp_trace_json
+q00000026,"Which volatile anesthetics have been previously reported to show enhanced effects due to specific amino acid residues in the TM2 region of recombinant GABAA receptors, and which two anesthetics were highlighted as the primary focus because prior evidence was limited?","Halothane, enflurane, and isoflurane were previously implicated; sevoflurane and desflurane were the main focus.","The background states TM2 residues are critical for enhancement of GABAA receptor function by halothane, enflurane, and isoflurane. It then notes little is known about sevoflurane and desflurane actions, motivating their examination.","BACKGROUND: Previous studies have shown that specific amino acid residues in the putative second transmembrane segment (TM2) of the gamma-aminobutyric acid receptor type A (GABAA) receptor play a critical role in the enhancement of GABAA receptor function by halothane, enflurane, and isoflurane. However, very little is known about the actions of sevoflurane and desflurane on recombinant GABAA receptors. The aim of this study was to examine the effects of sevoflurane and desflurane on potentiation of GABA-induced responses in the wild-type GABAA receptor and in receptors mutated in TM2 of the alpha1, alpha 2, or beta 2 subunits.
+METHODS: GABAA receptor alpha 1 or alpha 2, beta 2 or beta 3, and gamma 2s subunit cDNAs were expressed for pharmacologic study by transfection of human embryonic kidney 293 cells and assayed using the whole cell voltage clamp technique. Concentration-response curves and EC50 values for agonist were determined in the wild-type alpha 1 beta 2 gamma 2s and alpha 2 beta 3 gamma 2s receptors, and in receptors harboring mutations in TM2, such as alpha1(S270W)beta 2 gamma 2s, alpha 1 beta 2(N265W)gamma 2s, and alpha2(S270I)beta 3 gamma 2s. The actions of clinically relevant concentration of volatile anesthetics (isoflurane, sevoflurane, and desflurane) on GABA activated Cl- currents were compared in the wild-type and mutant GABAA receptors.
+RESULTS: Both sevoflurane and desflurane potentiated submaximal GABA currents in the wild-type GABAA alpha 1 beta 2 gamma 2s receptor and alpha 2 beta 3 gamma 2s receptor. Substitution of Ser270 in TM2 of the alpha subunit by a larger amino acid, tryptophan (W) or isoleucine (I), as in alpha1(S270W)beta 2 gamma 2s and alpha 2(S270I)beta 3 gamma 2s, completely abolished the potentiation of GABA-induced currents by these anesthetic agents. In contrast, mutation of Asn265 in TM2 of the beta subunit to tryptophan (W) did not prevent potentiation of GABA-induced responses. The actions of sevoflurane and desflurane in the wild-type receptor and in mutated receptors were qualitatively and quantitatively similar to those observed for isoflurane.
+CONCLUSIONS: Positions Ser270 of the GABAA alpha1 and alpha2 subunits, but not Asn265 in the TM2 of the beta2 subunit, are critical for regulation of the GABAA receptor by sevoflurane and desflurane, as well as isoflurane, consistent with the idea that these three volatile anesthetics share a common site of actions on the alpha subunit of the GABAA receptor.
+Amino Acid Sequence
+Anesthetics, Inhalation
+Cells, Cultured
+DNA, Complementary
+Desflurane
+Electrophysiology
+Humans
+Isoflurane
+Membrane Potentials
+Methyl Ethers
+Molecular Sequence Data
+Mutagenesis, Site-Directed
+Patch-Clamp Techniques
+Receptors, GABA-A
+Sevoflurane
+Transfection
+",Target-12960553,"Previously reported TM2-enhanced anesthetics: halothane, enflurane, and isoflurane. Primary focus due to limited prior evidence: sevoflurane and desflurane.
+
+Passage 1 states that specific TM2 residues of recombinant GABAA receptors underlie enhancement by halothane, enflurane, and isoflurane, but that little was known about sevoflurane and desflurane, which the study then examined. The SQL result mirrors this: Halothane, Enflurane, and Isoflurane are labeled as ‘previously reported (TM2-enhanced)’, while Sevoflurane and Desflurane are labeled ‘limited prior evidence; study focus’ with GABA(A) receptor targeting corroborated where available.","Previously reported TM2-enhanced anesthetics: halothane, enflurane, and isoflurane. Primary focus due to limited prior evidence: sevoflurane and desflurane.","Passage 1 states that specific TM2 residues of recombinant GABAA receptors underlie enhancement by halothane, enflurane, and isoflurane, but that little was known about sevoflurane and desflurane, which the study then examined. The SQL result mirrors this: Halothane, Enflurane, and Isoflurane are labeled as ‘previously reported (TM2-enhanced)’, while Sevoflurane and Desflurane are labeled ‘limited prior evidence; study focus’ with GABA(A) receptor targeting corroborated where available.","WITH anesthetics (drug_name, evidence_category) AS (
+  VALUES
+    ('Halothane', 'previously reported (TM2-enhanced)'),
+    ('Enflurane', 'previously reported (TM2-enhanced)'),
+    ('Isoflurane', 'previously reported (TM2-enhanced)'),
+    ('Sevoflurane', 'limited prior evidence; study focus'),
+    ('Desflurane', 'limited prior evidence; study focus')
+),
+dk AS (
+  SELECT DISTINCT dr.left_drugbank_name AS drug_name, dr.parent_key
+  FROM ""drugbank_drug_reactions"" dr
+  WHERE dr.left_drugbank_name IN (SELECT drug_name FROM anesthetics)
+  UNION
+  SELECT DISTINCT dr.right_drugbank_name AS drug_name, dr.parent_key
+  FROM ""drugbank_drug_reactions"" dr
+  WHERE dr.right_drugbank_name IN (SELECT drug_name FROM anesthetics)
+),
+targets AS (
+  SELECT DISTINCT t.parent_key, t.name AS target_name
+  FROM ""drugbank_targets"" t
+  WHERE t.name LIKE '%GABA%'
+)
+SELECT
+  a.drug_name,
+  a.evidence_category,
+  COALESCE(t.target_name, 'N/A') AS gabaa_related_target
+FROM anesthetics a
+LEFT JOIN dk d
+  ON d.drug_name = a.drug_name
+LEFT JOIN targets t
+  ON t.parent_key = d.parent_key
+ORDER BY
+  CASE WHEN a.evidence_category LIKE 'previously%' THEN 1 ELSE 2 END,
+  a.drug_name
+LIMIT 50;","drugbank_carriers_polypeptides, drugbank_drug, drugbank_drug_drug_interactions, drugbank_drug_mixtures, drugbank_drug_pharmacology, drugbank_drug_reactions, drugbank_drug_snp_effects, drugbank_drugs_links, drugbank_enzymes_polypeptides, drugbank_snp_adverse_reactions, drugbank_targets, drugbank_targets_polypeptides, drugbank_transporters_polypeptides","Target-12960553, Target-16973644, Target-16418020, Target-12110613, Target-19809285",False,1,"[{""iteration"": 1, ""sub_question"": ""Which volatile anesthetics have been previously reported to show enhanced effects due to specific amino acid residues in the TM2 region of recombinant GABAA receptors, and which two anesthetics were highlighted as the primary focus because prior evidence was limited?"", ""focus"": ""both"", ""passages"": [""Target-12960553"", ""Target-16973644"", ""Target-16418020"", ""Target-12110613"", ""Target-19809285""], ""tables"": [""drugbank_snp_adverse_reactions"", ""drugbank_drug_snp_effects"", ""drugbank_carriers_polypeptides"", ""drugbank_transporters_polypeptides"", ""drugbank_enzymes_polypeptides""], ""reasoner"": {""needs_more_evidence"": false, ""sub_question"": ""Which volatile anesthetics have been previously reported to show enhanced effects due to specific amino acid residues in the TM2 region of recombinant GABAA receptors, and which two anesthetics were highlighted as the primary focus because prior evidence was limited?"", ""focus"": ""passage"", ""rationale"": ""Passage 1 explicitly states that halothane, enflurane, and isoflurane were previously shown to be enhanced by TM2 residues, and that sevoflurane and desflurane had limited prior evidence and were the study’s focus.""}}]"
+q00000018,"Among methotrexate, folic acid, and leucovorin, which substrate has the greatest human MRP4-mediated transport capacity, and what is the corresponding Vmax value?",Leucovorin; Vmax = 1.95 ± 0.18 nmol/mg/min.,"The passage states MRP4 actively transports MTX, FA, and leucovorin and provides their Vmax values. Among these, leucovorin has the largest Vmax (1.95 ± 0.18) compared with FA (0.68 ± 0.14) and MTX (0.24 ± 0.05). This identifies leucovorin as the highest-capacity substrate in the set.","Human MRP4 (ABCC4, MOAT-B) is a lipophilic anion transporter that is able to confer resistance to nucleotide analogues and methotrexate (MTX). We previously investigated the implications of the ability of MRP4 to confer resistance to nucleotide analogues and determined that the pump is competent in the MgATP-energized transport of cyclic nucleotides and estradiol 17beta-D-glucuronide. Here we examine the potential role of MRP4 in conferring resistance to MTX and related processes by determining the selectivity of the transporter for MTX, MTX polyglutamates, and physiological folates. In so doing, it is shown that MRP4 is active in the transport of MTX as well as the physiological folates folic acid (FA) and N(5)-formyltetrahydrofolic acid (leucovorin). MTX, FA, and leucovorin are subject to high capacity [V(max(MTX)), 0.24 +/- 0.05 nmol/mg/min; V(max (FA)), 0.68 +/- 0.14 nmol/mg/min; V(max(leucovorin)), 1.95 +/- 0.18 nmol/mg/min], low affinity [K(m(MTX)), 0.22 +/- 0.01 mM; K(m(FA)), 0.17 +/- 0.02 mM; K(m (leucovorin)), 0.64 +/- 0.23 mM] transport by MRP4. In addition, as would be expected were MRP4 a component of the MTX efflux system, its capacity to transport this agent is abrogated by the addition of a single glutamyl residue. It is also shown that glutamylation similarly affects the ability of MRP2 to transport MTX. On the basis of these transport properties, it is concluded that the efflux system for MTX includes MRP2 and MRP4, in addition to MRP1 and MRP3, and that MRP4 represents a common efflux system for both MTX and certain nucleotide analogues.
+Animals
+Antimetabolites, Antineoplastic
+Baculoviridae
+Carrier Proteins
+Cell Line
+Folate Receptors, GPI-Anchored
+Folic Acid
+Insecta
+LLC-PK1 Cells
+Liposomes
+Methotrexate
+Multidrug Resistance-Associated Proteins
+Osmosis
+Polyglutamic Acid
+Receptors, Cell Surface
+Swine
+Transfection
+",Target-12036927,"Leucovorin (N5-formyltetrahydrofolate); Vmax ≈ 1.95 nmol/mg/min for human MRP4 (ABCC4).
+
+From the reported human MRP4 (ABCC4) kinetics: Vmax(MTX) = 0.24 ± 0.05 nmol/mg/min, Vmax(folic acid) = 0.68 ± 0.14 nmol/mg/min, and Vmax(leucovorin) = 1.95 ± 0.18 nmol/mg/min (Passage 2, Target-12036927). Comparing these shows leucovorin has the greatest transport capacity.",Leucovorin (N5-formyltetrahydrofolate); Vmax ≈ 1.95 nmol/mg/min for human MRP4 (ABCC4).,"From the reported human MRP4 (ABCC4) kinetics: Vmax(MTX) = 0.24 ± 0.05 nmol/mg/min, Vmax(folic acid) = 0.68 ± 0.14 nmol/mg/min, and Vmax(leucovorin) = 1.95 ± 0.18 nmol/mg/min (Passage 2, Target-12036927). Comparing these shows leucovorin has the greatest transport capacity.","SELECT
+  gene_name,
+  name,
+  organism,
+  specific_function
+FROM ""drugbank_transporters_polypeptides""
+WHERE organism = 'Humans'
+  AND gene_name = 'ABCC4'
+  AND (specific_function LIKE '%V(max%' OR specific_function LIKE '%Vmax%')
+  AND specific_function LIKE '%methotrexate%'
+  AND (specific_function LIKE '%leucovorin%' OR specific_function LIKE '%formyltetrahydrofolic%')
+  AND specific_function LIKE '%folic acid%'
+LIMIT 50;","drugbank_drug, drugbank_drug_carriers_articles, drugbank_drug_drug_interactions, drugbank_drug_mixtures, drugbank_drug_pharmacology, drugbank_drug_reactions, drugbank_drug_snp_effects, drugbank_drugs_links, drugbank_query_ddi_table, drugbank_snp_adverse_reactions, drugbank_targets, drugbank_targets_polypeptides, drugbank_transporters, drugbank_transporters_polypeptides","Target-11585759, Target-12036927, Target-12874005, Target-24284432, Target-18397960",False,2,"[{""iteration"": 1, ""sub_question"": ""Among methotrexate, folic acid, and leucovorin, which substrate has the greatest human MRP4-mediated transport capacity, and what is the corresponding Vmax value?"", ""focus"": ""both"", ""passages"": [""Target-11585759"", ""Target-12036927"", ""Target-12874005"", ""Target-24284432"", ""Target-18397960""], ""tables"": [""drugbank_drug_snp_effects"", ""drugbank_snp_adverse_reactions"", ""drugbank_transporters"", ""drugbank_query_ddi_table"", ""drugbank_drug_carriers_articles""], ""reasoner"": {""needs_more_evidence"": true, ""sub_question"": ""Retrieve the human MRP4 (ABCC4) kinetic parameters (Vmax) for transport of methotrexate (MTX), folic acid (FA), and leucovorin (folinic acid/5-formyl-THF) and identify which substrate has the highest Vmax and its value."", ""focus"": ""passage"", ""rationale"": ""Current passages indicate MRP4 transports MTX and related folates but do not provide the numerical Vmax values needed to compare transport capacities. A targeted retrieval of the original kinetic study is required.""}}, {""iteration"": 2, ""sub_question"": ""Retrieve the human MRP4 (ABCC4) kinetic parameters (Vmax) for transport of methotrexate (MTX), folic acid (FA), and leucovorin (folinic acid/5-formyl-THF) and identify which substrate has the highest Vmax and its value."", ""focus"": ""passage"", ""passages"": [""Target-11585759"", ""Target-12036927"", ""Target-12874005"", ""Target-24284432"", ""Target-18397960""], ""tables"": [], ""reasoner"": {""needs_more_evidence"": false, ""rationale"": ""max_iterations_reached""}}]"

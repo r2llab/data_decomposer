@@ -1,0 +1,102 @@
+Loading checkpoint shards:   0%|          | 0/7 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/7 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/7 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/7 [00:00<?, ?it/s]Loading checkpoint shards:  14%|█▍        | 1/7 [00:00<00:03,  1.90it/s]Loading checkpoint shards:  14%|█▍        | 1/7 [00:00<00:03,  1.62it/s]Loading checkpoint shards:  14%|█▍        | 1/7 [00:00<00:03,  1.55it/s]Loading checkpoint shards:  14%|█▍        | 1/7 [00:00<00:03,  1.55it/s]Loading checkpoint shards:  29%|██▊       | 2/7 [00:01<00:03,  1.44it/s]Loading checkpoint shards:  29%|██▊       | 2/7 [00:01<00:03,  1.39it/s]Loading checkpoint shards:  29%|██▊       | 2/7 [00:01<00:03,  1.41it/s]Loading checkpoint shards:  29%|██▊       | 2/7 [00:01<00:03,  1.41it/s]Loading checkpoint shards:  43%|████▎     | 3/7 [00:02<00:02,  1.48it/s]Loading checkpoint shards:  43%|████▎     | 3/7 [00:02<00:02,  1.38it/s]Loading checkpoint shards:  43%|████▎     | 3/7 [00:02<00:03,  1.32it/s]Loading checkpoint shards:  57%|█████▋    | 4/7 [00:02<00:01,  1.65it/s]Loading checkpoint shards:  43%|████▎     | 3/7 [00:02<00:02,  1.40it/s]Loading checkpoint shards:  57%|█████▋    | 4/7 [00:02<00:01,  1.52it/s]Loading checkpoint shards:  57%|█████▋    | 4/7 [00:02<00:01,  1.50it/s]Loading checkpoint shards:  71%|███████▏  | 5/7 [00:03<00:01,  1.68it/s]Loading checkpoint shards:  57%|█████▋    | 4/7 [00:02<00:02,  1.49it/s]Loading checkpoint shards:  71%|███████▏  | 5/7 [00:03<00:01,  1.50it/s]Loading checkpoint shards:  86%|████████▌ | 6/7 [00:03<00:00,  1.97it/s]Loading checkpoint shards: 100%|██████████| 7/7 [00:03<00:00,  2.04it/s]
+Loading checkpoint shards:  71%|███████▏  | 5/7 [00:03<00:01,  1.38it/s]Loading checkpoint shards:  86%|████████▌ | 6/7 [00:03<00:00,  1.85it/s]Loading checkpoint shards: 100%|██████████| 7/7 [00:03<00:00,  1.90it/s]
+Loading checkpoint shards:  71%|███████▏  | 5/7 [00:03<00:01,  1.73it/s]Loading checkpoint shards:  86%|████████▌ | 6/7 [00:03<00:00,  2.27it/s]Loading checkpoint shards: 100%|██████████| 7/7 [00:03<00:00,  2.12it/s]
+Loading checkpoint shards:  86%|████████▌ | 6/7 [00:03<00:00,  1.78it/s]Loading checkpoint shards: 100%|██████████| 7/7 [00:03<00:00,  1.85it/s]
+Embedding questions: 0batch [00:00, ?batch/s]Embedding questions: 1batch [00:00, 20.89batch/s]
+Embedded 5 questions in 0.05s (102.98 q/s)
+Answering questions:   0%|          | 0/5 [00:00<?, ?question/s]Embedding questions: 0batch [00:00, ?batch/s]Embedding questions: 1batch [00:00, 20.75batch/s]
+Embedded 5 questions in 0.05s (102.02 q/s)
+Answering questions:   0%|          | 0/5 [00:00<?, ?question/s]Embedding questions: 0batch [00:00, ?batch/s]Embedding questions: 1batch [00:00, 27.48batch/s]
+Embedded 5 questions in 0.04s (134.72 q/s)
+Answering questions:   0%|          | 0/5 [00:00<?, ?question/s]Embedding questions: 0batch [00:00, ?batch/s]Embedding questions: 1batch [00:00, 27.70batch/s]
+Embedded 5 questions in 0.04s (135.99 q/s)
+Answering questions:   0%|          | 0/5 [00:00<?, ?question/s]Answering questions:  20%|██        | 1/5 [00:14<00:56, 14.10s/question]Answering questions:  40%|████      | 2/5 [00:14<00:18,  6.04s/question]Answering questions:  20%|██        | 1/5 [00:17<01:09, 17.46s/question]Answering questions:  40%|████      | 2/5 [00:18<00:23,  7.80s/question]Answering questions:  20%|██        | 1/5 [00:16<01:06, 16.54s/question]Answering questions:  60%|██████    | 3/5 [00:16<00:08,  4.39s/question]Answering questions:  60%|██████    | 3/5 [00:18<00:08,  4.46s/question]Answering questions:  20%|██        | 1/5 [00:17<01:08, 17.14s/question]Answering questions:  40%|████      | 2/5 [00:17<00:22,  7.55s/question]Answering questions:  40%|████      | 2/5 [00:18<00:23,  7.96s/question]Answering questions:  60%|██████    | 3/5 [00:18<00:08,  4.43s/question]Answering questions:  80%|████████  | 4/5 [00:22<00:04,  4.01s/question]Answering questions:  80%|████████  | 4/5 [00:20<00:04,  4.23s/question]Answering questions: 100%|██████████| 5/5 [00:22<00:00,  3.20s/question]Answering questions: 100%|██████████| 5/5 [00:22<00:00,  4.46s/question]
+Wrote 5 answers to /home/justiwag/michaels-tests/data_decomposer/questions_final_test/batch_samples_gpt5_tokencap_smoke/table_hop_processed_rag_sample.csv. RAG stage: 5 questions in 22.29s (0.22 q/s)
+Answering questions:  60%|██████    | 3/5 [00:22<00:12,  6.25s/question]Answering questions:  80%|████████  | 4/5 [00:22<00:04,  4.13s/question]Answering questions: 100%|██████████| 5/5 [00:22<00:00,  4.52s/question]
+Wrote 5 answers to /home/justiwag/michaels-tests/data_decomposer/questions_final_test/batch_samples_gpt5_tokencap_smoke/passage_processed_rag_sample.csv. RAG stage: 5 questions in 22.59s (0.22 q/s)
+Answering questions: 100%|██████████| 5/5 [00:25<00:00,  3.78s/question]Answering questions: 100%|██████████| 5/5 [00:25<00:00,  5.14s/question]
+Wrote 5 answers to /home/justiwag/michaels-tests/data_decomposer/questions_final_test/batch_samples_gpt5_tokencap_smoke/passage_table_processed_rag_sample.csv. RAG stage: 5 questions in 25.69s (0.19 q/s)
+Answering questions:  80%|████████  | 4/5 [00:25<00:04,  4.81s/question]Evaluating rows:   0%|          | 0/5 [00:00<?, ?it/s]Answering questions: 100%|██████████| 5/5 [00:27<00:00,  4.11s/question]Answering questions: 100%|██████████| 5/5 [00:27<00:00,  5.60s/question]
+Evaluating rows:  20%|██        | 1/5 [00:00<00:00,  5.14it/s]Evaluating rows: 100%|██████████| 5/5 [00:00<00:00, 24.61it/s]
+Evaluated 5 rows in 0.22s (23.09 rows/s)
+LLM scoring calls: 0 (0.00 calls/s)
+Wrote 5 answers to /home/justiwag/michaels-tests/data_decomposer/questions_final_test/batch_samples_gpt5_tokencap_smoke/passage_hop_processed_rag_sample.csv. RAG stage: 5 questions in 27.99s (0.18 q/s)
+Evaluating rows:   0%|          | 0/5 [00:00<?, ?it/s]Evaluating rows:  20%|██        | 1/5 [00:00<00:00,  5.45it/s]Evaluating rows:   0%|          | 0/5 [00:00<?, ?it/s]Evaluating rows:  20%|██        | 1/5 [00:00<00:00,  5.76it/s]Evaluating rows: 100%|██████████| 5/5 [00:00<00:00, 22.54it/s]
+Evaluated 5 rows in 0.23s (21.81 rows/s)
+LLM scoring calls: 0 (0.00 calls/s)
+Evaluating rows:   0%|          | 0/5 [00:00<?, ?it/s]Evaluating rows:  20%|██        | 1/5 [00:00<00:00,  6.27it/s]Evaluating rows: 100%|██████████| 5/5 [00:00<00:00, 25.31it/s]
+Evaluated 5 rows in 0.21s (24.01 rows/s)
+LLM scoring calls: 0 (0.00 calls/s)
+Loading checkpoint shards:   0%|          | 0/7 [00:00<?, ?it/s]Loading checkpoint shards:  14%|█▍        | 1/7 [00:00<00:01,  3.26it/s]Loading checkpoint shards:  29%|██▊       | 2/7 [00:00<00:01,  3.52it/s]Loading checkpoint shards:  43%|████▎     | 3/7 [00:00<00:01,  3.55it/s]Loading checkpoint shards:  57%|█████▋    | 4/7 [00:01<00:00,  3.58it/s]Loading checkpoint shards:  71%|███████▏  | 5/7 [00:01<00:00,  3.76it/s]Loading checkpoint shards:  86%|████████▌ | 6/7 [00:01<00:00,  4.24it/s]Loading checkpoint shards: 100%|██████████| 7/7 [00:01<00:00,  4.52it/s]
+Embedding questions: 0batch [00:00, ?batch/s]Embedding questions: 1batch [00:00, 30.48batch/s]
+Embedded 5 questions in 0.03s (148.82 q/s)
+Answering questions:   0%|          | 0/5 [00:00<?, ?question/s]Evaluating rows:  80%|████████  | 4/5 [00:17<00:04,  4.36s/it]
+Traceback (most recent call last):
+  File "/home/justiwag/michaels-tests/data_decomposer/scripts/evaluate_rag_answers.py", line 660, in <module>
+    main()
+    ~~~~^^
+  File "/home/justiwag/michaels-tests/data_decomposer/scripts/evaluate_rag_answers.py", line 644, in main
+    evaluate_file(
+    ~~~~~~~~~~~~~^
+        input_path=args.input_csv,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<9 lines>...
+        workers=args.workers,
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/justiwag/michaels-tests/data_decomposer/scripts/evaluate_rag_answers.py", line 557, in evaluate_file
+    idx, metrics_row, combined_row, llm_total_tokens, llm_calls, row_cost, llm_processing_time = future.result()
+                                                                                                 ~~~~~~~~~~~~~^^
+  File "/home/justiwag/miniconda3/lib/python3.13/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/home/justiwag/miniconda3/lib/python3.13/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/justiwag/miniconda3/lib/python3.13/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/home/justiwag/michaels-tests/data_decomposer/scripts/evaluate_rag_answers.py", line 463, in _evaluate_row
+    pair_result = score_answer_pair(
+        reference_direct=reference_direct,
+    ...<4 lines>...
+        model=model,
+    )
+  File "/home/justiwag/michaels-tests/data_decomposer/scripts/evaluate_rag_answers.py", line 270, in score_answer_pair
+    direct_result = score_answer(reference_direct, candidate_direct, config, model=model)
+  File "/home/justiwag/michaels-tests/data_decomposer/scripts/evaluate_rag_answers.py", line 150, in score_answer
+    response = config.client.chat.completions.create(
+        model=model,
+    ...<3 lines>...
+        extra_headers=config.headers,
+    )
+  File "/home/justiwag/miniconda3/lib/python3.13/site-packages/openai/_utils/_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+  File "/home/justiwag/miniconda3/lib/python3.13/site-packages/openai/resources/chat/completions/completions.py", line 1147, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<46 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/justiwag/miniconda3/lib/python3.13/site-packages/openai/_base_client.py", line 1259, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/justiwag/miniconda3/lib/python3.13/site-packages/openai/_base_client.py", line 1047, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.PermissionDeniedError: Error code: 403 - {'error': {'message': 'Provider returned error', 'code': 403, 'metadata': {'raw': '{\n  "error": {\n    "message": "Your resource has been temporarily blocked because we detected behavior that may violate our content policy. For more details on Azure OpenAI service content policy, please visit https://aka.ms/aoaicodeofconduct"\n  }\n}', 'provider_name': 'Azure', 'is_byok': False}}, 'user_id': 'user_2sEhUvxiWHHssMIZb4UlzbRPSbX'}
+Answering questions:  20%|██        | 1/5 [00:13<00:54, 13.62s/question]Answering questions:  40%|████      | 2/5 [00:20<00:29,  9.83s/question]Answering questions:  60%|██████    | 3/5 [00:21<00:10,  5.46s/question]Answering questions:  80%|████████  | 4/5 [00:21<00:03,  3.52s/question]Answering questions: 100%|██████████| 5/5 [00:27<00:00,  4.21s/question]Answering questions: 100%|██████████| 5/5 [00:27<00:00,  5.41s/question]
+Wrote 5 answers to /home/justiwag/michaels-tests/data_decomposer/questions_final_test/batch_samples_gpt5_tokencap_smoke/table_processed_rag_sample.csv. RAG stage: 5 questions in 27.06s (0.18 q/s)
+Evaluating rows:   0%|          | 0/5 [00:00<?, ?it/s]Evaluating rows:  20%|██        | 1/5 [00:00<00:00,  4.79it/s]Evaluating rows: 100%|██████████| 5/5 [00:00<00:00, 22.75it/s]
+Evaluated 5 rows in 0.23s (21.62 rows/s)
+LLM scoring calls: 0 (0.00 calls/s)
+[ok] table_hop_processed.csv rows=5 rag_qps=0.11 eval_rps=0.91 -> /home/justiwag/michaels-tests/data_decomposer/questions_final_test/batch_samples_gpt5_tokencap_smoke/table_hop_processed_rag_sample_eval.csv
+[ok] passage_table_processed.csv rows=5 rag_qps=0.10 eval_rps=0.95 -> /home/justiwag/michaels-tests/data_decomposer/questions_final_test/batch_samples_gpt5_tokencap_smoke/passage_table_processed_rag_sample_eval.csv
+[ok] passage_hop_processed.csv rows=5 rag_qps=0.09 eval_rps=1.05 -> /home/justiwag/michaels-tests/data_decomposer/questions_final_test/batch_samples_gpt5_tokencap_smoke/passage_hop_processed_rag_sample_eval.csv
+[failed] Command failed (1): /home/justiwag/miniconda3/bin/python /home/justiwag/michaels-tests/data_decomposer/scripts/evaluate_rag_answers.py /home/justiwag/michaels-tests/data_decomposer/questions_final_test/batch_samples_gpt5_tokencap_smoke/passage_processed_rag_sample.csv /home/justiwag/michaels-tests/data_decomposer/questions_final_test/batch_samples_gpt5_tokencap_smoke/passage_processed_rag_sample_eval.csv --pubmed-table-map /home/justiwag/michaels-tests/data_decomposer/data/Pharma/pubmed-drugbank-tables.gt --model openai/gpt-5 --workers 16
+See command output above for details.
+[ok] table_processed.csv rows=5 rag_qps=0.13 eval_rps=1.12 -> /home/justiwag/michaels-tests/data_decomposer/questions_final_test/batch_samples_gpt5_tokencap_smoke/table_processed_rag_sample_eval.csv
+Wrote summary CSV: /home/justiwag/michaels-tests/data_decomposer/questions_final_test/batch_samples_gpt5_tokencap_smoke/batch_sample_metrics_summary.csv
+Wrote summary JSON: /home/justiwag/michaels-tests/data_decomposer/questions_final_test/batch_samples_gpt5_tokencap_smoke/batch_sample_metrics_summary.json

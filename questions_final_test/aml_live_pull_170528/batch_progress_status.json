@@ -1,0 +1,55 @@
+{
+  "total_files": 5,
+  "completed_files": 1,
+  "success_count": 1,
+  "failure_count": 0,
+  "pending_files": [
+    "passage_hop_processed.csv",
+    "passage_processed.csv",
+    "table_hop_processed.csv",
+    "table_processed.csv"
+  ],
+  "elapsed_seconds": 2560.744802338,
+  "average_metrics": {
+    "full_rouge1": 0.44442305044426667,
+    "full_rouge2": 0.1780271446806906,
+    "full_rougeL": 0.2994945194548998,
+    "passage_mrr": 0.6302955665024631,
+    "table_mrr": 0.25191375400735005,
+    "llm_avg_correctness": NaN,
+    "llm_avg_inference_cost": 0.000657518472906404
+  },
+  "total_llm_inference_cost": 0.2669525,
+  "speed": {
+    "row_count": 406.0,
+    "rag_seconds": 1588.226972514,
+    "eval_seconds": 972.3423725550001,
+    "total_seconds": 2560.569345069,
+    "rag_qps": 0.25563096901530624,
+    "eval_rps": 0.41754839803305477
+  },
+  "files": [
+    {
+      "question_file": "passage_table_processed.csv",
+      "answer_csv": "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/cap/data-capability/wd/rag_results/questions_final_test/aml_full_eval_20260328_170528/passage_table_processed_rag_sample.csv",
+      "eval_csv": "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/cap/data-capability/wd/rag_results/questions_final_test/aml_full_eval_20260328_170528/passage_table_processed_rag_sample_eval.csv",
+      "row_count": 406,
+      "status": "ok",
+      "error": "",
+      "full_rouge1": 0.44442305044426667,
+      "full_rouge2": 0.1780271446806906,
+      "full_rougeL": 0.2994945194548998,
+      "passage_mrr": 0.6302955665024631,
+      "table_mrr": 0.25191375400735005,
+      "llm_avg_correctness": NaN,
+      "llm_avg_inference_cost": 0.000657518472906404,
+      "llm_total_inference_cost": 0.2669525,
+      "rag_seconds": 1588.226972514,
+      "eval_seconds": 972.3423725550001,
+      "total_seconds": 2560.569345069,
+      "rag_qps": 0.25563096901530624,
+      "eval_rps": 0.41754839803305477
+    }
+  ],
+  "updated_at_utc": "2026-03-29T01:01:19Z"
+}

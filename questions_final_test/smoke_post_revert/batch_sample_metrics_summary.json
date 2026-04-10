@@ -1,0 +1,42 @@
+{
+  "total_files": 1,
+  "success_count": 1,
+  "failure_count": 0,
+  "average_metrics": {
+    "full_rouge1": 0.6857142857142857,
+    "full_rouge2": 0.34951456310679613,
+    "full_rougeL": 0.4761904761904762,
+    "passage_mrr": 1.0,
+    "table_mrr": 0.0,
+    "llm_avg_correctness": NaN
+  },
+  "speed": {
+    "row_count": 1.0,
+    "rag_seconds": 56.766496047377586,
+    "eval_seconds": 26.054697797168046,
+    "total_seconds": 82.82119384454563,
+    "rag_qps": 0.017616024761602254,
+    "eval_rps": 0.03838079442658869
+  },
+  "files": [
+    {
+      "question_file": "passage_hop_processed.csv",
+      "answer_csv": "/home/justiwag/michaels-tests/data_decomposer/questions_final_test/smoke_post_revert/passage_hop_processed_rag_sample.csv",
+      "eval_csv": "/home/justiwag/michaels-tests/data_decomposer/questions_final_test/smoke_post_revert/passage_hop_processed_rag_sample_eval.csv",
+      "row_count": 1,
+      "status": "ok",
+      "error": "",
+      "full_rouge1": 0.6857142857142857,
+      "full_rouge2": 0.34951456310679613,
+      "full_rougeL": 0.4761904761904762,
+      "passage_mrr": 1.0,
+      "table_mrr": 0.0,
+      "llm_avg_correctness": NaN,
+      "rag_seconds": 56.766496047377586,
+      "eval_seconds": 26.054697797168046,
+      "total_seconds": 82.82119384454563,
+      "rag_qps": 0.017616024761602254,
+      "eval_rps": 0.03838079442658869
+    }
+  ]
+}

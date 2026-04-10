@@ -1,0 +1,144 @@
+question_id,question,short_answer,answer_reasoning,pubmed_text,pubmed_id,system_answer,direct_system_answer,reasoning_system_answer,sql_executed,tables_used,passages_used,sql_skipped
+phq00000001,"Which proton pump inhibitor has less potent competitive inhibition of CYP2C19 than lansoprazole (i.e., a higher Ki) but shows metabolism-dependent inhibition, evidenced by an approximately 10-fold decrease in IC50 after NADPH preincubation?",Esomeprazole.,"Passage 1 reports esomeprazole competitively inhibits CYP2C19 with Ki ≈ 8 µM, weaker than lansoprazole (Ki 0.4–1.5 µM). Passage 2 shows esomeprazole is also a metabolism-dependent inhibitor of CYP2C19, causing a ~10-fold IC50 shift after NADPH preincubation, unlike lansoprazole.","[""The human clearance of proton pump inhibitors (PPIs) of the substituted benzimidazole class is conducted primarily by the hepatic cytochrome P450 (P450) system. To compare the potency and specificity of the currently used PPIs (i.e., omeprazole, esomeprazole, lansoprazole, pantoprazole, and rabeprazole) as inhibitors of four cytochrome P450 enzymes (CYP2C9, 2C19, 2D6, and 3A4), we performed in vitro studies using human liver microsomal preparations and recombinant CYP2C19. Sample analysis was done using selected reaction monitoring liquid chromatography/tandem mass spectometry. With several systems for CYP2C19 activity (two marker reactions, S-mephenytoin 4'-hydroxylation and R-omeprazole 5-hydroxylation, tested in either human liver microsomes or recombinant CYP2C19), the five PPIs showed competitive inhibition of CYP2C19 activity with K(i) of 0.4 to 1.5 microM for lansoprazole, 2 to 6 microM for omeprazole, approximately 8 microM for esomeprazole, 14 to 69 microM for pantoprazole, and 17 to 21 microM for rabeprazole. Pantoprazole was a competitive inhibitor of both CYP2C9-catalyzed diclofenac 4'-hydroxylation and CYP3A4-catalyzed midazolam 1'-hydroxylation (K(i) of 6 and 22 microM, respectively), which were at least 2 times more potent than the other PPIs. All PPIs were poor inhibitors of CYP2D6-mediated bufuralol 1'-hydroxylation with IC(50) > 200 microM. The inhibitory potency of a nonenzymatically formed product of rabeprazole, rabeprazole thioether, was also investigated and showed potent, competitive inhibition with K(i) values of 6 microM for CYP2C9, 2 to 8 microM for CYP2C19, 12 microM for CYP2D6, and 15 microM for CYP3A4. The inhibitory potency of R-omeprazole on the four studied P450 enzymes was also studied and showed higher inhibitory potency than its S-isomer on CYP2C9 and 2C19 activities. Our data suggest that, although the inhibitory profiles of the five studied PPIs were similar, lansoprazole and pantoprazole are the most potent in vitro inhibitors of CYP2C19 and CYP2C9, respectively. Esomeprazole showed less inhibitory potency compared with omeprazole and its R-enantiomer. The inhibitory potency of rabeprazole was relatively lower than the other PPIs, but its thioether analog showed potent inhibition on the P450 enzymes investigated, which may be clinically significant.\n2-Pyridinylmethylsulfinylbenzimidazoles\nBenzimidazoles\nCytochrome P-450 Enzyme Inhibitors\nCytochrome P-450 Enzyme System\nEnzyme Inhibitors\nEsomeprazole\nHumans\nLansoprazole\nLiver\nOmeprazole\nPantoprazole\nProton Pump Inhibitors\nProton Pumps\nRabeprazole\nSulfoxides\n"", ""As a direct-acting inhibitor of CYP2C19 in vitro, lansoprazole is more potent than omeprazole and other proton pump inhibitors (PPIs), but lansoprazole does not cause clinically significant inhibition of CYP2C19 whereas omeprazole does. To investigate this apparent paradox, we evaluated omeprazole, esomeprazole, R-omeprazole, lansoprazole, and pantoprazole for their ability to function as direct-acting and metabolism-dependent inhibitors (MDIs) of CYP2C19 in pooled human liver microsomes (HLM) as well as in cryopreserved hepatocytes and recombinant CYP2C19. In HLM, all PPIs were found to be direct-acting inhibitors of CYP2C19 with IC(50) values varying from 1.2 μM [lansoprazole; maximum plasma concentration (C(max)) = 2.2 μM] to 93 μM (pantoprazole; C(max) = 6.5 μM). In addition, we identified omeprazole, esomeprazole, R-omeprazole, and omeprazole sulfone as MDIs of CYP2C19 (they caused IC(50) shifts after a 30-min preincubation with NADPH-fortified HLM of 4.2-, 10-, 2.5-, and 3.2-fold, respectively), whereas lansoprazole and pantoprazole were not MDIs (IC(50) shifts < 1.5-fold). The metabolism-dependent inhibition of CYP2C19 by omeprazole and esomeprazole was not reversed by ultracentrifugation, suggesting that the inhibition was irreversible (or quasi-irreversible), whereas ultracentrifugation largely reversed such effects of R-omeprazole. Under various conditions, omeprazole inactivated CYP2C19 with K(I) (inhibitor concentration that supports half the maximal rate of inactivation) values of 1.7 to 9.1 μM and k(inact) (maximal rate of enzyme inactivation) values of 0.041 to 0.046 min(-1). This study identified omeprazole, and esomeprazole, but not R-omeprazole, lansoprazole, or pantoprazole, as irreversible (or quasi-irreversible) MDIs of CYP2C19. These results have important implications for the mechanism of the clinical interaction reported between omeprazole and clopidogrel, as well as other CYP2C19 substrates.\n2-Pyridinylmethylsulfinylbenzimidazoles\nAnti-Ulcer Agents\nAryl Hydrocarbon Hydroxylases\nClopidogrel\nCytochrome P-450 CYP2C19\nCytochrome P-450 CYP2C9\nDrug Interactions\nEnzyme Inhibitors\nEsomeprazole\nHepatocytes\nHumans\nInhibitory Concentration 50\nLansoprazole\nMicrosomes\nMicrosomes, Liver\nOmeprazole\nPantoprazole\nProtein Binding\nProton Pump Inhibitors\nRecombinant Proteins\nTiclopidine\n""]","[""Target-15258107"", ""Target-21795468""]","Esomeprazole
+
+Esomeprazole fits both criteria. Compared with lansoprazole’s potent competitive inhibition of CYP2C19 (Ki 0.4–1.5 μM), esomeprazole shows less potent competitive inhibition with a higher Ki of ~8 μM (Target-15258107). Additionally, esomeprazole displays metabolism-dependent inhibition of CYP2C19, evidenced by an ~10-fold decrease in IC50 after a 30-minute NADPH preincubation in human liver microsomes (Target-21795468). In contrast, lansoprazole and pantoprazole did not show metabolism-dependent inhibition (<1.5-fold IC50 shift). The SQL query returned no rows directly linking PPIs to these specifics, but the unstructured passages provide the necessary evidence.",Esomeprazole,"Esomeprazole fits both criteria. Compared with lansoprazole’s potent competitive inhibition of CYP2C19 (Ki 0.4–1.5 μM), esomeprazole shows less potent competitive inhibition with a higher Ki of ~8 μM (Target-15258107). Additionally, esomeprazole displays metabolism-dependent inhibition of CYP2C19, evidenced by an ~10-fold decrease in IC50 after a 30-minute NADPH preincubation in human liver microsomes (Target-21795468). In contrast, lansoprazole and pantoprazole did not show metabolism-dependent inhibition (<1.5-fold IC50 shift). The SQL query returned no rows directly linking PPIs to these specifics, but the unstructured passages provide the necessary evidence.","WITH ppis(name) AS (
+  SELECT 'omeprazole' UNION ALL
+  SELECT 'esomeprazole' UNION ALL
+  SELECT 'lansoprazole' UNION ALL
+  SELECT 'pantoprazole' UNION ALL
+  SELECT 'rabeprazole'
+)
+SELECT DISTINCT
+  COALESCE(dr.left_drugbank_name, dr2.right_drugbank_name, ppis.name) AS ppi_name,
+  dl.title,
+  dl.url
+FROM ""drugbank_drugs_links"" AS dl
+LEFT JOIN ""drugbank_enzymes"" AS e
+  ON e.parent_key = dl.parent_key
+  AND lower(e.name) LIKE '%2c19%'
+LEFT JOIN ""drugbank_drug_reactions"" AS dr
+  ON dl.parent_key = dr.left_drugbank_id
+LEFT JOIN ""drugbank_drug_reactions"" AS dr2
+  ON dl.parent_key = dr2.right_drugbank_id
+LEFT JOIN ppis
+  ON lower(dl.title) LIKE '%' || ppis.name || '%'
+WHERE
+  (
+    lower(dl.title) LIKE '%cyp2c19%' OR
+    e.id IS NOT NULL
+  )
+  AND (
+    lower(dl.title) LIKE '%metabolism-dependent%' OR
+    lower(dl.title) LIKE '%nadph%' OR
+    lower(dl.title) LIKE '%ic50%'
+  )
+  AND (
+    ppis.name IS NOT NULL
+    OR lower(COALESCE(dr.left_drugbank_name, dr2.right_drugbank_name)) IN (SELECT name FROM ppis)
+  )
+LIMIT 50;","drugbank_drug, drugbank_drug_carriers_articles, drugbank_drug_drug_interactions, drugbank_drug_mixtures, drugbank_drug_pharmacology, drugbank_drug_reactions, drugbank_drug_snp_effects, drugbank_drugs_links, drugbank_enzymes, drugbank_query_ddi_table, drugbank_snp_adverse_reactions, drugbank_transporters, drugbank_transporters_polypeptides","Target-21795468, Target-15258107, Target-8627562, Target-11334262, Target-11770010",False
+phq00000003,How does morpholine relate to both multidrug resistance (MDR) research and the chemical synthesis of an orally active NK(1) receptor antagonist?,Morpholine is a coupling nucleophile to make IAAP (an MDR reversal/P-gp binder) and the core scaffold elaborated into aprepitant’s final NK(1) antagonist.,"Passage 1 describes palladium-catalyzed substitution where morpholine is added to 2-chloroquinazoline to access IAAP, which binds P-glycoprotein and reverses MDR. Passage 2 describes converting a 1,4-oxazin-3-one into an alpha-(fluorophenyl)morpholine and then appending a triazolinone side chain to yield aprepitant, an orally active NK(1) receptor antagonist.","[""The antihypertension agent iodoazidoaryl prazosin (IAAP) has been made using a convergent route involving addition of an acylated piperazine 7 to 2-chloroquinazoline 5. IAAP has been shown to function as a multidrug resistance (MDR) reversal agent and bind to P-glycoprotein, a transmembrane transport protein. A study is also reported involving palladium-catalyzed substitution with amine heterocycles. With N,N-bis(2,6-diisopropyl)dihydroimidazolium chloride (10) as the ligand (2 mol %) for palladium(II) acetate (2 mol %) in THF at room temperature, morpholine added to 5 in 81% yield.\nATP Binding Cassette Transporter, Subfamily B, Member 1\nAntihypertensive Agents\nAzides\nDrug Resistance, Multiple\nPiperazine\nPiperazines\nPrazosin\n"", ""An efficient stereoselective synthesis of the orally active NK(1) receptor antagonist Aprepitant is described. A direct condensation of N-benzyl ethanolamine with glyoxylic acid yielded a 2-hydroxy-1,4-oxazin-3-one which was activated as the corresponding trifluoroacetate. A Lewis acid mediated coupling with enantiopure (R)-1-(3,5-bis(trifluoromethyl)phenyl)ethan-1-ol afforded a 1:1 mixture of acetal diastereomers which was converted into a single isomer via a novel crystallization-induced asymmetric transformation. The resulting 1,4-oxazin-3-one was converted via a unique and highly stereoselective one-pot process to the desired alpha-(fluorophenyl)morpholine derivative. Interesting and unexpected [1,2]-Wittig and [1,3]-sigmatropic rearrangements were identified during the optimization of these key steps. In the final step, a triazolinone side chain was appended to the morpholine core. The targeted clinical candidate was thus obtained in 55% overall yield over the longest linear sequence.\nAprepitant\nCrystallography, X-Ray\nLactams\nMolecular Structure\nMorpholines\nNeurokinin-1 Receptor Antagonists\nOxazines\nStereoisomerism\n""]","[""Target-12423172"", ""Target-12590540""]","Morpholine serves two roles: (1) as a key heterocycle incorporated into compounds studied to overcome multidrug resistance—most notably the methoxymorpholinyl anthracycline derivatives of doxorubicin (e.g., MMRDX), which were designed to evade or counter P‑glycoprotein–mediated MDR; and (2) as a core ring built into the structure of the orally active NK1 receptor antagonist aprepitant, where installation of the morpholine moiety is a defining step in its chemical synthesis and contributes to its drug-like properties.
+
+- MDR connection:
+  - Morpholine-containing chemotypes have been extensively explored as MDR modulators or MDR-evading cytotoxics. A prominent example is methoxymorpholinyl doxorubicin (MMRDX), a morpholinyl anthracycline derivative developed to circumvent P-glycoprotein (ABCB1)-mediated efflux and retain activity in MDR tumor cells.
+  - Medicinal chemists often use morpholine to tune polarity, hydrogen-bonding, and permeability, properties that can reduce susceptibility to ABC transporter–mediated efflux in MDR research programs.
+- NK1 antagonist synthesis:
+  - Aprepitant (an orally active NK1 receptor antagonist used for CINV) contains a morpholine ring. The morpholine moiety is intentionally introduced during its synthesis and is a defining structural element of the final drug, contributing to oral bioavailability and CNS penetration.
+- Data note:
+  - The provided DrugBank-derived SQL query returned no morpholine-specific MDR or NK1 records, and the supplied MDR passages did not mention morpholine directly. The links above therefore rely on widely reported medicinal chemistry knowledge of morpholinyl anthracyclines in MDR research and the established structure/synthesis of aprepitant in the NK1 class.","Morpholine serves two roles: (1) as a key heterocycle incorporated into compounds studied to overcome multidrug resistance—most notably the methoxymorpholinyl anthracycline derivatives of doxorubicin (e.g., MMRDX), which were designed to evade or counter P‑glycoprotein–mediated MDR; and (2) as a core ring built into the structure of the orally active NK1 receptor antagonist aprepitant, where installation of the morpholine moiety is a defining step in its chemical synthesis and contributes to its drug-like properties.","- MDR connection:
+  - Morpholine-containing chemotypes have been extensively explored as MDR modulators or MDR-evading cytotoxics. A prominent example is methoxymorpholinyl doxorubicin (MMRDX), a morpholinyl anthracycline derivative developed to circumvent P-glycoprotein (ABCB1)-mediated efflux and retain activity in MDR tumor cells.
+  - Medicinal chemists often use morpholine to tune polarity, hydrogen-bonding, and permeability, properties that can reduce susceptibility to ABC transporter–mediated efflux in MDR research programs.
+- NK1 antagonist synthesis:
+  - Aprepitant (an orally active NK1 receptor antagonist used for CINV) contains a morpholine ring. The morpholine moiety is intentionally introduced during its synthesis and is a defining structural element of the final drug, contributing to oral bioavailability and CNS penetration.
+- Data note:
+  - The provided DrugBank-derived SQL query returned no morpholine-specific MDR or NK1 records, and the supplied MDR passages did not mention morpholine directly. The links above therefore rely on widely reported medicinal chemistry knowledge of morpholinyl anthracyclines in MDR research and the established structure/synthesis of aprepitant in the NK1 class.","SELECT
+  '""drugbank_drug_trans_articles""' AS source,
+  COALESCE(CAST(pubmed_id AS TEXT), ref_id) AS identifier,
+  citation AS text,
+  parent_key,
+  CASE
+    WHEN lower(citation) LIKE '%nk1%' OR citation LIKE '%NK(1)%' OR lower(citation) LIKE '%neurokinin%' THEN 'NK1_receptor_antagonist/synthesis'
+    WHEN lower(citation) LIKE '%multidrug%' OR lower(citation) LIKE '%mdr%' OR lower(citation) LIKE '%p-glycoprotein%' OR lower(citation) LIKE '%abc%' THEN 'MDR_research'
+    ELSE 'other'
+  END AS context
+FROM ""drugbank_drug_trans_articles""
+WHERE lower(citation) LIKE '%morpholin%'
+  AND (
+    -- MDR context
+    lower(citation) LIKE '%multidrug%' OR
+    lower(citation) LIKE '%mdr%' OR
+    lower(citation) LIKE '%p-glycoprotein%' OR
+    lower(citation) LIKE '%abcb1%' OR
+    lower(citation) LIKE '%abcg2%' OR
+    lower(citation) LIKE '%mrp%'
+    OR
+    -- NK1 synthesis context
+    lower(citation) LIKE '%nk1%' OR
+    citation LIKE '%NK(1)%' OR
+    lower(citation) LIKE '%neurokinin%' OR
+    (lower(citation) LIKE '%nk1%' AND (lower(citation) LIKE '%synth%' OR lower(citation) LIKE '%orally%' OR lower(citation) LIKE '%antagonist%'))
+  )
+UNION ALL
+SELECT
+  '""drugbank_drugs_links""' AS source,
+  ref_id AS identifier,
+  title AS text,
+  parent_key,
+  CASE
+    WHEN lower(title) LIKE '%nk1%' OR title LIKE '%NK(1)%' OR lower(title) LIKE '%neurokinin%' THEN 'NK1_receptor_antagonist/synthesis'
+    WHEN lower(title) LIKE '%multidrug%' OR lower(title) LIKE '%mdr%' OR lower(title) LIKE '%p-glycoprotein%' OR lower(title) LIKE '%abc%' THEN 'MDR_research'
+    ELSE 'other'
+  END AS context
+FROM ""drugbank_drugs_links""
+WHERE lower(title) LIKE '%morpholin%'
+  AND (
+    -- MDR context
+    lower(title) LIKE '%multidrug%' OR
+    lower(title) LIKE '%mdr%' OR
+    lower(title) LIKE '%p-glycoprotein%' OR
+    lower(title) LIKE '%abc%'
+    OR
+    -- NK1 synthesis context
+    lower(title) LIKE '%nk1%' OR
+    title LIKE '%NK(1)%' OR
+    lower(title) LIKE '%neurokinin%' OR
+    (lower(title) LIKE '%nk1%' AND (lower(title) LIKE '%synth%' OR lower(title) LIKE '%orally%' OR lower(title) LIKE '%antagonist%'))
+  )
+LIMIT 50;","drugbank_drug, drugbank_drug_drug_interactions, drugbank_drug_mixtures, drugbank_drug_pharmacology, drugbank_drug_reactions, drugbank_drug_snp_effects, drugbank_drug_syn, drugbank_drug_trans_articles, drugbank_drugs_links, drugbank_query_ddi_table, drugbank_snp_adverse_reactions, drugbank_transporters, drugbank_transporters_polypeptides","Target-22614107, Target-12943486, Target-8960059, Target-19806783, Target-11031728",False
+phq00000023,"Which muscarinic receptor antagonist would be expected to show the least selectivity between different tissues or receptor subtypes (for example, exhibiting similar binding in brain tissue and peripheral organs), and what features of its binding profile support this expectation?",Atropine; it shows similar affinities across cortical (M1) and peripheral muscarinic receptors in [³H]-N-methylscopolamine assays.,"Passage 1 describes using [³H]-N-methylscopolamine to measure muscarinic receptor binding in mouse cerebral cortex and bladder after oral anticholinergics. Passage 2 shows atropine has nearly uniform IC50 values across cortical and peripheral (cardiac/glandular) receptors in competition vs [³H]-N-methylscopolamine, indicating minimal subtype/tissue discrimination compared with M1-selective agents.","[""PURPOSE: We characterized muscarinic receptor binding in the mouse cerebral cortex after oral administration of anticholinergic agents used to treat overactive bladder.\nMATERIALS AND METHODS: Muscarinic receptors in the mouse cerebral cortex and bladder after oral administration of anticholinergic agents were measured using [(3)H]N-methylscopolamine.\nRESULTS: In vitro binding affinities of tolterodine and its metabolite 5-hydroxymethyl metabolite in the mouse cerebral cortex and bladder were considerably greater than those of oxybutynin and darifenacin. Also, muscarinic receptor binding affinity of oxybutynin and its metabolite N-desethyl-oxybutynin in the cerebral cortex compared with that in the bladder was 2 to 3 times higher, whereas that of tolterodine and 5-hydroxymethyl metabolite was approximately 2 times lower. Oral administration of oxybutynin (76.1 micromol/kg), tolterodine (6.31 micromol/kg) and darifenacin (59.1 micromol/kg) showed binding activity that was approximately equal to that of bladder muscarinic receptors. Oral administration of oxybutynin (76.1 micromol/kg) showed significant binding of cerebral cortical muscarinic receptors in mice, as indicated by about a 2-fold increase in K(d) values for specific [(3)H]N-methylscopolamine binding 0.5 and 2 hours later. On the other hand, tolterodine and darifenacin given at oral doses that would exert a similar extent of bladder receptor binding activity as oxybutynin showed only a low level of binding activity of central muscarinic receptors in mice.\nCONCLUSIONS: Significant binding of brain muscarinic receptors in mice was observed by the oral administration of oxybutynin but not tolterodine and darifenacin.\nAnimals\nBenzhydryl Compounds\nBenzofurans\nCerebral Cortex\nCresols\nIn Vitro Techniques\nMale\nMandelic Acids\nMice\nMuscarinic Antagonists\nPhenylpropanolamine\nPyrrolidines\nReceptors, Muscarinic\nTolterodine Tartrate\nUrinary Bladder\nUrinary Bladder, Overactive\n"", ""The selectivity profiles of the muscarinic receptor antagonists dicyclomine and trihexyphenidyl have been examined in binding and functional studies and compared with those of pirenzepine and atropine. Dicyclomine, trihexyphenidyl and pirenzepine demonstrated the highest affinity for the M1 muscarinic receptor subtype as revealed in competition experiments against [3H]-pirenzepine labelling of cortical membranes. Their affinity values lay in a narrow range (3.7-14 nM) approaching that of atropine (1.6 nM). Competition experiments against [3H]-N-methylscopolamine in cardiac and glandular (salivary) membranes revealed differences between the drugs examined. Dicyclomine, trihexyphenidyl and pirenzepine displayed low affinity for the cardiac and intermediate affinity for the glandular receptors. Thus, the drugs appeared to discriminate between the M1 (cortical) and the peripheral muscarinic subtypes (cardiac and glandular). However, atropine displayed similar affinities for either subtype with IC50s varying only slightly (1.6-4.6 nM). The rank order of selectivity was: pirenzepine greater than dicyclomine greater than trihexyphenidyl greater than atropine. Mirroring the binding data, pirenzepine, dicyclomine and trihexyphenidyl showed a tenfold greater ability at inhibiting M1-receptor mediated ganglionic responses (McN A-343 pressor effect in pithed rats and nictitating membrane contraction in cats) than at inhibiting peripheral muscarinic responses in the heart and cardiovascular smooth muscle (vagal bradycardia in rats and cats and vagally-induced vasodilatation in cats). The muscarinic antagonists so far examined can be categorized into two groups. Trihexyphenidyl, dicyclomine and pirenzepine, included in one group, are characterized by a higher affinity for the neuronal (M1) muscarinic receptor, hence they antagonize functional responses mediated by the M1 subtype. Atropine, a member of the other group, shows essentially no selectivity. 6 Differentiation of M1 and peripheral muscarinic receptor subtypes appears to be a property not confined to tricyclics such as pirenzepine but shared by diverse chemical structures. Both trihexyphenidyl and dicyclomine appear to be useful pharmacological tools in the classification of muscarinic receptor subtypes.\n(4-(m-Chlorophenylcarbamoyloxy)-2-butynyl)trimethylammonium Chloride\nAnimals\nBlood Pressure\nCyclohexanecarboxylic Acids\nDecerebrate State\nDicyclomine\nElectric Stimulation\nIn Vitro Techniques\nMale\nPirenzepine\nRats\nRats, Inbred Strains\nReceptors, Muscarinic\nTrihexyphenidyl\nVagus Nerve\n""]","[""Target-17222678"", ""Target-2432979""]","Atropine. It is essentially nonselective across muscarinic receptor subtypes and shows similar high‑affinity binding in brain (cortical M1) and peripheral tissues (cardiac and glandular), with IC50 values varying only slightly (~1.6–4.6 nM).
+
+Unstructured evidence: Binding studies directly comparing dicyclomine, trihexyphenidyl, pirenzepine, and atropine show that atropine has nearly identical high affinity at cortical M1 receptors and at peripheral muscarinic receptors (cardiac and glandular), with IC50s of ~1.6–4.6 nM, and it was explicitly categorized as showing essentially no selectivity (rank order of selectivity: pirenzepine > dicyclomine > trihexyphenidyl > atropine) [Passage 1]. Tropicamide, by contrast, has modest M4 selectivity relative to atropine’s nonselective profile [Passage 2]. Structured evidence: In the SQL results, DB00572 targets all five human muscarinic receptor subtypes (M1–M5), indicating minimal receptor-subtype selectivity (muscarinic_target_count = 5). Together, these data support that atropine would exhibit the least selectivity between tissues or receptor subtypes, consistent with similar binding in brain tissue and peripheral organs.","Atropine. It is essentially nonselective across muscarinic receptor subtypes and shows similar high‑affinity binding in brain (cortical M1) and peripheral tissues (cardiac and glandular), with IC50 values varying only slightly (~1.6–4.6 nM).","Unstructured evidence: Binding studies directly comparing dicyclomine, trihexyphenidyl, pirenzepine, and atropine show that atropine has nearly identical high affinity at cortical M1 receptors and at peripheral muscarinic receptors (cardiac and glandular), with IC50s of ~1.6–4.6 nM, and it was explicitly categorized as showing essentially no selectivity (rank order of selectivity: pirenzepine > dicyclomine > trihexyphenidyl > atropine) [Passage 1]. Tropicamide, by contrast, has modest M4 selectivity relative to atropine’s nonselective profile [Passage 2]. Structured evidence: In the SQL results, DB00572 targets all five human muscarinic receptor subtypes (M1–M5), indicating minimal receptor-subtype selectivity (muscarinic_target_count = 5). Together, these data support that atropine would exhibit the least selectivity between tissues or receptor subtypes, consistent with similar binding in brain tissue and peripheral organs.","WITH muscarinic_targets AS (
+  SELECT DISTINCT
+    parent_key AS drugbank_id,
+    name AS target_name
+  FROM ""drugbank_targets""
+  WHERE organism = 'Humans'
+    AND known_action = 'yes'
+    AND lower(name) LIKE '%muscarinic%'
+),
+drug_names AS (
+  SELECT left_drugbank_id AS drugbank_id, left_drugbank_name AS drug_name
+  FROM ""drugbank_drug_reactions""
+  UNION
+  SELECT right_drugbank_id AS drugbank_id, right_drugbank_name AS drug_name
+  FROM ""drugbank_drug_reactions""
+),
+per_drug AS (
+  SELECT
+    drugbank_id,
+    COUNT(target_name) AS muscarinic_target_count,
+    GROUP_CONCAT(target_name, ' | ') AS muscarinic_targets
+  FROM muscarinic_targets
+  GROUP BY drugbank_id
+)
+SELECT
+  p.drugbank_id,
+  COALESCE(d.drug_name, MIN(l.title)) AS drug_name,
+  p.muscarinic_target_count,
+  p.muscarinic_targets
+FROM per_drug p
+LEFT JOIN drug_names d ON d.drugbank_id = p.drugbank_id
+LEFT JOIN ""drugbank_drugs_links"" l ON l.parent_key = p.drugbank_id
+GROUP BY p.drugbank_id
+ORDER BY p.muscarinic_target_count DESC, drug_name
+LIMIT 50;","drugbank_drug, drugbank_drug_drug_interactions, drugbank_drug_food_interactions, drugbank_drug_mixtures, drugbank_drug_pharmacology, drugbank_drug_reactions, drugbank_drug_snp_effects, drugbank_drugs_links, drugbank_query_ddi_table, drugbank_snp_adverse_reactions, drugbank_targets, drugbank_targets_polypeptides","Target-2432979, Target-17594079, Target-19446545, Target-17689532, Target-2540229",False

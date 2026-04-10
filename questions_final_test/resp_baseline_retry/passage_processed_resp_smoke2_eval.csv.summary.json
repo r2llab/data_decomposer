@@ -1,0 +1,42 @@
+{
+  "row_count": 2,
+  "average_metrics": {
+    "direct_rouge1": 0.5909090909090908,
+    "direct_rouge2": 0.3612903225806452,
+    "direct_rougeL": 0.5303030303030303,
+    "direct_string_similarity": 0.5453501722158438,
+    "reasoning_rouge1": 0.494949494949495,
+    "reasoning_rouge2": 0.2268041237113402,
+    "reasoning_rougeL": 0.3232323232323232,
+    "reasoning_string_similarity": 0.21783176350823785,
+    "full_rouge1": 0.5234159779614325,
+    "full_rouge2": 0.25824175824175827,
+    "full_rougeL": 0.36294765840220383,
+    "full_string_similarity": 0.2242476399102905,
+    "passage_precision": 0.2,
+    "passage_recall": 1.0,
+    "passage_f1": 0.33333333333333337,
+    "passage_mrr": 0.75,
+    "table_precision": 0.0,
+    "table_recall": 0.0,
+    "table_f1": 0.0,
+    "table_mrr": 0.0,
+    "llm_direct_correctness": 1.0,
+    "llm_reasoning_correctness": 1.0,
+    "llm_avg_correctness": 1.0,
+    "llm_prompt_tokens": 361.0,
+    "llm_completion_tokens": 16.0,
+    "llm_total_tokens": 377.0,
+    "llm_processing_time": 4.650905442191288,
+    "llm_inference_cost": 0.00061125
+  },
+  "total_llm_tokens": 754,
+  "total_llm_api_calls": 2,
+  "total_llm_inference_cost": 0.0012225,
+  "average_llm_processing_time": 4.650905442191288,
+  "pricing": {
+    "prompt_price_per_1k": 0.00125,
+    "completion_price_per_1k": 0.01,
+    "model": "openai/gpt-5"
+  }
+}

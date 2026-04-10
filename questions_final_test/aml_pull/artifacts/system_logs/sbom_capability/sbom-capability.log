@@ -1,0 +1,5 @@
+2026-03-29T00:11:59.235467Z  INFO telemetry: job_telemetry_init artifact_type=installed branch=037591f445c ci_number=20260320.1 ci_name=CommonRuntime-RuntimeTeam-Linux-Prod-Build build_time=2026-03-20 10:36:20.209859
+2026-03-29T00:11:59.235610Z  INFO serve: grpc_utils::endpoint::serve: serving gRPC service endpoint=Uds("/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/.grpc/sbom-capability:0") retry=ExponentialBackoffRetry { retry_delay_secs: 2, delay_factor: 1000, num_retries: 3 }
+2026-03-29T00:13:28.627142Z  INFO grpc_utils::server: Got grpc request request_name="start" remote_addr=None
+2026-03-29T00:13:28.824069Z  INFO sbom_capability::capability_service: Successfully copied SBOM tool to execution working directory: /mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd
+2026-03-29T03:57:08.361845Z  INFO grpc_utils::server: Got grpc request request_name="end" remote_addr=None

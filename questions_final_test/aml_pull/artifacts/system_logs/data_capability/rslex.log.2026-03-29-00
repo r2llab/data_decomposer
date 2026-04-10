@@ -1,0 +1,536 @@
+2026-03-29T00:13:28.356799Z  INFO rslex_fuse::resource_tracker: [rslex-fuse::resource_tracker] Starting resource monitor thread - PID: 15, interval: 180s
+2026-03-29T00:13:28.357371Z  INFO rslex: [init_environment()] initializing Environment
+2026-03-29T00:13:28.357884Z  INFO rslex_http_stream::http_client::hyper_client::hyper_client: dns resolution concurrency concurrency=150
+2026-03-29T00:13:28.360913Z  INFO rslex_azure_storage::adls_gen1_stream_handler::retry_strategy: [rslex-azure-storage::adls_gen1_stream_handler::AdlsGen1RetryCondition] retry configuration retry_on_append_timeout=true bad_offset_error_retry_count=3
+2026-03-29T00:13:28.361699Z  INFO rslex_azureml::azureml::handler: [AzureMLHandler::uri_scheme()]
+2026-03-29T00:13:28.363388Z  INFO rslex_azure_storage::adls_gen1_stream_handler::retry_strategy: [rslex-azure-storage::adls_gen1_stream_handler::AdlsGen1RetryCondition] retry configuration retry_on_append_timeout=true bad_offset_error_retry_count=3
+2026-03-29T00:13:28.365466Z  INFO rslex: [init_environment] using os managed compute resources
+2026-03-29T00:13:28.744911Z  INFO rslex_fuse::direct_volume_mount::options: [rslex-fuse::DirectVolumeOptions] Environment variable "DATASET_RESERVED_FREE_DISK_SPACE" has been set to 6367358389 env_variable_name="DATASET_RESERVED_FREE_DISK_SPACE" env_variable_value=6367358389 descriptor="rslex-fuse::DirectVolumeOptions::config_env_set"
+2026-03-29T00:13:28.745342Z  INFO rslex_fuse::direct_volume_mount::options: [rslex-fuse::DirectVolumeOptions] Environment variable "DATASET_MOUNT_BLOCK_BASED_CACHE_ENABLED" has been set to false env_variable_name="DATASET_MOUNT_BLOCK_BASED_CACHE_ENABLED" env_variable_value=false descriptor="rslex-fuse::DirectVolumeOptions::config_env_set"
+2026-03-29T00:13:28.745381Z  INFO rslex::rslex_direct_mount: [RslexURIMountContext::new] is_direct_volume_mount setting is true is_direct_volume_mount=true
+2026-03-29T00:13:28.745415Z  INFO rslex_azureml::azureml::handler: [AzureMLHandler::parse_uri()] Parse uri [azureml://subscriptions/5c9e4789-4852-4ffe-8551-d682affcbd74/resourcegroups/playground-rg/workspaces/as-playground-w3-ws/datastores/workspaceblobstore/paths/LocalUpload/3bc3b7d9b5f90146f235257728769bb48ade0b28cbb348df47413f650ffe56cf/data/], normalized [azureml://subscriptions/5c9e4789-4852-4ffe-8551-d682affcbd74/resourcegroups/playground-rg/workspaces/as-playground-w3-ws/datastores/workspaceblobstore/paths/LocalUpload/3bc3b7d9b5f90146f235257728769bb48ade0b28cbb348df47413f650ffe56cf/data/]
+2026-03-29T00:13:28.818328Z  INFO rslex_azureml::data_store::resolver: [CachedResolver::resolve()] DataStore resolved info=DataStoreInfo { id: "workspaceblobstore", workspace: WorkspaceInfo { azure_subscription_id: "5c9e4789-4852-4ffe-8551-d682affcbd74", azure_resource_group: "playground-rg", name: "as-playground-w3-ws" } } datastore_name=Some("workspaceblobstore") datastore_type=Some(AzureBlob) container_name=Some("azureml-blobstore-86098555-f08f-45ab-95b4-92ceded3d89d") account_name=Some("asplaygroundw3data") endpoint=Some("core.windows.net")
+2026-03-29T00:13:28.845462Z  WARN try_access_async: rslex_http_stream::http_client::response: [AsyncResponse::success()] non-successful response
+Status: 401 Unauthorized
+Headers: {
+    "transfer-encoding": "chunked",
+    "vary": "Origin",
+    "server": "Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0",
+    "x-ms-request-id": "8cb43d75-c01e-008e-5310-bfd9ee000000",
+    "x-ms-client-request-id": "3c083bc6-27bf-4ed5-88d3-0a67c298b789",
+    "x-ms-version": "2021-04-10",
+    "x-ms-error-code": "NoAuthenticationInformation",
+    "www-authenticate": "Bearer authorization_uri=https://login.microsoftonline.com/72f988bf-86f1-41af-91ab-2d7cd011db47/oauth2/authorize resource_id=https://storage.azure.com",
+    "date": "Sun, 29 Mar 2026 00:13:28 GMT",
+} code=401
+2026-03-29T00:13:28.845535Z  INFO try_access_async: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=2.11ms time.idle=24.4ms
+2026-03-29T00:13:28.845590Z  INFO is_public:try_access: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=26.7ms time.idle=8.56µs
+2026-03-29T00:13:28.845617Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=27.1ms time.idle=10.4µs
+2026-03-29T00:13:28.963672Z  INFO get_token_and_expiry: rslex::python_azure_token_resolver: close time.busy=118ms time.idle=20.2µs self=PythonAzureAccessTokenResolver token_request=TokenRequest { scope: Storage, identity_info: None, resource_id: None }
+2026-03-29T00:13:28.970050Z  WARN rslex_http_stream::http_service_client::error_mapped_http_service_client: [rslex-http-stream::http_service_client] non-successful response host=asplaygroundw3data.blob.core.windows.net method=HEAD request_uri=https://asplaygroundw3data.blob.core.windows.net/azureml-blobstore-86098555-f08f-45ab-95b4-92ceded3d89d/LocalUpload/3bc3b7d9b5f90146f235257728769bb48ade0b28cbb348df47413f650ffe56cf/data error=HttpServiceError { service: "azure_blob", inner_error: The specified blob does not exist. } status=404 client_request_id=Some("ee2173c3-509b-4cde-8254-558ad09a84f6") service_request_id=Some("8cb43d94-c01e-008e-6f10-bfd9ee000000")
+2026-03-29T00:13:28.976561Z  INFO rslex_fuse::direct_volume_mount::content_handler: Creating whole file cache directory cache_path=/tmp/.tmpUH2np1 total_space=269425381376 free_space=255069286400
+2026-03-29T00:13:28.996064Z  INFO rslex_fuse::direct_volume_mount::direct_volume_mount: [rslex-fuse::DirectVolumeMount::new()] Direct volume mount created. mount_point=/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/cap/data-capability/wd/INPUT_data_dir handler=AmlDatastore options=DirectVolumeOptions { is_single_file: Some(false), default_permission: Some(365), attribute_cache_entry_ttl: 18446744073709551615.999999999s, disk_cache_options: DiskCacheOptions { cache_dir_path: None, reserved_free_disk_space: 6367358389, cache_limit: Unlimited, prune_threshold: 0.9, prune_target: 0.7, prune_on_file_growth_threshold: 1048576 }, streaming_read_options: StreamingReadOptions { block_size: 2097152, buffered_blocks_count: 32, reading_threads: 384 }, block_based_reading_options: None, mount_mode: ReadOnly, block_overwrite_on_file_conflict: false }
+2026-03-29T00:13:28.996154Z  INFO new: rslex_fuse::fuse_fs::fuse_mount: [rslex-fuse::FuseMount::new] Creating FuseMount instance mount_point=/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/cap/data-capability/wd/INPUT_data_dir pid=15 options=MountOptions { allow_other: true, fuse_cache_timeout: 600s, unmount_timeout: 30s, enable_auto_cache: true, max_background_threads: 192, max_readahead: Some(4194304) }
+2026-03-29T00:13:28.996207Z  INFO new: rslex_fuse::fuse_fs::fuse_mount: [rslex-fuse::FuseMount::new] Mount point directory validated mount_point=/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/cap/data-capability/wd/INPUT_data_dir is_dir=true mode=40755 readonly=false options=MountOptions { allow_other: true, fuse_cache_timeout: 600s, unmount_timeout: 30s, enable_auto_cache: true, max_background_threads: 192, max_readahead: Some(4194304) }
+2026-03-29T00:13:28.996275Z  INFO new: rslex_fuse::fuse_fs::fuse_mount: close time.busy=123µs time.idle=7.75µs options=MountOptions { allow_other: true, fuse_cache_timeout: 600s, unmount_timeout: 30s, enable_auto_cache: true, max_background_threads: 192, max_readahead: Some(4194304) }
+2026-03-29T00:13:28.996944Z  INFO rslex_fuse::fuse_fs::fuse_mount: [rslex-fuse::FuseMount::mount] mounting filesystem with mount arguments ["dataset_volume_mount", "-o", "allow_other", "-o", "attr_timeout=0", "-o", "entry_timeout=600", "-o", "negative_timeout=600", "-o", "remember=600", "-o", "big_writes", "-o", "auto_cache", "-o", "max_readahead=4194304", "-o", "fsname=rslex_volume_mount[AmlDatastore]", "-r"]. Libfuse version 29 fuse_arguments=["dataset_volume_mount", "-o", "allow_other", "-o", "attr_timeout=0", "-o", "entry_timeout=600", "-o", "negative_timeout=600", "-o", "remember=600", "-o", "big_writes", "-o", "auto_cache", "-o", "max_readahead=4194304", "-o", "fsname=rslex_volume_mount[AmlDatastore]", "-r"] fuse_version=29 pid=15 mount_point=/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/cap/data-capability/wd/INPUT_data_dir
+2026-03-29T00:13:28.996997Z  INFO rslex_fuse::fuse_fs::fuse_mount: [rslex-fuse::FuseMount::mount_with_retries] Attempt 1/6 mount_point=/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/cap/data-capability/wd/INPUT_data_dir pid=15 attempt=1 max_attempts=6
+2026-03-29T00:13:28.997015Z  INFO rslex_fuse::libfuse_binding: [rslex-fuse::fs_mount] Attempting FUSE mount mount_point=/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/cap/data-capability/wd/INPUT_data_dir pid=15
+2026-03-29T00:13:28.997789Z  INFO rslex_fuse::fuse_fs::fuse_mount: [rslex-fuse::FuseMount::mount_with_retries] SUCCESS on attempt 1 mount_point=/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/cap/data-capability/wd/INPUT_data_dir pid=15 attempt=1
+2026-03-29T00:13:28.998555Z  INFO rslex_fuse::fuse_fs::fuse_mount: [rslex-fuse::FuseMount::msg_loop_thread] Starting FUSE event loop thread for mount point /mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/cap/data-capability/wd/INPUT_data_dir with exit_flag 2 pid=15
+2026-03-29T00:13:29.997992Z  INFO rslex_fuse::fuse_fs::fuse_mount: [rslex-fuse::FuseMount::mount] Filesystem mounted pid=15 mount_point=/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/cap/data-capability/wd/INPUT_data_dir
+2026-03-29T00:13:30.000230Z  INFO rslex_fuse::direct_volume_mount::options: [rslex-fuse::DirectVolumeOptions] Environment variable "DATASET_RESERVED_FREE_DISK_SPACE" has been set to 6367358389 env_variable_name="DATASET_RESERVED_FREE_DISK_SPACE" env_variable_value=6367358389 descriptor="rslex-fuse::DirectVolumeOptions::config_env_set"
+2026-03-29T00:13:30.000268Z  INFO rslex_fuse::direct_volume_mount::options: [rslex-fuse::DirectVolumeOptions] Environment variable "DATASET_MOUNT_BLOCK_BASED_CACHE_ENABLED" has been set to false env_variable_name="DATASET_MOUNT_BLOCK_BASED_CACHE_ENABLED" env_variable_value=false descriptor="rslex-fuse::DirectVolumeOptions::config_env_set"
+2026-03-29T00:13:30.000290Z  INFO rslex::rslex_direct_mount: [RslexURIMountContext::new] is_direct_volume_mount setting is true is_direct_volume_mount=true
+2026-03-29T00:13:30.000309Z  INFO rslex_azureml::azureml::handler: [AzureMLHandler::parse_uri()] Parse uri [azureml://subscriptions/5c9e4789-4852-4ffe-8551-d682affcbd74/resourcegroups/playground-rg/workspaces/as-playground-w3-ws/datastores/workspaceblobstore/paths/azureml/drugbank-rag-eval-20260328-170528/rag_results/], normalized [azureml://subscriptions/5c9e4789-4852-4ffe-8551-d682affcbd74/resourcegroups/playground-rg/workspaces/as-playground-w3-ws/datastores/workspaceblobstore/paths/azureml/drugbank-rag-eval-20260328-170528/rag_results/]
+2026-03-29T00:13:30.000338Z  INFO rslex_fuse::direct_volume_mount::direct_volume_mount: Singularity cache will not be enabled for /mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/cap/data-capability/wd/rag_results because of mount mode CreateAndWrite
+2026-03-29T00:13:30.000413Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=36.9µs time.idle=3.33µs
+2026-03-29T00:13:30.005713Z  WARN rslex_http_stream::http_service_client::error_mapped_http_service_client: [rslex-http-stream::http_service_client] non-successful response host=asplaygroundw3data.blob.core.windows.net method=HEAD request_uri=https://asplaygroundw3data.blob.core.windows.net/azureml-blobstore-86098555-f08f-45ab-95b4-92ceded3d89d/azureml/drugbank-rag-eval-20260328-170528/rag_results error=HttpServiceError { service: "azure_blob", inner_error: The specified blob does not exist. } status=404 client_request_id=Some("49a35409-dbce-4bba-bcba-1c45289996c8") service_request_id=Some("8cb43edb-c01e-008e-0310-bfd9ee000000")
+2026-03-29T00:13:30.010963Z  WARN rslex_fuse::direct_volume_mount::direct_volume_mount: [rslex-fuse::direct-volume-mount::new()] read write path not found, try to create. mount_point=/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/cap/data-capability/wd/rag_results
+2026-03-29T00:13:30.040726Z  INFO rslex_fuse::direct_volume_mount::content_handler: Creating whole file cache directory cache_path=/tmp/.tmp4kvpQd total_space=269425381376 free_space=255028948992
+2026-03-29T00:13:30.059982Z  INFO rslex_fuse::direct_volume_mount::direct_volume_mount: [rslex-fuse::DirectVolumeMount::new()] Direct volume mount created. mount_point=/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/cap/data-capability/wd/rag_results handler=AmlDatastore options=DirectVolumeOptions { is_single_file: Some(false), default_permission: Some(511), attribute_cache_entry_ttl: 18446744073709551615.999999999s, disk_cache_options: DiskCacheOptions { cache_dir_path: None, reserved_free_disk_space: 6367358389, cache_limit: Unlimited, prune_threshold: 0.9, prune_target: 0.7, prune_on_file_growth_threshold: 1048576 }, streaming_read_options: StreamingReadOptions { block_size: 2097152, buffered_blocks_count: 32, reading_threads: 384 }, block_based_reading_options: None, mount_mode: CreateAndWrite, block_overwrite_on_file_conflict: false }
+2026-03-29T00:13:30.060074Z  INFO new: rslex_fuse::fuse_fs::fuse_mount: [rslex-fuse::FuseMount::new] Creating FuseMount instance mount_point=/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/cap/data-capability/wd/rag_results pid=15 options=MountOptions { allow_other: true, fuse_cache_timeout: 600s, unmount_timeout: 30s, enable_auto_cache: true, max_background_threads: 192, max_readahead: Some(4194304) }
+2026-03-29T00:13:30.060123Z  INFO new: rslex_fuse::fuse_fs::fuse_mount: [rslex-fuse::FuseMount::new] Mount point directory validated mount_point=/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/cap/data-capability/wd/rag_results is_dir=true mode=40755 readonly=false options=MountOptions { allow_other: true, fuse_cache_timeout: 600s, unmount_timeout: 30s, enable_auto_cache: true, max_background_threads: 192, max_readahead: Some(4194304) }
+2026-03-29T00:13:30.060195Z  INFO new: rslex_fuse::fuse_fs::fuse_mount: close time.busy=122µs time.idle=7.55µs options=MountOptions { allow_other: true, fuse_cache_timeout: 600s, unmount_timeout: 30s, enable_auto_cache: true, max_background_threads: 192, max_readahead: Some(4194304) }
+2026-03-29T00:13:30.061996Z  INFO rslex_fuse::fuse_fs::fuse_mount: [rslex-fuse::FuseMount::mount] mounting filesystem with mount arguments ["dataset_volume_mount", "-o", "allow_other", "-o", "attr_timeout=0", "-o", "entry_timeout=600", "-o", "negative_timeout=0", "-o", "remember=600", "-o", "big_writes", "-o", "auto_cache", "-o", "max_readahead=4194304", "-o", "fsname=rslex_volume_mount[AmlDatastore]"]. Libfuse version 29 fuse_arguments=["dataset_volume_mount", "-o", "allow_other", "-o", "attr_timeout=0", "-o", "entry_timeout=600", "-o", "negative_timeout=0", "-o", "remember=600", "-o", "big_writes", "-o", "auto_cache", "-o", "max_readahead=4194304", "-o", "fsname=rslex_volume_mount[AmlDatastore]"] fuse_version=29 pid=15 mount_point=/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/cap/data-capability/wd/rag_results
+2026-03-29T00:13:30.062039Z  INFO rslex_fuse::fuse_fs::fuse_mount: [rslex-fuse::FuseMount::mount_with_retries] Attempt 1/6 mount_point=/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/cap/data-capability/wd/rag_results pid=15 attempt=1 max_attempts=6
+2026-03-29T00:13:30.062058Z  INFO rslex_fuse::libfuse_binding: [rslex-fuse::fs_mount] Attempting FUSE mount mount_point=/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/cap/data-capability/wd/rag_results pid=15
+2026-03-29T00:13:30.062774Z  INFO rslex_fuse::fuse_fs::fuse_mount: [rslex-fuse::FuseMount::mount_with_retries] SUCCESS on attempt 1 mount_point=/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/cap/data-capability/wd/rag_results pid=15 attempt=1
+2026-03-29T00:13:30.063518Z  INFO rslex_fuse::fuse_fs::fuse_mount: [rslex-fuse::FuseMount::msg_loop_thread] Starting FUSE event loop thread for mount point /mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/cap/data-capability/wd/rag_results with exit_flag 2 pid=15
+2026-03-29T00:13:31.062981Z  INFO rslex_fuse::fuse_fs::fuse_mount: [rslex-fuse::FuseMount::mount] Filesystem mounted pid=15 mount_point=/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/cap/data-capability/wd/rag_results
+2026-03-29T00:18:37.588357Z  WARN try_access_async: rslex_http_stream::http_client::response: [AsyncResponse::success()] non-successful response
+Status: 401 Unauthorized
+Headers: {
+    "transfer-encoding": "chunked",
+    "vary": "Origin",
+    "server": "Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0",
+    "x-ms-request-id": "e442b41b-101e-000b-4511-bff433000000",
+    "x-ms-client-request-id": "aea8e6f3-6fa4-4885-8272-ddf4b7fe5efc",
+    "x-ms-version": "2021-04-10",
+    "x-ms-error-code": "NoAuthenticationInformation",
+    "www-authenticate": "Bearer authorization_uri=https://login.microsoftonline.com/72f988bf-86f1-41af-91ab-2d7cd011db47/oauth2/authorize resource_id=https://storage.azure.com",
+    "date": "Sun, 29 Mar 2026 00:18:37 GMT",
+} code=401
+2026-03-29T00:18:37.588415Z  INFO try_access_async: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=1.86ms time.idle=27.9ms
+2026-03-29T00:18:37.588491Z  INFO is_public:try_access: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=30.3ms time.idle=2.67µs
+2026-03-29T00:18:37.588514Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=30.4ms time.idle=11.9µs
+2026-03-29T00:18:37.597563Z  INFO copy:is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=9.97µs time.idle=1.05µs
+2026-03-29T00:18:37.715042Z  INFO copy:queue_chunked_copy: rslex_core::file_io::stream_copier: close time.busy=117ms time.idle=2.65µs file_size=23834624
+2026-03-29T00:18:37.715088Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=23834624 source_handler="AmlDatastore" source_resource_id=workspaceblobstore/LocalUpload/3bc3b7d9b5f90146f235257728769bb48ade0b28cbb348df47413f650ffe56cf/data/drugbank.db destination=drugbank.db duration=0.117494357 sequential=false
+2026-03-29T00:18:37.715137Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=118ms time.idle=1.70µs
+2026-03-29T00:18:38.374542Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=84.4µs time.idle=11.8µs
+2026-03-29T00:18:38.379223Z  WARN rslex_http_stream::http_service_client::error_mapped_http_service_client: [rslex-http-stream::http_service_client] non-successful response host=asplaygroundw3data.blob.core.windows.net method=HEAD request_uri=https://asplaygroundw3data.blob.core.windows.net/azureml-blobstore-86098555-f08f-45ab-95b4-92ceded3d89d/azureml/drugbank-rag-eval-20260328-170528/rag_results/questions_final_test error=HttpServiceError { service: "azure_blob", inner_error: The specified blob does not exist. } status=404 client_request_id=Some("51d5f47a-bc57-4df1-ab69-d0c82d1cd753") service_request_id=Some("5f6adaa0-e01e-00a6-3111-bfb846000000")
+2026-03-29T00:18:38.384436Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=97.9µs time.idle=11.2µs
+2026-03-29T00:18:38.388754Z  WARN rslex_http_stream::http_service_client::error_mapped_http_service_client: [rslex-http-stream::http_service_client] non-successful response host=asplaygroundw3data.blob.core.windows.net method=HEAD request_uri=https://asplaygroundw3data.blob.core.windows.net/azureml-blobstore-86098555-f08f-45ab-95b4-92ceded3d89d/azureml/drugbank-rag-eval-20260328-170528/rag_results/questions_final_test error=HttpServiceError { service: "azure_blob", inner_error: The specified blob does not exist. } status=404 client_request_id=Some("f1ee98ac-05e4-4bfc-80d4-08a54a4878cb") service_request_id=Some("5f6adaa3-e01e-00a6-3411-bfb846000000")
+2026-03-29T00:18:38.393509Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=16.8µs time.idle=3.19µs
+2026-03-29T00:18:38.397756Z  WARN rslex_http_stream::http_service_client::error_mapped_http_service_client: [rslex-http-stream::http_service_client] non-successful response host=asplaygroundw3data.blob.core.windows.net method=HEAD request_uri=https://asplaygroundw3data.blob.core.windows.net/azureml-blobstore-86098555-f08f-45ab-95b4-92ceded3d89d/azureml/drugbank-rag-eval-20260328-170528/rag_results/questions_final_test error=HttpServiceError { service: "azure_blob", inner_error: The specified blob does not exist. } status=404 client_request_id=Some("529448cb-5351-46b1-8507-4fe63ecb5579") service_request_id=Some("5f6adaa5-e01e-00a6-3611-bfb846000000")
+2026-03-29T00:18:38.402812Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=81.0µs time.idle=7.66µs
+2026-03-29T00:18:38.406972Z  WARN rslex_http_stream::http_service_client::error_mapped_http_service_client: [rslex-http-stream::http_service_client] non-successful response host=asplaygroundw3data.blob.core.windows.net method=HEAD request_uri=https://asplaygroundw3data.blob.core.windows.net/azureml-blobstore-86098555-f08f-45ab-95b4-92ceded3d89d/LocalUpload/3bc3b7d9b5f90146f235257728769bb48ade0b28cbb348df47413f650ffe56cf/data/Pharma error=HttpServiceError { service: "azure_blob", inner_error: The specified blob does not exist. } status=404 client_request_id=Some("ee7f0d52-e606-4356-b149-c1beb4cdd4f0") service_request_id=Some("5f6adaa7-e01e-00a6-3811-bfb846000000")
+2026-03-29T00:18:38.412890Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=25.9µs time.idle=3.25µs
+2026-03-29T00:18:38.417277Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=14.7µs time.idle=2.60µs
+2026-03-29T00:18:38.421489Z  WARN rslex_http_stream::http_service_client::error_mapped_http_service_client: [rslex-http-stream::http_service_client] non-successful response host=asplaygroundw3data.blob.core.windows.net method=HEAD request_uri=https://asplaygroundw3data.blob.core.windows.net/azureml-blobstore-86098555-f08f-45ab-95b4-92ceded3d89d/azureml/drugbank-rag-eval-20260328-170528/rag_results/questions_final_test error=HttpServiceError { service: "azure_blob", inner_error: The specified blob does not exist. } status=404 client_request_id=Some("7fb3bbc9-6cde-4bb3-a0bc-b4a05a8f46f8") service_request_id=Some("5f6adaac-e01e-00a6-3d11-bfb846000000")
+2026-03-29T00:18:38.426312Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=13.5µs time.idle=2.55µs
+2026-03-29T00:18:38.430421Z  WARN rslex_http_stream::http_service_client::error_mapped_http_service_client: [rslex-http-stream::http_service_client] non-successful response host=asplaygroundw3data.blob.core.windows.net method=HEAD request_uri=https://asplaygroundw3data.blob.core.windows.net/azureml-blobstore-86098555-f08f-45ab-95b4-92ceded3d89d/azureml/drugbank-rag-eval-20260328-170528/rag_results/questions_final_test error=HttpServiceError { service: "azure_blob", inner_error: The specified blob does not exist. } status=404 client_request_id=Some("72586601-3647-4670-b634-737fbcd317cb") service_request_id=Some("5f6adaae-e01e-00a6-3f11-bfb846000000")
+2026-03-29T00:18:38.435003Z  INFO rslex_fuse::direct_volume_mount::direct_volume_mount: [rslex-fuse::DirectVolumeMount] mkdir path=questions_final_test mount_point=/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/cap/data-capability/wd/rag_results
+2026-03-29T00:18:38.435071Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=15.0µs time.idle=2.48µs
+2026-03-29T00:18:38.439007Z  WARN rslex_http_stream::http_service_client::error_mapped_http_service_client: [rslex-http-stream::http_service_client] non-successful response host=asplaygroundw3data.blob.core.windows.net method=HEAD request_uri=https://asplaygroundw3data.blob.core.windows.net/azureml-blobstore-86098555-f08f-45ab-95b4-92ceded3d89d/azureml/drugbank-rag-eval-20260328-170528/rag_results/questions_final_test error=HttpServiceError { service: "azure_blob", inner_error: The specified blob does not exist. } status=404 client_request_id=Some("636eef67-54f3-485c-badc-af9c41b6b14e") service_request_id=Some("5f6adab2-e01e-00a6-4311-bfb846000000")
+2026-03-29T00:18:38.470201Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=13.9µs time.idle=2.71µs
+2026-03-29T00:18:38.474728Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=20.6µs time.idle=2.96µs
+2026-03-29T00:18:38.479143Z  WARN rslex_http_stream::http_service_client::error_mapped_http_service_client: [rslex-http-stream::http_service_client] non-successful response host=asplaygroundw3data.blob.core.windows.net method=HEAD request_uri=https://asplaygroundw3data.blob.core.windows.net/azureml-blobstore-86098555-f08f-45ab-95b4-92ceded3d89d/azureml/drugbank-rag-eval-20260328-170528/rag_results/questions_final_test/aml_full_eval_20260328_170528 error=HttpServiceError { service: "azure_blob", inner_error: The specified blob does not exist. } status=404 client_request_id=Some("d94904c6-ad3c-4914-9308-e61b0f276f18") service_request_id=Some("5f6adabd-e01e-00a6-4c11-bfb846000000")
+2026-03-29T00:18:38.483839Z  INFO rslex_fuse::direct_volume_mount::direct_volume_mount: [rslex-fuse::DirectVolumeMount] mkdir path=questions_final_test/aml_full_eval_20260328_170528 mount_point=/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/cap/data-capability/wd/rag_results
+2026-03-29T00:18:38.483911Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=20.2µs time.idle=2.69µs
+2026-03-29T00:18:38.488050Z  WARN rslex_http_stream::http_service_client::error_mapped_http_service_client: [rslex-http-stream::http_service_client] non-successful response host=asplaygroundw3data.blob.core.windows.net method=HEAD request_uri=https://asplaygroundw3data.blob.core.windows.net/azureml-blobstore-86098555-f08f-45ab-95b4-92ceded3d89d/azureml/drugbank-rag-eval-20260328-170528/rag_results/questions_final_test/aml_full_eval_20260328_170528 error=HttpServiceError { service: "azure_blob", inner_error: The specified blob does not exist. } status=404 client_request_id=Some("f0861fd9-1ddc-445f-89da-94d8ded38c43") service_request_id=Some("5f6adabf-e01e-00a6-4e11-bfb846000000")
+2026-03-29T00:18:38.499985Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=14.5µs time.idle=2.62µs
+2026-03-29T00:18:38.506394Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=26.4µs time.idle=3.44µs
+2026-03-29T00:18:38.510831Z  WARN rslex_http_stream::http_service_client::error_mapped_http_service_client: [rslex-http-stream::http_service_client] non-successful response host=asplaygroundw3data.blob.core.windows.net method=HEAD request_uri=https://asplaygroundw3data.blob.core.windows.net/azureml-blobstore-86098555-f08f-45ab-95b4-92ceded3d89d/azureml/drugbank-rag-eval-20260328-170528/rag_results/questions_final_test/aml_full_eval_20260328_170528/batch_progress_metrics.csv error=HttpServiceError { service: "azure_blob", inner_error: The specified blob does not exist. } status=404 client_request_id=Some("0c995a85-14ea-4929-bd38-7bd649a9afd1") service_request_id=Some("5f6adac3-e01e-00a6-5211-bfb846000000")
+2026-03-29T00:18:38.515296Z  INFO rslex_fuse::direct_volume_mount::direct_volume_mount: [rslex-fuse::DirectVolumeMount] create path=questions_final_test/aml_full_eval_20260328_170528/batch_progress_metrics.csv mode=33188 mount_point=/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/cap/data-capability/wd/rag_results
+2026-03-29T00:18:38.523774Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=14.9µs time.idle=2.98µs
+2026-03-29T00:18:38.538714Z  INFO copy:do_sequential_copy: rslex_core::file_io::stream_copier: close time.busy=8.04ms time.idle=2.77µs file_size=1
+2026-03-29T00:18:38.538744Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=1 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/batch_progress_metrics.csv destination=questions_final_test/aml_full_eval_20260328_170528/batch_progress_metrics.csv duration=0.008075186 sequential=true
+2026-03-29T00:18:38.538792Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=8.13ms time.idle=2.50µs
+2026-03-29T00:18:38.540390Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=88.6µs time.idle=11.3µs
+2026-03-29T00:18:38.545686Z  WARN rslex_http_stream::http_service_client::error_mapped_http_service_client: [rslex-http-stream::http_service_client] non-successful response host=asplaygroundw3data.blob.core.windows.net method=HEAD request_uri=https://asplaygroundw3data.blob.core.windows.net/azureml-blobstore-86098555-f08f-45ab-95b4-92ceded3d89d/azureml/drugbank-rag-eval-20260328-170528/rag_results/questions_final_test/aml_full_eval_20260328_170528/batch_progress_status.json error=HttpServiceError { service: "azure_blob", inner_error: The specified blob does not exist. } status=404 client_request_id=Some("b265125d-1b00-4e67-9dd2-02e1d5f4e47f") service_request_id=Some("5f6adac6-e01e-00a6-5511-bfb846000000")
+2026-03-29T00:18:38.550632Z  INFO rslex_fuse::direct_volume_mount::direct_volume_mount: [rslex-fuse::DirectVolumeMount] create path=questions_final_test/aml_full_eval_20260328_170528/batch_progress_status.json mode=33188 mount_point=/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/cap/data-capability/wd/rag_results
+2026-03-29T00:18:38.558256Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=15.1µs time.idle=3.19µs
+2026-03-29T00:18:38.572183Z  INFO copy:do_sequential_copy: rslex_core::file_io::stream_copier: close time.busy=7.47ms time.idle=1.78µs file_size=449
+2026-03-29T00:18:38.572201Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=449 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/batch_progress_status.json destination=questions_final_test/aml_full_eval_20260328_170528/batch_progress_status.json duration=0.007492235 sequential=true
+2026-03-29T00:18:38.572226Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=7.53ms time.idle=2.20µs
+2026-03-29T00:19:31.943584Z  INFO copy:is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=31.6µs time.idle=2.21µs
+2026-03-29T00:19:31.956144Z  INFO copy:do_sequential_copy: rslex_core::file_io::stream_copier: close time.busy=12.5ms time.idle=2.46µs file_size=330941
+2026-03-29T00:19:31.956167Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=330941 source_handler="AmlDatastore" source_resource_id=workspaceblobstore/LocalUpload/3bc3b7d9b5f90146f235257728769bb48ade0b28cbb348df47413f650ffe56cf/data/Pharma/pubmed-drugbank-tables.gt destination=Pharma/pubmed-drugbank-tables.gt duration=0.012529244 sequential=true
+2026-03-29T00:19:31.956207Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=12.7ms time.idle=7.48µs
+2026-03-29T00:24:31.794998Z  WARN try_access_async: rslex_http_stream::http_client::response: [AsyncResponse::success()] non-successful response
+Status: 401 Unauthorized
+Headers: {
+    "transfer-encoding": "chunked",
+    "vary": "Origin",
+    "server": "Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0",
+    "x-ms-request-id": "7d2e7f6c-501e-008c-0212-bf6756000000",
+    "x-ms-client-request-id": "d577774b-5024-4aa6-8e55-58d2aca5eb37",
+    "x-ms-version": "2021-04-10",
+    "x-ms-error-code": "NoAuthenticationInformation",
+    "www-authenticate": "Bearer authorization_uri=https://login.microsoftonline.com/72f988bf-86f1-41af-91ab-2d7cd011db47/oauth2/authorize resource_id=https://storage.azure.com",
+    "date": "Sun, 29 Mar 2026 00:24:31 GMT",
+} code=401
+2026-03-29T00:24:31.795069Z  INFO try_access_async: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=2.04ms time.idle=24.0ms
+2026-03-29T00:24:31.795147Z  INFO is_public:try_access: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=26.3ms time.idle=3.15µs
+2026-03-29T00:24:31.795186Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=26.4ms time.idle=7.49µs
+2026-03-29T00:24:31.800279Z  WARN rslex_http_stream::http_service_client::error_mapped_http_service_client: [rslex-http-stream::http_service_client] non-successful response host=asplaygroundw3data.blob.core.windows.net method=HEAD request_uri=https://asplaygroundw3data.blob.core.windows.net/azureml-blobstore-86098555-f08f-45ab-95b4-92ceded3d89d/azureml/drugbank-rag-eval-20260328-170528/rag_results/questions_final_test/aml_full_eval_20260328_170528/table_processed_rag_sample.csv error=HttpServiceError { service: "azure_blob", inner_error: The specified blob does not exist. } status=404 client_request_id=Some("4f262b54-495a-454a-9699-8bb4687ab6de") service_request_id=Some("7d2e7f6f-501e-008c-0412-bf6756000000")
+2026-03-29T00:24:31.804830Z  INFO rslex_fuse::direct_volume_mount::direct_volume_mount: [rslex-fuse::DirectVolumeMount] create path=questions_final_test/aml_full_eval_20260328_170528/table_processed_rag_sample.csv mode=33188 mount_point=/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/cap/data-capability/wd/rag_results
+2026-03-29T00:24:31.827227Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=13.6µs time.idle=5.96µs
+2026-03-29T00:24:32.007876Z  INFO copy:do_sequential_copy: rslex_core::file_io::stream_copier: close time.busy=60.3ms time.idle=3.32µs file_size=3790528
+2026-03-29T00:24:32.007906Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=3790528 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/table_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/table_processed_rag_sample.csv duration=0.060339695 sequential=true
+2026-03-29T00:24:32.007949Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=60.4ms time.idle=2.90µs
+2026-03-29T00:27:02.521475Z  WARN try_access_async: rslex_http_stream::http_client::response: [AsyncResponse::success()] non-successful response
+Status: 401 Unauthorized
+Headers: {
+    "transfer-encoding": "chunked",
+    "vary": "Origin",
+    "server": "Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0",
+    "x-ms-request-id": "f64cd413-301e-008a-3812-bf54e9000000",
+    "x-ms-client-request-id": "760451f2-e1eb-4fcd-8f07-cd11dd2879fe",
+    "x-ms-version": "2021-04-10",
+    "x-ms-error-code": "NoAuthenticationInformation",
+    "www-authenticate": "Bearer authorization_uri=https://login.microsoftonline.com/72f988bf-86f1-41af-91ab-2d7cd011db47/oauth2/authorize resource_id=https://storage.azure.com",
+    "date": "Sun, 29 Mar 2026 00:27:02 GMT",
+} code=401
+2026-03-29T00:27:02.521538Z  INFO try_access_async: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=2.02ms time.idle=32.6ms
+2026-03-29T00:27:02.521614Z  INFO is_public:try_access: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=34.8ms time.idle=2.58µs
+2026-03-29T00:27:02.521653Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=34.9ms time.idle=7.30µs
+2026-03-29T00:27:02.525969Z  WARN rslex_http_stream::http_service_client::error_mapped_http_service_client: [rslex-http-stream::http_service_client] non-successful response host=asplaygroundw3data.blob.core.windows.net method=HEAD request_uri=https://asplaygroundw3data.blob.core.windows.net/azureml-blobstore-86098555-f08f-45ab-95b4-92ceded3d89d/azureml/drugbank-rag-eval-20260328-170528/rag_results/questions_final_test/aml_full_eval_20260328_170528/passage_table_processed_rag_sample.csv error=HttpServiceError { service: "azure_blob", inner_error: The specified blob does not exist. } status=404 client_request_id=Some("a7a2ccdf-57de-46ff-8cf2-e008fa6f04ee") service_request_id=Some("f64cd415-301e-008a-3a12-bf54e9000000")
+2026-03-29T00:27:02.530686Z  INFO rslex_fuse::direct_volume_mount::direct_volume_mount: [rslex-fuse::DirectVolumeMount] create path=questions_final_test/aml_full_eval_20260328_170528/passage_table_processed_rag_sample.csv mode=33188 mount_point=/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/cap/data-capability/wd/rag_results
+2026-03-29T00:27:02.561846Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=16.8µs time.idle=5.41µs
+2026-03-29T00:27:02.957721Z  INFO copy:queue_chunked_copy: rslex_core::file_io::stream_copier: close time.busy=168ms time.idle=4.44µs file_size=12454683
+2026-03-29T00:27:02.957758Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=12454683 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/passage_table_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/passage_table_processed_rag_sample.csv duration=0.176752091 sequential=false
+2026-03-29T00:27:02.957811Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=177ms time.idle=7.66µs
+2026-03-29T00:27:37.898713Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=37.2µs time.idle=8.30µs
+2026-03-29T00:27:37.904234Z  WARN rslex_http_stream::http_service_client::error_mapped_http_service_client: [rslex-http-stream::http_service_client] non-successful response host=asplaygroundw3data.blob.core.windows.net method=HEAD request_uri=https://asplaygroundw3data.blob.core.windows.net/azureml-blobstore-86098555-f08f-45ab-95b4-92ceded3d89d/azureml/drugbank-rag-eval-20260328-170528/rag_results/questions_final_test/aml_full_eval_20260328_170528/passage_processed_rag_sample.csv error=HttpServiceError { service: "azure_blob", inner_error: The specified blob does not exist. } status=404 client_request_id=Some("f8dbf983-bcfc-412d-bf35-18ff24fcaa26") service_request_id=Some("f64ce3d6-301e-008a-2612-bf54e9000000")
+2026-03-29T00:27:37.908647Z  INFO rslex_fuse::direct_volume_mount::direct_volume_mount: [rslex-fuse::DirectVolumeMount] create path=questions_final_test/aml_full_eval_20260328_170528/passage_processed_rag_sample.csv mode=33188 mount_point=/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/cap/data-capability/wd/rag_results
+2026-03-29T00:27:37.919757Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=20.7µs time.idle=6.52µs
+2026-03-29T00:27:38.051495Z  INFO copy:do_sequential_copy: rslex_core::file_io::stream_copier: close time.busy=46.8ms time.idle=2.58µs file_size=2224572
+2026-03-29T00:27:38.051521Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=2224572 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/passage_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/passage_processed_rag_sample.csv duration=0.046882029 sequential=true
+2026-03-29T00:27:38.051559Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=46.9ms time.idle=3.00µs
+2026-03-29T00:29:37.257022Z  WARN try_access_async: rslex_http_stream::http_client::response: [AsyncResponse::success()] non-successful response
+Status: 401 Unauthorized
+Headers: {
+    "transfer-encoding": "chunked",
+    "vary": "Origin",
+    "server": "Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0",
+    "x-ms-request-id": "04e992e0-201e-0096-5e13-bf0689000000",
+    "x-ms-client-request-id": "100abf81-ce7d-4494-8363-bc5ffa8da8c4",
+    "x-ms-version": "2021-04-10",
+    "x-ms-error-code": "NoAuthenticationInformation",
+    "www-authenticate": "Bearer authorization_uri=https://login.microsoftonline.com/72f988bf-86f1-41af-91ab-2d7cd011db47/oauth2/authorize resource_id=https://storage.azure.com",
+    "date": "Sun, 29 Mar 2026 00:29:36 GMT",
+} code=401
+2026-03-29T00:29:37.257095Z  INFO try_access_async: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=1.91ms time.idle=24.0ms
+2026-03-29T00:29:37.257187Z  INFO is_public:try_access: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=26.2ms time.idle=3.61µs
+2026-03-29T00:29:37.257230Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=26.3ms time.idle=8.45µs
+2026-03-29T00:29:37.264079Z  WARN rslex_http_stream::http_service_client::error_mapped_http_service_client: [rslex-http-stream::http_service_client] non-successful response host=asplaygroundw3data.blob.core.windows.net method=HEAD request_uri=https://asplaygroundw3data.blob.core.windows.net/azureml-blobstore-86098555-f08f-45ab-95b4-92ceded3d89d/azureml/drugbank-rag-eval-20260328-170528/rag_results/questions_final_test/aml_full_eval_20260328_170528/passage_hop_processed_rag_sample.csv error=HttpServiceError { service: "azure_blob", inner_error: The specified blob does not exist. } status=404 client_request_id=Some("00a36e2f-e120-4746-8f8d-6de581421cfe") service_request_id=Some("04e992e2-201e-0096-5f13-bf0689000000")
+2026-03-29T00:29:37.269026Z  INFO rslex_fuse::direct_volume_mount::direct_volume_mount: [rslex-fuse::DirectVolumeMount] create path=questions_final_test/aml_full_eval_20260328_170528/passage_hop_processed_rag_sample.csv mode=33188 mount_point=/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/cap/data-capability/wd/rag_results
+2026-03-29T00:29:37.291206Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=14.7µs time.idle=5.92µs
+2026-03-29T00:29:37.504668Z  INFO copy:do_sequential_copy: rslex_core::file_io::stream_copier: close time.busy=73.6ms time.idle=2.60µs file_size=3711787
+2026-03-29T00:29:37.504697Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=3711787 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/passage_hop_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/passage_hop_processed_rag_sample.csv duration=0.073659256 sequential=true
+2026-03-29T00:29:37.504744Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=73.7ms time.idle=2.52µs
+2026-03-29T00:29:42.211033Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=36.4µs time.idle=8.22µs
+2026-03-29T00:29:42.216141Z  WARN rslex_http_stream::http_service_client::error_mapped_http_service_client: [rslex-http-stream::http_service_client] non-successful response host=asplaygroundw3data.blob.core.windows.net method=HEAD request_uri=https://asplaygroundw3data.blob.core.windows.net/azureml-blobstore-86098555-f08f-45ab-95b4-92ceded3d89d/azureml/drugbank-rag-eval-20260328-170528/rag_results/questions_final_test/aml_full_eval_20260328_170528/table_hop_processed_rag_sample.csv error=HttpServiceError { service: "azure_blob", inner_error: The specified blob does not exist. } status=404 client_request_id=Some("37a42b44-e07e-4b15-b29c-32ac368fc73c") service_request_id=Some("04e9950c-201e-0096-1813-bf0689000000")
+2026-03-29T00:29:42.221243Z  INFO rslex_fuse::direct_volume_mount::direct_volume_mount: [rslex-fuse::DirectVolumeMount] create path=questions_final_test/aml_full_eval_20260328_170528/table_hop_processed_rag_sample.csv mode=33188 mount_point=/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/cap/data-capability/wd/rag_results
+2026-03-29T00:29:42.230226Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=20.5µs time.idle=4.79µs
+2026-03-29T00:29:42.595154Z  INFO copy:queue_chunked_copy: rslex_core::file_io::stream_copier: close time.busy=117ms time.idle=4.34µs file_size=9728390
+2026-03-29T00:29:42.595200Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=9728390 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/table_hop_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/table_hop_processed_rag_sample.csv duration=0.124004303 sequential=false
+2026-03-29T00:29:42.595261Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=124ms time.idle=5.26µs
+2026-03-29T00:30:08.935973Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=38.6µs time.idle=7.67µs
+2026-03-29T00:30:08.953686Z  INFO copy:do_sequential_copy: rslex_core::file_io::stream_copier: close time.busy=7.31ms time.idle=2.50µs file_size=0
+2026-03-29T00:30:08.953711Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=0 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/table_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/table_processed_rag_sample.csv duration=0.007342356 sequential=true
+2026-03-29T00:30:08.953760Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=7.40ms time.idle=2.27µs
+2026-03-29T00:30:09.127553Z  INFO copy:do_sequential_copy: rslex_core::file_io::stream_copier: close time.busy=53.4ms time.idle=4.09µs file_size=4013140
+2026-03-29T00:30:09.127596Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=4013140 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/table_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/table_processed_rag_sample.csv duration=0.053410223 sequential=true
+2026-03-29T00:30:09.127650Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=53.5ms time.idle=5.84µs
+2026-03-29T00:34:00.501409Z  WARN try_access_async: rslex_http_stream::http_client::response: [AsyncResponse::success()] non-successful response
+Status: 401 Unauthorized
+Headers: {
+    "transfer-encoding": "chunked",
+    "vary": "Origin",
+    "server": "Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0",
+    "x-ms-request-id": "3f7b81ec-201e-0062-4513-bfcd7f000000",
+    "x-ms-client-request-id": "4b26790d-6580-4a4c-a3b4-12aed4f485ff",
+    "x-ms-version": "2021-04-10",
+    "x-ms-error-code": "NoAuthenticationInformation",
+    "www-authenticate": "Bearer authorization_uri=https://login.microsoftonline.com/72f988bf-86f1-41af-91ab-2d7cd011db47/oauth2/authorize resource_id=https://storage.azure.com",
+    "date": "Sun, 29 Mar 2026 00:34:00 GMT",
+} code=401
+2026-03-29T00:34:00.501476Z  INFO try_access_async: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=2.01ms time.idle=25.0ms
+2026-03-29T00:34:00.501559Z  INFO is_public:try_access: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=27.2ms time.idle=3.41µs
+2026-03-29T00:34:00.501602Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=27.3ms time.idle=7.24µs
+2026-03-29T00:34:00.536528Z  INFO copy:do_sequential_copy: rslex_core::file_io::stream_copier: close time.busy=24.7ms time.idle=2.58µs file_size=0
+2026-03-29T00:34:00.536550Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=0 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/passage_table_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/passage_table_processed_rag_sample.csv duration=0.024691071 sequential=true
+2026-03-29T00:34:00.536600Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=24.8ms time.idle=2.31µs
+2026-03-29T00:34:00.888739Z  INFO copy:queue_chunked_copy: rslex_core::file_io::stream_copier: close time.busy=127ms time.idle=5.14µs file_size=12699673
+2026-03-29T00:34:00.888784Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=12699673 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/passage_table_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/passage_table_processed_rag_sample.csv duration=0.138353846 sequential=false
+2026-03-29T00:34:00.888842Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=138ms time.idle=3.83µs
+2026-03-29T00:34:17.363582Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=36.6µs time.idle=6.53µs
+2026-03-29T00:34:17.377375Z  INFO copy:do_sequential_copy: rslex_core::file_io::stream_copier: close time.busy=7.42ms time.idle=2.30µs file_size=0
+2026-03-29T00:34:17.377402Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=0 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/passage_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/passage_processed_rag_sample.csv duration=0.007451659 sequential=true
+2026-03-29T00:34:17.377448Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=7.51ms time.idle=2.01µs
+2026-03-29T00:34:17.511677Z  INFO copy:do_sequential_copy: rslex_core::file_io::stream_copier: close time.busy=46.4ms time.idle=4.61µs file_size=2467705
+2026-03-29T00:34:17.511714Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=2467705 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/passage_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/passage_processed_rag_sample.csv duration=0.046472716 sequential=true
+2026-03-29T00:34:17.511765Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=46.5ms time.idle=7.33µs
+2026-03-29T00:34:55.890387Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=37.2µs time.idle=7.56µs
+2026-03-29T00:34:55.907824Z  INFO copy:do_sequential_copy: rslex_core::file_io::stream_copier: close time.busy=7.49ms time.idle=3.87µs file_size=0
+2026-03-29T00:34:55.907854Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=0 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/table_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/table_processed_rag_sample.csv duration=0.007530236 sequential=true
+2026-03-29T00:34:55.907895Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=7.58ms time.idle=7.77µs
+2026-03-29T00:34:56.110161Z  INFO copy:do_sequential_copy: rslex_core::file_io::stream_copier: close time.busy=73.1ms time.idle=3.24µs file_size=4237477
+2026-03-29T00:34:56.110192Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=4237477 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/table_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/table_processed_rag_sample.csv duration=0.073125542 sequential=true
+2026-03-29T00:34:56.110239Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=73.2ms time.idle=2.43µs
+2026-03-29T00:36:53.353278Z  WARN try_access_async: rslex_http_stream::http_client::response: [AsyncResponse::success()] non-successful response
+Status: 401 Unauthorized
+Headers: {
+    "transfer-encoding": "chunked",
+    "vary": "Origin",
+    "server": "Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0",
+    "x-ms-request-id": "ba07d2b2-e01e-0100-0f14-bff155000000",
+    "x-ms-client-request-id": "9643bc24-4816-445e-ae71-bb65634e4837",
+    "x-ms-version": "2021-04-10",
+    "x-ms-error-code": "NoAuthenticationInformation",
+    "www-authenticate": "Bearer authorization_uri=https://login.microsoftonline.com/72f988bf-86f1-41af-91ab-2d7cd011db47/oauth2/authorize resource_id=https://storage.azure.com",
+    "date": "Sun, 29 Mar 2026 00:36:52 GMT",
+} code=401
+2026-03-29T00:36:53.353348Z  INFO try_access_async: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=2.09ms time.idle=23.2ms
+2026-03-29T00:36:53.353428Z  INFO is_public:try_access: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=25.5ms time.idle=2.90µs
+2026-03-29T00:36:53.353469Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=25.6ms time.idle=6.78µs
+2026-03-29T00:36:53.383660Z  INFO copy:do_sequential_copy: rslex_core::file_io::stream_copier: close time.busy=21.7ms time.idle=2.62µs file_size=0
+2026-03-29T00:36:53.383682Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=0 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/table_hop_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/table_hop_processed_rag_sample.csv duration=0.02170055 sequential=true
+2026-03-29T00:36:53.383724Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=21.8ms time.idle=2.41µs
+2026-03-29T00:36:53.744453Z  INFO copy:queue_chunked_copy: rslex_core::file_io::stream_copier: close time.busy=113ms time.idle=4.94µs file_size=9979892
+2026-03-29T00:36:53.744487Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=9979892 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/table_hop_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/table_hop_processed_rag_sample.csv duration=0.122212216 sequential=false
+2026-03-29T00:36:53.744526Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=122ms time.idle=3.78µs
+2026-03-29T00:37:37.647036Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=38.1µs time.idle=7.92µs
+2026-03-29T00:37:37.666087Z  INFO copy:do_sequential_copy: rslex_core::file_io::stream_copier: close time.busy=9.73ms time.idle=3.41µs file_size=0
+2026-03-29T00:37:37.666127Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=0 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/passage_hop_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/passage_hop_processed_rag_sample.csv duration=0.009779538 sequential=true
+2026-03-29T00:37:37.666182Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=9.84ms time.idle=2.47µs
+2026-03-29T00:37:37.885145Z  INFO copy:do_sequential_copy: rslex_core::file_io::stream_copier: close time.busy=79.8ms time.idle=3.90µs file_size=4077651
+2026-03-29T00:37:37.885190Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=4077651 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/passage_hop_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/passage_hop_processed_rag_sample.csv duration=0.079867415 sequential=true
+2026-03-29T00:37:37.885251Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=79.9ms time.idle=6.85µs
+2026-03-29T00:39:03.282273Z  WARN try_access_async: rslex_http_stream::http_client::response: [AsyncResponse::success()] non-successful response
+Status: 401 Unauthorized
+Headers: {
+    "transfer-encoding": "chunked",
+    "vary": "Origin",
+    "server": "Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0",
+    "x-ms-request-id": "ba080bbc-e01e-0100-2514-bff155000000",
+    "x-ms-client-request-id": "7e8b8e1f-7414-4d66-a472-71d1037f9a5f",
+    "x-ms-version": "2021-04-10",
+    "x-ms-error-code": "NoAuthenticationInformation",
+    "www-authenticate": "Bearer authorization_uri=https://login.microsoftonline.com/72f988bf-86f1-41af-91ab-2d7cd011db47/oauth2/authorize resource_id=https://storage.azure.com",
+    "date": "Sun, 29 Mar 2026 00:39:02 GMT",
+} code=401
+2026-03-29T00:39:03.282345Z  INFO try_access_async: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=293µs time.idle=6.17ms
+2026-03-29T00:39:03.282428Z  INFO is_public:try_access: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=6.65ms time.idle=3.20µs
+2026-03-29T00:39:03.282470Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=6.73ms time.idle=6.91µs
+2026-03-29T00:39:03.298676Z  INFO copy:do_sequential_copy: rslex_core::file_io::stream_copier: close time.busy=8.84ms time.idle=3.12µs file_size=0
+2026-03-29T00:39:03.298706Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=0 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/table_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/table_processed_rag_sample.csv duration=0.008873663 sequential=true
+2026-03-29T00:39:03.298764Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=8.94ms time.idle=2.47µs
+2026-03-29T00:39:03.488835Z  INFO copy:do_sequential_copy: rslex_core::file_io::stream_copier: close time.busy=58.2ms time.idle=3.48µs file_size=4440005
+2026-03-29T00:39:03.488865Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=4440005 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/table_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/table_processed_rag_sample.csv duration=0.058253799 sequential=true
+2026-03-29T00:39:03.488908Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=58.3ms time.idle=3.48µs
+2026-03-29T00:39:20.606397Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=43.3µs time.idle=9.06µs
+2026-03-29T00:39:20.622592Z  INFO copy:do_sequential_copy: rslex_core::file_io::stream_copier: close time.busy=8.93ms time.idle=3.83µs file_size=0
+2026-03-29T00:39:20.622621Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=0 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/passage_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/passage_processed_rag_sample.csv duration=0.008966028 sequential=true
+2026-03-29T00:39:20.622656Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=9.01ms time.idle=6.44µs
+2026-03-29T00:39:20.766346Z  INFO copy:do_sequential_copy: rslex_core::file_io::stream_copier: close time.busy=46.6ms time.idle=1.71µs file_size=2713529
+2026-03-29T00:39:20.766371Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=2713529 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/passage_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/passage_processed_rag_sample.csv duration=0.046644647 sequential=true
+2026-03-29T00:39:20.766405Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=46.7ms time.idle=2.04µs
+2026-03-29T00:39:30.624839Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=34.4µs time.idle=8.39µs
+2026-03-29T00:39:30.642620Z  INFO copy:do_sequential_copy: rslex_core::file_io::stream_copier: close time.busy=7.93ms time.idle=3.93µs file_size=0
+2026-03-29T00:39:30.642658Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=0 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/passage_table_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/passage_table_processed_rag_sample.csv duration=0.007971726 sequential=true
+2026-03-29T00:39:30.642702Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=8.03ms time.idle=5.93µs
+2026-03-29T00:39:31.029849Z  INFO copy:queue_chunked_copy: rslex_core::file_io::stream_copier: close time.busy=156ms time.idle=4.44µs file_size=12940450
+2026-03-29T00:39:31.029900Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=12940450 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/passage_table_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/passage_table_processed_rag_sample.csv duration=0.164318971 sequential=false
+2026-03-29T00:39:31.029966Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=164ms time.idle=7.13µs
+2026-03-29T00:42:21.745029Z  WARN try_access_async: rslex_http_stream::http_client::response: [AsyncResponse::success()] non-successful response
+Status: 401 Unauthorized
+Headers: {
+    "transfer-encoding": "chunked",
+    "vary": "Origin",
+    "server": "Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0",
+    "x-ms-request-id": "95ac2aa7-901e-00f1-0114-bf1675000000",
+    "x-ms-client-request-id": "c1ac1e5d-6226-4930-8c27-aae5644653de",
+    "x-ms-version": "2021-04-10",
+    "x-ms-error-code": "NoAuthenticationInformation",
+    "www-authenticate": "Bearer authorization_uri=https://login.microsoftonline.com/72f988bf-86f1-41af-91ab-2d7cd011db47/oauth2/authorize resource_id=https://storage.azure.com",
+    "date": "Sun, 29 Mar 2026 00:42:21 GMT",
+} code=401
+2026-03-29T00:42:21.745091Z  INFO try_access_async: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=2.15ms time.idle=24.6ms
+2026-03-29T00:42:21.745174Z  INFO is_public:try_access: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=26.9ms time.idle=3.24µs
+2026-03-29T00:42:21.745216Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=27.0ms time.idle=7.19µs
+2026-03-29T00:42:21.775330Z  INFO copy:do_sequential_copy: rslex_core::file_io::stream_copier: close time.busy=23.3ms time.idle=2.56µs file_size=0
+2026-03-29T00:42:21.775354Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=0 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/table_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/table_processed_rag_sample.csv duration=0.023279966 sequential=true
+2026-03-29T00:42:21.775392Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=23.3ms time.idle=2.67µs
+2026-03-29T00:42:21.986489Z  INFO copy:do_sequential_copy: rslex_core::file_io::stream_copier: close time.busy=64.9ms time.idle=3.97µs file_size=4623856
+2026-03-29T00:42:21.986527Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=4623856 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/table_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/table_processed_rag_sample.csv duration=0.064900055 sequential=true
+2026-03-29T00:42:21.986576Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=65.0ms time.idle=4.75µs
+2026-03-29T00:42:38.204034Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=28.7µs time.idle=6.60µs
+2026-03-29T00:42:38.221501Z  INFO copy:do_sequential_copy: rslex_core::file_io::stream_copier: close time.busy=8.32ms time.idle=3.93µs file_size=0
+2026-03-29T00:42:38.221539Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=0 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/table_hop_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/table_hop_processed_rag_sample.csv duration=0.008370817 sequential=true
+2026-03-29T00:42:38.221591Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=8.44ms time.idle=7.51µs
+2026-03-29T00:42:38.595160Z  INFO copy:queue_chunked_copy: rslex_core::file_io::stream_copier: close time.busy=124ms time.idle=3.60µs file_size=10300872
+2026-03-29T00:42:38.595205Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=10300872 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/table_hop_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/table_hop_processed_rag_sample.csv duration=0.132140239 sequential=false
+2026-03-29T00:42:38.595259Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=132ms time.idle=3.29µs
+2026-03-29T00:43:50.741381Z  WARN try_access_async: rslex_http_stream::http_client::response: [AsyncResponse::success()] non-successful response
+Status: 401 Unauthorized
+Headers: {
+    "transfer-encoding": "chunked",
+    "vary": "Origin",
+    "server": "Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0",
+    "x-ms-request-id": "95ac5e56-901e-00f1-7715-bf1675000000",
+    "x-ms-client-request-id": "f85ac39b-3893-43d0-9681-355918f16323",
+    "x-ms-version": "2021-04-10",
+    "x-ms-error-code": "NoAuthenticationInformation",
+    "www-authenticate": "Bearer authorization_uri=https://login.microsoftonline.com/72f988bf-86f1-41af-91ab-2d7cd011db47/oauth2/authorize resource_id=https://storage.azure.com",
+    "date": "Sun, 29 Mar 2026 00:43:50 GMT",
+} code=401
+2026-03-29T00:43:50.741447Z  INFO try_access_async: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=263µs time.idle=4.04ms
+2026-03-29T00:43:50.741526Z  INFO is_public:try_access: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=4.49ms time.idle=2.97µs
+2026-03-29T00:43:50.741567Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=4.57ms time.idle=7.58µs
+2026-03-29T00:43:50.763332Z  INFO copy:do_sequential_copy: rslex_core::file_io::stream_copier: close time.busy=13.1ms time.idle=3.64µs file_size=0
+2026-03-29T00:43:50.763360Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=0 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/passage_hop_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/passage_hop_processed_rag_sample.csv duration=0.013091334 sequential=true
+2026-03-29T00:43:50.763392Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=13.1ms time.idle=2.88µs
+2026-03-29T00:43:50.996641Z  INFO copy:do_sequential_copy: rslex_core::file_io::stream_copier: close time.busy=89.0ms time.idle=3.62µs file_size=4449354
+2026-03-29T00:43:50.996680Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=4449354 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/passage_hop_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/passage_hop_processed_rag_sample.csv duration=0.08906056 sequential=true
+2026-03-29T00:43:50.996739Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=89.1ms time.idle=6.38µs
+2026-03-29T00:44:05.998829Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=36.2µs time.idle=8.04µs
+2026-03-29T00:44:06.029797Z  INFO copy:do_sequential_copy: rslex_core::file_io::stream_copier: close time.busy=23.3ms time.idle=2.60µs file_size=0
+2026-03-29T00:44:06.029822Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=0 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/passage_table_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/passage_table_processed_rag_sample.csv duration=0.023363068 sequential=true
+2026-03-29T00:44:06.029870Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=23.4ms time.idle=2.08µs
+2026-03-29T00:44:06.488489Z  INFO copy:queue_chunked_copy: rslex_core::file_io::stream_copier: close time.busy=230ms time.idle=4.52µs file_size=13189403
+2026-03-29T00:44:06.488540Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=13189403 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/passage_table_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/passage_table_processed_rag_sample.csv duration=0.240175707 sequential=false
+2026-03-29T00:44:06.488604Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=240ms time.idle=6.77µs
+2026-03-29T00:44:11.514045Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=30.7µs time.idle=5.93µs
+2026-03-29T00:44:11.527489Z  INFO copy:do_sequential_copy: rslex_core::file_io::stream_copier: close time.busy=7.50ms time.idle=2.13µs file_size=0
+2026-03-29T00:44:11.527508Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=0 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/passage_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/passage_processed_rag_sample.csv duration=0.007520182 sequential=true
+2026-03-29T00:44:11.527545Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=7.57ms time.idle=1.93µs
+2026-03-29T00:44:11.747618Z  INFO copy:do_sequential_copy: rslex_core::file_io::stream_copier: close time.busy=107ms time.idle=5.94µs file_size=2953329
+2026-03-29T00:44:11.747657Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=2953329 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/passage_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/passage_processed_rag_sample.csv duration=0.107435016 sequential=true
+2026-03-29T00:44:11.747709Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=108ms time.idle=7.63µs
+2026-03-29T00:45:05.280064Z  WARN try_access_async: rslex_http_stream::http_client::response: [AsyncResponse::success()] non-successful response
+Status: 401 Unauthorized
+Headers: {
+    "transfer-encoding": "chunked",
+    "vary": "Origin",
+    "server": "Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0",
+    "x-ms-request-id": "95ac93e9-901e-00f1-6515-bf1675000000",
+    "x-ms-client-request-id": "f0952146-967d-4015-8959-cb57f983d467",
+    "x-ms-version": "2021-04-10",
+    "x-ms-error-code": "NoAuthenticationInformation",
+    "www-authenticate": "Bearer authorization_uri=https://login.microsoftonline.com/72f988bf-86f1-41af-91ab-2d7cd011db47/oauth2/authorize resource_id=https://storage.azure.com",
+    "date": "Sun, 29 Mar 2026 00:45:04 GMT",
+} code=401
+2026-03-29T00:45:05.280136Z  INFO try_access_async: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=284µs time.idle=4.47ms
+2026-03-29T00:45:05.280224Z  INFO is_public:try_access: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=5.06ms time.idle=3.86µs
+2026-03-29T00:45:05.280264Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=5.14ms time.idle=8.91µs
+2026-03-29T00:45:05.300268Z  INFO copy:do_sequential_copy: rslex_core::file_io::stream_copier: close time.busy=9.86ms time.idle=2.54µs file_size=0
+2026-03-29T00:45:05.300295Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=0 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/passage_table_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/passage_table_processed_rag_sample.csv duration=0.00989404 sequential=true
+2026-03-29T00:45:05.300343Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=9.95ms time.idle=2.35µs
+2026-03-29T00:45:05.742561Z  INFO copy:queue_chunked_copy: rslex_core::file_io::stream_copier: close time.busy=213ms time.idle=3.34µs file_size=13204614
+2026-03-29T00:45:05.742608Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=13204614 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/passage_table_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/passage_table_processed_rag_sample.csv duration=0.220839505 sequential=false
+2026-03-29T00:45:05.742669Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=221ms time.idle=2.62µs
+2026-03-29T00:45:11.350541Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=34.0µs time.idle=6.89µs
+2026-03-29T00:45:53.618406Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=36.7µs time.idle=7.00µs
+2026-03-29T00:45:53.637387Z  INFO copy:do_sequential_copy: rslex_core::file_io::stream_copier: close time.busy=10.5ms time.idle=4.16µs file_size=0
+2026-03-29T00:45:53.637419Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=0 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/table_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/table_processed_rag_sample.csv duration=0.010493828 sequential=true
+2026-03-29T00:45:53.637465Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=10.6ms time.idle=8.13µs
+2026-03-29T00:45:53.842232Z  INFO copy:do_sequential_copy: rslex_core::file_io::stream_copier: close time.busy=58.8ms time.idle=1.87µs file_size=4821868
+2026-03-29T00:45:53.842275Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=4821868 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/table_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/table_processed_rag_sample.csv duration=0.058831153 sequential=true
+2026-03-29T00:45:53.842318Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=58.9ms time.idle=2.69µs
+2026-03-29T00:48:47.016412Z  WARN try_access_async: rslex_http_stream::http_client::response: [AsyncResponse::success()] non-successful response
+Status: 401 Unauthorized
+Headers: {
+    "transfer-encoding": "chunked",
+    "vary": "Origin",
+    "server": "Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0",
+    "x-ms-request-id": "673ceb24-a01e-0053-3615-bf2c6c000000",
+    "x-ms-client-request-id": "d3a88b4d-90f8-4820-a6fc-1ce510b5b087",
+    "x-ms-version": "2021-04-10",
+    "x-ms-error-code": "NoAuthenticationInformation",
+    "www-authenticate": "Bearer authorization_uri=https://login.microsoftonline.com/72f988bf-86f1-41af-91ab-2d7cd011db47/oauth2/authorize resource_id=https://storage.azure.com",
+    "date": "Sun, 29 Mar 2026 00:48:46 GMT",
+} code=401
+2026-03-29T00:48:47.016478Z  INFO try_access_async: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=2.43ms time.idle=22.1ms
+2026-03-29T00:48:47.016564Z  INFO is_public:try_access: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=24.8ms time.idle=3.64µs
+2026-03-29T00:48:47.016605Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=24.8ms time.idle=6.74µs
+2026-03-29T00:48:47.052632Z  INFO copy:do_sequential_copy: rslex_core::file_io::stream_copier: close time.busy=26.1ms time.idle=2.24µs file_size=0
+2026-03-29T00:48:47.052658Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=0 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/table_hop_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/table_hop_processed_rag_sample.csv duration=0.026124017 sequential=true
+2026-03-29T00:48:47.052705Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=26.2ms time.idle=1.96µs
+2026-03-29T00:48:47.480469Z  INFO copy:queue_chunked_copy: rslex_core::file_io::stream_copier: close time.busy=171ms time.idle=2.87µs file_size=10563018
+2026-03-29T00:48:47.480508Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=10563018 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/table_hop_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/table_hop_processed_rag_sample.csv duration=0.178833662 sequential=false
+2026-03-29T00:48:47.480567Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=179ms time.idle=2.52µs
+2026-03-29T00:49:46.760957Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=35.2µs time.idle=7.91µs
+2026-03-29T00:49:46.781837Z  INFO copy:do_sequential_copy: rslex_core::file_io::stream_copier: close time.busy=10.3ms time.idle=3.86µs file_size=0
+2026-03-29T00:49:46.781874Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=0 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/passage_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/passage_processed_rag_sample.csv duration=0.010382553 sequential=true
+2026-03-29T00:49:46.781922Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=10.4ms time.idle=5.91µs
+2026-03-29T00:49:46.988245Z  INFO copy:do_sequential_copy: rslex_core::file_io::stream_copier: close time.busy=86.0ms time.idle=3.31µs file_size=3189750
+2026-03-29T00:49:46.988270Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=3189750 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/passage_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/passage_processed_rag_sample.csv duration=0.086039661 sequential=true
+2026-03-29T00:49:46.988321Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=86.1ms time.idle=2.75µs
+2026-03-29T00:50:18.121215Z  WARN try_access_async: rslex_http_stream::http_client::response: [AsyncResponse::success()] non-successful response
+Status: 401 Unauthorized
+Headers: {
+    "transfer-encoding": "chunked",
+    "vary": "Origin",
+    "server": "Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0",
+    "x-ms-request-id": "673d1423-a01e-0053-7316-bf2c6c000000",
+    "x-ms-client-request-id": "0144762f-0b94-4aba-9242-f19a48e6ed9b",
+    "x-ms-version": "2021-04-10",
+    "x-ms-error-code": "NoAuthenticationInformation",
+    "www-authenticate": "Bearer authorization_uri=https://login.microsoftonline.com/72f988bf-86f1-41af-91ab-2d7cd011db47/oauth2/authorize resource_id=https://storage.azure.com",
+    "date": "Sun, 29 Mar 2026 00:50:18 GMT",
+} code=401
+2026-03-29T00:50:18.121356Z  INFO try_access_async: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=335µs time.idle=6.70ms
+2026-03-29T00:50:18.121457Z  INFO is_public:try_access: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=7.28ms time.idle=3.43µs
+2026-03-29T00:50:18.121503Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=7.36ms time.idle=6.83µs
+2026-03-29T00:50:18.143409Z  INFO copy:do_sequential_copy: rslex_core::file_io::stream_copier: close time.busy=13.5ms time.idle=2.52µs file_size=0
+2026-03-29T00:50:18.143442Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=0 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/table_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/table_processed_rag_sample.csv duration=0.013543163 sequential=true
+2026-03-29T00:50:18.143506Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=13.6ms time.idle=2.50µs
+2026-03-29T00:50:18.354824Z  INFO copy:do_sequential_copy: rslex_core::file_io::stream_copier: close time.busy=68.0ms time.idle=1.95µs file_size=5029065
+2026-03-29T00:50:18.354851Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=5029065 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/table_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/table_processed_rag_sample.csv duration=0.067998934 sequential=true
+2026-03-29T00:50:18.354889Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=68.0ms time.idle=2.33µs
+2026-03-29T00:50:49.734412Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=37.4µs time.idle=7.02µs
+2026-03-29T00:50:49.754546Z  INFO copy:do_sequential_copy: rslex_core::file_io::stream_copier: close time.busy=11.1ms time.idle=3.15µs file_size=0
+2026-03-29T00:50:49.754589Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=0 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/passage_hop_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/passage_hop_processed_rag_sample.csv duration=0.011120799 sequential=true
+2026-03-29T00:50:49.754639Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=11.2ms time.idle=2.29µs
+2026-03-29T00:50:49.989914Z  INFO copy:do_sequential_copy: rslex_core::file_io::stream_copier: close time.busy=80.9ms time.idle=3.77µs file_size=4813101
+2026-03-29T00:50:49.989950Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=4813101 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/passage_hop_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/passage_hop_processed_rag_sample.csv duration=0.08095363 sequential=true
+2026-03-29T00:50:49.989996Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=81.0ms time.idle=5.51µs
+2026-03-29T00:51:22.334980Z  WARN try_access_async: rslex_http_stream::http_client::response: [AsyncResponse::success()] non-successful response
+Status: 401 Unauthorized
+Headers: {
+    "transfer-encoding": "chunked",
+    "vary": "Origin",
+    "server": "Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0",
+    "x-ms-request-id": "673d337c-a01e-0053-3116-bf2c6c000000",
+    "x-ms-client-request-id": "d3f8d2a7-2794-4b09-84ae-43ec0d1fa42f",
+    "x-ms-version": "2021-04-10",
+    "x-ms-error-code": "NoAuthenticationInformation",
+    "www-authenticate": "Bearer authorization_uri=https://login.microsoftonline.com/72f988bf-86f1-41af-91ab-2d7cd011db47/oauth2/authorize resource_id=https://storage.azure.com",
+    "date": "Sun, 29 Mar 2026 00:51:21 GMT",
+} code=401
+2026-03-29T00:51:22.335042Z  INFO try_access_async: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=245µs time.idle=4.32ms
+2026-03-29T00:51:22.335112Z  INFO is_public:try_access: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=4.72ms time.idle=2.47µs
+2026-03-29T00:51:22.335131Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=4.77ms time.idle=6.29µs
+2026-03-29T00:51:22.354669Z  INFO copy:do_sequential_copy: rslex_core::file_io::stream_copier: close time.busy=12.6ms time.idle=2.79µs file_size=0
+2026-03-29T00:51:22.354695Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=0 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/table_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/table_processed_rag_sample.csv duration=0.012646014 sequential=true
+2026-03-29T00:51:22.354734Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=12.7ms time.idle=2.02µs
+2026-03-29T00:51:22.614922Z  INFO copy:do_sequential_copy: rslex_core::file_io::stream_copier: close time.busy=117ms time.idle=1.96µs file_size=5059538
+2026-03-29T00:51:22.614949Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=5059538 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/table_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/table_processed_rag_sample.csv duration=0.117485775 sequential=true
+2026-03-29T00:51:22.614983Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=118ms time.idle=2.84µs
+2026-03-29T00:51:28.012947Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=35.6µs time.idle=6.60µs
+2026-03-29T00:55:38.548520Z  WARN try_access_async: rslex_http_stream::http_client::response: [AsyncResponse::success()] non-successful response
+Status: 401 Unauthorized
+Headers: {
+    "transfer-encoding": "chunked",
+    "vary": "Origin",
+    "server": "Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0",
+    "x-ms-request-id": "d5715ec1-301e-00e8-2216-bf96ce000000",
+    "x-ms-client-request-id": "61ef6bca-8c3f-4dac-ba80-360ca894c58d",
+    "x-ms-version": "2021-04-10",
+    "x-ms-error-code": "NoAuthenticationInformation",
+    "www-authenticate": "Bearer authorization_uri=https://login.microsoftonline.com/72f988bf-86f1-41af-91ab-2d7cd011db47/oauth2/authorize resource_id=https://storage.azure.com",
+    "date": "Sun, 29 Mar 2026 00:55:37 GMT",
+} code=401
+2026-03-29T00:55:38.548585Z  INFO try_access_async: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=1.80ms time.idle=29.6ms
+2026-03-29T00:55:38.548762Z  INFO is_public:try_access: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=31.7ms time.idle=3.43µs
+2026-03-29T00:55:38.548803Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=31.8ms time.idle=7.25µs
+2026-03-29T00:55:38.581671Z  INFO copy:do_sequential_copy: rslex_core::file_io::stream_copier: close time.busy=21.6ms time.idle=3.11µs file_size=0
+2026-03-29T00:55:38.581697Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=0 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/table_hop_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/table_hop_processed_rag_sample.csv duration=0.021661037 sequential=true
+2026-03-29T00:55:38.581738Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=21.7ms time.idle=2.97µs
+2026-03-29T00:55:38.973264Z  INFO copy:queue_chunked_copy: rslex_core::file_io::stream_copier: close time.busy=139ms time.idle=3.51µs file_size=10853895
+2026-03-29T00:55:38.973300Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=10853895 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/table_hop_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/table_hop_processed_rag_sample.csv duration=0.146861659 sequential=false
+2026-03-29T00:55:38.973346Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=147ms time.idle=3.20µs
+2026-03-29T00:56:11.281417Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=30.8µs time.idle=7.99µs
+2026-03-29T00:56:11.302029Z  INFO copy:do_sequential_copy: rslex_core::file_io::stream_copier: close time.busy=11.3ms time.idle=2.90µs file_size=0
+2026-03-29T00:56:11.302056Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=0 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/passage_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/passage_processed_rag_sample.csv duration=0.011343946 sequential=true
+2026-03-29T00:56:11.302103Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=11.4ms time.idle=2.64µs
+2026-03-29T00:56:11.482234Z  INFO copy:do_sequential_copy: rslex_core::file_io::stream_copier: close time.busy=50.8ms time.idle=2.00µs file_size=3425218
+2026-03-29T00:56:11.482259Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=3425218 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/passage_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/passage_processed_rag_sample.csv duration=0.050802317 sequential=true
+2026-03-29T00:56:11.482294Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=50.8ms time.idle=2.45µs
+2026-03-29T00:57:54.418378Z  WARN try_access_async: rslex_http_stream::http_client::response: [AsyncResponse::success()] non-successful response
+Status: 401 Unauthorized
+Headers: {
+    "transfer-encoding": "chunked",
+    "vary": "Origin",
+    "server": "Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0",
+    "x-ms-request-id": "5dedca6d-901e-0015-5217-bf18eb000000",
+    "x-ms-client-request-id": "ae44783c-d5f9-4383-91d7-ab5ff7e4d8eb",
+    "x-ms-version": "2021-04-10",
+    "x-ms-error-code": "NoAuthenticationInformation",
+    "www-authenticate": "Bearer authorization_uri=https://login.microsoftonline.com/72f988bf-86f1-41af-91ab-2d7cd011db47/oauth2/authorize resource_id=https://storage.azure.com",
+    "date": "Sun, 29 Mar 2026 00:57:54 GMT",
+} code=401
+2026-03-29T00:57:54.418429Z  INFO try_access_async: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=1.93ms time.idle=21.5ms
+2026-03-29T00:57:54.418509Z  INFO is_public:try_access: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=23.7ms time.idle=3.92µs
+2026-03-29T00:57:54.418544Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=23.8ms time.idle=7.87µs
+2026-03-29T00:57:54.449890Z  INFO copy:do_sequential_copy: rslex_core::file_io::stream_copier: close time.busy=22.6ms time.idle=3.04µs file_size=0
+2026-03-29T00:57:54.449916Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=0 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/passage_hop_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/passage_hop_processed_rag_sample.csv duration=0.022679754 sequential=true
+2026-03-29T00:57:54.449955Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=22.7ms time.idle=2.66µs
+2026-03-29T00:57:54.732602Z  INFO copy:do_sequential_copy: rslex_core::file_io::stream_copier: close time.busy=112ms time.idle=2.92µs file_size=5184045
+2026-03-29T00:57:54.732633Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=5184045 source_handler="Local" source_resource_id=/tmp/.tmp4kvpQd/whole_file_cache/questions_final_test/aml_full_eval_20260328_170528/passage_hop_processed_rag_sample.csv destination=questions_final_test/aml_full_eval_20260328_170528/passage_hop_processed_rag_sample.csv duration=0.112495156 sequential=true
+2026-03-29T00:57:54.732682Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=113ms time.idle=2.98µs

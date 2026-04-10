@@ -1,0 +1,17 @@
+2026-03-28T20:33:36.755220Z  WARN try_access_async: rslex_http_stream::http_client::response: [AsyncResponse::success()] non-successful response
+Status: 401 Unauthorized
+Headers: {
+    "transfer-encoding": "chunked",
+    "vary": "Origin",
+    "server": "Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0",
+    "x-ms-request-id": "c946b231-801e-00fd-15f2-be817d000000",
+    "x-ms-client-request-id": "50c86c13-7305-476b-95d1-c06398279055",
+    "x-ms-version": "2021-04-10",
+    "x-ms-error-code": "NoAuthenticationInformation",
+    "www-authenticate": "Bearer authorization_uri=https://login.microsoftonline.com/72f988bf-86f1-41af-91ab-2d7cd011db47/oauth2/authorize resource_id=https://storage.azure.com",
+    "date": "Sat, 28 Mar 2026 20:33:36 GMT",
+} code=401
+2026-03-28T20:33:36.755284Z  INFO try_access_async: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=2.14ms time.idle=23.3ms
+2026-03-28T20:33:36.755370Z  INFO is_public:try_access: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=25.9ms time.idle=3.11µs
+2026-03-28T20:33:36.755408Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=26.0ms time.idle=7.49µs
+2026-03-28T20:33:36.762257Z  INFO get_token_and_expiry: rslex::python_azure_token_resolver: close time.busy=6.60ms time.idle=27.2µs self=PythonAzureAccessTokenResolver token_request=TokenRequest { scope: Storage, identity_info: None, resource_id: None }

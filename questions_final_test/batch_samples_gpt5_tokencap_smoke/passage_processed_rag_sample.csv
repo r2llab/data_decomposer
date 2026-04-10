@@ -1,0 +1,91 @@
+question_id,question,short_answer,answer_reasoning,pubmed_text,pubmed_id,system_answer,direct_system_answer,reasoning_system_answer,sql_executed,tables_used,passages_used,sql_skipped
+q00000026,"Which volatile anesthetics have been previously reported to show enhanced effects due to specific amino acid residues in the TM2 region of recombinant GABAA receptors, and which two anesthetics were highlighted as the primary focus because prior evidence was limited?","Halothane, enflurane, and isoflurane were previously implicated; sevoflurane and desflurane were the main focus.","The background states TM2 residues are critical for enhancement of GABAA receptor function by halothane, enflurane, and isoflurane. It then notes little is known about sevoflurane and desflurane actions, motivating their examination.","BACKGROUND: Previous studies have shown that specific amino acid residues in the putative second transmembrane segment (TM2) of the gamma-aminobutyric acid receptor type A (GABAA) receptor play a critical role in the enhancement of GABAA receptor function by halothane, enflurane, and isoflurane. However, very little is known about the actions of sevoflurane and desflurane on recombinant GABAA receptors. The aim of this study was to examine the effects of sevoflurane and desflurane on potentiation of GABA-induced responses in the wild-type GABAA receptor and in receptors mutated in TM2 of the alpha1, alpha 2, or beta 2 subunits.
+METHODS: GABAA receptor alpha 1 or alpha 2, beta 2 or beta 3, and gamma 2s subunit cDNAs were expressed for pharmacologic study by transfection of human embryonic kidney 293 cells and assayed using the whole cell voltage clamp technique. Concentration-response curves and EC50 values for agonist were determined in the wild-type alpha 1 beta 2 gamma 2s and alpha 2 beta 3 gamma 2s receptors, and in receptors harboring mutations in TM2, such as alpha1(S270W)beta 2 gamma 2s, alpha 1 beta 2(N265W)gamma 2s, and alpha2(S270I)beta 3 gamma 2s. The actions of clinically relevant concentration of volatile anesthetics (isoflurane, sevoflurane, and desflurane) on GABA activated Cl- currents were compared in the wild-type and mutant GABAA receptors.
+RESULTS: Both sevoflurane and desflurane potentiated submaximal GABA currents in the wild-type GABAA alpha 1 beta 2 gamma 2s receptor and alpha 2 beta 3 gamma 2s receptor. Substitution of Ser270 in TM2 of the alpha subunit by a larger amino acid, tryptophan (W) or isoleucine (I), as in alpha1(S270W)beta 2 gamma 2s and alpha 2(S270I)beta 3 gamma 2s, completely abolished the potentiation of GABA-induced currents by these anesthetic agents. In contrast, mutation of Asn265 in TM2 of the beta subunit to tryptophan (W) did not prevent potentiation of GABA-induced responses. The actions of sevoflurane and desflurane in the wild-type receptor and in mutated receptors were qualitatively and quantitatively similar to those observed for isoflurane.
+CONCLUSIONS: Positions Ser270 of the GABAA alpha1 and alpha2 subunits, but not Asn265 in the TM2 of the beta2 subunit, are critical for regulation of the GABAA receptor by sevoflurane and desflurane, as well as isoflurane, consistent with the idea that these three volatile anesthetics share a common site of actions on the alpha subunit of the GABAA receptor.
+Amino Acid Sequence
+Anesthetics, Inhalation
+Cells, Cultured
+DNA, Complementary
+Desflurane
+Electrophysiology
+Humans
+Isoflurane
+Membrane Potentials
+Methyl Ethers
+Molecular Sequence Data
+Mutagenesis, Site-Directed
+Patch-Clamp Techniques
+Receptors, GABA-A
+Sevoflurane
+Transfection
+",Target-12960553,,,,,"drugbank_carriers_polypeptides, drugbank_drug, drugbank_drug_drug_interactions, drugbank_drug_mixtures, drugbank_drug_pharmacology, drugbank_drug_reactions, drugbank_drug_snp_effects, drugbank_drugs_links, drugbank_enzymes_polypeptides, drugbank_snp_adverse_reactions, drugbank_targets, drugbank_targets_polypeptides, drugbank_transporters_polypeptides","Target-12960553, Target-16973644, Target-16418020, Target-12110613, Target-19809285",False
+q00000018,"Among methotrexate, folic acid, and leucovorin, which substrate has the greatest human MRP4-mediated transport capacity, and what is the corresponding Vmax value?",Leucovorin; Vmax = 1.95 ± 0.18 nmol/mg/min.,"The passage states MRP4 actively transports MTX, FA, and leucovorin and provides their Vmax values. Among these, leucovorin has the largest Vmax (1.95 ± 0.18) compared with FA (0.68 ± 0.14) and MTX (0.24 ± 0.05). This identifies leucovorin as the highest-capacity substrate in the set.","Human MRP4 (ABCC4, MOAT-B) is a lipophilic anion transporter that is able to confer resistance to nucleotide analogues and methotrexate (MTX). We previously investigated the implications of the ability of MRP4 to confer resistance to nucleotide analogues and determined that the pump is competent in the MgATP-energized transport of cyclic nucleotides and estradiol 17beta-D-glucuronide. Here we examine the potential role of MRP4 in conferring resistance to MTX and related processes by determining the selectivity of the transporter for MTX, MTX polyglutamates, and physiological folates. In so doing, it is shown that MRP4 is active in the transport of MTX as well as the physiological folates folic acid (FA) and N(5)-formyltetrahydrofolic acid (leucovorin). MTX, FA, and leucovorin are subject to high capacity [V(max(MTX)), 0.24 +/- 0.05 nmol/mg/min; V(max (FA)), 0.68 +/- 0.14 nmol/mg/min; V(max(leucovorin)), 1.95 +/- 0.18 nmol/mg/min], low affinity [K(m(MTX)), 0.22 +/- 0.01 mM; K(m(FA)), 0.17 +/- 0.02 mM; K(m (leucovorin)), 0.64 +/- 0.23 mM] transport by MRP4. In addition, as would be expected were MRP4 a component of the MTX efflux system, its capacity to transport this agent is abrogated by the addition of a single glutamyl residue. It is also shown that glutamylation similarly affects the ability of MRP2 to transport MTX. On the basis of these transport properties, it is concluded that the efflux system for MTX includes MRP2 and MRP4, in addition to MRP1 and MRP3, and that MRP4 represents a common efflux system for both MTX and certain nucleotide analogues.
+Animals
+Antimetabolites, Antineoplastic
+Baculoviridae
+Carrier Proteins
+Cell Line
+Folate Receptors, GPI-Anchored
+Folic Acid
+Insecta
+LLC-PK1 Cells
+Liposomes
+Methotrexate
+Multidrug Resistance-Associated Proteins
+Osmosis
+Polyglutamic Acid
+Receptors, Cell Surface
+Swine
+Transfection
+",Target-12036927,"{
+
+{
+  ""direct_answer"": ""Leucovorin; Vmax",{,"{
+  ""direct_answer"": ""Leucovorin; Vmax",,"drugbank_drug, drugbank_drug_carriers_articles, drugbank_drug_drug_interactions, drugbank_drug_mixtures, drugbank_drug_pharmacology, drugbank_drug_reactions, drugbank_drug_snp_effects, drugbank_drugs_links, drugbank_query_ddi_table, drugbank_snp_adverse_reactions, drugbank_targets, drugbank_targets_polypeptides, drugbank_transporters, drugbank_transporters_polypeptides","Target-11585759, Target-12036927, Target-12874005, Target-24284432, Target-18397960",False
+q00000022,"Which antibiotics are typically used in an in vitro serial broth–passage resistance-selection study with *Mycoplasma hominis* at subinhibitory concentrations, and which ribosomal gene or rRNA loci are PCR-amplified and sequenced to identify mutations in the resulting resistant mutants?","Subinhibitory broth passage used clindamycin, pristinamycin, quinupristin/dalfopristin, and telithromycin; sequencing targeted 23S rRNA plus L4 and L22 genes.","The METHODS state resistant mutants were selected by serial broth passages with subinhibitory clindamycin, pristinamycin, quinupristin/dalfopristin, and telithromycin. It also states mutants were characterized by PCR and DNA sequencing of 23S rRNA and ribosomal protein genes L4 and L22.","OBJECTIVES: Mycoplasma hominis is intrinsically resistant to 14- and 15-membered macrolides and to the ketolide telithromycin but is susceptible to josamycin, a 16-membered macrolide, and lincosamides. The aim of our study was to investigate the in vitro development of macrolide resistance in M. hominis and to study the impact of ribosomal mutations on MICs of various macrolides and related antibiotics.
+METHODS: Selection of macrolide-resistant mutants was performed by serial passages of M. hominis PG21 in broth medium containing subinhibitory concentrations of clindamycin, pristinamycin, quinupristin/dalfopristin and telithromycin. Stepwise selection of josamycin-resistant mutants was performed onto agar medium containing increasing inhibitory concentrations of josamycin. Resistant mutants were characterized by PCR amplification and DNA sequencing of 23S rRNA, L4 and L22 ribosomal protein genes.
+RESULTS: Various mutations in domain II or V of 23S rRNA were selected in the presence of each selector antibiotic and were associated with several resistance phenotypes. Josamycin was the sole antibiotic that selected for single amino acid changes in ribosomal proteins L4 and L22. Unexpectedly, the C2611U transition selected in the presence of clindamycin and the quinupristin/dalfopristin combination was associated with decreased MICs of erythromycin, azithromycin and telithromycin, leading to a loss of the intrinsic resistance of M. hominis to erythromycin and azithromycin.
+CONCLUSIONS: Ribosomal mutations were associated with resistance to macrolides and related antibiotics in M. hominis. Some mutants showed a loss of the intrinsic resistance to erythromycin and azithromycin.
+Anti-Bacterial Agents
+Azithromycin
+Base Sequence
+Drug Resistance, Bacterial
+Erythromycin
+Humans
+Microbial Sensitivity Tests
+Molecular Sequence Data
+Mutation
+Mycoplasma hominis
+RNA, Ribosomal, 23S
+",Target-16464889,,,,,"drugbank_carriers_polypeptides, drugbank_drug, drugbank_drug_drug_interactions, drugbank_drug_mixtures, drugbank_drug_pharmacology, drugbank_drug_reactions, drugbank_drug_snp_effects, drugbank_drugs_links, drugbank_enzymes_polypeptides, drugbank_snp_adverse_reactions, drugbank_targets, drugbank_targets_polypeptides, drugbank_transporters_polypeptides","Target-16464889, Target-11357996, Target-17910998, Target-15004073, Target-10960092",False
+q00000032,"How do monofunctional and difunctional DNA alkylation change as mitomycin C concentration increases, and which specific DNA lesion is associated with the difunctional alkylation mechanism?",Monofunctional alkylation rises ~in parallel with concentration; difunctional alkylation quickly plateaus and produces inter-strand DNA cross-links.,"The passage states monofunctional alkylation increases almost in parallel with antibiotic concentration. In contrast, difunctional alkylation rapidly reaches a maximum and remains constant despite further concentration increases, and it is described as causing inter-strand DNA cross-linkages.","The in vitro formation and properties of the molecular complex between mitomycin C and native DNA were examined by means of various experimental methods; the data obtained indicate that the complex is extremely weak and that the chromophoric moiety of the antibiotic is not involved in its formation. The alkylating activity of mitomycin C was also studied using 3H-mitomycin C; while monofunctional alkylation increases almost in parallel with the concentration of the antibiotic, the difunctional alkylation, causing inter-strand cross-linkages in DNA, rapidly reaches a maximum and then remains constant even when increasing the concentration of the antibiotic and monofunctional alkylation. On the basis of these results, the currently accepted molecular model of the mitomycin--DNA interaction must be revised; a new model of this interaction is presented, which is in better agreement with the properties of mitomycin C and with the latest findings on the subject.
+Alkylation
+Chemical Phenomena
+Chemistry, Physical
+Chromatography, Gel
+Circular Dichroism
+DNA
+Dialysis
+Mitomycins
+Spectrophotometry, Ultraviolet
+",Target-744262,,,,,"drugbank_drug, drugbank_drug_carriers_articles, drugbank_drug_dosages, drugbank_drug_drug_interactions, drugbank_drug_mixtures, drugbank_drug_pharmacology, drugbank_drug_reactions, drugbank_drug_snp_effects, drugbank_drugs_links, drugbank_query_ddi_table, drugbank_snp_adverse_reactions, drugbank_targets, drugbank_targets_polypeptides","Target-744262, Target-14586139, Target-3098406, Target-2123741, Target-9031099",False
+q00000010,"In an in vitro study using human liver microsomes, which cytochrome P450 probe activity showed a strong correlation (P < 0.01, r = 0.91) with mono‑N‑dealkylation of both disopyramide enantiomers?",6β-hydroxylation of testosterone.,"The passage reports significant correlations (P < .01, r = 0.91) between mono-N-dealkylation of both DP enantiomers and testosterone 6β-hydroxylation activity. This identifies the specific CYP-linked probe activity associated with DP enantiomer metabolism in microsomes.","To identify which cytochrome P-450 (CYP) isoform(s) are involved in the major pathway of disopyramide (DP) enantiomers metabolism in humans, the in vitro formation of mono-N-desalkyldisopyramide from each DP enantiomer was studied with human liver microsomes and nine recombinant human CYPs. Substrate inhibition showed that SKF 525A and troleandomycin potently suppressed the metabolism of both DP enantiomers with IC50 values for R(-)- and S(+)-DP of <7.3 and <18.9 microM, respectively. In contrast, only weak inhibitory effects (i.e., IC50 > 100 microM) were observed for five other representative CYP isoform substrates [i.e., phenacetin (CYP1A1/2), sparteine (CYP2D6), tolbutamide (CYP2C9), S-mephenytoin (CYP2C19), and p-nitrophenol (CYP2E1)]. Significant correlations (P <.01, r = 0.91) were found between the activities of 11 different human liver microsomes for mono-N-dealkylation of both DP enantiomers and that of 6beta-hydroxylation of testosterone. Conversely, no significant correlations were observed between the catalytic activities for DP enantiomers and those for the O-deethylation of phenacetin, 2-hydroxylation of desipramine, hydroxylation of tolbutamide, and 4'-hydroxylation of S-mephenytoin. Further evidence for involvement of CYP3A P450s was revealed by an anti-human CYP3A serum that inhibited the mono-N-dealkylation of both DP enantiomers and 6beta-hydroxylation of testosterone almost completely (i.e., >90%), whereas it only weakly inhibited (i.e., <15%) CYP1A1/2- or 2C19-mediated reactions. Finally, the recombinant human CYP3A3 and 3A4 showed much greater catalytic activities than seven other isoforms examined (i.e., CYP1A2, 2A6, 2B6, 2C9, 2D6, 2E1, and 3A5) for both DP enantiomers. In conclusion, the metabolism of both DP enantiomers in humans would primarily be catalyzed by CYP3A4, implying that DP may have an interaction potential with other CYP3A substrates and/or inhibitors.
+Aged
+Alkylation
+Anti-Arrhythmia Agents
+Cytochrome P-450 CYP3A
+Cytochrome P-450 Enzyme System
+Disopyramide
+Female
+Humans
+In Vitro Techniques
+Male
+Microsomes, Liver
+Middle Aged
+Mixed Function Oxygenases
+Recombinant Proteins
+Statistics as Topic
+Stereoisomerism
+Substrate Specificity
+",Target-10901704,,,,,"drugbank_drug_carriers_articles, drugbank_drug_snp_effects, drugbank_query_ddi_table, drugbank_snp_adverse_reactions, drugbank_transporters_polypeptides","Target-10901704, Target-7640150, Target-11407536, Target-8801060, Target-11501176",False

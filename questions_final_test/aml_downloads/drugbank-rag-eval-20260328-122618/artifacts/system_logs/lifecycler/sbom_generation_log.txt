@@ -1,0 +1,4 @@
+[CommonRuntime::lifecycler::sbom_helper] Generating requirements.txt file via pip freeze, using pip from: '/opt/conda/envs/ptca/bin/pip'
+[CommonRuntime::lifecycler::sbom_helper] pip freeze exited with code: 0
+[CommonRuntime::lifecycler::sbom_helper] Exporting DOTNET_SYSTEM_GLOBALIZATION_INVARIANT and DOTNET_BUNDLE_EXTRACT_BASE_DIR for SBOM tool 
+[CommonRuntime::lifecycler::sbom_helper] Start generating SBOM

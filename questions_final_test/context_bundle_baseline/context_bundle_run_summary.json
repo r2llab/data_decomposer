@@ -1,0 +1,65 @@
+{
+  "sample_size": 20,
+  "sample_counts_by_question_type": {
+    "table_hop": 4,
+    "passage_hop": 4,
+    "passage_table": 4,
+    "passage": 4,
+    "table": 4
+  },
+  "evidence_count": 5,
+  "answer_model": "openai/gpt-5",
+  "eval_model": "openai/gpt-5-chat",
+  "answer_seconds": 73.12062548520043,
+  "eval_seconds": 2.584601095877588,
+  "total_seconds": 75.70522658107802,
+  "files": {
+    "sample_csv": "/home/justiwag/michaels-tests/data_decomposer/questions_final_test/context_bundle_baseline/context_bundle_sample.csv",
+    "answer_csv": "/home/justiwag/michaels-tests/data_decomposer/questions_final_test/context_bundle_baseline/context_bundle_sample_answers.csv",
+    "eval_csv": "/home/justiwag/michaels-tests/data_decomposer/questions_final_test/context_bundle_baseline/context_bundle_sample_eval.csv",
+    "eval_summary_json": "/home/justiwag/michaels-tests/data_decomposer/questions_final_test/context_bundle_baseline/context_bundle_sample_eval.csv.summary.json",
+    "eval_grouped_json": "/home/justiwag/michaels-tests/data_decomposer/questions_final_test/context_bundle_baseline/context_bundle_sample_eval.csv.grouped.summary.json"
+  },
+  "evaluation_summary": {
+    "row_count": 20,
+    "average_metrics": {
+      "direct_rouge1": 0.47869407047837453,
+      "direct_rouge2": 0.29663657572351493,
+      "direct_rougeL": 0.43793128670576265,
+      "direct_string_similarity": 0.430531221941468,
+      "reasoning_rouge1": 0.4566009533513868,
+      "reasoning_rouge2": 0.21156525188768108,
+      "reasoning_rougeL": 0.3271346898172308,
+      "reasoning_string_similarity": 0.20601432845513665,
+      "full_rouge1": 0.49392538589240687,
+      "full_rouge2": 0.25271801720746306,
+      "full_rougeL": 0.3651030033764445,
+      "full_string_similarity": 0.20455448068987106,
+      "passage_precision": 0.16250000000000003,
+      "passage_recall": 0.6,
+      "passage_f1": 0.2509523809523809,
+      "passage_mrr": 0.6,
+      "table_precision": 0.19333333333333333,
+      "table_recall": 0.41666666666666663,
+      "table_f1": 0.23404761904761906,
+      "table_mrr": 0.45,
+      "llm_direct_correctness": 0.625,
+      "llm_reasoning_correctness": 0.7,
+      "llm_avg_correctness": 0.6625,
+      "llm_prompt_tokens": 364.05,
+      "llm_completion_tokens": 16.3,
+      "llm_total_tokens": 380.35,
+      "llm_processing_time": 0.7826671647373586,
+      "llm_inference_cost": 0.0006180625
+    },
+    "total_llm_tokens": 7607,
+    "total_llm_api_calls": 20,
+    "total_llm_inference_cost": 0.01236125,
+    "average_llm_processing_time": 0.7826671647373586,
+    "pricing": {
+      "prompt_price_per_1k": 0.00125,
+      "completion_price_per_1k": 0.01,
+      "model": "openai/gpt-5-chat"
+    }
+  }
+}

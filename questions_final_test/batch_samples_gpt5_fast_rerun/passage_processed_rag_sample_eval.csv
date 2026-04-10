@@ -1,0 +1,602 @@
+question_id,question,short_answer,answer_reasoning,pubmed_text,pubmed_id,system_answer,direct_system_answer,reasoning_system_answer,sql_executed,tables_used,passages_used,direct_rouge1,direct_rouge2,direct_rougeL,direct_string_similarity,reasoning_rouge1,reasoning_rouge2,reasoning_rougeL,reasoning_string_similarity,full_rouge1,full_rouge2,full_rougeL,full_string_similarity,passage_precision,passage_recall,passage_f1,passage_mrr,table_precision,table_recall,table_f1,table_mrr,llm_direct_correctness,llm_reasoning_correctness,llm_avg_correctness,llm_prompt_tokens,llm_completion_tokens,llm_total_tokens,llm_processing_time,llm_inference_cost
+q00000026,"Which volatile anesthetics have been previously reported to show enhanced effects due to specific amino acid residues in the TM2 region of recombinant GABAA receptors, and which two anesthetics were highlighted as the primary focus because prior evidence was limited?","Halothane, enflurane, and isoflurane were previously implicated; sevoflurane and desflurane were the main focus.","The background states TM2 residues are critical for enhancement of GABAA receptor function by halothane, enflurane, and isoflurane. It then notes little is known about sevoflurane and desflurane actions, motivating their examination.","BACKGROUND: Previous studies have shown that specific amino acid residues in the putative second transmembrane segment (TM2) of the gamma-aminobutyric acid receptor type A (GABAA) receptor play a critical role in the enhancement of GABAA receptor function by halothane, enflurane, and isoflurane. However, very little is known about the actions of sevoflurane and desflurane on recombinant GABAA receptors. The aim of this study was to examine the effects of sevoflurane and desflurane on potentiation of GABA-induced responses in the wild-type GABAA receptor and in receptors mutated in TM2 of the alpha1, alpha 2, or beta 2 subunits.
+METHODS: GABAA receptor alpha 1 or alpha 2, beta 2 or beta 3, and gamma 2s subunit cDNAs were expressed for pharmacologic study by transfection of human embryonic kidney 293 cells and assayed using the whole cell voltage clamp technique. Concentration-response curves and EC50 values for agonist were determined in the wild-type alpha 1 beta 2 gamma 2s and alpha 2 beta 3 gamma 2s receptors, and in receptors harboring mutations in TM2, such as alpha1(S270W)beta 2 gamma 2s, alpha 1 beta 2(N265W)gamma 2s, and alpha2(S270I)beta 3 gamma 2s. The actions of clinically relevant concentration of volatile anesthetics (isoflurane, sevoflurane, and desflurane) on GABA activated Cl- currents were compared in the wild-type and mutant GABAA receptors.
+RESULTS: Both sevoflurane and desflurane potentiated submaximal GABA currents in the wild-type GABAA alpha 1 beta 2 gamma 2s receptor and alpha 2 beta 3 gamma 2s receptor. Substitution of Ser270 in TM2 of the alpha subunit by a larger amino acid, tryptophan (W) or isoleucine (I), as in alpha1(S270W)beta 2 gamma 2s and alpha 2(S270I)beta 3 gamma 2s, completely abolished the potentiation of GABA-induced currents by these anesthetic agents. In contrast, mutation of Asn265 in TM2 of the beta subunit to tryptophan (W) did not prevent potentiation of GABA-induced responses. The actions of sevoflurane and desflurane in the wild-type receptor and in mutated receptors were qualitatively and quantitatively similar to those observed for isoflurane.
+CONCLUSIONS: Positions Ser270 of the GABAA alpha1 and alpha2 subunits, but not Asn265 in the TM2 of the beta2 subunit, are critical for regulation of the GABAA receptor by sevoflurane and desflurane, as well as isoflurane, consistent with the idea that these three volatile anesthetics share a common site of actions on the alpha subunit of the GABAA receptor.
+Amino Acid Sequence
+Anesthetics, Inhalation
+Cells, Cultured
+DNA, Complementary
+Desflurane
+Electrophysiology
+Humans
+Isoflurane
+Membrane Potentials
+Methyl Ethers
+Molecular Sequence Data
+Mutagenesis, Site-Directed
+Patch-Clamp Techniques
+Receptors, GABA-A
+Sevoflurane
+Transfection
+",Target-12960553,"Previously reported TM2-dependent enhancement: halothane, enflurane, and isoflurane. Primary focus due to limited prior evidence: sevoflurane and desflurane.
+
+Passage 1 states that specific TM2 residues of recombinant GABAA receptors are critical for enhancement by halothane, enflurane, and isoflurane, but that little was known about sevoflurane and desflurane; thus the study focused on sevoflurane and desflurane. The SQL query returned no rows, but the unstructured passage provides the needed evidence.","Previously reported TM2-dependent enhancement: halothane, enflurane, and isoflurane. Primary focus due to limited prior evidence: sevoflurane and desflurane.","Passage 1 states that specific TM2 residues of recombinant GABAA receptors are critical for enhancement by halothane, enflurane, and isoflurane, but that little was known about sevoflurane and desflurane; thus the study focused on sevoflurane and desflurane. The SQL query returned no rows, but the unstructured passage provides the needed evidence.","SELECT DISTINCT
+  CASE
+    WHEN title LIKE '%halothane%' THEN 'Halothane'
+    WHEN title LIKE '%enflurane%' THEN 'Enflurane'
+    WHEN title LIKE '%isoflurane%' THEN 'Isoflurane'
+    WHEN title LIKE '%sevoflurane%' THEN 'Sevoflurane'
+    WHEN title LIKE '%desflurane%' THEN 'Desflurane'
+  END AS anesthetic,
+  CASE
+    WHEN title LIKE '%halothane%' OR title LIKE '%enflurane%' OR title LIKE '%isoflurane%' THEN 'Previously reported (TM2-enhanced GABAA effects)'
+    WHEN title LIKE '%sevoflurane%' OR title LIKE '%desflurane%' THEN 'Primary focus (limited prior evidence)'
+  END AS role
+FROM ""drugbank_drugs_links""
+WHERE title LIKE '%GABA%'
+  AND (
+    title LIKE '%halothane%' OR
+    title LIKE '%enflurane%' OR
+    title LIKE '%isoflurane%' OR
+    title LIKE '%sevoflurane%' OR
+    title LIKE '%desflurane%'
+  )
+ORDER BY role, anesthetic
+LIMIT 50;","drugbank_carriers_polypeptides, drugbank_drug, drugbank_drug_drug_interactions, drugbank_drug_mixtures, drugbank_drug_pharmacology, drugbank_drug_reactions, drugbank_drug_snp_effects, drugbank_drugs_links, drugbank_enzymes_polypeptides, drugbank_snp_adverse_reactions, drugbank_targets, drugbank_targets_polypeptides, drugbank_transporters_polypeptides","Target-12960553, Target-16973644, Target-16418020, Target-12110613, Target-19809285",0.5454545454545454,0.3225806451612903,0.4242424242424242,0.550185873605948,0.5301204819277109,0.32098765432098764,0.43373493975903615,0.26804123711340205,0.5517241379310345,0.31578947368421056,0.43103448275862066,0.2807017543859649,0.2,1.0,0.33333333333333337,1.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,351,510,861,8.52888019895181,0.0
+q00000018,"Among methotrexate, folic acid, and leucovorin, which substrate has the greatest human MRP4-mediated transport capacity, and what is the corresponding Vmax value?",Leucovorin; Vmax = 1.95 ± 0.18 nmol/mg/min.,"The passage states MRP4 actively transports MTX, FA, and leucovorin and provides their Vmax values. Among these, leucovorin has the largest Vmax (1.95 ± 0.18) compared with FA (0.68 ± 0.14) and MTX (0.24 ± 0.05). This identifies leucovorin as the highest-capacity substrate in the set.","Human MRP4 (ABCC4, MOAT-B) is a lipophilic anion transporter that is able to confer resistance to nucleotide analogues and methotrexate (MTX). We previously investigated the implications of the ability of MRP4 to confer resistance to nucleotide analogues and determined that the pump is competent in the MgATP-energized transport of cyclic nucleotides and estradiol 17beta-D-glucuronide. Here we examine the potential role of MRP4 in conferring resistance to MTX and related processes by determining the selectivity of the transporter for MTX, MTX polyglutamates, and physiological folates. In so doing, it is shown that MRP4 is active in the transport of MTX as well as the physiological folates folic acid (FA) and N(5)-formyltetrahydrofolic acid (leucovorin). MTX, FA, and leucovorin are subject to high capacity [V(max(MTX)), 0.24 +/- 0.05 nmol/mg/min; V(max (FA)), 0.68 +/- 0.14 nmol/mg/min; V(max(leucovorin)), 1.95 +/- 0.18 nmol/mg/min], low affinity [K(m(MTX)), 0.22 +/- 0.01 mM; K(m(FA)), 0.17 +/- 0.02 mM; K(m (leucovorin)), 0.64 +/- 0.23 mM] transport by MRP4. In addition, as would be expected were MRP4 a component of the MTX efflux system, its capacity to transport this agent is abrogated by the addition of a single glutamyl residue. It is also shown that glutamylation similarly affects the ability of MRP2 to transport MTX. On the basis of these transport properties, it is concluded that the efflux system for MTX includes MRP2 and MRP4, in addition to MRP1 and MRP3, and that MRP4 represents a common efflux system for both MTX and certain nucleotide analogues.
+Animals
+Antimetabolites, Antineoplastic
+Baculoviridae
+Carrier Proteins
+Cell Line
+Folate Receptors, GPI-Anchored
+Folic Acid
+Insecta
+LLC-PK1 Cells
+Liposomes
+Methotrexate
+Multidrug Resistance-Associated Proteins
+Osmosis
+Polyglutamic Acid
+Receptors, Cell Surface
+Swine
+Transfection
+",Target-12036927,"Leucovorin; Vmax ≈ 1.95 nmol/mg/min (±0.18) for human MRP4.
+
+The SQL query of DrugBank transporter polypeptides returned no relevant rows for MRP4 kinetics, so the answer relies on the unstructured passage describing human MRP4 (ABCC4). That study reports Vmax values for MRP4-mediated transport as: methotrexate 0.24 ± 0.05 nmol/mg/min, folic acid 0.68 ± 0.14 nmol/mg/min, and leucovorin 1.95 ± 0.18 nmol/mg/min. Therefore, leucovorin has the greatest MRP4-mediated transport capacity.",Leucovorin; Vmax ≈ 1.95 nmol/mg/min (±0.18) for human MRP4.,"The SQL query of DrugBank transporter polypeptides returned no relevant rows for MRP4 kinetics, so the answer relies on the unstructured passage describing human MRP4 (ABCC4). That study reports Vmax values for MRP4-mediated transport as: methotrexate 0.24 ± 0.05 nmol/mg/min, folic acid 0.68 ± 0.14 nmol/mg/min, and leucovorin 1.95 ± 0.18 nmol/mg/min. Therefore, leucovorin has the greatest MRP4-mediated transport capacity.","SELECT
+  id,
+  name,
+  gene_name,
+  organism,
+  specific_function
+FROM ""drugbank_transporters_polypeptides""
+WHERE organism = 'Humans'
+  AND (
+    gene_name = 'ABCC4'
+    OR LOWER(name) LIKE '%multidrug resistance-associated protein 4%'
+    OR LOWER(specific_function) LIKE '%mrp4%'
+  )
+  AND (
+    LOWER(specific_function) LIKE '%methotrexate%'
+    OR LOWER(specific_function) LIKE '%folic acid%'
+    OR LOWER(specific_function) LIKE '%leucovorin%'
+    OR LOWER(specific_function) LIKE '%v(max%'
+    OR LOWER(specific_function) LIKE '%vmax%'
+  )
+LIMIT 50;","drugbank_drug, drugbank_drug_carriers_articles, drugbank_drug_drug_interactions, drugbank_drug_mixtures, drugbank_drug_pharmacology, drugbank_drug_reactions, drugbank_drug_snp_effects, drugbank_drugs_links, drugbank_query_ddi_table, drugbank_snp_adverse_reactions, drugbank_targets, drugbank_targets_polypeptides, drugbank_transporters, drugbank_transporters_polypeptides","Target-11585759, Target-12036927, Target-12874005, Target-24284432, Target-18397960",0.8571428571428571,0.631578947368421,0.6666666666666666,0.6862745098039216,0.44628099173553726,0.21848739495798322,0.24793388429752067,0.15211267605633802,0.5070422535211268,0.2857142857142857,0.30985915492957744,0.20833333333333334,0.2,1.0,0.33333333333333337,0.5,0.0,0.0,0.0,0.0,1.0,1.0,1.0,399,547,946,14.922861981671304,0.0
+q00000022,"Which antibiotics are typically used in an in vitro serial broth–passage resistance-selection study with *Mycoplasma hominis* at subinhibitory concentrations, and which ribosomal gene or rRNA loci are PCR-amplified and sequenced to identify mutations in the resulting resistant mutants?","Subinhibitory broth passage used clindamycin, pristinamycin, quinupristin/dalfopristin, and telithromycin; sequencing targeted 23S rRNA plus L4 and L22 genes.","The METHODS state resistant mutants were selected by serial broth passages with subinhibitory clindamycin, pristinamycin, quinupristin/dalfopristin, and telithromycin. It also states mutants were characterized by PCR and DNA sequencing of 23S rRNA and ribosomal protein genes L4 and L22.","OBJECTIVES: Mycoplasma hominis is intrinsically resistant to 14- and 15-membered macrolides and to the ketolide telithromycin but is susceptible to josamycin, a 16-membered macrolide, and lincosamides. The aim of our study was to investigate the in vitro development of macrolide resistance in M. hominis and to study the impact of ribosomal mutations on MICs of various macrolides and related antibiotics.
+METHODS: Selection of macrolide-resistant mutants was performed by serial passages of M. hominis PG21 in broth medium containing subinhibitory concentrations of clindamycin, pristinamycin, quinupristin/dalfopristin and telithromycin. Stepwise selection of josamycin-resistant mutants was performed onto agar medium containing increasing inhibitory concentrations of josamycin. Resistant mutants were characterized by PCR amplification and DNA sequencing of 23S rRNA, L4 and L22 ribosomal protein genes.
+RESULTS: Various mutations in domain II or V of 23S rRNA were selected in the presence of each selector antibiotic and were associated with several resistance phenotypes. Josamycin was the sole antibiotic that selected for single amino acid changes in ribosomal proteins L4 and L22. Unexpectedly, the C2611U transition selected in the presence of clindamycin and the quinupristin/dalfopristin combination was associated with decreased MICs of erythromycin, azithromycin and telithromycin, leading to a loss of the intrinsic resistance of M. hominis to erythromycin and azithromycin.
+CONCLUSIONS: Ribosomal mutations were associated with resistance to macrolides and related antibiotics in M. hominis. Some mutants showed a loss of the intrinsic resistance to erythromycin and azithromycin.
+Anti-Bacterial Agents
+Azithromycin
+Base Sequence
+Drug Resistance, Bacterial
+Erythromycin
+Humans
+Microbial Sensitivity Tests
+Molecular Sequence Data
+Mutation
+Mycoplasma hominis
+RNA, Ribosomal, 23S
+",Target-16464889,"Antibiotics: clindamycin, pristinamycin, quinupristin/dalfopristin, and telithromycin (all used for serial broth passages at subinhibitory concentrations). Loci sequenced: 23S rRNA and the ribosomal protein genes L4 and L22.
+
+From Passage 1, macrolide-resistant Mycoplasma hominis mutants were selected by serial broth passages with subinhibitory concentrations of clindamycin, pristinamycin, quinupristin/dalfopristin, and telithromycin (josamycin was selected on agar, not in broth). The resistant mutants were then characterized by PCR amplification and sequencing of 23S rRNA and the ribosomal protein genes L4 and L22. The attempted SQL aggregation failed, but the passage provides the needed evidence directly.","Antibiotics: clindamycin, pristinamycin, quinupristin/dalfopristin, and telithromycin (all used for serial broth passages at subinhibitory concentrations). Loci sequenced: 23S rRNA and the ribosomal protein genes L4 and L22.","From Passage 1, macrolide-resistant Mycoplasma hominis mutants were selected by serial broth passages with subinhibitory concentrations of clindamycin, pristinamycin, quinupristin/dalfopristin, and telithromycin (josamycin was selected on agar, not in broth). The resistant mutants were then characterized by PCR amplification and sequencing of 23S rRNA and the ribosomal protein genes L4 and L22. The attempted SQL aggregation failed, but the passage provides the needed evidence directly.","WITH selected_drugs AS (
+  SELECT DISTINCT
+    parent_key,
+    CASE
+      WHEN lower(title) LIKE '%clindamycin%' THEN 'Clindamycin'
+      WHEN lower(title) LIKE '%pristinamycin%' THEN 'Pristinamycin'
+      WHEN lower(title) LIKE '%quinupristin%' OR lower(title) LIKE '%dalfopristin%' THEN 'Quinupristin/dalfopristin'
+      WHEN lower(title) LIKE '%telithromycin%' THEN 'Telithromycin'
+      WHEN lower(title) LIKE '%josamycin%' THEN 'Josamycin'
+      ELSE title
+    END AS antibiotic,
+    CASE
+      WHEN lower(title) LIKE '%clindamycin%' THEN 'subinhibitory broth passages'
+      WHEN lower(title) LIKE '%pristinamycin%' THEN 'subinhibitory broth passages'
+      WHEN lower(title) LIKE '%quinupristin%' OR lower(title) LIKE '%dalfopristin%' THEN 'subinhibitory broth passages'
+      WHEN lower(title) LIKE '%telithromycin%' THEN 'subinhibitory broth passages'
+      WHEN lower(title) LIKE '%josamycin%' THEN 'agar stepwise selection'
+      ELSE NULL
+    END AS selection_type
+  FROM ""drugbank_drugs_links""
+  WHERE lower(title) LIKE '%clindamycin%'
+     OR lower(title) LIKE '%pristinamycin%'
+     OR lower(title) LIKE '%quinupristin%'
+     OR lower(title) LIKE '%dalfopristin%'
+     OR lower(title) LIKE '%telithromycin%'
+     OR lower(title) LIKE '%josamycin%'
+),
+loci AS (
+  SELECT DISTINCT
+    parent_key,
+    CASE
+      WHEN lower(name) LIKE '%23s rrna%' THEN '23S rRNA'
+      WHEN lower(name) LIKE '%ribosomal protein l4%' THEN 'L4'
+      WHEN lower(name) LIKE '%50s ribosomal protein l4%' THEN 'L4'
+      WHEN lower(name) LIKE '%ribosomal protein l22%' THEN 'L22'
+      WHEN lower(name) LIKE '%50s ribosomal protein l22%' THEN 'L22'
+      ELSE name
+    END AS locus
+  FROM ""drugbank_targets""
+  WHERE lower(name) LIKE '%23s rrna%'
+     OR lower(name) LIKE '%ribosomal protein l4%'
+     OR lower(name) LIKE '%50s ribosomal protein l4%'
+     OR lower(name) LIKE '%ribosomal protein l22%'
+     OR lower(name) LIKE '%50s ribosomal protein l22%'
+)
+SELECT
+  sd.antibiotic,
+  sd.selection_type,
+  group_concat(DISTINCT loci.locus, '; ') AS pcr_amplified_and_sequenced_loci
+FROM selected_drugs sd
+LEFT JOIN loci ON sd.parent_key = loci.parent_key
+GROUP BY sd.antibiotic, sd.selection_type
+ORDER BY CASE sd.selection_type
+           WHEN 'subinhibitory broth passages' THEN 0
+           WHEN 'agar stepwise selection' THEN 1
+           ELSE 2
+         END,
+         sd.antibiotic
+LIMIT 50;","drugbank_carriers_polypeptides, drugbank_drug, drugbank_drug_drug_interactions, drugbank_drug_mixtures, drugbank_drug_pharmacology, drugbank_drug_reactions, drugbank_drug_snp_effects, drugbank_drugs_links, drugbank_enzymes_polypeptides, drugbank_snp_adverse_reactions, drugbank_targets, drugbank_targets_polypeptides, drugbank_transporters_polypeptides","Target-16464889, Target-11357996, Target-17910998, Target-15004073, Target-10960092",0.7234042553191489,0.4,0.5106382978723404,0.20418848167539266,0.6355140186915889,0.4952380952380952,0.6168224299065419,0.2908622908622909,0.6623376623376623,0.4605263157894736,0.5844155844155844,0.21840068787618228,0.2,1.0,0.33333333333333337,1.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,426,527,953,10.67275652801618,0.0
+q00000032,"How do monofunctional and difunctional DNA alkylation change as mitomycin C concentration increases, and which specific DNA lesion is associated with the difunctional alkylation mechanism?",Monofunctional alkylation rises ~in parallel with concentration; difunctional alkylation quickly plateaus and produces inter-strand DNA cross-links.,"The passage states monofunctional alkylation increases almost in parallel with antibiotic concentration. In contrast, difunctional alkylation rapidly reaches a maximum and remains constant despite further concentration increases, and it is described as causing inter-strand DNA cross-linkages.","The in vitro formation and properties of the molecular complex between mitomycin C and native DNA were examined by means of various experimental methods; the data obtained indicate that the complex is extremely weak and that the chromophoric moiety of the antibiotic is not involved in its formation. The alkylating activity of mitomycin C was also studied using 3H-mitomycin C; while monofunctional alkylation increases almost in parallel with the concentration of the antibiotic, the difunctional alkylation, causing inter-strand cross-linkages in DNA, rapidly reaches a maximum and then remains constant even when increasing the concentration of the antibiotic and monofunctional alkylation. On the basis of these results, the currently accepted molecular model of the mitomycin--DNA interaction must be revised; a new model of this interaction is presented, which is in better agreement with the properties of mitomycin C and with the latest findings on the subject.
+Alkylation
+Chemical Phenomena
+Chemistry, Physical
+Chromatography, Gel
+Circular Dichroism
+DNA
+Dialysis
+Mitomycins
+Spectrophotometry, Ultraviolet
+",Target-744262,"As mitomycin C concentration increases, monofunctional DNA alkylation rises roughly in parallel with the drug concentration, whereas difunctional alkylation rapidly reaches a maximum and then plateaus. The difunctional mechanism produces inter-strand DNA cross-links.
+
+From the provided passage on mitomycin C–DNA interactions, monofunctional alkylation scales up nearly proportionally with increasing mitomycin C concentration. In contrast, difunctional alkylation quickly attains a maximal level and remains constant despite further increases in drug concentration. The passage explicitly states that this difunctional alkylation causes inter-strand cross-linkages in DNA, identifying inter-strand DNA cross-links as the associated lesion. The SQL query returned no structured records matching the criteria, so the answer relies on the unstructured passage evidence (Target-744262).","As mitomycin C concentration increases, monofunctional DNA alkylation rises roughly in parallel with the drug concentration, whereas difunctional alkylation rapidly reaches a maximum and then plateaus. The difunctional mechanism produces inter-strand DNA cross-links.","From the provided passage on mitomycin C–DNA interactions, monofunctional alkylation scales up nearly proportionally with increasing mitomycin C concentration. In contrast, difunctional alkylation quickly attains a maximal level and remains constant despite further increases in drug concentration. The passage explicitly states that this difunctional alkylation causes inter-strand cross-linkages in DNA, identifying inter-strand DNA cross-links as the associated lesion. The SQL query returned no structured records matching the criteria, so the answer relies on the unstructured passage evidence (Target-744262).","SELECT
+  ref_id,
+  pubmed_id,
+  citation
+FROM ""drugbank_drug_carriers_articles""
+WHERE lower(citation) LIKE '%mitomycin c%'
+  AND (lower(citation) LIKE '%alkylat%')
+  AND (
+        lower(citation) LIKE '%difunctional%' 
+        OR lower(citation) LIKE '%di-functional%' 
+        OR lower(citation) LIKE '%cross-link%' 
+        OR lower(citation) LIKE '%inter-strand%'
+      )
+LIMIT 50;","drugbank_drug, drugbank_drug_carriers_articles, drugbank_drug_dosages, drugbank_drug_drug_interactions, drugbank_drug_mixtures, drugbank_drug_pharmacology, drugbank_drug_reactions, drugbank_drug_snp_effects, drugbank_drugs_links, drugbank_query_ddi_table, drugbank_snp_adverse_reactions, drugbank_targets, drugbank_targets_polypeptides","Target-744262, Target-14586139, Target-3098406, Target-2123741, Target-9031099",0.6415094339622641,0.35294117647058826,0.6037735849056604,0.12048192771084337,0.4590163934426229,0.25,0.3606557377049181,0.030837004405286344,0.56,0.3583815028901734,0.4342857142857143,0.0693293142426526,0.2,1.0,0.33333333333333337,1.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,394,309,703,6.9325441238470376,0.0
+q00000010,"In an in vitro study using human liver microsomes, which cytochrome P450 probe activity showed a strong correlation (P < 0.01, r = 0.91) with mono‑N‑dealkylation of both disopyramide enantiomers?",6β-hydroxylation of testosterone.,"The passage reports significant correlations (P < .01, r = 0.91) between mono-N-dealkylation of both DP enantiomers and testosterone 6β-hydroxylation activity. This identifies the specific CYP-linked probe activity associated with DP enantiomer metabolism in microsomes.","To identify which cytochrome P-450 (CYP) isoform(s) are involved in the major pathway of disopyramide (DP) enantiomers metabolism in humans, the in vitro formation of mono-N-desalkyldisopyramide from each DP enantiomer was studied with human liver microsomes and nine recombinant human CYPs. Substrate inhibition showed that SKF 525A and troleandomycin potently suppressed the metabolism of both DP enantiomers with IC50 values for R(-)- and S(+)-DP of <7.3 and <18.9 microM, respectively. In contrast, only weak inhibitory effects (i.e., IC50 > 100 microM) were observed for five other representative CYP isoform substrates [i.e., phenacetin (CYP1A1/2), sparteine (CYP2D6), tolbutamide (CYP2C9), S-mephenytoin (CYP2C19), and p-nitrophenol (CYP2E1)]. Significant correlations (P <.01, r = 0.91) were found between the activities of 11 different human liver microsomes for mono-N-dealkylation of both DP enantiomers and that of 6beta-hydroxylation of testosterone. Conversely, no significant correlations were observed between the catalytic activities for DP enantiomers and those for the O-deethylation of phenacetin, 2-hydroxylation of desipramine, hydroxylation of tolbutamide, and 4'-hydroxylation of S-mephenytoin. Further evidence for involvement of CYP3A P450s was revealed by an anti-human CYP3A serum that inhibited the mono-N-dealkylation of both DP enantiomers and 6beta-hydroxylation of testosterone almost completely (i.e., >90%), whereas it only weakly inhibited (i.e., <15%) CYP1A1/2- or 2C19-mediated reactions. Finally, the recombinant human CYP3A3 and 3A4 showed much greater catalytic activities than seven other isoforms examined (i.e., CYP1A2, 2A6, 2B6, 2C9, 2D6, 2E1, and 3A5) for both DP enantiomers. In conclusion, the metabolism of both DP enantiomers in humans would primarily be catalyzed by CYP3A4, implying that DP may have an interaction potential with other CYP3A substrates and/or inhibitors.
+Aged
+Alkylation
+Anti-Arrhythmia Agents
+Cytochrome P-450 CYP3A
+Cytochrome P-450 Enzyme System
+Disopyramide
+Female
+Humans
+In Vitro Techniques
+Male
+Microsomes, Liver
+Middle Aged
+Mixed Function Oxygenases
+Recombinant Proteins
+Statistics as Topic
+Stereoisomerism
+Substrate Specificity
+",Target-10901704,"Testosterone 6β-hydroxylation (a CYP3A probe activity).
+
+In human liver microsomes, mono‑N‑dealkylation of both R(−)- and S(+)-disopyramide significantly correlated (P < 0.01, r = 0.91) with the 6β‑hydroxylation of testosterone, a standard probe for CYP3A activity, indicating CYP3A4 involvement.",Testosterone 6β-hydroxylation (a CYP3A probe activity).,"In human liver microsomes, mono‑N‑dealkylation of both R(−)- and S(+)-disopyramide significantly correlated (P < 0.01, r = 0.91) with the 6β‑hydroxylation of testosterone, a standard probe for CYP3A activity, indicating CYP3A4 involvement.","SELECT pubmed_id, citation
+FROM ""drugbank_drug_carriers_articles""
+WHERE LOWER(citation) LIKE '%disopyramide%'
+  AND (
+    LOWER(citation) LIKE '%6beta-hydroxylation%'
+    OR LOWER(citation) LIKE '%6 beta-hydroxylation%'
+    OR LOWER(citation) LIKE '%testosterone%'
+  )
+LIMIT 50;","drugbank_drug_carriers_articles, drugbank_drug_snp_effects, drugbank_query_ddi_table, drugbank_snp_adverse_reactions, drugbank_transporters_polypeptides","Target-10901704, Target-7640150, Target-11407536, Target-8801060, Target-11501176",0.5454545454545454,0.2222222222222222,0.36363636363636365,0.5,0.5675675675675677,0.25,0.27027027027027023,0.1925343811394892,0.611764705882353,0.3373493975903615,0.3058823529411765,0.22296173044925124,0.2,1.0,0.33333333333333337,1.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,300,518,818,10.381026005838066,0.0
+q00000028,"In a carrageenan-induced mechanical hyperalgesia model, which potassium channel subtype–selective blockers were found to dose-dependently reduce fentanyl-induced peripheral antinociception, and what dose ranges were evaluated for each blocker?",ATP-sensitive K⁺ channel blockers glibenclamide (40–160 µg/paw) and tolbutamide (80–240 µg/paw) dose-dependently antagonized fentanyl’s antinociception.,"The passage states that fentanyl produced dose-dependent peripheral antinociception and that “selective blockers of ATP-sensitive K⁺ channels” antagonized fentanyl (1.5 µg/paw). It explicitly names glibenclamide and tolbutamide and provides their dose ranges (40–160 and 80–240 µg/paw, respectively).","We examined the effect of several K+ channel blockers such as glibenclamide, tolbutamide, charybdotoxin (ChTX), apamin, tetraethylammonium chloride (TEA), 4-aminopyridine (4-AP), and cesium on the ability of fentanyl, a clinically used selective micro-opioid receptor agonist, to promote peripheral antinociception. Antinociception was measured by the paw pressure test in male Wistar rats weighing 180-250 g (N = 5 animals per group). Carrageenan (250 microg/paw) decreased the threshold of responsiveness to noxious pressure (delta = 188.1 +/- 5.3 g). This mechanical hyperalgesia was reduced by fentanyl (0.5, 1.5 and 3 microg/paw) in a peripherally mediated and dose-dependent fashion (17.3, 45.3 and 62.6%, respectively). The selective blockers of ATP-sensitive K+ channels glibenclamide (40, 80 and 160 microg/paw) and tolbutamide (80, 160 and 240 microg/paw) dose dependently antagonized the antinociception induced by fentanyl (1.5 microg/paw). In contrast, the effect of fentanyl was unaffected by the large conductance Ca2+-activated K+ channel blocker ChTX (2 microg/paw), the small conductance Ca2+-activated K+ channel blocker apamin (10 microg/paw), or the non-specific K+ channel blocker TEA (150 microg/paw), 4-AP (50 microg/paw), and cesium (250 microg/paw). These results extend previously reported data on the peripheral analgesic effect of morphine and fentanyl, suggesting for the first time that the peripheral micro-opioid receptor-mediated antinociceptive effect of fentanyl depends on activation of ATP-sensitive, but not other, K+ channels.
+Analgesia
+Analgesics, Opioid
+Animals
+Carrageenan
+Dose-Response Relationship, Drug
+Fentanyl
+Male
+Pain
+Pain Measurement
+Potassium Channel Blockers
+Potassium Channels
+Potassium Channels, Calcium-Activated
+Rats
+Rats, Wistar
+Receptors, Opioid, mu
+",Target-15665994,"The ATP‑sensitive (KATP) potassium channel–selective blockers glibenclamide and tolbutamide dose‑dependently reduced fentanyl‑induced peripheral antinociception. Evaluated dose ranges were: glibenclamide 40–160 µg/paw (40, 80, 160 µg/paw) and tolbutamide 80–240 µg/paw (80, 160, 240 µg/paw).
+
+In the carrageenan-induced mechanical hyperalgesia rat model, fentanyl (peripheral, 0.5–3 µg/paw) produced dose-dependent antinociception. Only the ATP-sensitive K+ channel blockers—glibenclamide and tolbutamide—antagonized (i.e., reduced) fentanyl’s peripheral antinociceptive effect in a dose-dependent manner at 40, 80, 160 µg/paw for glibenclamide and 80, 160, 240 µg/paw for tolbutamide. Blockers of other K+ channel subtypes (e.g., charybdotoxin, apamin, TEA, 4-AP, cesium) did not affect fentanyl’s effect, supporting a specific role for KATP channels.","The ATP‑sensitive (KATP) potassium channel–selective blockers glibenclamide and tolbutamide dose‑dependently reduced fentanyl‑induced peripheral antinociception. Evaluated dose ranges were: glibenclamide 40–160 µg/paw (40, 80, 160 µg/paw) and tolbutamide 80–240 µg/paw (80, 160, 240 µg/paw).","In the carrageenan-induced mechanical hyperalgesia rat model, fentanyl (peripheral, 0.5–3 µg/paw) produced dose-dependent antinociception. Only the ATP-sensitive K+ channel blockers—glibenclamide and tolbutamide—antagonized (i.e., reduced) fentanyl’s peripheral antinociceptive effect in a dose-dependent manner at 40, 80, 160 µg/paw for glibenclamide and 80, 160, 240 µg/paw for tolbutamide. Blockers of other K+ channel subtypes (e.g., charybdotoxin, apamin, TEA, 4-AP, cesium) did not affect fentanyl’s effect, supporting a specific role for KATP channels.","SELECT
+  '""drugbank_drug_carriers_articles""' AS source_table,
+  pubmed_id,
+  citation AS title_or_citation,
+  NULL AS url
+FROM ""drugbank_drug_carriers_articles""
+WHERE citation LIKE '%fentanyl%'
+  AND (
+    citation LIKE '%carrageenan%' OR
+    citation LIKE '%hyperalges%' OR
+    citation LIKE '%antinocicep%' OR
+    citation LIKE '%glibenclamide%' OR
+    citation LIKE '%tolbutamide%'
+  )
+UNION ALL
+SELECT
+  '""drugbank_drugs_links""' AS source_table,
+  NULL AS pubmed_id,
+  title AS title_or_citation,
+  url
+FROM ""drugbank_drugs_links""
+WHERE title LIKE '%fentanyl%'
+  AND (
+    title LIKE '%carrageenan%' OR
+    title LIKE '%hyperalges%' OR
+    title LIKE '%antinocicep%' OR
+    title LIKE '%glibenclamide%' OR
+    title LIKE '%tolbutamide%'
+  )
+LIMIT 50;","drugbank_drug, drugbank_drug_carriers_articles, drugbank_drug_drug_interactions, drugbank_drug_food_interactions, drugbank_drug_mixtures, drugbank_drug_pharmacology, drugbank_drug_reactions, drugbank_drug_snp_effects, drugbank_drugs_links, drugbank_query_ddi_table, drugbank_snp_adverse_reactions, drugbank_targets, drugbank_targets_polypeptides","Target-15665994, Target-11240090, Target-10087042, Target-16171802, Target-16530171",0.5846153846153846,0.41269841269841273,0.4615384615384615,0.4153498871331828,0.4461538461538461,0.203125,0.3230769230769231,0.1280558789289872,0.5435897435897435,0.32124352331606215,0.36923076923076914,0.10566615620214395,0.2,1.0,0.33333333333333337,1.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,522,1393,1915,19.079743537586182,0.0
+q00000015,"In healthy adults measured 2 hours after taking 1.5 g of acetaminophen, what are the mean (±SD) renal clearance ratios relative to creatinine for acetaminophen and its glucuronide and sulfate metabolites, and which of these has the highest ratio?","0.058±0.026, 0.890±0.153, and 1.43±0.250; acetaminophen sulfate was highest.","The passage reports renal clearance ratios (relative to creatinine) for acetaminophen, glucuronide, and sulfate as 0.058±0.026, 0.890±0.153, and 1.43±0.250, respectively. Comparing these values, sulfate has the largest ratio.","The renal clearances of acetaminophen, acetaminophen glucuronide, and acetaminophen sulfate were determined in eight healthy adults 2 h after administration of 1.5 g of acetaminophen. The renal clearance ratios (relative to creatinine) were 0.058 +/- 0.026, 0.890 +/- 0.153, and 1.43 +/- 0.250 (mean +/- SD), respectively. The renal clearance of acetaminophen increased with increasing urine flow rate, and that of acetaminophen sulfate decreased with increasing serum concentration of the conjugate. A strong positive correlation was found between the renal clearances of acetaminophen glucuronide and acetaminophen sulfate, possibly due to blood perfusion rate-dependent renal tubular secretion of the two conjugates. The serum protein binding of acetaminophen (congruent to 20%) and acetaminophen glucuronide (less than 10%) are minor. Acetaminophen sulfate is greater than 50% protein bound, as determined by equilibrium dialysis and ultrafiltration. The results of these studies are (a) consistent with previous reports of animal studies, indicating that renal excretion of acetaminophen involves glomerular filtration and passive reabsorption and that acetaminophen sulfate is subject to active renal tubular secretion, and (b) compatible with the reported occurrence of renal tubular secretion of acetaminophen glucuronide in animals.
+Acetaminophen
+Adult
+Albumins
+Blood Proteins
+Creatinine
+Female
+Humans
+Kidney
+Male
+Protein Binding
+Ultrafiltration
+",Target-6491906,"Mean (±SD) renal clearance ratios vs creatinine at 2 h after 1.5 g acetaminophen: acetaminophen 0.058 ± 0.026; acetaminophen glucuronide 0.890 ± 0.153; acetaminophen sulfate 1.43 ± 0.250. Highest: acetaminophen sulfate (1.43 ± 0.250).
+
+Passage 1 reports measurements in eight healthy adults 2 hours after a 1.5 g acetaminophen dose. The renal clearance ratios relative to creatinine were 0.058 ± 0.026 for acetaminophen, 0.890 ± 0.153 for its glucuronide, and 1.43 ± 0.250 for its sulfate. Comparing these values shows the sulfate conjugate has the highest ratio.",Mean (±SD) renal clearance ratios vs creatinine at 2 h after 1.5 g acetaminophen: acetaminophen 0.058 ± 0.026; acetaminophen glucuronide 0.890 ± 0.153; acetaminophen sulfate 1.43 ± 0.250. Highest: acetaminophen sulfate (1.43 ± 0.250).,"Passage 1 reports measurements in eight healthy adults 2 hours after a 1.5 g acetaminophen dose. The renal clearance ratios relative to creatinine were 0.058 ± 0.026 for acetaminophen, 0.890 ± 0.153 for its glucuronide, and 1.43 ± 0.250 for its sulfate. Comparing these values shows the sulfate conjugate has the highest ratio.","SELECT
+  ref_id,
+  title,
+  url,
+  parent_key
+FROM ""drugbank_drugs_links""
+WHERE
+  (LOWER(title) LIKE '%acetaminophen%' OR LOWER(title) LIKE '%paracetamol%')
+  AND (LOWER(title) LIKE '%renal%' OR LOWER(title) LIKE '%kidney%')
+  AND (
+    LOWER(title) LIKE '%clearance%' OR
+    LOWER(title) LIKE '%creatinine%' OR
+    LOWER(title) LIKE '%ratio%' OR
+    LOWER(title) LIKE '%glucuronide%' OR
+    LOWER(title) LIKE '%sulfate%'
+  )
+ORDER BY
+  (
+    CASE WHEN LOWER(title) LIKE '%renal%' THEN 1 ELSE 0 END +
+    CASE WHEN LOWER(title) LIKE '%clearance%' THEN 1 ELSE 0 END +
+    CASE WHEN LOWER(title) LIKE '%creatinine%' THEN 1 ELSE 0 END +
+    CASE WHEN LOWER(title) LIKE '%ratio%' THEN 1 ELSE 0 END +
+    CASE WHEN LOWER(title) LIKE '%glucuronide%' THEN 1 ELSE 0 END +
+    CASE WHEN LOWER(title) LIKE '%sulfate%' THEN 1 ELSE 0 END
+  ) DESC,
+  title ASC
+LIMIT 50;","drugbank_carriers, drugbank_carriers_polypeptides, drugbank_drug, drugbank_drug_dosages, drugbank_drug_drug_interactions, drugbank_drug_food_interactions, drugbank_drug_mixtures, drugbank_drug_pharmacology, drugbank_drug_reactions, drugbank_drug_snp_effects, drugbank_drugs_links, drugbank_query_ddi_table, drugbank_snp_adverse_reactions","Target-6491906, Target-6364769, Target-15674819, Target-9630826, Target-8354023",0.5357142857142858,0.37037037037037035,0.5,0.3161290322580645,0.7021276595744681,0.43478260869565216,0.5957446808510638,0.25,0.64,0.4189189189189189,0.56,0.20554272517321015,0.2,1.0,0.33333333333333337,1.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,408,306,714,3.9536235514096916,0.0
+q00000031,"In a retrospective pilot pharmacogenetic study examining the PK–PD of indinavir with lamivudine and zidovudine, which genotype-defined subgroup had the greatest statistically significant increase in indinavir oral clearance, and what was the percentage increase compared with the reference genotype group?",CYP3A5 expressors; 44% faster indinavir oral clearance versus nonexpressors.,"The Results state that genetically determined CYP3A5 expressors had 44% faster indinavir oral clearance than nonexpressors (P = 0.002). Another variant (MRP2-24C/T) increased clearance by 24% (P = 0.05), which is smaller. Therefore, CYP3A5 expressor status produced the largest significant increase.","OBJECTIVE: The aim of the study was to investigate relationships among indinavir, lamivudine-triphosphate, and zidovudine-triphosphate pharmacokinetics and pharmacodynamics with polymorphisms in CYP3A5, MDR1, MRP2, MRP4, BCRP, and UGT1A1 genes.
+STUDY DESIGN: Retrospective pilot investigation among 33 subjects who participated in a randomized pharmacological study of indinavir, lamivudine, and zidovudine. Subjects were defined as genetic variant carriers or not. Relationships were investigated with multivariable regression. Indinavir clearance was adjusted for African American race; triphosphates for sex; and HIV-response for study arm, drug exposure, and baseline HIV-RNA.
+RESULTS: Genetically determined CYP3A5 expressors had 44% faster indinavir oral clearance versus nonexpressors (P = 0.002). MRP2-24C/T variant carriers had 24% faster indinavir oral clearance (P = 0.05). Lamivudine-triphosphate concentrations were elevated 20% in MRP4 T4131G variant carriers (P = 0.004). A trend for elevated zidovudine-triphosphates was observed in MRP4 G3724A variant carriers (P = 0.06). The log10 changes in HIV-RNA from baseline to week 52 were -3.7 for MDR1 2677 TT, -3.2 for GT, and -2.2 for GG (P < 0.05). Bilirubin increases were 2-fold higher in UGT1A1 [TA]7/[TA]7 genotypes. No relationships were identified with BCRP.
+DISCUSSION: Novel relationships were identified among genetic variants in drug transporters and indinavir, lamivudine-triphosphate, and zidovudine-triphosphate concentrations. CYP3A5 expression was associated with faster indinavir oral clearance. These pilot data provide a scientific basis for more rational utilization of antiretroviral drugs.
+ATP Binding Cassette Transporter, Subfamily B, Member 1
+Adult
+African Continental Ancestry Group
+Base Sequence
+Cytochrome P-450 CYP3A
+DNA Primers
+Drug Therapy, Combination
+Female
+HIV Infections
+Humans
+Indinavir
+Lamivudine
+Male
+Mitochondrial Proteins
+Multidrug Resistance-Associated Proteins
+Pharmacogenetics
+Pilot Projects
+Retrospective Studies
+Ribosomal Proteins
+Saccharomyces cerevisiae Proteins
+Zidovudine
+",Target-16791115,"CYP3A5 expressors; 44% higher indinavir oral clearance versus CYP3A5 nonexpressors.
+
+In the retrospective pilot study, two genotype-defined groups showed significant increases in indinavir oral clearance: CYP3A5 expressors (44%, P=0.002) and MRP2 −24C/T variant carriers (24%, P=0.05). The greatest statistically significant increase was in CYP3A5 expressors, compared with nonexpressors as the reference group. The SQL query of the structured DrugBank SNP effects table returned no matching rows for indinavir oral clearance, so the answer is based on the unstructured passage (Target-16791115).",CYP3A5 expressors; 44% higher indinavir oral clearance versus CYP3A5 nonexpressors.,"In the retrospective pilot study, two genotype-defined groups showed significant increases in indinavir oral clearance: CYP3A5 expressors (44%, P=0.002) and MRP2 −24C/T variant carriers (24%, P=0.05). The greatest statistically significant increase was in CYP3A5 expressors, compared with nonexpressors as the reference group. The SQL query of the structured DrugBank SNP effects table returned no matching rows for indinavir oral clearance, so the answer is based on the unstructured passage (Target-16791115).","WITH effects AS (
+  SELECT
+    gene_symbol,
+    protein_name,
+    rs_id,
+    defining_change,
+    description,
+    pubmed_id,
+    parent_key,
+    CAST(REPLACE(SUBSTR(description, INSTR(description, '%') - 3, 3), ' ', '') AS INTEGER) AS percent_increase_vs_reference
+  FROM ""drugbank_drug_snp_effects""
+  WHERE LOWER(description) LIKE '%indinavir%'
+    AND LOWER(description) LIKE '%oral clearance%'
+    AND (LOWER(description) LIKE '%faster%' OR LOWER(description) LIKE '%increase%')
+)
+SELECT DISTINCT
+  gene_symbol,
+  protein_name,
+  rs_id,
+  description,
+  pubmed_id,
+  percent_increase_vs_reference
+FROM effects
+WHERE percent_increase_vs_reference IS NOT NULL
+ORDER BY percent_increase_vs_reference DESC
+LIMIT 50;","drugbank_drug, drugbank_drug_carriers_articles, drugbank_drug_drug_interactions, drugbank_drug_mixtures, drugbank_drug_pharmacology, drugbank_drug_reactions, drugbank_drug_snp_effects, drugbank_drug_syn, drugbank_drugs_links, drugbank_query_ddi_table, drugbank_snp_adverse_reactions, drugbank_transporters, drugbank_transporters_polypeptides","Target-16791115, Target-23494984, Target-19323590, Target-16870759, Target-12662125",0.8421052631578948,0.5882352941176471,0.8421052631578948,0.9056603773584906,0.45,0.2033898305084746,0.2833333333333333,0.1728395061728395,0.5035971223021583,0.24817518248175183,0.3597122302158273,0.2918807810894142,0.2,1.0,0.33333333333333337,1.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,379,363,742,8.651200451888144,0.0
+q00000016,"Based on spectroscopic and computational findings, what is sertraline’s binding stoichiometry with human serum albumin (HSA), which main binding site does it preferentially occupy, and what key thermodynamic and interaction characteristics define this binding?","Sertraline forms a 1:1 complex binding in HSA subdomain IIA, with significant affinity, ΔH and ΔS negative, driven essentially by hydrophobic interactions.","The passage reports spectroscopic changes (UV-Vis, CD, FT-IR) and tryptophan fluorescence quenching upon SER–HSA interaction, supporting complex formation. It states a 1:1 complex and indicates binding to residues in subdomain IIA. Thermodynamic analysis showed negative entropy and enthalpy changes and emphasized the essential role of hydrophobic interactions.","Human serum albumin (HSA)-drug binding is an important factor to determine half life and bioavailability of drugs. In the present research, the interaction of sertraline (SER) to HSA was investigated using combination of spectroscopic and molecular modeling techniques. Changes in the UV-Vis, CD and FT-IR spectra as well as a significant degree of tryptophan fluorescence quenching were observed upon SER-HSA interaction. Data obtained by spectroscopic methods along with the computational studies suggest that SER binds to residues located in subdomain IIA of HSA. Analysis of spectroscopic data represented the formation of 1:1 complex, significant binding affinity, negative values of entropy and enthalpy changes and the essential role of hydrophobic interactions in binding of SER to HSA. The binding models were demonstrated in the aspects of SER's conformation, active site interactions, important amino acids and hydrogen bonding. Computational mapping of the possible binding site of SER confirmed that the ligand to be bound in a large hydrophobic cavity of HSA. In accordance with experimental data, computational analyses indicated that SER binding does not alter the secondary structure of the protein. The results not only lead to a better understanding of interaction between SER and HSA but also provide useful data about the influence of SER on the protein conformation. 
+Circular Dichroism
+Humans
+Molecular Docking Simulation
+Molecular Dynamics Simulation
+Protein Binding
+Protein Conformation
+Sertraline
+Serum Albumin
+Spectrophotometry, Ultraviolet
+Spectroscopy, Fourier Transform Infrared
+",Target-26471709,"Sertraline binds human serum albumin in a 1:1 stoichiometry, preferentially at Sudlow site I in subdomain IIA. The binding is exothermic with negative enthalpy and entropy changes and is defined predominantly by hydrophobic interactions within the large IIA hydrophobic cavity, with stabilizing hydrogen bonds and little alteration of HSA’s secondary structure.
+
+Evidence from Shahlaei et al. (Chem Biol Interact. 2015; PMID 26471709)—linked in the structured DrugBank carriers-articles table for human serum albumin—shows via UV–Vis, CD, FT‑IR, and tryptophan fluorescence quenching plus docking/MD that sertraline forms a 1:1 complex with HSA and localizes to residues in subdomain IIA (Sudlow site I). Thermodynamic analysis reported negative ΔH and ΔS, indicating an exothermic, entropy-decreasing association. Despite this, the authors conclude hydrophobic interactions are essential, consistent with docking that places sertraline in the large hydrophobic cavity of subdomain IIA, with additional hydrogen bonding; CD data indicate minimal change to HSA secondary structure.","Sertraline binds human serum albumin in a 1:1 stoichiometry, preferentially at Sudlow site I in subdomain IIA. The binding is exothermic with negative enthalpy and entropy changes and is defined predominantly by hydrophobic interactions within the large IIA hydrophobic cavity, with stabilizing hydrogen bonds and little alteration of HSA’s secondary structure.","Evidence from Shahlaei et al. (Chem Biol Interact. 2015; PMID 26471709)—linked in the structured DrugBank carriers-articles table for human serum albumin—shows via UV–Vis, CD, FT‑IR, and tryptophan fluorescence quenching plus docking/MD that sertraline forms a 1:1 complex with HSA and localizes to residues in subdomain IIA (Sudlow site I). Thermodynamic analysis reported negative ΔH and ΔS, indicating an exothermic, entropy-decreasing association. Despite this, the authors conclude hydrophobic interactions are essential, consistent with docking that places sertraline in the large hydrophobic cavity of subdomain IIA, with additional hydrogen bonding; CD data indicate minimal change to HSA secondary structure.","SELECT
+  a.pubmed_id,
+  c.name AS carrier_name,
+  c.organism,
+  a.citation
+FROM ""drugbank_drug_carriers_articles"" AS a
+JOIN ""drugbank_carriers"" AS c
+  ON c.id = a.parent_key
+WHERE
+  (LOWER(a.citation) LIKE '%sertraline%' OR a.pubmed_id = 26471709)
+  AND LOWER(c.name) LIKE '%albumin%'
+LIMIT 50;","drugbank_carriers, drugbank_carriers_polypeptides, drugbank_drug, drugbank_drug_carriers_articles, drugbank_drug_drug_interactions, drugbank_drug_experimental_properties, drugbank_drug_mixtures, drugbank_drug_pharmacology, drugbank_drug_reactions, drugbank_drug_snp_effects, drugbank_drugs_links, drugbank_query_ddi_table, drugbank_snp_adverse_reactions","Target-26471709, Target-30218717, Target-18721856, Target-30717459, Target-12705172",0.4210526315789474,0.13513513513513511,0.3157894736842105,0.09689922480620156,0.46153846153846156,0.22077922077922077,0.34615384615384615,0.22613531047265986,0.5,0.24347826086956523,0.33620689655172414,0.11632270168855535,0.2,1.0,0.33333333333333337,1.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,491,637,1128,17.368093327619135,0.0
+q00000014,"What is ranolazine’s established clinical indication, and what emerging electropharmacologic/antiarrhythmic uses— including the specific arrhythmia types—have been described?","Established for refractory angina; emerging for arrhythmias—studied in atrial fibrillation prevention/management, with ongoing studies in ventricular arrhythmias.","The passage states ranolazine utilization in refractory angina is established by multiple randomized clinical studies. It also notes growing evidence for an evolving role in cardiac arrhythmias, specifically that studies evaluated prevention/management of atrial fibrillation and ongoing studies in ventricular arrhythmias.","Ranolazine utilization in the management of refractory angina has been established by multiple randomized clinical studies. However, there is growing evidence showing an evolving role in the field of cardiac arrhythmias. Multiple experimental and clinical studies have evaluated the role of ranolazine in prevention and management of atrial fibrillation, with ongoing studies on its role in ventricular arrhythmias. In this review, we will discuss the pharmacological, experimental, and clinical evidence behind ranolazine use in the management of various cardiac arrhythmias. 
+Action Potentials
+Animals
+Anti-Arrhythmia Agents
+Arrhythmias, Cardiac
+Heart Conduction System
+Heart Rate
+Humans
+Kinetics
+Ranolazine
+Sodium Channel Blockers
+Sodium Channels
+Treatment Outcome
+",Target-26459200,"Established indication: chronic angina (including refractory angina). Emerging electropharmacologic/antiarrhythmic uses: prevention and management of atrial fibrillation, with investigational/ongoing studies for ventricular arrhythmias (ventricular tachyarrhythmias such as VT/VF).
+
+Unstructured evidence (Passage 1) states that ranolazine’s use in refractory angina has been established by multiple randomized studies and that there is growing evidence for an antiarrhythmic role—specifically in the prevention and management of atrial fibrillation—with ongoing studies in ventricular arrhythmias. Structured evidence from the SQL results links ranolazine to angina (DrugBank link: “Angina: Mayo clinic”) and lists ion-channel targets (sodium channel protein, inward rectifier potassium channel, and L-type calcium channel), consistent with its sodium channel–blocking electropharmacology (also reflected by the MeSH terms in Passage 1). Together, these support: (1) established clinical use in chronic/refractory angina and (2) emerging antiarrhythmic uses in atrial fibrillation and under study for ventricular arrhythmias.","Established indication: chronic angina (including refractory angina). Emerging electropharmacologic/antiarrhythmic uses: prevention and management of atrial fibrillation, with investigational/ongoing studies for ventricular arrhythmias (ventricular tachyarrhythmias such as VT/VF).","Unstructured evidence (Passage 1) states that ranolazine’s use in refractory angina has been established by multiple randomized studies and that there is growing evidence for an antiarrhythmic role—specifically in the prevention and management of atrial fibrillation—with ongoing studies in ventricular arrhythmias. Structured evidence from the SQL results links ranolazine to angina (DrugBank link: “Angina: Mayo clinic”) and lists ion-channel targets (sodium channel protein, inward rectifier potassium channel, and L-type calcium channel), consistent with its sodium channel–blocking electropharmacology (also reflected by the MeSH terms in Passage 1). Together, these support: (1) established clinical use in chronic/refractory angina and (2) emerging antiarrhythmic uses in atrial fibrillation and under study for ventricular arrhythmias.","WITH rn AS (
+  SELECT DISTINCT drugbank_id AS dbid
+  FROM ""drugbank_drug_syn""
+  WHERE LOWER(synonym) = 'ranolazine'
+)
+-- Links mentioning established indication or emerging antiarrhythmic uses
+SELECT
+  'link' AS source,
+  dl.title AS item,
+  dl.url AS detail
+FROM ""drugbank_drugs_links"" dl
+JOIN rn ON dl.parent_key = rn.dbid
+WHERE LOWER(dl.title) LIKE '%angina%'
+   OR LOWER(dl.title) LIKE '%arrhythm%'
+   OR LOWER(dl.title) LIKE '%atrial fibr%'
+   OR LOWER(dl.title) LIKE '%ventric%'
+UNION ALL
+-- Electropharmacologic targets supporting antiarrhythmic activity
+SELECT
+  'target' AS source,
+  t.name AS item,
+  COALESCE(t.known_action, '') || CASE WHEN t.organism IS NOT NULL THEN ' | ' || t.organism ELSE '' END AS detail
+FROM ""drugbank_targets"" t
+JOIN rn ON t.parent_key = rn.dbid
+WHERE LOWER(t.name) LIKE '%sodium%'
+   OR LOWER(t.name) LIKE '%late in%'
+   OR LOWER(t.name) LIKE '%potassium%'
+   OR LOWER(t.name) LIKE '%kcn%'
+   OR LOWER(t.name) LIKE '%herg%'
+   OR LOWER(t.name) LIKE '%channel%'
+LIMIT 50;","drugbank_drug, drugbank_drug_drug_interactions, drugbank_drug_food_interactions, drugbank_drug_mixtures, drugbank_drug_pharmacology, drugbank_drug_reactions, drugbank_drug_snp_effects, drugbank_drug_syn, drugbank_drugs_links, drugbank_query_ddi_table, drugbank_snp_adverse_reactions, drugbank_targets, drugbank_targets_polypeptides, drugbank_transporters, drugbank_transporters_polypeptides","Target-26459200, Target-25717355, Target-17187453, Target-10226758, Target-10604956",0.5714285714285714,0.21276595744680854,0.44897959183673464,0.15349887133182843,0.45283018867924535,0.20382165605095545,0.339622641509434,0.030874785591766724,0.5096153846153846,0.2233009708737864,0.36538461538461536,0.09919404835709858,0.2,1.0,0.33333333333333337,1.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,460,678,1138,11.997682211920619,0.0
+q00000013,"Which human UGT isoform was the only one found to produce two glucuronide metabolites of catecholic entacapone, even though that isoform showed a low overall glucuronidation rate for entacapone?",UGT1A1.,"The passage states that tolcapone was not detectably glucuronidated by UGT1A1 and entacapone’s glucuronidation rate was low by UGT1A1. However, it also explicitly notes UGT1A1 was the only UGT capable of catalyzing formation of two glucuronides of catecholic entacapone. This makes UGT1A1 uniquely responsible for that biotransformation.","The COMT inhibitors entacapone and tolcapone are rapidly metabolized in vivo, mainly by glucuronidation. In this work, the main UGT isoforms responsible for their glucuronidation in vitro were characterized by using a subset of representative cloned and expressed human UGT isoforms. Entacapone in particular was seen to be an exceptionally good substrate for UGT1A9 with an even higher reaction velocity value at 500 microM substrate concentration compared with that of the commonly used substrate, propofol (1.3 and 0.78 nmol min(-1) mg(-1), respectively). Neither entacapone nor tolcapone was glucuronidated by UGT1A6. Tolcapone was not detectably glucuronidated by UGT1A1, and the rate of glucuronidation of entacapone was also low by this isoform. However, UGT1A1 was the only UGT capable of catalyzing the formation of two glucuronides of the catecholic entacapone. Both COMT inhibitors were glucuronidated at low rates by the representative members of the UGT2B family, UGT2B7 and UGT2B15. Michaelis-Menten parameters were determined for entacapone and tolcapone using recombinant human UGT isoforms and human liver microsomes to compare the kinetic properties of the two COMT inhibitors. The kinetic data illustrates that UGT1A9 exhibited a much greater rate of glucuronidation and a far lower K(m) value for both entacapone and tolcapone than UGT2B15 and UGT2B7 whose contribution is minor by comparison. Entacapone showed a 3 to 4 times higher V(max) value and a 4 to 6 times lower K(m) value compared with those of tolcapone both in UGT1A9 cell lysates and in human liver microsomes.
+Animals
+Benzophenones
+Catechols
+Cell Line
+Enzyme Inhibitors
+Glucuronides
+Glucuronosyltransferase
+Humans
+Kinetics
+Mice
+Microsomes, Liver
+Nitriles
+Nitrophenols
+Recombinant Proteins
+Tolcapone
+",Target-11038168,"UGT1A1
+
+Passage 1 states that although UGT1A1 showed a low glucuronidation rate for entacapone, it was the only UGT capable of forming two glucuronides of catecholic entacapone. The structured data confirms UGT1A1 as a human UGT isoform (listed as UDP-glucuronosyltransferase 1-1) in the drugbank_enzymes table.",UGT1A1,"Passage 1 states that although UGT1A1 showed a low glucuronidation rate for entacapone, it was the only UGT capable of forming two glucuronides of catecholic entacapone. The structured data confirms UGT1A1 as a human UGT isoform (listed as UDP-glucuronosyltransferase 1-1) in the drugbank_enzymes table.","SELECT DISTINCT name AS ugt_isoform
+FROM ""drugbank_enzymes""
+WHERE organism = 'Humans'
+  AND (
+    name LIKE '%UGT1A1%'
+    OR name LIKE '%UDP-glucuronosyltransferase 1-1%'
+    OR name LIKE '%Bilirubin UDP-glucuronosyltransferase%'
+  )
+LIMIT 50;","drugbank_drug_food_interactions, drugbank_drug_snp_effects, drugbank_enzymes, drugbank_query_ddi_table, drugbank_snp_adverse_reactions","Target-11038168, Target-18256203, Target-11302935, Target-9316860, Target-11560869",1.0,0.0,1.0,0.9230769230769231,0.4842105263157895,0.23655913978494622,0.39999999999999997,0.028125,0.4948453608247423,0.23157894736842108,0.4123711340206186,0.0517503805175038,0.2,1.0,0.33333333333333337,1.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,329,879,1208,20.279782861005515,0.0
+q00000003,"In a randomized, double-blind osteoarthritis clinical trial, what were the primary and secondary endpoints related to gastroduodenal ulcer incidence, and at what scheduled timepoints were ulcers evaluated using endoscopy?","Primary: ulcer incidence at 12 weeks; secondary: ulcer incidence at 24 weeks. Endoscopy occurred at 6, 12, and 24 weeks (active treatment only).","The METHODS state ulceration was assessed endoscopically at 6 and 12 weeks and at 24 weeks for active treatment. It also specifies primary and secondary end points as ulcer incidence at 12 and 24 weeks, respectively.","OBJECTIVE: This randomized, double-blind study tested the hypothesis that rofecoxib, a drug that specifically inhibits cyclooxygenase 2, would cause fewer gastroduodenal ulcers than ibuprofen (in a multicenter trial), and its side effects would be equivalent to those of placebo (in a prespecified analysis combining the results with another trial of identical design).
+METHODS: Seven hundred seventy-five patients with osteoarthritis were randomized to receive rofecoxib at a dosage of 25 mg or 50 mg once daily, ibuprofen 800 mg 3 times daily, or placebo. Gastroduodenal ulceration was assessed by endoscopy at 6, 12, and (for active treatment) 24 weeks. The primary and secondary end points were the incidence of gastroduodenal ulcers at 12 and 24 weeks, respectively.
+RESULTS: Ulcers were significantly less common (P < 0.001) following treatment with rofecoxib (25 mg or 50 mg) than with ibuprofen after 12 weeks (5.3% and 8.8% versus 29.2%, respectively) or 24 weeks (9.9% and 12.4% versus 46.8%, respectively). In the combined analysis, the 12-week ulcer incidence with 25 mg rofecoxib (4.7%) and with placebo (7.3%) satisfied prespecified criteria for equivalence.
+CONCLUSION: At 2-4 times the therapeutically effective dose, rofecoxib caused fewer endoscopically detected ulcers than did ibuprofen. Rofecoxib at a dose of 25 mg (the highest dose recommended for osteoarthritis) satisfied prespecified criteria for equivalence to placebo.
+Cyclooxygenase Inhibitors
+Double-Blind Method
+Duodenal Ulcer
+Duodenum
+Enzyme Inhibitors
+Gastric Mucosa
+Humans
+Ibuprofen
+Incidence
+Intestinal Mucosa
+Lactones
+Placebos
+Sulfones
+",Target-10693877,"Primary endpoint: incidence of gastroduodenal ulcers at 12 weeks. Secondary endpoint: incidence of gastroduodenal ulcers at 24 weeks. Ulcers were evaluated by endoscopy at weeks 6, 12, and (for active-treatment groups) 24.
+
+The osteoarthritis trial compared rofecoxib with ibuprofen (and placebo in a combined analysis). According to the methods, gastroduodenal ulceration was assessed endoscopically at 6 and 12 weeks for all arms, and at 24 weeks for the active-treatment arms. The study explicitly defined the primary endpoint as the incidence of gastroduodenal ulcers at 12 weeks and the secondary endpoint as the incidence at 24 weeks (Passage 1, PubMed 10693877).","Primary endpoint: incidence of gastroduodenal ulcers at 12 weeks. Secondary endpoint: incidence of gastroduodenal ulcers at 24 weeks. Ulcers were evaluated by endoscopy at weeks 6, 12, and (for active-treatment groups) 24.","The osteoarthritis trial compared rofecoxib with ibuprofen (and placebo in a combined analysis). According to the methods, gastroduodenal ulceration was assessed endoscopically at 6 and 12 weeks for all arms, and at 24 weeks for the active-treatment arms. The study explicitly defined the primary endpoint as the incidence of gastroduodenal ulcers at 12 weeks and the secondary endpoint as the incidence at 24 weeks (Passage 1, PubMed 10693877).","SELECT pubmed_id, citation, parent_key
+FROM ""drugbank_drug_carriers_articles""
+WHERE pubmed_id = 10693877
+LIMIT 50;","drugbank_drug, drugbank_drug_carriers_articles, drugbank_drug_drug_interactions, drugbank_drug_food_interactions, drugbank_drug_mixtures, drugbank_drug_pharmacology, drugbank_drug_reactions, drugbank_drug_snp_effects, drugbank_drugs_links, drugbank_query_ddi_table, drugbank_snp_adverse_reactions, drugbank_targets, drugbank_targets_polypeptides","Target-10693877, Target-11693467, Target-15324530, Target-10890256, Target-10551440",0.75,0.2962962962962963,0.6071428571428571,0.28415300546448086,0.5523809523809524,0.34951456310679613,0.4952380952380952,0.329803328290469,0.6211180124223602,0.339622641509434,0.5341614906832298,0.11833171677982542,0.2,1.0,0.33333333333333337,1.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,379,570,949,15.136331329122186,0.0
+q00000017,"In Japanese patients with depression, what impact did CYP2C19 exon 4/5 loss-of-function variants linked to poor S-mephenytoin 4′-hydroxylation have on imipramine metabolism, as reflected by the desipramine-to-imipramine demethylation ratio and dose-per-weight–adjusted plasma imipramine concentrations?",They significantly lowered the desipramine/imipramine ratio and significantly increased dose/weight–normalized plasma imipramine (and 2-hydroxyimipramine) levels.,"The passage reports the demethylation index (desipramine/imipramine ratio) was significantly lower in patients with CYP2C19 genetic defects. It also states plasma imipramine and 2-hydroxyimipramine levels normalized by daily dose per weight were significantly higher in those with defects, implying impaired N-demethylation.","The relationship between the genetic polymorphism of S-mephenytoin 4'-hydroxylation catalyzed by CYP2C19 and the N-demethylation of imipramine was examined in 10 Japanese depressed patients. Five patients, who were poor metabolizers of S-mephenytoin, were determined to be either homozygous for a mutation in exon 5 or heterozygous for mutations in exon 4 and exon 5 of the CYP2C19 gene. In contrast, five patients, who were extensive metabolizers, had no mutations. The demethylation index (the desipramine/imipramine ratio) was significantly lower in patients with genetic defects. Plasma levels of imipramine and 2-hydroxyimipramine normalized by the daily dose (mg) per weight (kg) were significantly higher in patients with genetic defects. This suggests that the N-demethylation of imipramine is impaired in patients with genetic defects in the CYP2C19 gene, and that genotype determination may be useful in preventing side effects induced by unexpectedly elevated levels of imipramine.
+Adult
+Antidepressive Agents, Tricyclic
+Aryl Hydrocarbon Hydroxylases
+Cytochrome P-450 CYP2C19
+Cytochrome P-450 Enzyme System
+DNA Mutational Analysis
+Depressive Disorder, Major
+Dose-Response Relationship, Drug
+Exons
+Female
+Genetic Carrier Screening
+Genotype
+Humans
+Imipramine
+Male
+Middle Aged
+Mixed Function Oxygenases
+Polymorphism, Genetic
+Treatment Outcome
+",Target-9316174,"Carriers of CYP2C19 exon 4/5 loss‑of‑function variants (poor S‑mephenytoin 4′‑hydroxylators) had impaired imipramine N‑demethylation: the desipramine-to-imipramine ratio was significantly lower, and dose‑per‑weight–adjusted plasma imipramine concentrations were significantly higher compared with extensive metabolizers.
+
+In a study of 10 Japanese patients with depression (PMID 9316174), five poor S‑mephenytoin 4′‑hydroxylators were either homozygous for a CYP2C19 exon 5 mutation or compound heterozygous for exon 4 and exon 5 mutations (consistent with CYP2C19*3 [rs4986893, exon 4] and *2 [rs4244285, exon 5]). These patients showed a significantly lower demethylation index (desipramine/imipramine ratio), indicating reduced N‑demethylation, and significantly higher plasma imipramine levels when normalized by daily dose per body weight. DrugBank SNP annotations corroborate that rs4244285 and rs4986893 are associated with poor metabolism of imipramine. Together, these findings show that CYP2C19 loss‑of‑function variants reduce imipramine demethylation and increase dose‑adjusted imipramine exposure.","Carriers of CYP2C19 exon 4/5 loss‑of‑function variants (poor S‑mephenytoin 4′‑hydroxylators) had impaired imipramine N‑demethylation: the desipramine-to-imipramine ratio was significantly lower, and dose‑per‑weight–adjusted plasma imipramine concentrations were significantly higher compared with extensive metabolizers.","In a study of 10 Japanese patients with depression (PMID 9316174), five poor S‑mephenytoin 4′‑hydroxylators were either homozygous for a CYP2C19 exon 5 mutation or compound heterozygous for exon 4 and exon 5 mutations (consistent with CYP2C19*3 [rs4986893, exon 4] and *2 [rs4244285, exon 5]). These patients showed a significantly lower demethylation index (desipramine/imipramine ratio), indicating reduced N‑demethylation, and significantly higher plasma imipramine levels when normalized by daily dose per body weight. DrugBank SNP annotations corroborate that rs4244285 and rs4986893 are associated with poor metabolism of imipramine. Together, these findings show that CYP2C19 loss‑of‑function variants reduce imipramine demethylation and increase dose‑adjusted imipramine exposure.","SELECT
+  '""drugbank_drug_snp_effects""' AS source_table,
+  protein_name,
+  gene_symbol,
+  rs_id,
+  defining_change AS change_or_reaction,
+  description,
+  pubmed_id,
+  parent_key
+FROM ""drugbank_drug_snp_effects""
+WHERE gene_symbol = 'CYP2C19'
+  AND (
+    description LIKE '%imipramine%' OR
+    description LIKE '%mephenytoin%' OR
+    pubmed_id = 9316174
+  )
+UNION ALL
+SELECT
+  '""drugbank_snp_adverse_reactions""' AS source_table,
+  protein_name,
+  gene_symbol,
+  rs_id,
+  adverse_reaction AS change_or_reaction,
+  description,
+  pubmed_id,
+  parent_key
+FROM ""drugbank_snp_adverse_reactions""
+WHERE gene_symbol = 'CYP2C19'
+  AND (
+    description LIKE '%imipramine%' OR
+    description LIKE '%mephenytoin%' OR
+    pubmed_id = 9316174
+  )
+LIMIT 50;","drugbank_drug_carriers_articles, drugbank_drug_snp_effects, drugbank_query_ddi_table, drugbank_snp_adverse_reactions, drugbank_transporters_polypeptides","Target-9316174, Target-14520122, Target-15520506, Target-1613128, Target-12360109",0.3870967741935483,0.13333333333333333,0.2903225806451613,0.12448132780082988,0.36129032258064514,0.19607843137254902,0.21935483870967742,0.02697841726618705,0.40552995391705066,0.23255813953488372,0.2580645161290322,0.08010012515644556,0.2,1.0,0.33333333333333337,1.0,0.0,0.0,0.0,0.0,0.5,1.0,0.75,542,1328,1870,23.922984324861318,0.0
+q00000005,"In hormonally independent DU145 prostate cancer cells, what experimental assays and which molecular apoptosis marker were used to demonstrate that ritonavir enhances docetaxel’s antiproliferative and proapoptotic effects in vitro?",Clonogenic soft agar assay and detection of activated caspase-3 (and cleavage products).,The passage states DU145 cells were cultured with docetaxel alone or with ritonavir to assess drug interaction. It reports ritonavir enhanced docetaxel’s antiproliferative/proapoptotic effects as measured by a clonogenic soft agar assay and detection of activated caspase-3 (and cleaved products).,"We previously showed that HIV-1 protease inhibitors (PIs) slowed the proliferation of human myeloid leukemia cells and enhanced their differentiation in the presence of all-trans-retinoic acid. In this study, we found that PIs, including ritonavir, saquinavir, and indinavir, inhibited the growth of DU145 and PC-3 androgen-independent prostate cancer cells as measured by a clonal proliferation assay. Recent studies showed that ritonavir inhibited cytochrome P450 3A4 enzyme (CYP3A4) in liver microsomes. The CYP3A4 is involved in drug metabolism and acquisition of drug resistance. To clarify the drug interaction between ritonavir and other anticancer drugs, we cultured DU145 cells with docetaxel either alone or in combination with ritonavir. Ritonavir enhanced the antiproliferative and proapoptotic effects of docetaxel in the hormonally independent DU145 prostate cancer cells in vitro as measured by the clonogenic soft agar assay and detection of the activated form of caspase-3 and cleavage of poly(ADP-ribose) polymerase using Western blot analysis. Real-time PCR showed that docetaxel induced the expression of CYP3A4 at the transcriptional level, and ritonavir (10(-5) mol/L) completely blocked this induction. An ELISA-based assay also showed that ritonavir inhibited DNA binding activity of nuclear factor kappaB (NFkappaB) in DU145 cells, which is a contributor to drug resistance in cancer cells. Furthermore, combination treatment of docetaxel and ritonavir dramatically inhibited the growth of DU145 cells present as tumor xenografts in BNX nude mice compared with either drug alone. Importantly, docetaxel induced expression of CYP3A4 in DU145 xenografts, and ritonavir completely blocked this induction. Ritonavir also inhibited NFkappaB DNA binding activity in DU145 xenografts. Extensive histologic analyses of the liver, spleen, kidneys, bone marrow, skin, and subcutaneous fat pads from these mice showed no abnormalities. In summary, combination therapy of ritonavir and anticancer drugs holds promise for the treatment of individuals with advanced, drug resistant cancers.
+Animals
+Antineoplastic Combined Chemotherapy Protocols
+Apoptosis
+Cell Division
+Cell Line, Tumor
+Cytochrome P-450 CYP3A
+Cytochrome P-450 Enzyme Inhibitors
+Cytochrome P-450 Enzyme System
+DNA, Neoplasm
+Docetaxel
+Drug Synergism
+HIV Protease Inhibitors
+HIV-1
+Humans
+Male
+Mice
+Mice, Nude
+NF-kappa B
+Neoplasms, Hormone-Dependent
+Prostatic Neoplasms
+RNA, Messenger
+RNA, Small Interfering
+Ritonavir
+Taxoids
+Xenograft Model Antitumor Assays
+",Target-15492266,"A clonogenic soft agar colony-formation assay (for antiproliferation) and Western blot analysis (for apoptosis), detecting activated caspase-3 and PARP cleavage as the molecular apoptosis markers.
+
+According to the referenced study in DU145 cells, ritonavir’s enhancement of docetaxel’s effects in vitro was shown by reduced colony growth in a clonogenic soft agar assay and by increased apoptosis detected via Western blot of activated caspase-3 and cleaved PARP (apoptosis markers).","A clonogenic soft agar colony-formation assay (for antiproliferation) and Western blot analysis (for apoptosis), detecting activated caspase-3 and PARP cleavage as the molecular apoptosis markers.","According to the referenced study in DU145 cells, ritonavir’s enhancement of docetaxel’s effects in vitro was shown by reduced colony growth in a clonogenic soft agar assay and by increased apoptosis detected via Western blot of activated caspase-3 and cleaved PARP (apoptosis markers).","SELECT pubmed_id, citation
+FROM ""drugbank_drug_trans_articles""
+WHERE citation LIKE '%DU145%'
+  AND citation LIKE '%ritonavir%'
+  AND citation LIKE '%docetaxel%'
+LIMIT 50;","drugbank_drug, drugbank_drug_carriers_articles, drugbank_drug_drug_interactions, drugbank_drug_mixtures, drugbank_drug_pharmacology, drugbank_drug_reactions, drugbank_drug_snp_effects, drugbank_drug_trans_articles, drugbank_drugs_links, drugbank_query_ddi_table, drugbank_snp_adverse_reactions, drugbank_targets, drugbank_targets_polypeptides, drugbank_transporters, drugbank_transporters_polypeptides","Target-15492266, Target-25995342, Target-12218384, Target-12907245, Target-25096913",0.5499999999999999,0.2631578947368421,0.5499999999999999,0.5352112676056338,0.5168539325842696,0.2758620689655172,0.49438202247191015,0.17152658662092624,0.5581395348837208,0.26771653543307083,0.5116279069767442,0.1859931113662457,0.2,1.0,0.33333333333333337,1.0,0.0,0.0,0.0,0.0,1.0,1.0,1.0,325,1139,1464,26.222039154265076,0.0
+q00000008,"In a pharmacogenetic study evaluating metoprolol for uncomplicated hypertension, what was the treatment dosing regimen prior to repeating 24-hour ambulatory blood pressure monitoring (including initial dose, dosing frequency, titration plan, and maximum allowed dose)?","Metoprolol 50 mg twice daily, titrated weekly to response or up to 200 mg twice daily, then reassessed after ≥4 weeks at a stable dose.","The METHODS state patients “took 50 mg metoprolol twice daily with weekly titration to response or 200 mg twice daily.” After “a minimum of 4 weeks at stable dose,” 24-hour ambulatory BP monitoring was repeated.","OBJECTIVES: Marked interpatient variability exists in blood pressure response to beta-blocker monotherapy. We tested the hypothesis that 2 common polymorphisms in the gene for beta(1)-adrenergic receptor are associated with antihypertensive response to metoprolol in patients with uncomplicated hypertension.
+METHODS: Forty hypertensive men and women aged 35 to 65 years were studied. Baseline studies included 24-hour ambulatory blood pressure monitoring. Patients took 50 mg metoprolol twice daily with weekly titration to response or 200 mg twice daily. After a minimum of 4 weeks at stable dose, treatment phase 24-hour ambulatory blood pressure monitoring was repeated. The codon 49 and 389 genotypes for beta(1)-adrenergic receptor were determined by polymerase chain reaction with restriction fragment length polymorphism. Multilinear regression was performed to determine the impact of genotype and other variables on blood pressure response to metoprolol.
+RESULTS: Patients homozygous for Arg at codon 389 had a nearly 3-fold greater reduction in daytime diastolic blood pressure (-13.3% +/- 8.4% versus -4.5% +/- 8.2%, P =.0018) compared with those who carried the variant allele. The haplotype pair (diplotype) for beta(1)-adrenergic receptor was also a significant predictor of response, with patients having the Ser49Arg389/Ser49Arg389 diplotype demonstrating a decline in blood pressure of 14.7 mm Hg versus 0.5 mm Hg in patients with the Gly49Arg389/Ser49Gly389 diplotype. In multiregression analysis, baseline daytime diastolic blood pressure, codon 389 genotype, and codon 49 genotype were significant predictors of blood pressure after treatment.
+CONCLUSIONS: Our data suggest that beta(1)-adrenergic receptor polymorphisms are important determinants of antihypertensive response to metoprolol. In the future, codon 49 and 389 genotypes or beta(1)-adrenergic receptor haplotypes might be used to predict the diastolic blood pressure response to metoprolol in patients with hypertension.
+Adrenergic beta-1 Receptor Antagonists
+Adult
+Aged
+Antihypertensive Agents
+Female
+Gene Frequency
+Genotype
+Humans
+Hypertension
+Linear Models
+Male
+Metoprolol
+Middle Aged
+Polymorphism, Genetic
+Receptors, Adrenergic, beta-1
+",Target-12844134,"Patients started metoprolol 50 mg twice daily, with weekly up-titration to achieve response, up to a maximum of 200 mg twice daily. After maintaining a stable dose for at least 4 weeks, 24-hour ambulatory blood pressure monitoring was repeated.
+
+The regimen is stated in the Methods of the pharmacogenetic study (PubMed 12844134): “Patients took 50 mg metoprolol twice daily with weekly titration to response or 200 mg twice daily. After a minimum of 4 weeks at stable dose, treatment phase 24-hour ambulatory blood pressure monitoring was repeated.” The SQL result links this PubMed ID to metoprolol, confirming the study context.","Patients started metoprolol 50 mg twice daily, with weekly up-titration to achieve response, up to a maximum of 200 mg twice daily. After maintaining a stable dose for at least 4 weeks, 24-hour ambulatory blood pressure monitoring was repeated.","The regimen is stated in the Methods of the pharmacogenetic study (PubMed 12844134): “Patients took 50 mg metoprolol twice daily with weekly titration to response or 200 mg twice daily. After a minimum of 4 weeks at stable dose, treatment phase 24-hour ambulatory blood pressure monitoring was repeated.” The SQL result links this PubMed ID to metoprolol, confirming the study context.","SELECT
+  s.pubmed_id,
+  s.parent_key,
+  l.title,
+  s.description
+FROM ""drugbank_drug_snp_effects"" AS s
+LEFT JOIN ""drugbank_drugs_links"" AS l
+  ON l.ref_id = CAST(s.pubmed_id AS TEXT)
+WHERE s.pubmed_id = 12844134
+LIMIT 50;","drugbank_drug, drugbank_drug_dosages, drugbank_drug_drug_interactions, drugbank_drug_food_interactions, drugbank_drug_mixtures, drugbank_drug_pharmacology, drugbank_drug_reactions, drugbank_drug_snp_effects, drugbank_drugs_links, drugbank_query_ddi_table, drugbank_snp_adverse_reactions, drugbank_targets, drugbank_targets_polypeptides","Target-19637941, Target-12844134, Target-11329095, Target-30248178, Target-10067800",0.6666666666666667,0.34374999999999994,0.5454545454545455,0.32189973614775724,0.7142857142857143,0.625,0.6938775510204082,0.48322147651006714,0.695121951219512,0.5061728395061729,0.6341463414634146,0.4576098059244127,0.2,1.0,0.33333333333333337,0.5,0.0,0.0,0.0,0.0,1.0,1.0,1.0,368,554,922,10.574130498804152,0.0

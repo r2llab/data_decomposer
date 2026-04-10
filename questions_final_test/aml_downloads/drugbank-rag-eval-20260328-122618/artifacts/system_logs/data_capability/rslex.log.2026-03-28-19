@@ -1,0 +1,68 @@
+2026-03-28T19:33:44.159976Z  INFO rslex_fuse::resource_tracker: [rslex-fuse::resource_tracker] Starting resource monitor thread - PID: 15, interval: 180s
+2026-03-28T19:33:44.160407Z  INFO rslex: [init_environment()] initializing Environment
+2026-03-28T19:33:44.160933Z  INFO rslex_http_stream::http_client::hyper_client::hyper_client: dns resolution concurrency concurrency=150
+2026-03-28T19:33:44.163958Z  INFO rslex_azure_storage::adls_gen1_stream_handler::retry_strategy: [rslex-azure-storage::adls_gen1_stream_handler::AdlsGen1RetryCondition] retry configuration retry_on_append_timeout=true bad_offset_error_retry_count=3
+2026-03-28T19:33:44.164766Z  INFO rslex_azureml::azureml::handler: [AzureMLHandler::uri_scheme()]
+2026-03-28T19:33:44.166431Z  INFO rslex_azure_storage::adls_gen1_stream_handler::retry_strategy: [rslex-azure-storage::adls_gen1_stream_handler::AdlsGen1RetryCondition] retry configuration retry_on_append_timeout=true bad_offset_error_retry_count=3
+2026-03-28T19:33:44.168500Z  INFO rslex: [init_environment] using os managed compute resources
+2026-03-28T19:33:44.541893Z  INFO rslex_fuse::direct_volume_mount::options: [rslex-fuse::DirectVolumeOptions] Environment variable "DATASET_RESERVED_FREE_DISK_SPACE" has been set to 6367358389 env_variable_name="DATASET_RESERVED_FREE_DISK_SPACE" env_variable_value=6367358389 descriptor="rslex-fuse::DirectVolumeOptions::config_env_set"
+2026-03-28T19:33:44.542221Z  INFO rslex_fuse::direct_volume_mount::options: [rslex-fuse::DirectVolumeOptions] Environment variable "DATASET_MOUNT_BLOCK_BASED_CACHE_ENABLED" has been set to false env_variable_name="DATASET_MOUNT_BLOCK_BASED_CACHE_ENABLED" env_variable_value=false descriptor="rslex-fuse::DirectVolumeOptions::config_env_set"
+2026-03-28T19:33:44.542261Z  INFO rslex::rslex_direct_mount: [RslexURIMountContext::new] is_direct_volume_mount setting is true is_direct_volume_mount=true
+2026-03-28T19:33:44.542297Z  INFO rslex_azureml::azureml::handler: [AzureMLHandler::parse_uri()] Parse uri [azureml://subscriptions/5c9e4789-4852-4ffe-8551-d682affcbd74/resourcegroups/playground-rg/workspaces/as-playground-w3-ws/datastores/workspaceblobstore/paths/LocalUpload/3bc3b7d9b5f90146f235257728769bb48ade0b28cbb348df47413f650ffe56cf/data/], normalized [azureml://subscriptions/5c9e4789-4852-4ffe-8551-d682affcbd74/resourcegroups/playground-rg/workspaces/as-playground-w3-ws/datastores/workspaceblobstore/paths/LocalUpload/3bc3b7d9b5f90146f235257728769bb48ade0b28cbb348df47413f650ffe56cf/data/]
+2026-03-28T19:33:44.652478Z  INFO rslex_azureml::data_store::resolver: [CachedResolver::resolve()] DataStore resolved info=DataStoreInfo { id: "workspaceblobstore", workspace: WorkspaceInfo { azure_subscription_id: "5c9e4789-4852-4ffe-8551-d682affcbd74", azure_resource_group: "playground-rg", name: "as-playground-w3-ws" } } datastore_name=Some("workspaceblobstore") datastore_type=Some(AzureBlob) container_name=Some("azureml-blobstore-86098555-f08f-45ab-95b4-92ceded3d89d") account_name=Some("asplaygroundw3data") endpoint=Some("core.windows.net")
+2026-03-28T19:33:44.670347Z  WARN try_access_async: rslex_http_stream::http_client::response: [AsyncResponse::success()] non-successful response
+Status: 401 Unauthorized
+Headers: {
+    "transfer-encoding": "chunked",
+    "vary": "Origin",
+    "server": "Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0",
+    "x-ms-request-id": "b64144b9-301e-007e-74e9-be9f1f000000",
+    "x-ms-client-request-id": "8cfcba51-cf0b-4b2c-a098-61ab25abb059",
+    "x-ms-version": "2021-04-10",
+    "x-ms-error-code": "NoAuthenticationInformation",
+    "www-authenticate": "Bearer authorization_uri=https://login.microsoftonline.com/72f988bf-86f1-41af-91ab-2d7cd011db47/oauth2/authorize resource_id=https://storage.azure.com",
+    "date": "Sat, 28 Mar 2026 19:33:44 GMT",
+} code=401
+2026-03-28T19:33:44.670414Z  INFO try_access_async: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=2.01ms time.idle=14.7ms
+2026-03-28T19:33:44.670462Z  INFO is_public:try_access: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=17.5ms time.idle=12.4µs
+2026-03-28T19:33:44.670488Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=17.9ms time.idle=9.64µs
+2026-03-28T19:33:44.808047Z  INFO get_token_and_expiry: rslex::python_azure_token_resolver: close time.busy=137ms time.idle=13.7µs self=PythonAzureAccessTokenResolver token_request=TokenRequest { scope: Storage, identity_info: None, resource_id: None }
+2026-03-28T19:33:44.813474Z  WARN rslex_http_stream::http_service_client::error_mapped_http_service_client: [rslex-http-stream::http_service_client] non-successful response host=asplaygroundw3data.blob.core.windows.net method=HEAD request_uri=https://asplaygroundw3data.blob.core.windows.net/azureml-blobstore-86098555-f08f-45ab-95b4-92ceded3d89d/LocalUpload/3bc3b7d9b5f90146f235257728769bb48ade0b28cbb348df47413f650ffe56cf/data error=HttpServiceError { service: "azure_blob", inner_error: The specified blob does not exist. } status=404 client_request_id=Some("437609cc-0b86-48fc-8ec0-6d176eca450b") service_request_id=Some("b64144cb-301e-007e-7ee9-be9f1f000000")
+2026-03-28T19:33:44.818629Z  INFO rslex_fuse::direct_volume_mount::content_handler: Creating whole file cache directory cache_path=/tmp/.tmpwdrbLo total_space=269425381376 free_space=255068774400
+2026-03-28T19:33:44.839029Z  INFO rslex_fuse::direct_volume_mount::direct_volume_mount: [rslex-fuse::DirectVolumeMount::new()] Direct volume mount created. mount_point=/mnt/azureml/cr/j/c45c867461e146c9bf22b97a83ea5bc8/cap/data-capability/wd/INPUT_data_dir handler=AmlDatastore options=DirectVolumeOptions { is_single_file: Some(false), default_permission: Some(365), attribute_cache_entry_ttl: 18446744073709551615.999999999s, disk_cache_options: DiskCacheOptions { cache_dir_path: None, reserved_free_disk_space: 6367358389, cache_limit: Unlimited, prune_threshold: 0.9, prune_target: 0.7, prune_on_file_growth_threshold: 1048576 }, streaming_read_options: StreamingReadOptions { block_size: 2097152, buffered_blocks_count: 32, reading_threads: 384 }, block_based_reading_options: None, mount_mode: ReadOnly, block_overwrite_on_file_conflict: false }
+2026-03-28T19:33:44.839118Z  INFO new: rslex_fuse::fuse_fs::fuse_mount: [rslex-fuse::FuseMount::new] Creating FuseMount instance mount_point=/mnt/azureml/cr/j/c45c867461e146c9bf22b97a83ea5bc8/cap/data-capability/wd/INPUT_data_dir pid=15 options=MountOptions { allow_other: true, fuse_cache_timeout: 600s, unmount_timeout: 30s, enable_auto_cache: true, max_background_threads: 192, max_readahead: Some(4194304) }
+2026-03-28T19:33:44.839178Z  INFO new: rslex_fuse::fuse_fs::fuse_mount: [rslex-fuse::FuseMount::new] Mount point directory validated mount_point=/mnt/azureml/cr/j/c45c867461e146c9bf22b97a83ea5bc8/cap/data-capability/wd/INPUT_data_dir is_dir=true mode=40755 readonly=false options=MountOptions { allow_other: true, fuse_cache_timeout: 600s, unmount_timeout: 30s, enable_auto_cache: true, max_background_threads: 192, max_readahead: Some(4194304) }
+2026-03-28T19:33:44.839258Z  INFO new: rslex_fuse::fuse_fs::fuse_mount: close time.busy=142µs time.idle=6.34µs options=MountOptions { allow_other: true, fuse_cache_timeout: 600s, unmount_timeout: 30s, enable_auto_cache: true, max_background_threads: 192, max_readahead: Some(4194304) }
+2026-03-28T19:33:44.840110Z  INFO rslex_fuse::fuse_fs::fuse_mount: [rslex-fuse::FuseMount::mount] mounting filesystem with mount arguments ["dataset_volume_mount", "-o", "allow_other", "-o", "attr_timeout=0", "-o", "entry_timeout=600", "-o", "negative_timeout=600", "-o", "remember=600", "-o", "big_writes", "-o", "auto_cache", "-o", "max_readahead=4194304", "-o", "fsname=rslex_volume_mount[AmlDatastore]", "-r"]. Libfuse version 29 fuse_arguments=["dataset_volume_mount", "-o", "allow_other", "-o", "attr_timeout=0", "-o", "entry_timeout=600", "-o", "negative_timeout=600", "-o", "remember=600", "-o", "big_writes", "-o", "auto_cache", "-o", "max_readahead=4194304", "-o", "fsname=rslex_volume_mount[AmlDatastore]", "-r"] fuse_version=29 pid=15 mount_point=/mnt/azureml/cr/j/c45c867461e146c9bf22b97a83ea5bc8/cap/data-capability/wd/INPUT_data_dir
+2026-03-28T19:33:44.840169Z  INFO rslex_fuse::fuse_fs::fuse_mount: [rslex-fuse::FuseMount::mount_with_retries] Attempt 1/6 mount_point=/mnt/azureml/cr/j/c45c867461e146c9bf22b97a83ea5bc8/cap/data-capability/wd/INPUT_data_dir pid=15 attempt=1 max_attempts=6
+2026-03-28T19:33:44.840180Z  INFO rslex_fuse::libfuse_binding: [rslex-fuse::fs_mount] Attempting FUSE mount mount_point=/mnt/azureml/cr/j/c45c867461e146c9bf22b97a83ea5bc8/cap/data-capability/wd/INPUT_data_dir pid=15
+2026-03-28T19:33:44.841086Z  INFO rslex_fuse::fuse_fs::fuse_mount: [rslex-fuse::FuseMount::mount_with_retries] SUCCESS on attempt 1 mount_point=/mnt/azureml/cr/j/c45c867461e146c9bf22b97a83ea5bc8/cap/data-capability/wd/INPUT_data_dir pid=15 attempt=1
+2026-03-28T19:33:44.841862Z  INFO rslex_fuse::fuse_fs::fuse_mount: [rslex-fuse::FuseMount::msg_loop_thread] Starting FUSE event loop thread for mount point /mnt/azureml/cr/j/c45c867461e146c9bf22b97a83ea5bc8/cap/data-capability/wd/INPUT_data_dir with exit_flag 2 pid=15
+2026-03-28T19:33:45.841341Z  INFO rslex_fuse::fuse_fs::fuse_mount: [rslex-fuse::FuseMount::mount] Filesystem mounted pid=15 mount_point=/mnt/azureml/cr/j/c45c867461e146c9bf22b97a83ea5bc8/cap/data-capability/wd/INPUT_data_dir
+2026-03-28T19:37:14.926936Z  WARN try_access_async: rslex_http_stream::http_client::response: [AsyncResponse::success()] non-successful response
+Status: 401 Unauthorized
+Headers: {
+    "transfer-encoding": "chunked",
+    "vary": "Origin",
+    "server": "Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0",
+    "x-ms-request-id": "e85f08b0-701e-001d-68ea-be02e4000000",
+    "x-ms-client-request-id": "ae971402-027b-4cff-91d2-3905d7b673ee",
+    "x-ms-version": "2021-04-10",
+    "x-ms-error-code": "NoAuthenticationInformation",
+    "www-authenticate": "Bearer authorization_uri=https://login.microsoftonline.com/72f988bf-86f1-41af-91ab-2d7cd011db47/oauth2/authorize resource_id=https://storage.azure.com",
+    "date": "Sat, 28 Mar 2026 19:37:14 GMT",
+} code=401
+2026-03-28T19:37:14.926997Z  INFO try_access_async: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=1.90ms time.idle=27.4ms
+2026-03-28T19:37:14.927079Z  INFO is_public:try_access: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=29.5ms time.idle=2.95µs
+2026-03-28T19:37:14.927126Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=29.6ms time.idle=14.6µs
+2026-03-28T19:37:14.936204Z  INFO copy:is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=97.6µs time.idle=2.81µs
+2026-03-28T19:37:15.126270Z  INFO copy:queue_chunked_copy: rslex_core::file_io::stream_copier: close time.busy=190ms time.idle=5.17µs file_size=23834624
+2026-03-28T19:37:15.126316Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=23834624 source_handler="AmlDatastore" source_resource_id=workspaceblobstore/LocalUpload/3bc3b7d9b5f90146f235257728769bb48ade0b28cbb348df47413f650ffe56cf/data/drugbank.db destination=drugbank.db duration=0.190050218 sequential=false
+2026-03-28T19:37:15.126367Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=190ms time.idle=12.9µs
+2026-03-28T19:37:15.800254Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=39.1µs time.idle=7.12µs
+2026-03-28T19:37:15.806168Z  WARN rslex_http_stream::http_service_client::error_mapped_http_service_client: [rslex-http-stream::http_service_client] non-successful response host=asplaygroundw3data.blob.core.windows.net method=HEAD request_uri=https://asplaygroundw3data.blob.core.windows.net/azureml-blobstore-86098555-f08f-45ab-95b4-92ceded3d89d/LocalUpload/3bc3b7d9b5f90146f235257728769bb48ade0b28cbb348df47413f650ffe56cf/data/Pharma error=HttpServiceError { service: "azure_blob", inner_error: The specified blob does not exist. } status=404 client_request_id=Some("7416adf8-8ad0-408d-918d-d3498ae26faf") service_request_id=Some("41228b36-701e-0102-41ea-be4fed000000")
+2026-03-28T19:37:15.812053Z  INFO is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=120µs time.idle=14.1µs
+2026-03-28T19:38:06.494891Z  INFO copy:is_public: rslex_azure_storage::blob_stream_handler::public_blob: close time.busy=34.2µs time.idle=3.94µs
+2026-03-28T19:38:06.518274Z  INFO copy:do_sequential_copy: rslex_core::file_io::stream_copier: close time.busy=23.3ms time.idle=2.85µs file_size=330941
+2026-03-28T19:38:06.518320Z  INFO copy: rslex_core::file_io::stream_copier: [StreamCopier::copy()] copied file size=330941 source_handler="AmlDatastore" source_resource_id=workspaceblobstore/LocalUpload/3bc3b7d9b5f90146f235257728769bb48ade0b28cbb348df47413f650ffe56cf/data/Pharma/pubmed-drugbank-tables.gt destination=Pharma/pubmed-drugbank-tables.gt duration=0.023368304 sequential=true
+2026-03-28T19:38:06.518368Z  INFO copy: rslex_core::file_io::stream_copier: close time.busy=23.5ms time.idle=7.79µs

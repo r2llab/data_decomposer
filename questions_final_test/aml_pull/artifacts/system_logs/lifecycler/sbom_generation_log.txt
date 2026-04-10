@@ -1,0 +1,222 @@
+[CommonRuntime::lifecycler::sbom_helper] Generating requirements.txt file via pip freeze, using pip from: '/opt/conda/envs/ptca/bin/pip'
+[CommonRuntime::lifecycler::sbom_helper] pip freeze exited with code: 0
+[CommonRuntime::lifecycler::sbom_helper] Exporting DOTNET_SYSTEM_GLOBALIZATION_INVARIANT and DOTNET_BUNDLE_EXTRACT_BASE_DIR for SBOM tool 
+[CommonRuntime::lifecycler::sbom_helper] Start generating SBOM
+Printing current user
+root
+Listing /mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/cap/data-capability/wd/rag_results before SBOM directory creation
+total 0
+drwxrwxrwx 2 root root 0 Mar 29 00:13 questions_final_test
+Creating directory /mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/cap/data-capability/wd/rag_results/azureml_sbom_rag_results
+Listing /mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/cap/data-capability/wd/rag_results after SBOM directory creation
+total 0
+drwxrwxrwx 2 root root 0 Mar 29 00:13 azureml_sbom_rag_results
+drwxrwxrwx 2 root root 0 Mar 29 00:13 questions_final_test
+Assigning write permission to directory /mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/cap/data-capability/wd/rag_results/azureml_sbom_rag_results
+Listing /mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/cap/data-capability/wd/rag_results after permission change
+total 0
+drwxrwxrwx 2 root root 0 Mar 29 00:13 azureml_sbom_rag_results
+drwxrwxrwx 2 root root 0 Mar 29 00:13 questions_final_test
+Listing directory /mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/cap/data-capability/wd/rag_results/azureml_sbom_rag_results
+total 0
+##[debug]Gradle dev-only lockfiles ""
+##[debug]Gradle dev-only configurations ""
+##[debug]Gradle dev-only lockfiles ""
+##[debug]Gradle dev-only configurations ""
+##[debug]Starting SBOM generation workflow.
+##[information]Manifest directory path was explicitly defined. Will not attempt to delete any existing _manifest directory.
+##[debug]Using the CGScannedExternalDocumentReferenceFileProvider provider for the files workflow.
+##[debug]Splitting the workflow into 8 threads.
+##[debug]Running the generation workflow ...
+##[debug]Finished applying restrictions to detectors.
+##[information]Finding components...
+##[debug]Removing "NewPipDetector" from active experiments
+##[debug]Removing "NewPipDetector" from active experiments
+##[debug]Logging patterns "Podfile.lock" for "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements"
+##[debug]Logging patterns "*.lockfile" for "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements"
+##[debug]Logging patterns "go.mod:go.sum" for "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements"
+##[debug]Logging patterns "ivy.xml" for "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements"
+##[debug]Logging patterns "package.json" for "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements"
+##[debug]Logging patterns "pom.xml" for "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements"
+##[debug]Logging patterns "package-lock.json:npm-shrinkwrap.json:lerna.json" for "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements"
+##[debug]Logging patterns "package-lock.json:npm-shrinkwrap.json:lerna.json" for "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements"
+##[debug]Logging patterns "*.nupkg:*.nuspec:nuget.config:paket.lock" for "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements"
+##[debug]Logging patterns "project.assets.json" for "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements"
+##[debug]Logging patterns "packages.config" for "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements"
+##[debug]Logging patterns "setup.py:requirements.txt" for "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements"
+##[debug]Logging patterns "shrinkwrap.yaml:pnpm-lock.yaml" for "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements"
+##[information]No instructions received to scan docker images.
+##[debug]Logging patterns "poetry.lock" for "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements"
+##[debug]Logging patterns "Gemfile.lock" for "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements"
+##[debug]Logging patterns "Cargo.lock" for "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements"
+##[debug]Logging patterns "Cargo.toml" for "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements"
+##[debug]Logging patterns "vcpkg.spdx.json" for "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements"
+##[debug]Logging patterns "yarn.lock" for "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements"
+##[debug]Logging patterns "Podfile.lock" for "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements"
+##[debug]Logging patterns "go.mod:go.sum" for "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements"
+##[debug]Logging patterns "*.lockfile" for "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements"
+##[debug]Logging patterns "ivy.xml" for "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements"
+##[information]No instructions received to scan docker images.
+##[debug]Logging patterns "pom.xml" for "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements"
+##[debug]Logging patterns "package.json" for "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements"
+##[debug]Logging patterns "package-lock.json:npm-shrinkwrap.json:lerna.json" for "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements"
+##[debug]Logging patterns "package-lock.json:npm-shrinkwrap.json:lerna.json" for "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements"
+##[debug]Logging patterns "*.spdx.json" for "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements"
+##[debug]Logging patterns "*.nupkg:*.nuspec:nuget.config:paket.lock" for "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements"
+##[debug]Registered "Microsoft.ComponentDetection.Detectors.CocoaPods.PodComponentDetector"
+##[debug]Registered "Microsoft.ComponentDetection.Detectors.CocoaPods.PodComponentDetector"
+##[debug]Registered "Microsoft.ComponentDetection.Detectors.Npm.NpmComponentDetector"
+##[debug]Registered "Microsoft.ComponentDetection.Detectors.Gradle.GradleComponentDetector"
+##[debug]Registered "Microsoft.ComponentDetection.Detectors.Npm.NpmLockfile3Detector"
+##[debug]Registered "Microsoft.ComponentDetection.Detectors.Pip.PipReportComponentDetector"
+##[debug]Registered "Microsoft.ComponentDetection.Detectors.Spdx.Spdx22ComponentDetector"
+##[debug]Registered "Microsoft.ComponentDetection.Detectors.Gradle.GradleComponentDetector"
+##[debug]Registered "Microsoft.ComponentDetection.Detectors.Ruby.RubyComponentDetector"
+##[debug]Registered "Microsoft.ComponentDetection.Detectors.Go.GoComponentDetector"
+##[debug]Registered "Microsoft.ComponentDetection.Detectors.Ivy.IvyDetector"
+##[debug]Registered "Microsoft.ComponentDetection.Detectors.NuGet.NuGetPackagesConfigDetector"
+##[debug]Logging patterns "packages.config" for "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements"
+##[debug]Logging patterns "project.assets.json" for "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements"
+##[debug]Registered "Microsoft.ComponentDetection.Detectors.NuGet.NuGetPackagesConfigDetector"
+##[debug]Registered "Microsoft.ComponentDetection.Detectors.Poetry.PoetryComponentDetector"
+##[debug]Registered "Microsoft.ComponentDetection.Detectors.Rust.RustCrateDetector"
+##[debug]Registered "Microsoft.ComponentDetection.Detectors.Maven.MvnCliComponentDetector"
+##[debug]Registered "Microsoft.ComponentDetection.Detectors.NuGet.NuGetProjectModelProjectCentricComponentDetector"
+##[debug]Registered "Microsoft.ComponentDetection.Detectors.Npm.NpmLockfile3Detector"
+##[debug]Registered "Microsoft.ComponentDetection.Detectors.NuGet.NuGetComponentDetector"
+##[debug]Registered "Microsoft.ComponentDetection.Detectors.NuGet.NuGetComponentDetector"
+##[debug]Registered "Microsoft.ComponentDetection.Detectors.Npm.NpmComponentDetectorWithRoots"
+##[debug]Registered "Microsoft.ComponentDetection.Detectors.Npm.NpmComponentDetector"
+##[debug]Registered "Microsoft.ComponentDetection.Detectors.Yarn.YarnLockComponentDetector"
+##[debug]Registered "Microsoft.ComponentDetection.Detectors.NuGet.NuGetProjectModelProjectCentricComponentDetector"
+##[debug]Registered "Microsoft.ComponentDetection.Detectors.Ivy.IvyDetector"
+##[debug]Registered "Microsoft.ComponentDetection.Detectors.Rust.RustCliDetector"
+##[debug]Registered "Microsoft.ComponentDetection.Detectors.Vcpkg.VcpkgComponentDetector"
+##[debug]Registered "Microsoft.ComponentDetection.Detectors.Npm.NpmComponentDetectorWithRoots"
+##[debug]Registered "Microsoft.ComponentDetection.Detectors.Maven.MvnCliComponentDetector"
+##[debug]Registered "Microsoft.ComponentDetection.Detectors.Go.GoComponentDetector"
+##[debug]Registered "Microsoft.ComponentDetection.Detectors.Pnpm.PnpmComponentDetectorFactory"
+##[debug]Logging patterns "setup.py:requirements.txt" for "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements"
+##[debug]Logging patterns "shrinkwrap.yaml:pnpm-lock.yaml" for "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements"
+##[debug]Logging patterns "poetry.lock" for "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements"
+##[debug]Registered "Microsoft.ComponentDetection.Detectors.Pip.PipReportComponentDetector"
+##[debug]Registered "Microsoft.ComponentDetection.Detectors.Pnpm.PnpmComponentDetectorFactory"
+##[debug]Registered "Microsoft.ComponentDetection.Detectors.Poetry.PoetryComponentDetector"
+##[debug]Logging patterns "Gemfile.lock" for "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements"
+##[debug]Registered "Microsoft.ComponentDetection.Detectors.Ruby.RubyComponentDetector"
+##[debug]Logging patterns "Cargo.lock" for "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements"
+##[debug]Registered "Microsoft.ComponentDetection.Detectors.Rust.RustCrateDetector"
+##[debug]Logging patterns "Cargo.toml" for "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements"
+##[debug]Registered "Microsoft.ComponentDetection.Detectors.Rust.RustCliDetector"
+##[debug]Logging patterns "vcpkg.spdx.json" for "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements"
+##[debug]Registered "Microsoft.ComponentDetection.Detectors.Vcpkg.VcpkgComponentDetector"
+##[debug]Logging patterns "yarn.lock" for "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements"
+##[debug]Registered "Microsoft.ComponentDetection.Detectors.Yarn.YarnLockComponentDetector"
+##[debug]Logging patterns "cgmanifest.json" for "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements"
+##[debug]Registered "Microsoft.ComponentDetection.Internal.AzureDevOps.ComponentManifestComponentDetector"
+##[debug]Logging patterns "environment.yml:environment.yaml" for "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements"
+##[debug]Registered "Microsoft.ComponentDetection.Internal.AzureDevOps.CondaComponentDetector"
+##[debug]Logging patterns "packageList.lst:officePackageList.json" for "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements"
+##[debug]Registered "Microsoft.ComponentDetection.Internal.AzureDevOps.CorextComponentDetector"
+##[debug]Logging patterns "pom.xml" for "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements"
+##[debug]Registered "Microsoft.ComponentDetection.Internal.AzureDevOps.MavenComponentDetector"
+##[debug]Logging patterns "*.spdx.json" for "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements"
+##[debug]Registered "Microsoft.ComponentDetection.Detectors.Spdx.Spdx22ComponentDetector"
+##[debug]Logging patterns "conan.lock" for "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements"
+##[debug]Logging patterns "conan.lock" for "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements"
+##[debug]Registered "Microsoft.ComponentDetection.Detectors.Conan.ConanLockComponentDetector"
+##[debug]Registered "Microsoft.ComponentDetection.Detectors.Conan.ConanLockComponentDetector"
+##[debug]Skipping Ivy detection as ant is not available in the local PATH.
+##[debug]Skipping Ivy detection as ant is not available in the local PATH.
+##[debug]"MvnCli" detector: "Skipping maven detection as maven is not available in the local PATH."
+##[debug]"MvnCli" detector: "Skipping maven detection as maven is not available in the local PATH."
+##[information]Starting enumeration of "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements"
+##[information]Enumerated 1 files and 0 directories in 00:00:00.0125181
+##[information]PipReport: Generating pip installation report for "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements/requirements.txt"
+##[information]PipReport: Generating pip installation report for "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements/requirements.txt"
+##[debug]PipReport: Generating pip installation report for "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements/requirements.txt" with command: "install -r requirements.txt --dry-run --ignore-installed --quiet --no-input --report ks023cut.component-detection-pip-report.json --use-feature=fast-deps"
+##[debug]PipReport: Generating pip installation report for "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements/requirements.txt" with command: "install -r requirements.txt --dry-run --ignore-installed --quiet --no-input --report fk2r5l0s.component-detection-pip-report.json --use-feature=fast-deps"
+##[debug]PipReport: Pip installation report error: "WARNING: pip is using lazily downloaded wheels using HTTP range requests to obtain dependency information. This experimental feature is enabled through --use-feature=fast-deps and it is not ready for production.\nERROR: Could not install packages due to an OSError: [Errno 2] No such file or directory: '/apex'\n\n"
+##[warning]PipReport: Failure while parsing pip installation report for "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements/requirements.txt"
+System.InvalidOperationException: PipReport: Failed to generate pip installation report for file /mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements/requirements.txt with exit code 1
+   at Microsoft.ComponentDetection.Detectors.Pip.PipCommandService.GenerateInstallationReportAsync(String path, String pipExePath, String pythonExePath, CancellationToken cancellationToken)
+   at Microsoft.ComponentDetection.Detectors.Pip.PipReportComponentDetector.OnFileFoundAsync(ProcessRequest processRequest, IDictionary`2 detectorArgs, CancellationToken cancellationToken)
+##[information]PipReport: Trying to manually compile package list for '"/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements/requirements.txt"' without reaching out to a remote feed. This will NOT create a dependency graph, so should be avoided unless absolutely necessary.
+##[debug]PipReport: Pip installation report error: "WARNING: pip is using lazily downloaded wheels using HTTP range requests to obtain dependency information. This experimental feature is enabled through --use-feature=fast-deps and it is not ready for production.\nERROR: Could not install packages due to an OSError: [Errno 2] No such file or directory: '/apex'\n\n"
+##[warning]PipReport: Failure while parsing pip installation report for "/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements/requirements.txt"
+System.InvalidOperationException: PipReport: Failed to generate pip installation report for file /mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements/requirements.txt with exit code 1
+   at Microsoft.ComponentDetection.Detectors.Pip.PipCommandService.GenerateInstallationReportAsync(String path, String pipExePath, String pythonExePath, CancellationToken cancellationToken)
+   at Microsoft.ComponentDetection.Detectors.Pip.PipReportComponentDetector.OnFileFoundAsync(ProcessRequest processRequest, IDictionary`2 detectorArgs, CancellationToken cancellationToken)
+##[information]PipReport: Trying to manually compile package list for '"/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements/requirements.txt"' without reaching out to a remote feed. This will NOT create a dependency graph, so should be avoided unless absolutely necessary.
+##[information]Compatible Conda installation found: "PATH"
+##[information]Conda available in "PATH"
+                               Detection Summary                                
+┌───────────────────┬───────────────────┬───────────────────┬──────────────────┐
+│ Component         │ Detection Time    │ # Components      │ # Explicitly     │
+│ Detector Id       │                   │ Found             │ Referenced       │
+├───────────────────┼───────────────────┼───────────────────┼──────────────────┤
+│ CgManifest        │ 0.091 seconds     │ 0                 │ 0                │
+│ CocoaPods         │ 0.096 seconds     │ 0                 │ 0                │
+│ ConanLock         │ 0.09 seconds      │ 0                 │ 0                │
+│ Conda (Beta)      │ 1.1 seconds       │ 0                 │ 0                │
+│ CorextCG          │ 0.09 seconds      │ 0                 │ 0                │
+│ Go                │ 0.094 seconds     │ 0                 │ 0                │
+│ Gradle            │ 0.091 seconds     │ 0                 │ 0                │
+│ Ivy (Beta)        │ 0.091 seconds     │ 0                 │ 0                │
+│ Linux             │ 0.012 seconds     │ 0                 │ 0                │
+│ Maven             │ 0.091 seconds     │ 0                 │ 0                │
+│ MvnCli            │ 0.09 seconds      │ 0                 │ 0                │
+│ Npm               │ 0.09 seconds      │ 0                 │ 0                │
+│ NpmLockfile3      │ 0.091 seconds     │ 0                 │ 0                │
+│ NpmWithRoots      │ 0.091 seconds     │ 0                 │ 0                │
+│ NuGet             │ 0.091 seconds     │ 0                 │ 0                │
+│ NuGetPackagesConf │ 0.091 seconds     │ 0                 │ 0                │
+│ ig                │                   │                   │                  │
+│ NuGetProjectCentr │ 0.091 seconds     │ 0                 │ 0                │
+│ ic                │                   │                   │                  │
+│ PipReport         │ 1 seconds         │ 245               │ 245              │
+│ Pnpm              │ 0.091 seconds     │ 0                 │ 0                │
+│ Poetry (Beta)     │ 0.091 seconds     │ 0                 │ 0                │
+│ Ruby              │ 0.091 seconds     │ 0                 │ 0                │
+│ RustCli           │ 0.091 seconds     │ 0                 │ 0                │
+│ RustCrateDetector │ 0.091 seconds     │ 0                 │ 0                │
+│ SPDX22SBOM        │ 0.09 seconds      │ 0                 │ 0                │
+│ Vcpkg             │ 0.091 seconds     │ 0                 │ 0                │
+│ Yarn              │ 0.091 seconds     │ 0                 │ 0                │
+│ ───────────────── │ ───────────────── │ ───────────────── │ ──────────────── │
+│ Total             │ 1.1 seconds       │ 245               │ 245              │
+└───────────────────┴───────────────────┴───────────────────┴──────────────────┘
+##[information]""
+##[information]""
+##[information]Detection time: 1.1085103 seconds.
+##[information]Scan Manifest file: "/tmp/ScanManifest_20260329035706465.json"
+##[debug]Using the DirectoryTraversingFileToJsonProvider provider for the files workflow.
+##[debug]Enumerating files under the root path /mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/cap/data-capability/wd/rag_results.
+##[debug]Splitting the workflow into 8 threads.
+##[debug]Running the generation workflow ...
+##[debug]Using the CGScannedPackagesProvider provider for the packages workflow.
+##[debug]Splitting the workflow into 8 threads.
+##[debug]Running the generation workflow ...
+##[debug]Using cached CD scan result for the call with the same arguments
+##[debug]Wrote 245 package elements in the SBOM.
+##[debug]Found value for header PackageName in internal metadata.
+##[debug]Found value for header PackageVersion in internal metadata.
+##[debug]Found value for header PackageVersion in internal metadata.
+##[debug]Found value for header PackageSupplier in internal metadata.
+##[debug]Found value for header PackageName in internal metadata.
+##[debug]Found value for header PackageSupplier in internal metadata.
+##[debug]Using the CGExternalDocumentReferenceProvider provider for the external documents workflow.
+##[debug]Using the CGExternalDocumentReferenceProvider provider for the external documents workflow.
+##[debug]Splitting the workflow into 8 threads.
+##[debug]Running the generation workflow ...
+##[debug]Using cached CD scan result for the call with the same arguments
+##[debug]Wrote 246 relationship elements in the SBOM.
+##[debug]Building the header object.
+##[debug]Found value for header SBOMToolName in internal metadata.
+##[debug]Found value for header SBOMToolVersion in internal metadata.
+##[debug]Found value for header PackageName in internal metadata.
+##[debug]Found value for header PackageVersion in internal metadata.
+##[debug]Found value for header PackageSupplier in internal metadata.
+##[debug]Wrote telemetry object to path 
+##[information]Finished execution of the Generate workflow SBOMTelemetry {Result=Success, Errors=ErrorContainer`1 {Count=0, Errors=[]}, Parameters=Configuration {BuildDropPath=ConfigurationSetting`1 {Value="/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/cap/data-capability/wd/rag_results", Source=CommandLine, IsDefaultSource=False}, BuildComponentPath=ConfigurationSetting`1 {Value="/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/exe/wd/azureml_sbom_env_requirements", Source=CommandLine, IsDefaultSource=False}, BuildListFile=null, ManifestPath=null, ManifestDirPath=ConfigurationSetting`1 {Value="/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/cap/data-capability/wd/rag_results/azureml_sbom_rag_results/_manifest", Source=CommandLine, IsDefaultSource=False}, OutputPath=null, Parallelism=ConfigurationSetting`1 {Value=8, Source=Default, IsDefaultSource=True}, Verbosity=ConfigurationSetting`1 {Value=Debug, Source=CommandLine, IsDefaultSource=False}, ConfigFilePath=null, ManifestInfo=ConfigurationSetting`1 {Value=null, Source=Default, IsDefaultSource=True}, HashAlgorithm=ConfigurationSetting`1 {Value=AlgorithmName {Name="SHA256"}, Source=Default, IsDefaultSource=True}, RootPathFilter=null, CatalogFilePath=null, ValidateSignature=ConfigurationSetting`1 {Value=False, Source=Default, IsDefaultSource=True}, IgnoreMissing=ConfigurationSetting`1 {Value=False, Source=Default, IsDefaultSource=True}, ManifestToolAction=Generate, PackageName=ConfigurationSetting`1 {Value="rag_results", Source=CommandLine, IsDefaultSource=False}, PackageVersion=ConfigurationSetting`1 {Value="907fe2ff-9bbb-4e10-90f0-bb4b018087a8", Source=CommandLine, IsDefaultSource=False}, PackageSupplier=ConfigurationSetting`1 {Value="Microsoft", Source=Default, IsDefaultSource=True}, FilesList=null, PackagesList=null, TelemetryFilePath=null, DockerImagesToScan=null, ExternalDocumentReferenceListFile=null, AdditionalComponentDetectorArgs=null, NamespaceUriUniquePart=null, NamespaceUriBase=ConfigurationSetting`1 {Value="https://sbom.microsoft", Source=Default, IsDefaultSource=True}, GenerationTimestamp=null, FollowSymlinks=ConfigurationSetting`1 {Value=True, Source=Default, IsDefaultSource=True}, DeleteManifestDirIfPresent=ConfigurationSetting`1 {Value=False, Source=Default, IsDefaultSource=True}, FailIfNoPackages=ConfigurationSetting`1 {Value=False, Source=Default, IsDefaultSource=True}, FetchLicenseInformation=ConfigurationSetting`1 {Value=False, Source=Default, IsDefaultSource=True}, EnablePackageMetadataParsing=ConfigurationSetting`1 {Value=False, Source=Default, IsDefaultSource=True}, SbomPath=null, SbomDir=null}, SBOMFormatsUsed=[SBOMFile {SbomFormatName=ManifestInfo {Name="SPDX", Version="2.2"}, SbomFilePath="/mnt/azureml/cr/j/96b5ecef612645918fca11cbb6f022d4/cap/data-capability/wd/rag_results/azureml_sbom_rag_results/_manifest/spdx_2.2/manifest.spdx.json", FileSizeInBytes=219856, TotalNumberOfPackages=246}], Timings=[Timing {EventName="Metadata build time for SPDX:2.2 format", TimeSpan="00:00:00.0136089"}, Timing {EventName="Relationships generation time", TimeSpan="00:00:00.0083684"}, Timing {EventName="External document reference generation time", TimeSpan="00:00:00.0042984"}, Timing {EventName="Packages generation time", TimeSpan="00:00:00.0542859"}, Timing {EventName="Files generation time", TimeSpan="00:00:01.5352457"}, Timing {EventName="Total generation time", TimeSpan="00:00:01.7836311"}], Switches={}, Exceptions={}, APIExceptions={}, MetadataExceptions={}, TotalLicensesDetected=0, PackageDetailsEntries=0}
+[CommonRuntime::lifecycler::sbom_helper] Running SBOM tool (pid=2817) exited with code: 0

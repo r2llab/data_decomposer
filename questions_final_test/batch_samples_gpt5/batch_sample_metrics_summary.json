@@ -1,0 +1,85 @@
+{
+  "total_files": 5,
+  "success_count": 5,
+  "failure_count": 0,
+  "average_metrics": {
+    "full_rouge1": 0.39354730802182714,
+    "full_rouge2": 0.1647367128116834,
+    "full_rougeL": 0.26741972394728525,
+    "passage_mrr": 0.44000000000000006,
+    "table_mrr": 0.38012842712842715,
+    "llm_avg_correctness": 0.64
+  },
+  "files": [
+    {
+      "question_file": "table_hop_processed.csv",
+      "answer_csv": "/home/justiwag/michaels-tests/data_decomposer/questions_final_test/batch_samples_gpt5/table_hop_processed_rag_sample.csv",
+      "eval_csv": "/home/justiwag/michaels-tests/data_decomposer/questions_final_test/batch_samples_gpt5/table_hop_processed_rag_sample_eval.csv",
+      "row_count": 5,
+      "status": "ok",
+      "error": "",
+      "full_rouge1": 0.3369515779091331,
+      "full_rouge2": 0.13269068993172167,
+      "full_rougeL": 0.2401252983188467,
+      "passage_mrr": 0.0,
+      "table_mrr": 0.1781818181818182,
+      "llm_avg_correctness": 0.5
+    },
+    {
+      "question_file": "passage_processed.csv",
+      "answer_csv": "/home/justiwag/michaels-tests/data_decomposer/questions_final_test/batch_samples_gpt5/passage_processed_rag_sample.csv",
+      "eval_csv": "/home/justiwag/michaels-tests/data_decomposer/questions_final_test/batch_samples_gpt5/passage_processed_rag_sample_eval.csv",
+      "row_count": 5,
+      "status": "ok",
+      "error": "",
+      "full_rouge1": 0.49838657279349485,
+      "full_rouge2": 0.2708446493852772,
+      "full_rougeL": 0.3615277089507605,
+      "passage_mrr": 0.9,
+      "table_mrr": 0.6,
+      "llm_avg_correctness": 1.0
+    },
+    {
+      "question_file": "passage_hop_processed.csv",
+      "answer_csv": "/home/justiwag/michaels-tests/data_decomposer/questions_final_test/batch_samples_gpt5/passage_hop_processed_rag_sample.csv",
+      "eval_csv": "/home/justiwag/michaels-tests/data_decomposer/questions_final_test/batch_samples_gpt5/passage_hop_processed_rag_sample_eval.csv",
+      "row_count": 5,
+      "status": "ok",
+      "error": "",
+      "full_rouge1": 0.35404445649227434,
+      "full_rouge2": 0.12903040864247278,
+      "full_rougeL": 0.21486094501051528,
+      "passage_mrr": 0.5,
+      "table_mrr": 0.6,
+      "llm_avg_correctness": 0.55
+    },
+    {
+      "question_file": "passage_table_processed.csv",
+      "answer_csv": "/home/justiwag/michaels-tests/data_decomposer/questions_final_test/batch_samples_gpt5/passage_table_processed_rag_sample.csv",
+      "eval_csv": "/home/justiwag/michaels-tests/data_decomposer/questions_final_test/batch_samples_gpt5/passage_table_processed_rag_sample_eval.csv",
+      "row_count": 5,
+      "status": "ok",
+      "error": "",
+      "full_rouge1": 0.45897259157713854,
+      "full_rouge2": 0.17575576036866358,
+      "full_rougeL": 0.29337046665458305,
+      "passage_mrr": 0.8,
+      "table_mrr": 0.3352380952380952,
+      "llm_avg_correctness": 0.7
+    },
+    {
+      "question_file": "table_processed.csv",
+      "answer_csv": "/home/justiwag/michaels-tests/data_decomposer/questions_final_test/batch_samples_gpt5/table_processed_rag_sample.csv",
+      "eval_csv": "/home/justiwag/michaels-tests/data_decomposer/questions_final_test/batch_samples_gpt5/table_processed_rag_sample_eval.csv",
+      "row_count": 5,
+      "status": "ok",
+      "error": "",
+      "full_rouge1": 0.319381341337095,
+      "full_rouge2": 0.11536205573028177,
+      "full_rougeL": 0.22721420080172075,
+      "passage_mrr": 0.0,
+      "table_mrr": 0.18722222222222223,
+      "llm_avg_correctness": 0.45
+    }
+  ]
+}

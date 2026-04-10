@@ -1,0 +1,42 @@
+{
+  "row_count": 831,
+  "average_metrics": {
+    "direct_rouge1": 0.37218146707798944,
+    "direct_rouge2": 0.19277630749885138,
+    "direct_rougeL": 0.3449135129258167,
+    "direct_string_similarity": 0.3741389958027318,
+    "reasoning_rouge1": 0.3611019527880959,
+    "reasoning_rouge2": 0.13959653483878406,
+    "reasoning_rougeL": 0.2581063183107244,
+    "reasoning_string_similarity": 0.1256380805592715,
+    "full_rouge1": 0.3809302912226573,
+    "full_rouge2": 0.15693895721441078,
+    "full_rougeL": 0.27482877218959406,
+    "full_string_similarity": 0.1326699054624509,
+    "passage_precision": 0.0,
+    "passage_recall": 0.0,
+    "passage_f1": 0.0,
+    "passage_mrr": 0.0,
+    "table_precision": 0.08081629620703734,
+    "table_recall": 0.48375451263537905,
+    "table_f1": 0.13612323285066408,
+    "table_mrr": 0.2299435355392034,
+    "llm_direct_correctness": NaN,
+    "llm_reasoning_correctness": NaN,
+    "llm_avg_correctness": NaN,
+    "llm_prompt_tokens": 407.8014440433213,
+    "llm_completion_tokens": 15.961492178098677,
+    "llm_total_tokens": 423.76293622142,
+    "llm_processing_time": 0.0,
+    "llm_inference_cost": 0.0006693667268351383
+  },
+  "total_llm_tokens": 352147,
+  "total_llm_api_calls": 829,
+  "total_llm_inference_cost": 0.5562437500000006,
+  "average_llm_processing_time": 0.0,
+  "pricing": {
+    "prompt_price_per_1k": 0.00125,
+    "completion_price_per_1k": 0.01,
+    "model": "openai/gpt-5"
+  }
+}

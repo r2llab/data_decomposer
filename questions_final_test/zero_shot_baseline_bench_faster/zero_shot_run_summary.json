@@ -1,0 +1,78 @@
+{
+  "timestamp_utc": "2026-03-28T21:14:24Z",
+  "questions_dir": "/home/justiwag/michaels-tests/data_decomposer/questions_final",
+  "output_csv": "/home/justiwag/michaels-tests/data_decomposer/questions_final_test/zero_shot_baseline_bench_faster/questions_final_zero_shot_answers.csv",
+  "summary_json": "/home/justiwag/michaels-tests/data_decomposer/questions_final_test/zero_shot_baseline_bench_faster/zero_shot_run_summary.json",
+  "row_count": 50,
+  "rows_per_type": {
+    "passage_hop": 10,
+    "passage": 10,
+    "passage_table": 10,
+    "table_hop": 10,
+    "table": 10
+  },
+  "answer_model": "openai/gpt-5-chat",
+  "answer_workers": 24,
+  "answer_max_tokens": 220,
+  "answer_elapsed_seconds": 5.313319145236164,
+  "answer_throughput_rows_per_second": 9.410313710372392,
+  "answer_prompt_tokens": 6964,
+  "answer_completion_tokens": 6100,
+  "answer_total_tokens": 13064,
+  "answer_total_inference_cost": 0.06970499999999999,
+  "answer_average_inference_cost": 0.0013940999999999997,
+  "answer_pricing": {
+    "prompt_price_per_1k": 0.00125,
+    "completion_price_per_1k": 0.01
+  },
+  "evaluation": {
+    "enabled": true,
+    "eval_csv": "/home/justiwag/michaels-tests/data_decomposer/questions_final_test/zero_shot_baseline_bench_faster/questions_final_zero_shot_answers_eval.csv",
+    "eval_summary_json": "/home/justiwag/michaels-tests/data_decomposer/questions_final_test/zero_shot_baseline_bench_faster/questions_final_zero_shot_answers_eval.csv.summary.json",
+    "eval_grouped_summary_json": "/home/justiwag/michaels-tests/data_decomposer/questions_final_test/zero_shot_baseline_bench_faster/questions_final_zero_shot_answers_eval.csv.grouped.summary.json",
+    "skip_llm_eval": false,
+    "eval_model": "openai/gpt-5-chat",
+    "summary": {
+      "row_count": 50,
+      "average_metrics": {
+        "direct_rouge1": 0.2595387084839869,
+        "direct_rouge2": 0.07327784469571058,
+        "direct_rougeL": 0.21730428435106877,
+        "direct_string_similarity": 0.2695580776408134,
+        "reasoning_rouge1": 0.32282890279850696,
+        "reasoning_rouge2": 0.07615560087499515,
+        "reasoning_rougeL": 0.20926886333691072,
+        "reasoning_string_similarity": 0.09123126643070821,
+        "full_rouge1": 0.36684519059010406,
+        "full_rouge2": 0.10337242196870378,
+        "full_rougeL": 0.2321912162942615,
+        "full_string_similarity": 0.1125416344111162,
+        "passage_precision": 0.0,
+        "passage_recall": 0.0,
+        "passage_f1": 0.0,
+        "passage_mrr": 0.0,
+        "table_precision": 0.0,
+        "table_recall": 0.0,
+        "table_f1": 0.0,
+        "table_mrr": 0.0,
+        "llm_direct_correctness": 0.4,
+        "llm_reasoning_correctness": 0.54,
+        "llm_avg_correctness": 0.47,
+        "llm_prompt_tokens": 309.06,
+        "llm_completion_tokens": 16.96,
+        "llm_total_tokens": 326.02,
+        "llm_processing_time": 0.7280578351952136,
+        "llm_inference_cost": 0.0005559250000000001
+      },
+      "total_llm_tokens": 16301,
+      "total_llm_api_calls": 50,
+      "total_llm_inference_cost": 0.027796249999999998,
+      "average_llm_processing_time": 0.7280578351952136,
+      "pricing": {
+        "prompt_price_per_1k": 0.00125,
+        "completion_price_per_1k": 0.01,
+        "model": "openai/gpt-5-chat"
+      }
+    }
+  }
+}

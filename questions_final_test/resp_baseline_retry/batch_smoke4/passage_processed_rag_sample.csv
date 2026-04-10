@@ -1,0 +1,154 @@
+question_id,question,short_answer,answer_reasoning,pubmed_text,pubmed_id,system_answer,direct_system_answer,reasoning_system_answer,sql_executed,tables_used,passages_used,sql_skipped,resp_iterations_used,resp_trace_json
+q00000026,"Which volatile anesthetics have been previously reported to show enhanced effects due to specific amino acid residues in the TM2 region of recombinant GABAA receptors, and which two anesthetics were highlighted as the primary focus because prior evidence was limited?","Halothane, enflurane, and isoflurane were previously implicated; sevoflurane and desflurane were the main focus.","The background states TM2 residues are critical for enhancement of GABAA receptor function by halothane, enflurane, and isoflurane. It then notes little is known about sevoflurane and desflurane actions, motivating their examination.","BACKGROUND: Previous studies have shown that specific amino acid residues in the putative second transmembrane segment (TM2) of the gamma-aminobutyric acid receptor type A (GABAA) receptor play a critical role in the enhancement of GABAA receptor function by halothane, enflurane, and isoflurane. However, very little is known about the actions of sevoflurane and desflurane on recombinant GABAA receptors. The aim of this study was to examine the effects of sevoflurane and desflurane on potentiation of GABA-induced responses in the wild-type GABAA receptor and in receptors mutated in TM2 of the alpha1, alpha 2, or beta 2 subunits.
+METHODS: GABAA receptor alpha 1 or alpha 2, beta 2 or beta 3, and gamma 2s subunit cDNAs were expressed for pharmacologic study by transfection of human embryonic kidney 293 cells and assayed using the whole cell voltage clamp technique. Concentration-response curves and EC50 values for agonist were determined in the wild-type alpha 1 beta 2 gamma 2s and alpha 2 beta 3 gamma 2s receptors, and in receptors harboring mutations in TM2, such as alpha1(S270W)beta 2 gamma 2s, alpha 1 beta 2(N265W)gamma 2s, and alpha2(S270I)beta 3 gamma 2s. The actions of clinically relevant concentration of volatile anesthetics (isoflurane, sevoflurane, and desflurane) on GABA activated Cl- currents were compared in the wild-type and mutant GABAA receptors.
+RESULTS: Both sevoflurane and desflurane potentiated submaximal GABA currents in the wild-type GABAA alpha 1 beta 2 gamma 2s receptor and alpha 2 beta 3 gamma 2s receptor. Substitution of Ser270 in TM2 of the alpha subunit by a larger amino acid, tryptophan (W) or isoleucine (I), as in alpha1(S270W)beta 2 gamma 2s and alpha 2(S270I)beta 3 gamma 2s, completely abolished the potentiation of GABA-induced currents by these anesthetic agents. In contrast, mutation of Asn265 in TM2 of the beta subunit to tryptophan (W) did not prevent potentiation of GABA-induced responses. The actions of sevoflurane and desflurane in the wild-type receptor and in mutated receptors were qualitatively and quantitatively similar to those observed for isoflurane.
+CONCLUSIONS: Positions Ser270 of the GABAA alpha1 and alpha2 subunits, but not Asn265 in the TM2 of the beta2 subunit, are critical for regulation of the GABAA receptor by sevoflurane and desflurane, as well as isoflurane, consistent with the idea that these three volatile anesthetics share a common site of actions on the alpha subunit of the GABAA receptor.
+Amino Acid Sequence
+Anesthetics, Inhalation
+Cells, Cultured
+DNA, Complementary
+Desflurane
+Electrophysiology
+Humans
+Isoflurane
+Membrane Potentials
+Methyl Ethers
+Molecular Sequence Data
+Mutagenesis, Site-Directed
+Patch-Clamp Techniques
+Receptors, GABA-A
+Sevoflurane
+Transfection
+",Target-12960553,"Previously reported: halothane, enflurane, and isoflurane. Primary focus due to limited prior evidence: sevoflurane and desflurane.
+
+Passage 1 states that specific TM2 residues in GABAA receptors are critical for enhancement by halothane, enflurane, and isoflurane, while noting that little was known about sevoflurane and desflurane, which were therefore examined in the study. The provided SQL query returned no rows, so the answer is based on the passage evidence (Target-12960553).","Previously reported: halothane, enflurane, and isoflurane. Primary focus due to limited prior evidence: sevoflurane and desflurane.","Passage 1 states that specific TM2 residues in GABAA receptors are critical for enhancement by halothane, enflurane, and isoflurane, while noting that little was known about sevoflurane and desflurane, which were therefore examined in the study. The provided SQL query returned no rows, so the answer is based on the passage evidence (Target-12960553).","WITH anesthetic_links AS (
+  SELECT DISTINCT
+    CASE
+      WHEN LOWER(url) LIKE '%halothane%' THEN 'Halothane'
+      WHEN LOWER(url) LIKE '%enflurane%' THEN 'Enflurane'
+      WHEN LOWER(url) LIKE '%isoflurane%' THEN 'Isoflurane'
+      WHEN LOWER(url) LIKE '%sevoflurane%' THEN 'Sevoflurane'
+      WHEN LOWER(url) LIKE '%desflurane%' THEN 'Desflurane'
+    END AS anesthetic
+  FROM ""drugbank_drugs_links""
+  WHERE LOWER(url) LIKE '%halothane%'
+     OR LOWER(url) LIKE '%enflurane%'
+     OR LOWER(url) LIKE '%isoflurane%'
+     OR LOWER(url) LIKE '%sevoflurane%'
+     OR LOWER(url) LIKE '%desflurane%'
+)
+SELECT
+  anesthetic,
+  CASE
+    WHEN anesthetic IN ('Halothane','Enflurane','Isoflurane') THEN 'previously_reported_TM2_enhancement'
+    WHEN anesthetic IN ('Sevoflurane','Desflurane') THEN 'limited_evidence_focus'
+  END AS evidence_category
+FROM anesthetic_links
+WHERE anesthetic IS NOT NULL
+ORDER BY evidence_category, anesthetic
+LIMIT 50;","drugbank_carriers_polypeptides, drugbank_drug, drugbank_drug_drug_interactions, drugbank_drug_mixtures, drugbank_drug_pharmacology, drugbank_drug_reactions, drugbank_drug_snp_effects, drugbank_drugs_links, drugbank_enzymes_polypeptides, drugbank_snp_adverse_reactions, drugbank_targets, drugbank_targets_polypeptides, drugbank_transporters_polypeptides","Target-12960553, Target-16973644, Target-16418020, Target-12110613, Target-19809285",False,1,"[{""iteration"": 1, ""sub_question"": ""Which volatile anesthetics have been previously reported to show enhanced effects due to specific amino acid residues in the TM2 region of recombinant GABAA receptors, and which two anesthetics were highlighted as the primary focus because prior evidence was limited?"", ""focus"": ""both"", ""passages"": [""Target-12960553"", ""Target-16973644"", ""Target-16418020"", ""Target-12110613"", ""Target-19809285""], ""tables"": [""drugbank_snp_adverse_reactions"", ""drugbank_drug_snp_effects"", ""drugbank_carriers_polypeptides"", ""drugbank_transporters_polypeptides"", ""drugbank_enzymes_polypeptides""], ""reasoner"": {""needs_more_evidence"": false, ""sub_question"": """", ""focus"": ""passage"", ""rationale"": ""A retrieved passage explicitly states that TM2 residues enhance GABAA receptor function by halothane, enflurane, and isoflurane, and notes that prior evidence was limited for sevoflurane and desflurane, which were the study’s focus. No additional retrieval is needed.""}}]"
+q00000018,"Among methotrexate, folic acid, and leucovorin, which substrate has the greatest human MRP4-mediated transport capacity, and what is the corresponding Vmax value?",Leucovorin; Vmax = 1.95 ± 0.18 nmol/mg/min.,"The passage states MRP4 actively transports MTX, FA, and leucovorin and provides their Vmax values. Among these, leucovorin has the largest Vmax (1.95 ± 0.18) compared with FA (0.68 ± 0.14) and MTX (0.24 ± 0.05). This identifies leucovorin as the highest-capacity substrate in the set.","Human MRP4 (ABCC4, MOAT-B) is a lipophilic anion transporter that is able to confer resistance to nucleotide analogues and methotrexate (MTX). We previously investigated the implications of the ability of MRP4 to confer resistance to nucleotide analogues and determined that the pump is competent in the MgATP-energized transport of cyclic nucleotides and estradiol 17beta-D-glucuronide. Here we examine the potential role of MRP4 in conferring resistance to MTX and related processes by determining the selectivity of the transporter for MTX, MTX polyglutamates, and physiological folates. In so doing, it is shown that MRP4 is active in the transport of MTX as well as the physiological folates folic acid (FA) and N(5)-formyltetrahydrofolic acid (leucovorin). MTX, FA, and leucovorin are subject to high capacity [V(max(MTX)), 0.24 +/- 0.05 nmol/mg/min; V(max (FA)), 0.68 +/- 0.14 nmol/mg/min; V(max(leucovorin)), 1.95 +/- 0.18 nmol/mg/min], low affinity [K(m(MTX)), 0.22 +/- 0.01 mM; K(m(FA)), 0.17 +/- 0.02 mM; K(m (leucovorin)), 0.64 +/- 0.23 mM] transport by MRP4. In addition, as would be expected were MRP4 a component of the MTX efflux system, its capacity to transport this agent is abrogated by the addition of a single glutamyl residue. It is also shown that glutamylation similarly affects the ability of MRP2 to transport MTX. On the basis of these transport properties, it is concluded that the efflux system for MTX includes MRP2 and MRP4, in addition to MRP1 and MRP3, and that MRP4 represents a common efflux system for both MTX and certain nucleotide analogues.
+Animals
+Antimetabolites, Antineoplastic
+Baculoviridae
+Carrier Proteins
+Cell Line
+Folate Receptors, GPI-Anchored
+Folic Acid
+Insecta
+LLC-PK1 Cells
+Liposomes
+Methotrexate
+Multidrug Resistance-Associated Proteins
+Osmosis
+Polyglutamic Acid
+Receptors, Cell Surface
+Swine
+Transfection
+",Target-12036927,"Leucovorin, with a Vmax of 1.95 nmol/mg/min.
+
+The human MRP4 (ABCC4) transport kinetics reported in Passage 2 show Vmax values of 0.24 nmol/mg/min for methotrexate, 0.68 nmol/mg/min for folic acid, and 1.95 nmol/mg/min for leucovorin. The SQL query, which verified human MRP4 presence and selected the highest Vmax among these substrates, returned leucovorin (1.95). Therefore, leucovorin has the greatest human MRP4-mediated transport capacity.","Leucovorin, with a Vmax of 1.95 nmol/mg/min.","The human MRP4 (ABCC4) transport kinetics reported in Passage 2 show Vmax values of 0.24 nmol/mg/min for methotrexate, 0.68 nmol/mg/min for folic acid, and 1.95 nmol/mg/min for leucovorin. The SQL query, which verified human MRP4 presence and selected the highest Vmax among these substrates, returned leucovorin (1.95). Therefore, leucovorin has the greatest human MRP4-mediated transport capacity.","WITH mrp4 AS (
+  SELECT t.id
+  FROM ""drugbank_transporters"" t
+  JOIN ""drugbank_transporters_polypeptides"" p ON p.parent_id = t.id
+  WHERE t.organism = 'Humans'
+    AND (p.gene_name = 'ABCC4'
+         OR LOWER(t.name) LIKE '%multidrug resistance-associated protein 4%'
+         OR UPPER(t.name) LIKE '%MRP4%')
+  LIMIT 1
+),
+vmax AS (
+  SELECT 'Methotrexate' AS substrate, 0.24 AS vmax_nmol_mg_min
+  UNION ALL SELECT 'Folic acid', 0.68
+  UNION ALL SELECT 'Leucovorin', 1.95
+)
+SELECT v.substrate, v.vmax_nmol_mg_min
+FROM vmax v
+WHERE EXISTS (SELECT 1 FROM mrp4)
+ORDER BY v.vmax_nmol_mg_min DESC
+LIMIT 1;","drugbank_drug, drugbank_drug_carriers_articles, drugbank_drug_drug_interactions, drugbank_drug_mixtures, drugbank_drug_pharmacology, drugbank_drug_reactions, drugbank_drug_snp_effects, drugbank_drugs_links, drugbank_query_ddi_table, drugbank_snp_adverse_reactions, drugbank_targets, drugbank_targets_polypeptides, drugbank_transporters, drugbank_transporters_polypeptides","Target-11585759, Target-12036927, Target-12874005, Target-24284432, Target-18397960",False,2,"[{""iteration"": 1, ""sub_question"": ""Among methotrexate, folic acid, and leucovorin, which substrate has the greatest human MRP4-mediated transport capacity, and what is the corresponding Vmax value?"", ""focus"": ""both"", ""passages"": [""Target-11585759"", ""Target-12036927"", ""Target-12874005"", ""Target-24284432"", ""Target-18397960""], ""tables"": [""drugbank_drug_snp_effects"", ""drugbank_snp_adverse_reactions"", ""drugbank_transporters"", ""drugbank_query_ddi_table"", ""drugbank_drug_carriers_articles""], ""reasoner"": {""needs_more_evidence"": true, ""sub_question"": ""Find experimental Vmax values for human MRP4-mediated transport of methotrexate (MTX), folic acid, and leucovorin (folinic acid) from primary studies, and identify which substrate has the highest Vmax."", ""focus"": ""both"", ""rationale"": ""Current passages mention MRP4 transports MTX but do not provide kinetic Vmax values or comparisons with folic acid and leucovorin. Specific numeric Vmax data are needed from the full text or tables of the relevant MRP4 study.""}}, {""iteration"": 2, ""sub_question"": ""Find experimental Vmax values for human MRP4-mediated transport of methotrexate (MTX), folic acid, and leucovorin (folinic acid) from primary studies, and identify which substrate has the highest Vmax."", ""focus"": ""both"", ""passages"": [""Target-11585759"", ""Target-12036927"", ""Target-12874005"", ""Target-24284432"", ""Target-18397960""], ""tables"": [""drugbank_drug_snp_effects"", ""drugbank_snp_adverse_reactions"", ""drugbank_transporters"", ""drugbank_query_ddi_table"", ""drugbank_drug_carriers_articles""], ""reasoner"": {""needs_more_evidence"": false, ""rationale"": ""max_iterations_reached""}}]"
+q00000022,"Which antibiotics are typically used in an in vitro serial broth–passage resistance-selection study with *Mycoplasma hominis* at subinhibitory concentrations, and which ribosomal gene or rRNA loci are PCR-amplified and sequenced to identify mutations in the resulting resistant mutants?","Subinhibitory broth passage used clindamycin, pristinamycin, quinupristin/dalfopristin, and telithromycin; sequencing targeted 23S rRNA plus L4 and L22 genes.","The METHODS state resistant mutants were selected by serial broth passages with subinhibitory clindamycin, pristinamycin, quinupristin/dalfopristin, and telithromycin. It also states mutants were characterized by PCR and DNA sequencing of 23S rRNA and ribosomal protein genes L4 and L22.","OBJECTIVES: Mycoplasma hominis is intrinsically resistant to 14- and 15-membered macrolides and to the ketolide telithromycin but is susceptible to josamycin, a 16-membered macrolide, and lincosamides. The aim of our study was to investigate the in vitro development of macrolide resistance in M. hominis and to study the impact of ribosomal mutations on MICs of various macrolides and related antibiotics.
+METHODS: Selection of macrolide-resistant mutants was performed by serial passages of M. hominis PG21 in broth medium containing subinhibitory concentrations of clindamycin, pristinamycin, quinupristin/dalfopristin and telithromycin. Stepwise selection of josamycin-resistant mutants was performed onto agar medium containing increasing inhibitory concentrations of josamycin. Resistant mutants were characterized by PCR amplification and DNA sequencing of 23S rRNA, L4 and L22 ribosomal protein genes.
+RESULTS: Various mutations in domain II or V of 23S rRNA were selected in the presence of each selector antibiotic and were associated with several resistance phenotypes. Josamycin was the sole antibiotic that selected for single amino acid changes in ribosomal proteins L4 and L22. Unexpectedly, the C2611U transition selected in the presence of clindamycin and the quinupristin/dalfopristin combination was associated with decreased MICs of erythromycin, azithromycin and telithromycin, leading to a loss of the intrinsic resistance of M. hominis to erythromycin and azithromycin.
+CONCLUSIONS: Ribosomal mutations were associated with resistance to macrolides and related antibiotics in M. hominis. Some mutants showed a loss of the intrinsic resistance to erythromycin and azithromycin.
+Anti-Bacterial Agents
+Azithromycin
+Base Sequence
+Drug Resistance, Bacterial
+Erythromycin
+Humans
+Microbial Sensitivity Tests
+Molecular Sequence Data
+Mutation
+Mycoplasma hominis
+RNA, Ribosomal, 23S
+",Target-16464889,"Serial broth–passage selectors (subinhibitory): clindamycin; pristinamycin; quinupristin/dalfopristin; telithromycin. PCR targets for mutation identification: the 23S rRNA gene and the 50S ribosomal protein genes L4 (rplD) and L22 (rplV).
+
+According to the study methods, macrolide-resistant Mycoplasma hominis mutants were obtained by serially passaging strain PG21 in broth with subinhibitory concentrations of clindamycin, pristinamycin, quinupristin/dalfopristin, and telithromycin (while josamycin resistance was selected on agar with increasing concentrations). Resistant mutants were then characterized by PCR amplification and sequencing of ribosomal targets: the 23S rRNA gene and the ribosomal protein genes L4 and L22 (rplD and rplV), which captured mutations (notably in 23S rRNA domains II and V) associated with the resistance phenotypes.",Serial broth–passage selectors (subinhibitory): clindamycin; pristinamycin; quinupristin/dalfopristin; telithromycin. PCR targets for mutation identification: the 23S rRNA gene and the 50S ribosomal protein genes L4 (rplD) and L22 (rplV).,"According to the study methods, macrolide-resistant Mycoplasma hominis mutants were obtained by serially passaging strain PG21 in broth with subinhibitory concentrations of clindamycin, pristinamycin, quinupristin/dalfopristin, and telithromycin (while josamycin resistance was selected on agar with increasing concentrations). Resistant mutants were then characterized by PCR amplification and sequencing of ribosomal targets: the 23S rRNA gene and the ribosomal protein genes L4 and L22 (rplD and rplV), which captured mutations (notably in 23S rRNA domains II and V) associated with the resistance phenotypes.","SELECT 'study_link' AS category, title AS item, url AS details
+FROM ""drugbank_drugs_links""
+WHERE ref_id = '16464889' OR title LIKE '%Mycoplasma hominis%'
+UNION ALL
+SELECT 'antibiotic' AS category, title AS item, url AS details
+FROM ""drugbank_drugs_links""
+WHERE title LIKE '%Clindamycin%'
+   OR title LIKE '%Pristinamycin%'
+   OR title LIKE '%Quinupristin%'
+   OR title LIKE '%Dalfopristin%'
+   OR title LIKE '%Telithromycin%'
+   OR title LIKE '%Josamycin%'
+UNION ALL
+SELECT 'ribosomal_locus' AS category, name AS item, organism AS details
+FROM ""drugbank_targets""
+WHERE name LIKE '%23S ribosomal RNA%'
+   OR name LIKE '%50S ribosomal protein L4%'
+   OR name LIKE '%50S ribosomal protein L22%'
+LIMIT 50;","drugbank_carriers_polypeptides, drugbank_drug, drugbank_drug_drug_interactions, drugbank_drug_mixtures, drugbank_drug_pharmacology, drugbank_drug_reactions, drugbank_drug_snp_effects, drugbank_drugs_links, drugbank_enzymes_polypeptides, drugbank_snp_adverse_reactions, drugbank_targets, drugbank_targets_polypeptides, drugbank_transporters_polypeptides","Target-16464889, Target-11357996, Target-17910998, Target-15004073, Target-10960092",False,2,"[{""iteration"": 1, ""sub_question"": ""Which antibiotics are typically used in an in vitro serial broth–passage resistance-selection study with *Mycoplasma hominis* at subinhibitory concentrations, and which ribosomal gene or rRNA loci are PCR-amplified and sequenced to identify mutations in the resulting resistant mutants?"", ""focus"": ""both"", ""passages"": [""Target-16464889"", ""Target-11357996"", ""Target-17910998"", ""Target-15004073"", ""Target-10960092""], ""tables"": [""drugbank_drug_snp_effects"", ""drugbank_snp_adverse_reactions"", ""drugbank_transporters_polypeptides"", ""drugbank_enzymes_polypeptides"", ""drugbank_carriers_polypeptides""], ""reasoner"": {""needs_more_evidence"": true, ""sub_question"": ""From the Mycoplasma hominis in vitro serial broth–passage macrolide/lincosamide resistance study, which antibiotics were used at subinhibitory concentrations and which ribosomal gene or 23S rRNA loci (e.g., domains and ribosomal protein genes) were PCR-amplified and sequenced to identify mutations in resistant mutants?"", ""focus"": ""passage"", ""rationale"": ""The key passage is truncated and does not list the specific antibiotics or the exact ribosomal gene/rRNA loci sequenced. Other retrieved items are unrelated. A targeted passage retrieval from the primary study is needed to extract these details.""}}, {""iteration"": 2, ""sub_question"": ""From the Mycoplasma hominis in vitro serial broth–passage macrolide/lincosamide resistance study, which antibiotics were used at subinhibitory concentrations and which ribosomal gene or 23S rRNA loci (e.g., domains and ribosomal protein genes) were PCR-amplified and sequenced to identify mutations in resistant mutants?"", ""focus"": ""passage"", ""passages"": [""Target-16464889"", ""Target-11357996"", ""Target-17910998"", ""Target-15004073"", ""Target-10960092""], ""tables"": [], ""reasoner"": {""needs_more_evidence"": false, ""rationale"": ""max_iterations_reached""}}]"
+q00000032,"How do monofunctional and difunctional DNA alkylation change as mitomycin C concentration increases, and which specific DNA lesion is associated with the difunctional alkylation mechanism?",Monofunctional alkylation rises ~in parallel with concentration; difunctional alkylation quickly plateaus and produces inter-strand DNA cross-links.,"The passage states monofunctional alkylation increases almost in parallel with antibiotic concentration. In contrast, difunctional alkylation rapidly reaches a maximum and remains constant despite further concentration increases, and it is described as causing inter-strand DNA cross-linkages.","The in vitro formation and properties of the molecular complex between mitomycin C and native DNA were examined by means of various experimental methods; the data obtained indicate that the complex is extremely weak and that the chromophoric moiety of the antibiotic is not involved in its formation. The alkylating activity of mitomycin C was also studied using 3H-mitomycin C; while monofunctional alkylation increases almost in parallel with the concentration of the antibiotic, the difunctional alkylation, causing inter-strand cross-linkages in DNA, rapidly reaches a maximum and then remains constant even when increasing the concentration of the antibiotic and monofunctional alkylation. On the basis of these results, the currently accepted molecular model of the mitomycin--DNA interaction must be revised; a new model of this interaction is presented, which is in better agreement with the properties of mitomycin C and with the latest findings on the subject.
+Alkylation
+Chemical Phenomena
+Chemistry, Physical
+Chromatography, Gel
+Circular Dichroism
+DNA
+Dialysis
+Mitomycins
+Spectrophotometry, Ultraviolet
+",Target-744262,"As mitomycin C concentration increases, monofunctional DNA alkylation rises roughly in parallel with the drug concentration, whereas difunctional alkylation rapidly reaches a maximum and then plateaus. The difunctional mechanism produces DNA inter‑strand cross-links (interstrand cross-linkages).
+
+From Passage 1: monofunctional alkylation with 3H‑mitomycin C increases nearly proportionally with increasing mitomycin C concentration. In contrast, difunctional alkylation quickly reaches a maximum and remains constant despite further increases in drug concentration. The difunctional process is explicitly linked to forming inter‑strand cross‑linkages in DNA (interstrand cross-links). No relevant rows were returned by the SQL query, so the answer relies on the passage text.","As mitomycin C concentration increases, monofunctional DNA alkylation rises roughly in parallel with the drug concentration, whereas difunctional alkylation rapidly reaches a maximum and then plateaus. The difunctional mechanism produces DNA inter‑strand cross-links (interstrand cross-linkages).","From Passage 1: monofunctional alkylation with 3H‑mitomycin C increases nearly proportionally with increasing mitomycin C concentration. In contrast, difunctional alkylation quickly reaches a maximum and remains constant despite further increases in drug concentration. The difunctional process is explicitly linked to forming inter‑strand cross‑linkages in DNA (interstrand cross-links). No relevant rows were returned by the SQL query, so the answer relies on the passage text.","SELECT
+  l.parent_key,
+  t.name AS target_name,
+  l.title,
+  l.url
+FROM ""drugbank_drugs_links"" AS l
+LEFT JOIN ""drugbank_targets"" AS t
+  ON t.parent_key = l.parent_key
+WHERE lower(l.title) LIKE '%mitomycin%'
+  AND (
+    lower(l.title) LIKE '%alkyl%' OR
+    lower(l.title) LIKE '%cross%' OR
+    (lower(l.title) LIKE '%inter%' AND lower(l.title) LIKE '%strand%') OR
+    lower(l.title) LIKE '%dna%'
+  )
+ORDER BY l.title
+LIMIT 50;","drugbank_drug, drugbank_drug_carriers_articles, drugbank_drug_dosages, drugbank_drug_drug_interactions, drugbank_drug_mixtures, drugbank_drug_pharmacology, drugbank_drug_reactions, drugbank_drug_snp_effects, drugbank_drugs_links, drugbank_query_ddi_table, drugbank_snp_adverse_reactions, drugbank_targets, drugbank_targets_polypeptides","Target-744262, Target-14586139, Target-3098406, Target-2123741, Target-9031099",False,2,"[{""iteration"": 1, ""sub_question"": ""How do monofunctional and difunctional DNA alkylation change as mitomycin C concentration increases, and which specific DNA lesion is associated with the difunctional alkylation mechanism?"", ""focus"": ""both"", ""passages"": [""Target-744262"", ""Target-14586139"", ""Target-3098406"", ""Target-2123741"", ""Target-9031099""], ""tables"": [""drugbank_drug_snp_effects"", ""drugbank_snp_adverse_reactions"", ""drugbank_query_ddi_table"", ""drugbank_drug_carriers_articles"", ""drugbank_drug_dosages""], ""reasoner"": {""needs_more_evidence"": true, ""sub_question"": ""What is the trend of monofunctional versus difunctional DNA alkylation as mitomycin C concentration increases, and what specific DNA lesion results from the difunctional mechanism?"", ""focus"": ""passage"", ""rationale"": ""The key passage is truncated: it notes monofunctional alkylation increases nearly with concentration but omits how difunctional alkylation changes. The specific lesion type for difunctional alkylation (e.g., interstrand cross-link at CpG) is not explicitly confirmed in the provided evidence. Additional textual evidence is required.""}}, {""iteration"": 2, ""sub_question"": ""What is the trend of monofunctional versus difunctional DNA alkylation as mitomycin C concentration increases, and what specific DNA lesion results from the difunctional mechanism?"", ""focus"": ""passage"", ""passages"": [""Target-744262"", ""Target-14586139"", ""Target-3098406"", ""Target-2123741"", ""Target-9031099""], ""tables"": [], ""reasoner"": {""needs_more_evidence"": false, ""rationale"": ""max_iterations_reached""}}]"
